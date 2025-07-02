@@ -89,5 +89,8 @@
     <ClInclude Include="lib\Duck\DecoyDuck.h">
       <Filter>lib\Duck</Filter>
     </ClInclude>
+    <ClInclude Include="lib\Dance\MockDance.h">
+      <Filter>lib\Dance</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

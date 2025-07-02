@@ -48,6 +48,12 @@ public:
 		m_flyBehavior = std::move(flyBehavior);
 	}
 
+	void SetDanceBehavior(std::unique_ptr<IDanceBehavior>&& danceBehavior)
+	{
+		assert(danceBehavior);
+		m_danceBehavior = std::move(danceBehavior);
+	}
+
 	virtual void Display() const = 0;
 	virtual ~Duck() = default;
 

@@ -137,6 +137,7 @@
     <ClInclude Include="lib\Dance\CantDance.h" />
     <ClInclude Include="lib\Dance\IDanceBehavior.h" />
     <ClInclude Include="lib\Dance\MinuetDance.h" />
+    <ClInclude Include="lib\Dance\MockDance.h" />
     <ClInclude Include="lib\Dance\WaltzDance.h" />
     <ClInclude Include="lib\DuckFunctions.h" />
     <ClInclude Include="lib\Duck\DecoyDuck.h" />
