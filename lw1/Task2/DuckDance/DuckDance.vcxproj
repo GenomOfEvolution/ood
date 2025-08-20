@@ -37,7 +37,9 @@
     <ClInclude Include="lib\Fly\FlyNoWay.h" />
     <ClInclude Include="lib\Fly\FlyWithWings.h" />
     <ClInclude Include="lib\Fly\IFlyBehavior.h" />
+    <ClInclude Include="lib\Fly\MockQuackOnDoubleFly.h" />
     <ClInclude Include="lib\Quack\IQuakBehavior.h" />
+    <ClInclude Include="lib\Quack\MockQuackBehavior.h" />
     <ClInclude Include="lib\Quack\MuteQuackBehavior.h" />
     <ClInclude Include="lib\Quack\QuackBehavior.h" />
     <ClInclude Include="lib\Quack\SqueakBehavior.h" />

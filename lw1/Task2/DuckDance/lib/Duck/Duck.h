@@ -34,12 +34,7 @@ public:
 
 	void Fly() const
 	{
-		m_flyBehavior->Fly(
-			[this]() 
-			{ 
-				Quack(); 
-			}
-		);	
+		m_flyBehavior->Fly([this]() { Quack(); });	
 	}
 
 	void Dance() const
@@ -57,6 +52,12 @@ public:
 	{
 		assert(danceBehavior);
 		m_danceBehavior = std::move(danceBehavior);
+	}
+
+	void SetQuackBehavior(std::unique_ptr<IQuackBehavior>&& quackBehavior)
+	{
+		assert(quackBehavior);
+		m_quackBehavior = std::move(quackBehavior);
 	}
 
 	virtual void Display() const = 0;
