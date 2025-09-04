@@ -8,8 +8,11 @@
 int main()
 {
 	MallardDuck mallardDuck;
-	PlayWithDuck(mallardDuck);
-	PlayWithDuck(mallardDuck);
+
+	mallardDuck.Fly();
+	mallardDuck.Fly();
+	mallardDuck.Fly();
+
 	PlayWithDuck(mallardDuck);
 
 	RedheadDuck redheadDuck;
@@ -24,8 +27,8 @@ int main()
 	ModelDuck modelDuck;
 	PlayWithDuck(modelDuck);
 
-	modelDuck.SetFlyBehavior(std::make_unique<FlyWithWings>());
+	modelDuck.SetFlyBehavior(CreateFlyWithWings());
 	PlayWithDuck(modelDuck);
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
