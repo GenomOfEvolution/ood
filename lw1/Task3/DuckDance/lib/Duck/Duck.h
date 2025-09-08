@@ -33,7 +33,7 @@ public:
 
 	void Fly() const
 	{
-		m_flyBehavior([this]() {Quack(); });
+		m_flyBehavior([this]() { Quack(); });
 	}
 
 	void Dance() const
@@ -51,6 +51,12 @@ public:
 	{
 		assert(danceBehavior);
 		m_danceBehavior = std::move(danceBehavior);
+	}
+
+	void SetQuackBehavior(behavior_t quackBehavior)
+	{
+		assert(quackBehavior);
+		m_quackBehavior = std::move(quackBehavior);
 	}
 
 	virtual void Display() const = 0;
