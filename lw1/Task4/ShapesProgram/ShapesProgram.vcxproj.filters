@@ -28,7 +28,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Shape\Shape.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +43,21 @@
     </ClInclude>
     <ClInclude Include="gfx\ICanvas.h">
       <Filter>Source Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\ShapeStrategy\EllipseStrategy.h">
+      <Filter>Source Files\Shape\ShapeStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\ShapeStrategy\LineStrategy.h">
+      <Filter>Source Files\Shape\ShapeStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\ShapeStrategy\RectangleStrategy.h">
+      <Filter>Source Files\Shape\ShapeStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\ShapeStrategy\TextStrategy.h">
+      <Filter>Source Files\Shape\ShapeStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\ShapeStrategy\TriangleStrategy.h">
+      <Filter>Source Files\Shape\ShapeStrategy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

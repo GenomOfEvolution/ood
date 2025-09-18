@@ -134,7 +134,12 @@
     <ClInclude Include="gfx\Color.h" />
     <ClInclude Include="gfx\ICanvas.h" />
     <ClInclude Include="Shape\Shape.h" />
+    <ClInclude Include="Shape\ShapeStrategy\EllipseStrategy.h" />
     <ClInclude Include="Shape\ShapeStrategy\IShapeStrategy.h" />
+    <ClInclude Include="Shape\ShapeStrategy\LineStrategy.h" />
+    <ClInclude Include="Shape\ShapeStrategy\RectangleStrategy.h" />
+    <ClInclude Include="Shape\ShapeStrategy\TextStrategy.h" />
+    <ClInclude Include="Shape\ShapeStrategy\TriangleStrategy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

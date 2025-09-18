@@ -1,6 +1,7 @@
 #pragma once
 #include "ShapeStrategy/IShapeStrategy.h"
 #include "../gfx/Color.h"
+#include "../gfx/ICanvas.h"
 
 #include <memory>
 
@@ -14,7 +15,6 @@ namespace shapes
 		Point(double x, double y) : x(x), y(y) {}
 	};
 
-
 	class Shape
 	{
 	private:
@@ -26,8 +26,11 @@ namespace shapes
 			m_shapeStrategy(std::move(shapeStrategy)) 
 		{}
 		
-
-
+		void Draw(gfx::ICanvas* canvas) const;
+		void Move(double dx, double dy);
+		gfx::Color GetColor() const;
+		void SetColor(gfx::Color newColor);
+		void SetStrategy(std::unique_ptr<IShapeStrategy>&& newStrategy);
 	};
 
 } // namespace shapes
