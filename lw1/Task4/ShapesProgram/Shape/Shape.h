@@ -3,6 +3,7 @@
 #include "../gfx/Color.h"
 #include "../gfx/ICanvas.h"
 
+#include <string>
 #include <memory>
 
 namespace shapes
@@ -27,6 +28,9 @@ namespace shapes
 		{}
 		
 		void Draw(gfx::ICanvas* canvas) const;
+		std::string GetInfo() const;
+		std::string GetType() const;
+
 		void Move(double dx, double dy);
 		gfx::Color GetColor() const;
 		void SetColor(gfx::Color newColor);

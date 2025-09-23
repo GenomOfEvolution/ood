@@ -1,7 +1,11 @@
 #pragma once
 #include "Color.h"
-#include "../Shape/Shape.h"
 #include <string>
+
+namespace shapes
+{
+    struct Point;
+}
 
 namespace gfx
 {

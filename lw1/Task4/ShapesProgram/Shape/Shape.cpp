@@ -10,6 +10,16 @@ void shapes::Shape::Draw(gfx::ICanvas* canvas) const
 	m_shapeStrategy->Draw(canvas, m_color);
 }
 
+std::string shapes::Shape::GetInfo() const
+{
+	return m_shapeStrategy->GetInfo();
+}
+
+std::string shapes::Shape::GetType() const
+{
+	return m_shapeStrategy->GetType();
+}
+
 gfx::Color shapes::Shape::GetColor() const
 {
 	return m_color;

@@ -22,6 +22,15 @@
     <Filter Include="Source Files\gfx">
       <UniqueIdentifier>{607640e7-6252-476d-8fe3-dbc929f90d08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{0fc32f8d-5d24-455c-858e-274ce86dd30a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Picture">
+      <UniqueIdentifier>{905bd1fb-837e-46cc-8438-68fea7ccba45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\Commands">
+      <UniqueIdentifier>{10b23151-d2db-424e-90f5-1b3fa3739e5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,6 +38,12 @@
     </ClCompile>
     <ClCompile Include="Shape\Shape.cpp">
       <Filter>Source Files\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Picture.cpp">
+      <Filter>Source Files\Picture</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\CommandProcessor.cpp">
+      <Filter>Source Files\Command</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +73,54 @@
     </ClInclude>
     <ClInclude Include="Shape\ShapeStrategy\TriangleStrategy.h">
       <Filter>Source Files\Shape\ShapeStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="gfx\Canvas.h">
+      <Filter>Source Files\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Picture.h">
+      <Filter>Source Files\Picture</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\CommandProcessor.h">
+      <Filter>Source Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\AddShapeCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ChangeColorCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ChangeShapeCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DeleteShapeCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DrawPictureCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DrawShapeCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ICommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ListCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\MovePictureCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\MoveShapeCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\ShapeStrategy\ShapeStrategyFactory.h">
+      <Filter>Source Files\Shape\ShapeStrategy</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ExitCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\HelpCommand.h">
+      <Filter>Source Files\Command\Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,8 @@
 #include "../../gfx/ICanvas.h"
 #include "../Shape.h"
 #include "IShapeStrategy.h"
+#include <sstream>
+#include <iomanip>
 
 namespace shapes
 {
@@ -23,6 +25,19 @@ namespace shapes
         {
             m_center.x += dx;
             m_center.y += dy;
+        }
+
+        std::string GetInfo() const override
+        {
+            std::ostringstream oss;
+            oss << std::fixed << std::setprecision(1);
+            oss << m_center.x << " " << m_center.y << " " << m_radius;
+            return oss.str();
+        }
+
+        std::string GetType() const override
+        {
+            return "circle";
         }
 
     private:
