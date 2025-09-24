@@ -1,0 +1,233 @@
+---
+config:
+  layout: elk
+---
+classDiagram
+    class Point {
+        + m_x: double
+        + m_y: double
+    }
+    namespace gfx {
+        class CanvasSVG {
+            - m_color: Color
+            - m_filePath: string
+            - m_x: double
+            - m_y: double
+            - m_document: svg::Document
+            - const m_LINE_WIDTH: int
+            
+            + CanvasSVG()
+            + CanvasSVG(string pathToFile)
+            + ~CanvasSVG()
+            + MoveTo(double x, double y)
+            + SetColor(Color color)
+            + LineTo(double dx, double dy)
+            + DrawRectangle(Point start, double width, double height)
+            + DrawTriangle(Point p1, Point p2, Point p3)
+            + DrawEllipse(double cx, double cy, double rx, double ry)
+            + DrawText(double left, double top, double fontSize, string text)
+        }
+        class MockCanvas {
+            . . .
+        }
+        class ICanvas {
+            <<Interface>> 
+            + MoveTo(x: double, y: double)
+            + SetColor(color: Color)
+            + LineTo(x: double, y: double)
+            + DrawEllipse(cx: double, cy: double, rx: double, ry: double)
+            + DrawText(left: double, top: double, fontSize: double, text: string)
+        }
+        class Color {
+            - m_data: string
+        }
+    }
+    ICanvas ..> Color : "Use"
+    CanvasSVG ..|> ICanvas : "Implements"
+    MockCanvas ..|> ICanvas
+    namespace shapes {
+         class Shape {
+            + Shape(shapeStrategy: IShapeStrategy) 
+            + Draw(canvas: ICanvas)
+            + Move(dx: double, dy: double)
+            + GetColor() Color
+            + SetColor(newColor: Color)
+            + SetStrategy(strategy: IShapeStrategy)
+            - m_color: Color
+            - m_shapeStrategy: IShapeStrategy
+        }
+        class IShapeStrategy {
+            <<Interface>>
+            + Draw(canvas: ICanvas, color: Color)
+            + Move(dx: double, dy: double)
+        }
+        class EllipseStrategy {
+            + Draw(canvas: ICanvas, color: Color)
+            + Move(dx: double, dy: double)
+            + EllipseStrategy(center: Point, radius: double)
+            - m_center: Point
+            - m_radius: double
+        }
+        class RectangleStrategy {
+            + Draw(canvas: ICanvas, color: Color)
+            + Move(dx: double, dy: double)
+            + RectangleStrategy(leftTop: Point, width: double, height: double)
+            - m_leftTop: Point
+            - m_width: double
+            - m_height: double
+        }
+        class TriangleStrategy {
+            + Draw(canvas: ICanvas, color: Color)
+            + Move(dx: double, dy: double)
+            + TriangleStrategy(p1: Point, p2: Point, p3: Point)
+            - m_vertices: Point[3]
+        }
+        class LineStrategy {
+            + Draw(canvas: ICanvas, color: Color)
+            + Move(dx: double, dy: double)
+            + LineStrategy(startPoint: Point, endPoint: Point)
+            - m_vertices: Point[2]
+        }
+        class TextStrategy {
+            + Draw(canvas: ICanvas, color: Color)
+            + Move(dx: double, dy: double)
+            + TextStrategy(leftTop: Point, size: double, text: string)
+            - m_leftTop: Point
+            - m_size: double
+            - m_text: string
+        }
+        class Picture {
+            - m_shapes: map~string, IShape~
+            - m_shapeList: list~IShape~
+            + AddShape(Shape shape) void
+	        + DeleteShape(string id) void
+	        + MovePicture(double dx, double dy) void
+	        + DrawPicture(ICanvas canvas) void
+	        + GetShape(string id) Shape
+            + GetAllInfo() void
+        }
+    }
+    IShapeStrategy --* Shape
+    EllipseStrategy..|>IShapeStrategy
+    RectangleStrategy..|>IShapeStrategy
+    TriangleStrategy..|>IShapeStrategy
+    LineStrategy..|>IShapeStrategy
+    TextStrategy..|>IShapeStrategy
+    Picture *-- Shape
+    Picture ..> ICanvas : "Use"
+    namespace UserInput {
+        class ICommand {
+            <<Interface>>
+            + Execute() void
+        }
+        class AddShapeCommand {
+            - m_id: string
+            - m_color: Color
+            - m_strategy: IShapeStrategy 
+            - m_picture: Picture
+            + AddShapeCommand(picture: Picture, id: string, color: Color, strategy: IShapeStrategy)
+            + Execute() void 
+        }
+        class ChangeColorCommand {
+            - m_id: string
+            - m_color: Color
+            - m_picture: Picture
+            + ChangeColorCommand(picture: Picture, id: string, newColor: Color)
+            + Execute() void
+        }
+        class ChangeShapeCommand {
+            - m_id: string
+            - m_shapeType: IShapeStrategy
+            - m_picture: Picture
+            + ChangeShapeCommand(picture: Picture, id: string, newType: IShapeStrategy)
+            + Execute() void
+        }
+        class DeleteShapeCommand {
+            - m_id: string
+            - m_picture: Picture
+            + DeleteShapeCommand(picture: Picture, id: string)
+            + Execute() void
+        }
+        class DrawPictureCommand {
+            - m_picture: Picture
+            + DrawPictureCommand(picture: Picture)
+            + Execute() void
+        }
+        class DrawShapeCommand {
+            - m_picture: Picture
+            - m_id: string
+            + DrawShapeCommand(picture: Picture, id: string)
+            + Execute() void
+        }
+        class ListCommand {
+            - m_picture: Picture
+            + ListCommand(picture: Picture)
+            + Execute() void
+        }
+        class MovePictureCommand {
+            - m_picture: Picture
+            - m_dx: double
+            - m_dy: double
+            + MovePictureCommand(picture: Picture, dx: double, dy: double)
+            + Execute() void
+        }
+        class MoveShapeCommand {
+	        - m_picture : IPicture
+	        - m_id : string
+	        - m_dx : double
+	        - m_dy : double
+	        + MoveShapeCommand(picture: Picture, id: string dx: double, dy: double)
+	        + Execute() void
+        }
+
+        class ExitCommand {
+            - CommandProcessor& m_menu
+            + ExitCommand(CommandProcessor menu)
+            + ~ExitCommand()
+            + Execute(istream input) void
+        }
+        
+        class HelpCommand {
+            - const CommandProcessor& m_menu
+            + HelpCommand(CommandProcessor menu)
+            + ~HelpCommand()
+            + Execute(istream input) void
+        }
+
+        class CommandProcessor {
+            - m_input: std::istream&
+            - m_output: std::ostream&
+            - m_items: std::vector~Item~ 
+            - m_exit: bool
+            
+            + CommandProcessor(istream input, ostream output)
+            + ~CommandProcessor()
+            + AddItem(string shortcut, string description, unique_ptr~ICommand~ command)
+            + Run() void
+            + ShowInstructions() void
+            + Exit() void
+            - ExecuteCommand(string command) bool
+        }
+        
+        class Item {
+            - shortcut: string
+            - description: string
+            - command: unique_ptr~ICommand~
+            + Item(string shortcut, string description, unique_ptr~ICommand~ command)
+        }
+    }
+
+    CommandProcessor *-- Item : contains
+    ICommand --> CommandProcessor
+    CommandProcessor --> Picture
+    AddShapeCommand..|>ICommand
+    ChangeColorCommand..|>ICommand
+    ChangeShapeCommand..|>ICommand
+    DeleteShapeCommand..|>ICommand
+    DrawPictureCommand..|>ICommand
+    DrawShapeCommand..|>ICommand
+    ListCommand..|>ICommand
+    MovePictureCommand..|>ICommand
+    MoveShapeCommand..|>ICommand
+     ExitCommand ..|> ICommand
+    HelpCommand ..|> ICommand
