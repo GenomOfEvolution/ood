@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Command\CommandProcessor.cpp" />
+    <ClCompile Include="gfx\svgCanvas\svgCanvas.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shape\Picture.cpp" />
     <ClCompile Include="Shape\Shape.cpp" />
@@ -146,9 +147,10 @@
     <ClInclude Include="Command\ListCommand.h" />
     <ClInclude Include="Command\MovePictureCommand.h" />
     <ClInclude Include="Command\MoveShapeCommand.h" />
-    <ClInclude Include="gfx\Canvas.h" />
     <ClInclude Include="gfx\Color.h" />
     <ClInclude Include="gfx\ICanvas.h" />
+    <ClInclude Include="gfx\svgCanvas\simple_svg_1.0.0.hpp" />
+    <ClInclude Include="gfx\svgCanvas\svgCanvas.h" />
     <ClInclude Include="Shape\Picture.h" />
     <ClInclude Include="Shape\Shape.h" />
     <ClInclude Include="Shape\ShapeStrategy\EllipseStrategy.h" />

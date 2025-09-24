@@ -17,7 +17,7 @@ namespace gfx
             }
         }
 
-        Color() = default;
+        Color() { m_data = "#000000"; };
 
     private:
         bool IsValidColor(const std::string& color) const

@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Command\Commands">
       <UniqueIdentifier>{10b23151-d2db-424e-90f5-1b3fa3739e5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gfx\svgCanvas">
+      <UniqueIdentifier>{5dda42fd-edab-40ca-9109-bd8fb6a13dfe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="Command\CommandProcessor.cpp">
       <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="gfx\svgCanvas\svgCanvas.cpp">
+      <Filter>Source Files\gfx\svgCanvas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,9 +79,6 @@
     </ClInclude>
     <ClInclude Include="Shape\ShapeStrategy\TriangleStrategy.h">
       <Filter>Source Files\Shape\ShapeStrategy</Filter>
-    </ClInclude>
-    <ClInclude Include="gfx\Canvas.h">
-      <Filter>Source Files\gfx</Filter>
     </ClInclude>
     <ClInclude Include="Shape\Picture.h">
       <Filter>Source Files\Picture</Filter>
@@ -121,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="Command\HelpCommand.h">
       <Filter>Source Files\Command\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="gfx\svgCanvas\svgCanvas.h">
+      <Filter>Source Files\gfx\svgCanvas</Filter>
+    </ClInclude>
+    <ClInclude Include="gfx\svgCanvas\simple_svg_1.0.0.hpp">
+      <Filter>Source Files\gfx\svgCanvas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

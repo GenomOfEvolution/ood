@@ -2,7 +2,7 @@
 #include <memory>
 
 #include "Shape/Picture.h"
-#include "gfx/Canvas.h"
+#include "gfx/svgCanvas/svgCanvas.h"
 #include "Command/CommandProcessor.h"
 #include "Command/AddShapeCommand.h"
 #include "Command/MoveShapeCommand.h"
@@ -23,7 +23,7 @@ using namespace UI;
 int main()
 {
 	Picture picture;
-    Canvas canvas;
+	CanvasSVG canvas;
 	CommandProcessor menu(std::cin, std::cout);
 
 	menu.AddItem("help", "show this menu", std::make_unique<HelpCommand>(menu));
