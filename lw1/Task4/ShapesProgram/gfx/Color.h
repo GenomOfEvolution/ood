@@ -19,6 +19,11 @@ namespace gfx
 
         Color() { m_data = "#000000"; };
 
+        bool operator==(const Color& other) const 
+        {
+            return m_data == other.m_data;
+        }
+
     private:
         bool IsValidColor(const std::string& color) const
         {
