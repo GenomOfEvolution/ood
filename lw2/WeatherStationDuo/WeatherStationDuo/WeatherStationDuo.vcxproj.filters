@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Display">
+      <UniqueIdentifier>{770732ae-42c0-4296-bc90-b98efe572f67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Observer">
+      <UniqueIdentifier>{0d33393e-9855-4c3a-a891-934fe1a7dafd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WeatherData">
+      <UniqueIdentifier>{77d7990b-86eb-497d-a704-71f94d8827c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Display\StatsDisplay">
+      <UniqueIdentifier>{e250c8f9-8214-4f33-85e2-f206e4e17244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Display\CDisplay">
+      <UniqueIdentifier>{f9f15cae-315a-4603-85cd-763954904fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Display\StatsDisplay\StatsData">
+      <UniqueIdentifier>{d768f384-a28b-4889-ad7f-0f73788d631c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WeatherData\WeatherData.cpp">
+      <Filter>Source Files\WeatherData</Filter>
+    </ClCompile>
+    <ClCompile Include="Display\CDisplay\CDisplay.cpp">
+      <Filter>Source Files\Display\CDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Display\StatsDisplay\StatsDisplay.cpp">
+      <Filter>Source Files\Display\StatsDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Display\StatsDisplay\StatsData\StatsData.cpp">
+      <Filter>Source Files\Display\StatsDisplay\StatsData</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Observer\CObservable.h">
+      <Filter>Source Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer\IObservable.h">
+      <Filter>Source Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer\IObserver.h">
+      <Filter>Source Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="WeatherData\WeatherData.h">
+      <Filter>Source Files\WeatherData</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\CDisplay\CDisplay.h">
+      <Filter>Source Files\Display\CDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\StatsDisplay\StatsDisplay.h">
+      <Filter>Source Files\Display\StatsDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\StatsDisplay\StatsData\StatsData.h">
+      <Filter>Source Files\Display\StatsDisplay\StatsData</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
