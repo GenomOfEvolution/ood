@@ -57,6 +57,16 @@ TEST_CASE("Several observables")
 			obs1.RegisterObserver(observer);
 			obs2.RegisterObserver(observer);
 
+			WHEN("deleting same observer twice")
+			{
+				observer.RemoveObservable(obs1);
+
+				THEN("should compile and not crush")
+				{
+					REQUIRE_NOTHROW(observer.RemoveObservable(obs1));
+				}
+			}
+
 			WHEN("notifying from both unitilized observers")
 			{
 				obs1.NotifyObservers();
