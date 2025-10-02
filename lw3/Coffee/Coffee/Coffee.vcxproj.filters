@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Beverages">
+      <UniqueIdentifier>{de64a894-8b31-46bd-a759-cddfbec19ee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments">
+      <UniqueIdentifier>{ca7583bb-0ad1-413f-839f-790cad899d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Beverages\Cappuccino">
+      <UniqueIdentifier>{90aaf1ad-9c1c-49b4-bd71-bfbebf5419a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Beverages\Coffee">
+      <UniqueIdentifier>{f8ea05ec-072f-4c13-9d95-6d3bf894ce6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Beverages\Latte">
+      <UniqueIdentifier>{73f55e96-beff-4917-b294-c3e087856917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Beverages\Milkshake">
+      <UniqueIdentifier>{b6d8d74d-39fd-4ec1-89bc-1ee9410b73be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Beverages\Tea">
+      <UniqueIdentifier>{541f8a02-c171-4818-b5d2-b861f05bba58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\ChocolateCrumbs">
+      <UniqueIdentifier>{10a7e01e-1d4f-4621-80fe-a34321e6c808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\ChocolateSlices">
+      <UniqueIdentifier>{44e15bb2-3436-40fc-9bd4-405ca518ead2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\Cinnamon">
+      <UniqueIdentifier>{bbdfda1e-7d27-4722-b3c0-71db4341d602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\CoconutFlakes">
+      <UniqueIdentifier>{993b3069-6ea0-4c8e-8ff5-e6f4b6721a3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\Cream">
+      <UniqueIdentifier>{fe36e29e-5763-4d36-9dc2-28bb02ad01c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\IceCubes">
+      <UniqueIdentifier>{9334e4f0-91a2-42e7-9a5e-78b18180b550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\Lemon">
+      <UniqueIdentifier>{7e8f3ce0-b70e-448a-bcd5-df4117c31775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\Liqueur">
+      <UniqueIdentifier>{14160d68-7f56-4dc6-a2a1-c28081caccd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Condiments\Syrup">
+      <UniqueIdentifier>{3994f844-a2f4-49e4-9e41-12ae14fb542b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\Cinnamon\Cinnamon.cpp">
+      <Filter>Source Files\Condiments\Cinnamon</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\ChocolateCrumbs\ChocolateCrumbs.cpp">
+      <Filter>Source Files\Condiments\ChocolateCrumbs</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\CoconutFlakes\CoconutFlakes.cpp">
+      <Filter>Source Files\Condiments\CoconutFlakes</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\Cream\Cream.cpp">
+      <Filter>Source Files\Condiments\Cream</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\ChocolateSlices\ChocolateSlices.cpp">
+      <Filter>Source Files\Condiments\ChocolateSlices</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\IceCubes\IceCubes.cpp">
+      <Filter>Source Files\Condiments\IceCubes</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\Lemon\Lemon.cpp">
+      <Filter>Source Files\Condiments\Lemon</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\Liqueur\Liqueur.cpp">
+      <Filter>Source Files\Condiments\Liqueur</Filter>
+    </ClCompile>
+    <ClCompile Include="Condiments\Syrup\Syrup.cpp">
+      <Filter>Source Files\Condiments\Syrup</Filter>
+    </ClCompile>
+    <ClCompile Include="Beverages\Beverage.cpp">
+      <Filter>Source Files\Beverages</Filter>
+    </ClCompile>
+    <ClCompile Include="Beverages\Coffee\Coffee.cpp">
+      <Filter>Source Files\Beverages\Coffee</Filter>
+    </ClCompile>
+    <ClCompile Include="Beverages\Cappuccino\Cappuccino.cpp">
+      <Filter>Source Files\Beverages\Cappuccino</Filter>
+    </ClCompile>
+    <ClCompile Include="Beverages\Latte\Latte.cpp">
+      <Filter>Source Files\Beverages\Latte</Filter>
+    </ClCompile>
+    <ClCompile Include="Beverages\Milkshake\Milkshake.cpp">
+      <Filter>Source Files\Beverages\Milkshake</Filter>
+    </ClCompile>
+    <ClCompile Include="Beverages\Tea\Tea.cpp">
+      <Filter>Source Files\Beverages\Tea</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Beverages\Beverage.h">
+      <Filter>Source Files\Beverages</Filter>
+    </ClInclude>
+    <ClInclude Include="Beverages\IBeverage.h">
+      <Filter>Source Files\Beverages</Filter>
+    </ClInclude>
+    <ClInclude Include="Beverages\Cappuccino\Cappuccino.h">
+      <Filter>Source Files\Beverages\Cappuccino</Filter>
+    </ClInclude>
+    <ClInclude Include="Beverages\Coffee\Coffee.h">
+      <Filter>Source Files\Beverages\Coffee</Filter>
+    </ClInclude>
+    <ClInclude Include="Beverages\Latte\Latte.h">
+      <Filter>Source Files\Beverages\Latte</Filter>
+    </ClInclude>
+    <ClInclude Include="Beverages\Milkshake\Milkshake.h">
+      <Filter>Source Files\Beverages\Milkshake</Filter>
+    </ClInclude>
+    <ClInclude Include="Beverages\Tea\Tea.h">
+      <Filter>Source Files\Beverages\Tea</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\CondimentDecorator.h">
+      <Filter>Source Files\Condiments</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\ChocolateCrumbs\ChocolateCrumbs.h">
+      <Filter>Source Files\Condiments\ChocolateCrumbs</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\ChocolateSlices\ChocolateSlices.h">
+      <Filter>Source Files\Condiments\ChocolateSlices</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\Cinnamon\Cinnamon.h">
+      <Filter>Source Files\Condiments\Cinnamon</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\CoconutFlakes\CoconutFlakes.h">
+      <Filter>Source Files\Condiments\CoconutFlakes</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\Cream\Cream.h">
+      <Filter>Source Files\Condiments\Cream</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\IceCubes\IceCubes.h">
+      <Filter>Source Files\Condiments\IceCubes</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\Lemon\Lemon.h">
+      <Filter>Source Files\Condiments\Lemon</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\Liqueur\Liqueur.h">
+      <Filter>Source Files\Condiments\Liqueur</Filter>
+    </ClInclude>
+    <ClInclude Include="Condiments\Syrup\Syrup.h">
+      <Filter>Source Files\Condiments\Syrup</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
