@@ -2,8 +2,11 @@
 #include <filesystem>
 #include <string>
 #include "../../../catch2/catch.hpp"
+
 #include "../Transform/InputDataStream/FileInputStream/FileInputStream.h"
 #include "../Transform/InputDataStream/MemoryInputStream/MemoryInputStream.h"
+#include "../Transform/OutputDataStream/FileOutputStream/FileOutputStream.h"
+#include "../Transform/OutputDataStream/MemoryOutputStream/MemoryOutputStream.h"
 
 const auto TEST_FILE_NAME = "test_file_input.bin";
 
@@ -21,6 +24,18 @@ auto CreateTestFile = [&](const std::vector<uint8_t>& data)
 		file.write(reinterpret_cast<const char*>(data.data()), data.size());
 		file.close();
 	};
+
+std::vector<std::uint8_t> GetFileContents(std::string const& filename)
+{
+	std::ifstream stream(filename, std::ios_base::in | std::ios_base::binary);
+	stream.unsetf(std::ios::skipws);
+
+	const std::istream_iterator<std::uint8_t> begin(stream), end;
+	std::vector result(begin, end);
+
+	return result;
+}
+
 
 SCENARIO("Memory Input Stream")
 {
@@ -110,10 +125,11 @@ SCENARIO("Memory Input Stream")
 SCENARIO("File Input Stream")
 {
 	std::vector<uint8_t> testData = { 0x01, 0x02, 0x03, 0x04, 0x05 };
+	std::filesystem::remove(GetTemporaryFilepath(TEST_FILE_NAME));
 
 	GIVEN("non existing file path")
 	{
-		std::string const path = GetTemporaryFilepath("non-existing-file.txt");
+		std::string const path = GetTemporaryFilepath(TEST_FILE_NAME);
 
 		WHEN("creating a stream")
 		{
@@ -124,7 +140,6 @@ SCENARIO("File Input Stream")
 		}
 	}
 
-	std::filesystem::remove(TEST_FILE_NAME);
 	GIVEN("existing file")
 	{
 		CreateTestFile(testData);
@@ -191,18 +206,141 @@ SCENARIO("File Input Stream")
 		{
 			stream.Close();
 
-			THEN("subsequent operations throw stream error")
+			THEN("subsequent operations throw logic error")
 			{
-				REQUIRE_THROWS_AS(stream.ReadByte(), std::ios_base::failure);
-			}
-
-			THEN("reading a block doesn`t throws an error")
-			{
+				REQUIRE_THROWS_AS(stream.ReadByte(), std::logic_error);
+				REQUIRE_THROWS_AS(stream.IsEOF(), std::logic_error);
 				std::vector<uint8_t> buffer(1);
-				REQUIRE_NOTHROW(stream.ReadBlock(buffer.data(), 1));
+				REQUIRE_THROWS_AS(stream.ReadBlock(buffer.data(), 1), std::logic_error);
 			}
 
 			THEN("double close throws logic_error")
+			{
+				REQUIRE_THROWS_AS(stream.Close(), std::logic_error);
+			}
+		}
+	}
+	std::filesystem::remove(TEST_FILE_NAME);
+}
+
+SCENARIO("Memory Output Stream")
+{
+	std::vector<uint8_t> data;
+	GIVEN("an memory stream")
+	{
+		MemoryOutputStream stream(data);
+		WHEN("writing couple of bytes")
+		{
+			stream.WriteByte('h');
+			stream.WriteByte('e');
+			stream.WriteByte('l');
+			stream.WriteByte('l');
+
+			THEN("data vector changes")
+			{
+				REQUIRE(data == std::vector<uint8_t>{ 'h', 'e', 'l', 'l' });
+			}
+
+			AND_WHEN("writing block of bytes")
+			{
+				std::vector<uint8_t> bytes = { 'o', ' ', 'm', 'e' };
+				stream.WriteBlock(bytes.data(), static_cast<std::streamsize>(bytes.size()));
+
+				THEN("data vector becomes populated with new bytes")
+				{
+					REQUIRE(data == std::vector<std::uint8_t>{ 'h', 'e', 'l', 'l', 'o', ' ', 'm', 'e' });
+				}
+			}
+		}
+
+		WHEN("writing zero bytes")
+		{
+			std::vector<uint8_t> empty;
+			stream.WriteBlock(empty.data(), 0);
+
+			THEN("data remains unchanged")
+			{
+				REQUIRE(data.empty());
+			}
+		}
+
+		WHEN("closing a stream")
+		{
+			stream.Close();
+
+			THEN("all subsequent operations throw logic_error")
+			{
+				std::vector<uint8_t> bytes = { 'd', 'a', 't', 'a' };
+				REQUIRE_THROWS_AS(stream.WriteBlock(bytes.data(), static_cast<std::streamsize>(bytes.size())), std::logic_error);
+				REQUIRE_THROWS_AS(stream.WriteByte('a'), std::logic_error);
+			}
+
+			AND_THEN("double closing throws logcal error")
+			{
+				REQUIRE_THROWS_AS(stream.Close(), std::logic_error);
+			}
+		}
+	}
+}
+
+SCENARIO("File output stream")
+{
+	std::filesystem::remove(GetTemporaryFilepath(TEST_FILE_NAME));
+
+	GIVEN("a non-existing file in valid directory")
+	{
+		std::string const path = GetTemporaryFilepath(TEST_FILE_NAME);
+
+		WHEN("creating a stream")
+		{
+			THEN("it creates the file and does not throw")
+			{
+				REQUIRE_NOTHROW(FileOutputStream(path));
+				REQUIRE(std::filesystem::exists(path));
+			}
+		}
+	}
+
+	GIVEN("existing empty file")
+	{
+		std::string const path = GetTemporaryFilepath(TEST_FILE_NAME);
+		FileOutputStream stream(path);
+
+		WHEN("writing couple of bytes")
+		{
+			stream.WriteByte('h');
+			stream.WriteByte('e');
+			stream.WriteByte('l');
+			stream.WriteByte('l');
+
+			THEN("data vector changes")
+			{
+				REQUIRE(GetFileContents(path) == std::vector<uint8_t>{ 'h', 'e', 'l', 'l' });
+			}
+
+			AND_WHEN("writing block of bytes")
+			{
+				std::vector<uint8_t> bytes = { 'o', ' ', 'm', 'e' };
+				stream.WriteBlock(bytes.data(), static_cast<std::streamsize>(bytes.size()));
+
+				THEN("data vector becomes populated with new bytes")
+				{
+					REQUIRE(GetFileContents(path) == std::vector<std::uint8_t>{ 'h', 'e', 'l', 'l', 'o', ' ', 'm', 'e' });
+				}
+			}
+		}
+
+		WHEN("closing a stream")
+		{
+			stream.Close();
+			THEN("all subsequent operations throw logic_error")
+			{
+				std::vector<uint8_t> bytes = { 'd', 'a', 't', 'a' };
+				REQUIRE_THROWS_AS(stream.WriteBlock(bytes.data(), static_cast<std::streamsize>(bytes.size())), std::logic_error);
+				REQUIRE_THROWS_AS(stream.WriteByte('a'), std::logic_error);
+			}
+
+			AND_THEN("double closing throws logcal error")
 			{
 				REQUIRE_THROWS_AS(stream.Close(), std::logic_error);
 			}

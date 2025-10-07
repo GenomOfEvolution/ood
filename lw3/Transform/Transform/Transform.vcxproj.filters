@@ -48,6 +48,12 @@
     <ClCompile Include="InputDataStream\MemoryInputStream\MemoryInputStream.cpp">
       <Filter>Source Files\InputDataStream\MemoryInputStream</Filter>
     </ClCompile>
+    <ClCompile Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.cpp">
+      <Filter>Source Files\OutputDataStream\MemoryOutputStream</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputDataStream\FileOutputStream\FileOutputStream.cpp">
+      <Filter>Source Files\OutputDataStream\FileOutputStream</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputDataStream\FileInputStream\FileInputStream.h">

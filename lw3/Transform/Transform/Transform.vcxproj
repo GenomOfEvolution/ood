@@ -22,6 +22,8 @@
     <ClCompile Include="InputDataStream\FileInputStream\FileInputStream.cpp" />
     <ClCompile Include="InputDataStream\MemoryInputStream\MemoryInputStream.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OutputDataStream\FileOutputStream\FileOutputStream.cpp" />
+    <ClCompile Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputDataStream\FileInputStream\FileInputStream.h" />

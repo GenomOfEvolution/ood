@@ -27,12 +27,24 @@
     <ClCompile Include="..\Transform\InputDataStream\FileInputStream\FileInputStream.cpp">
       <Filter>Dependicies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Transform\OutputDataStream\FileOutputStream\FileOutputStream.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Transform\OutputDataStream\MemoryOutputStream\MemoryOutputStream.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Transform\InputDataStream\MemoryInputStream\MemoryInputStream.h">
       <Filter>Dependicies</Filter>
     </ClInclude>
     <ClInclude Include="..\Transform\InputDataStream\FileInputStream\FileInputStream.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\OutputDataStream\FileOutputStream\FileOutputStream.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\OutputDataStream\MemoryOutputStream\MemoryOutputStream.h">
       <Filter>Dependicies</Filter>
     </ClInclude>
   </ItemGroup>
