@@ -13,10 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\InputDataStream">
+      <UniqueIdentifier>{d19f0752-f1d8-49eb-9c51-ee77e0b9deb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputDataStreamDecorator">
+      <UniqueIdentifier>{be0fc5ad-8647-49c7-b53e-3e3614a3e634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OutputDataStream">
+      <UniqueIdentifier>{3f7d03a9-9478-41ba-bba4-629b70c96182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OutputDataStreamDecorator">
+      <UniqueIdentifier>{a08eb346-c537-4969-b07a-587ae14cfedf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputDataStream\FileInputStream">
+      <UniqueIdentifier>{a6dc2b40-55f8-4722-8816-78b7fa6484ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputDataStream\MemoryInputStream">
+      <UniqueIdentifier>{bbda9443-eb77-446a-a35b-a081b03e140f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OutputDataStream\FileOutputStream">
+      <UniqueIdentifier>{7478d37f-3152-4a13-8d14-c63672cc564c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OutputDataStream\MemoryOutputStream">
+      <UniqueIdentifier>{af4b2fe9-ae38-4e0a-a447-da01742c78d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Transform.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InputDataStream\FileInputStream\FileInputStream.cpp">
+      <Filter>Source Files\InputDataStream\FileInputStream</Filter>
+    </ClCompile>
+    <ClCompile Include="InputDataStream\MemoryInputStream\MemoryInputStream.cpp">
+      <Filter>Source Files\InputDataStream\MemoryInputStream</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="InputDataStream\FileInputStream\FileInputStream.h">
+      <Filter>Source Files\InputDataStream\FileInputStream</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDataStream\MemoryInputStream\MemoryInputStream.h">
+      <Filter>Source Files\InputDataStream\MemoryInputStream</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDataStream\IInputDataStream.h">
+      <Filter>Source Files\InputDataStream</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputDataStream\IOutputDataStream.h">
+      <Filter>Source Files\OutputDataStream</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputDataStream\FileOutputStream\FileOutputStream.h">
+      <Filter>Source Files\OutputDataStream\FileOutputStream</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.h">
+      <Filter>Source Files\OutputDataStream\MemoryOutputStream</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

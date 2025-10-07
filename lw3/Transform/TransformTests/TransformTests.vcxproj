@@ -18,24 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="InputDataStream\FileInputStream\FileInputStream.cpp" />
-    <ClCompile Include="InputDataStream\MemoryInputStream\MemoryInputStream.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="InputDataStream\FileInputStream\FileInputStream.h" />
-    <ClInclude Include="InputDataStream\IInputDataStream.h" />
-    <ClInclude Include="InputDataStream\MemoryInputStream\MemoryInputStream.h" />
-    <ClInclude Include="OutputDataStream\FileOutputStream\FileOutputStream.h" />
-    <ClInclude Include="OutputDataStream\IOutputDataStream.h" />
-    <ClInclude Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{9ba43d14-8fe3-4e00-ac82-e6a3ec2d12a8}</ProjectGuid>
-    <RootNamespace>Transform</RootNamespace>
+    <ProjectGuid>{fdcb92c3-8961-40d0-86f8-139249de2625}</ProjectGuid>
+    <RootNamespace>TransformTests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,6 +126,20 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Transform\InputDataStream\FileInputStream\FileInputStream.cpp" />
+    <ClCompile Include="..\Transform\InputDataStream\MemoryInputStream\MemoryInputStream.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Transform\Transform.vcxproj">
+      <Project>{9ba43d14-8fe3-4e00-ac82-e6a3ec2d12a8}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Transform\InputDataStream\FileInputStream\FileInputStream.h" />
+    <ClInclude Include="..\Transform\InputDataStream\MemoryInputStream\MemoryInputStream.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
