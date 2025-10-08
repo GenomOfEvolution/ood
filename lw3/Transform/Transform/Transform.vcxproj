@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cryptographer\Cryptographer.cpp" />
+    <ClCompile Include="InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.cpp" />
     <ClCompile Include="InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.cpp" />
     <ClCompile Include="InputDataStreamDecorator\InputDataStreamDecorator.cpp" />
     <ClCompile Include="InputDataStream\FileInputStream\FileInputStream.cpp" />
     <ClCompile Include="InputDataStream\MemoryInputStream\MemoryInputStream.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OutputDataStreamDecorator\CompressOutputDecorator\CompressOutputStreamDecorator.cpp" />
     <ClCompile Include="OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.cpp" />
     <ClCompile Include="OutputDataStreamDecorator\OutputDataStreamDecorator.cpp" />
     <ClCompile Include="OutputDataStream\FileOutputStream\FileOutputStream.cpp" />

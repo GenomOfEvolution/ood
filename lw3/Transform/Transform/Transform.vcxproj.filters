@@ -84,6 +84,12 @@
     <ClCompile Include="OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.cpp">
       <Filter>Source Files\OutputDataStreamDecorator\CryptOutputDecorator</Filter>
     </ClCompile>
+    <ClCompile Include="OutputDataStreamDecorator\CompressOutputDecorator\CompressOutputStreamDecorator.cpp">
+      <Filter>Source Files\OutputDataStreamDecorator\CompressOutputDecorator</Filter>
+    </ClCompile>
+    <ClCompile Include="InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.cpp">
+      <Filter>Source Files\InputDataStreamDecorator\DecompressInputDecorator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputDataStream\FileInputStream\FileInputStream.h">

@@ -7,9 +7,12 @@
 #include "../Transform/InputDataStream/FileInputStream/FileInputStream.h"
 #include "../Transform/InputDataStream/MemoryInputStream/MemoryInputStream.h"
 #include "../Transform/InputDataStreamDecorator/DecryptInputDecorator/DecryptInputStreamDecorator.h"
+#include "../Transform/InputDataStreamDecorator/DecompressInputDecorator/DecompressInputStreamDecorator.h"
+
 #include "../Transform/OutputDataStream/FileOutputStream/FileOutputStream.h"
 #include "../Transform/OutputDataStream/MemoryOutputStream/MemoryOutputStream.h"
 #include "../Transform/OutputDataStreamDecorator/CryptOutputDecorator/CryptOutputStreamDecorator.h"
+#include "../Transform/OutputDataStreamDecorator/CompressOutputDecorator/CompressOutputStreamDecorator.h"
 
 const auto TEST_FILE_NAME = "test_file_input.bin";
 
@@ -414,6 +417,90 @@ SCENARIO("Crypt / decrypt stream")
 					
 				}
 
+			}
+		}
+	}
+}
+
+SCENARIO("Compress / decompress stream")
+{
+	GIVEN("an data vector")
+	{
+		std::vector<uint8_t> data;
+
+		AND_GIVEN("clean output stream")
+		{
+			auto cleanOutputStream = std::make_unique<MemoryOutputStream>(data);
+
+			WHEN("comressing bytes")
+			{
+				std::vector<uint8_t> bytes = { 'h', 'e', 'l', 'l', 'o', '!' };
+				auto compressingStream = std::make_unique<CompressOutputStreamDecorator>(std::move(cleanOutputStream));
+
+				for (int i = 0; i < bytes.size(); i++)
+				{
+					compressingStream->WriteByte(bytes[i]);
+				}
+				compressingStream->Close();
+
+				THEN("RLE compressin works correctly")
+				{
+					REQUIRE(data[0] == 1);
+					REQUIRE(data[1] == 'h');
+					REQUIRE(data[2] == 1);
+					REQUIRE(data[3] == 'e');
+					REQUIRE(data[4] == 2);
+					REQUIRE(data[5] == 'l');
+					REQUIRE(data[6] == 1);
+					REQUIRE(data[7] == 'o');
+					REQUIRE(data[8] == 1);
+					REQUIRE(data[9] == '!');
+				}
+
+				AND_WHEN("reading bytes with clean stream")
+				{
+					auto cleanInput = std::make_unique<MemoryInputStream>(data);
+
+					THEN("it reads wrong data")
+					{
+						for (int i = 0; i < bytes.size(); i++)
+						{
+							REQUIRE(bytes[i] != cleanInput->ReadByte());
+						}
+					}
+				}
+
+				AND_WHEN("reading with decompressing stream")
+				{
+					auto cleanInput = std::make_unique<MemoryInputStream>(data);
+					auto decompressInput = std::make_unique<DecompressInputStreamDecorator>(std::move(cleanInput));
+
+					THEN("it reads correct data")
+					{
+						for (int i = 0; i < bytes.size(); i++)
+						{
+							REQUIRE(bytes[i] == decompressInput->ReadByte());
+						}
+					}
+				}
+			}
+
+			WHEN("compressing more than 256 same bytes")
+			{
+				auto compressingStream = std::make_unique<CompressOutputStreamDecorator>(std::move(cleanOutputStream));
+				for (int i = 0; i < 259; i++)
+				{
+					compressingStream->WriteByte('w');
+				}
+				compressingStream->Close();
+
+				THEN("overflow should work correctly")
+				{
+					REQUIRE(data[0] == std::numeric_limits<std::uint8_t>::max());
+					REQUIRE(data[1] == 'w');
+					REQUIRE(data[2] == 4);
+					REQUIRE(data[3] == 'w');
+				}
 			}
 		}
 	}

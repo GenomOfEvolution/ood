@@ -48,6 +48,12 @@
     <ClCompile Include="..\Transform\Cryptographer\Cryptographer.cpp">
       <Filter>Dependicies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Transform\InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Transform\OutputDataStreamDecorator\CompressOutputDecorator\CompressOutputStreamDecorator.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Transform\InputDataStream\MemoryInputStream\MemoryInputStream.h">
@@ -75,6 +81,12 @@
       <Filter>Dependicies</Filter>
     </ClInclude>
     <ClInclude Include="..\Transform\Cryptographer\Cryptographer.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\OutputDataStreamDecorator\CompressOutputDecorator\CompressOutputStreamDecorator.h">
       <Filter>Dependicies</Filter>
     </ClInclude>
   </ItemGroup>
