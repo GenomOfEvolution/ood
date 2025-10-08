@@ -1,12 +1,15 @@
 #define CATCH_CONFIG_MAIN
+#include <memory>
 #include <filesystem>
 #include <string>
 #include "../../../catch2/catch.hpp"
 
 #include "../Transform/InputDataStream/FileInputStream/FileInputStream.h"
 #include "../Transform/InputDataStream/MemoryInputStream/MemoryInputStream.h"
+#include "../Transform/InputDataStreamDecorator/DecryptInputDecorator/DecryptInputStreamDecorator.h"
 #include "../Transform/OutputDataStream/FileOutputStream/FileOutputStream.h"
 #include "../Transform/OutputDataStream/MemoryOutputStream/MemoryOutputStream.h"
+#include "../Transform/OutputDataStreamDecorator/CryptOutputDecorator/CryptOutputStreamDecorator.h"
 
 const auto TEST_FILE_NAME = "test_file_input.bin";
 
@@ -343,6 +346,74 @@ SCENARIO("File output stream")
 			AND_THEN("double closing throws logcal error")
 			{
 				REQUIRE_THROWS_AS(stream.Close(), std::logic_error);
+			}
+		}
+	}
+}
+
+SCENARIO("Crypt / decrypt stream")
+{
+	GIVEN("an vector of data")
+	{
+		std::vector<uint8_t> data;
+
+		AND_GIVEN("crypt stream")
+		{
+			int key = 2281337;
+			auto cleanOutputStream = std::make_unique<MemoryOutputStream>(data);
+			auto cryptStream = std::make_unique<CryptOutputStreamDecorator>(std::move(cleanOutputStream), key);
+
+			WHEN("encrypting bytes")
+			{
+				std::vector<std::uint8_t> bytes = { 'h', 'e', 'l', 'l', 'o', '!' };
+				for (auto&& byte : bytes)
+				{
+					cryptStream->WriteByte(byte);
+				}
+
+				AND_WHEN("reading them with clean input stream")
+				{
+					auto cleanInputStream = std::make_unique<MemoryInputStream>(data);
+
+					THEN("data is crypted")
+					{
+						for (auto&& byte : bytes)
+						{
+							REQUIRE(byte != cleanInputStream->ReadByte());
+						}
+					}
+				}
+
+				AND_WHEN("reading them with decrypt stream")
+				{
+					AND_WHEN("with correct key")
+					{
+						auto cleanInputStream = std::make_unique<MemoryInputStream>(data);
+						auto decryptStream = std::make_unique<DecryptInputStreamDecorator>(std::move(cleanInputStream), key);
+						THEN("they are equal")
+						{
+							for (auto&& byte : bytes)
+							{
+								REQUIRE(byte == decryptStream->ReadByte());
+							}
+						}
+					}
+
+					AND_WHEN("with incorrect key")
+					{
+						auto cleanInputStream = std::make_unique<MemoryInputStream>(data);
+						auto decryptStream = std::make_unique<DecryptInputStreamDecorator>(std::move(cleanInputStream), 228);
+						THEN("they are not equal")
+						{
+							for (auto&& byte : bytes)
+							{
+								REQUIRE(byte != decryptStream->ReadByte());
+							}
+						}
+					}
+					
+				}
+
 			}
 		}
 	}

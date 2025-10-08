@@ -33,6 +33,21 @@
     <ClCompile Include="..\Transform\OutputDataStream\MemoryOutputStream\MemoryOutputStream.cpp">
       <Filter>Dependicies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Transform\OutputDataStreamDecorator\OutputDataStreamDecorator.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Transform\OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Transform\InputDataStreamDecorator\InputDataStreamDecorator.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Transform\InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Transform\Cryptographer\Cryptographer.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Transform\InputDataStream\MemoryInputStream\MemoryInputStream.h">
@@ -45,6 +60,21 @@
       <Filter>Dependicies</Filter>
     </ClInclude>
     <ClInclude Include="..\Transform\OutputDataStream\MemoryOutputStream\MemoryOutputStream.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\OutputDataStreamDecorator\OutputDataStreamDecorator.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\InputDataStreamDecorator\InputDataStreamDecorator.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transform\Cryptographer\Cryptographer.h">
       <Filter>Dependicies</Filter>
     </ClInclude>
   </ItemGroup>

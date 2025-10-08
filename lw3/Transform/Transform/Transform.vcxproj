@@ -19,16 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cryptographer\Cryptographer.cpp" />
+    <ClCompile Include="InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.cpp" />
+    <ClCompile Include="InputDataStreamDecorator\InputDataStreamDecorator.cpp" />
     <ClCompile Include="InputDataStream\FileInputStream\FileInputStream.cpp" />
     <ClCompile Include="InputDataStream\MemoryInputStream\MemoryInputStream.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.cpp" />
+    <ClCompile Include="OutputDataStreamDecorator\OutputDataStreamDecorator.cpp" />
     <ClCompile Include="OutputDataStream\FileOutputStream\FileOutputStream.cpp" />
     <ClCompile Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cryptographer\Cryptographer.h" />
+    <ClInclude Include="InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.h" />
+    <ClInclude Include="InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.h" />
+    <ClInclude Include="InputDataStreamDecorator\InputDataStreamDecorator.h" />
     <ClInclude Include="InputDataStream\FileInputStream\FileInputStream.h" />
     <ClInclude Include="InputDataStream\IInputDataStream.h" />
     <ClInclude Include="InputDataStream\MemoryInputStream\MemoryInputStream.h" />
+    <ClInclude Include="OutputDataStreamDecorator\CompressOutputDecorator\CompressOutputStreamDecorator.h" />
+    <ClInclude Include="OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.h" />
+    <ClInclude Include="OutputDataStreamDecorator\OutputDataStreamDecorator.h" />
     <ClInclude Include="OutputDataStream\FileOutputStream\FileOutputStream.h" />
     <ClInclude Include="OutputDataStream\IOutputDataStream.h" />
     <ClInclude Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.h" />

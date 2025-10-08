@@ -37,6 +37,21 @@
     <Filter Include="Source Files\OutputDataStream\MemoryOutputStream">
       <UniqueIdentifier>{af4b2fe9-ae38-4e0a-a447-da01742c78d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OutputDataStreamDecorator\CompressOutputDecorator">
+      <UniqueIdentifier>{a2b21e51-20b6-4968-9d21-10e77c726299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OutputDataStreamDecorator\CryptOutputDecorator">
+      <UniqueIdentifier>{59e0bbf9-fe06-4986-9cb1-54309c2f84af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputDataStreamDecorator\DecryptInputDecorator">
+      <UniqueIdentifier>{77156575-5201-444a-8c3e-33b722030ba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputDataStreamDecorator\DecompressInputDecorator">
+      <UniqueIdentifier>{944abe18-0188-45a9-8de4-e9ee3ff76a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Cryptographer">
+      <UniqueIdentifier>{abefa716-edab-471d-9ab5-bdd98dbfbe89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,6 +68,21 @@
     </ClCompile>
     <ClCompile Include="OutputDataStream\FileOutputStream\FileOutputStream.cpp">
       <Filter>Source Files\OutputDataStream\FileOutputStream</Filter>
+    </ClCompile>
+    <ClCompile Include="InputDataStreamDecorator\InputDataStreamDecorator.cpp">
+      <Filter>Source Files\InputDataStreamDecorator</Filter>
+    </ClCompile>
+    <ClCompile Include="InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.cpp">
+      <Filter>Source Files\InputDataStreamDecorator\DecryptInputDecorator</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputDataStreamDecorator\OutputDataStreamDecorator.cpp">
+      <Filter>Source Files\OutputDataStreamDecorator</Filter>
+    </ClCompile>
+    <ClCompile Include="Cryptographer\Cryptographer.cpp">
+      <Filter>Source Files\Cryptographer</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.cpp">
+      <Filter>Source Files\OutputDataStreamDecorator\CryptOutputDecorator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +103,27 @@
     </ClInclude>
     <ClInclude Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.h">
       <Filter>Source Files\OutputDataStream\MemoryOutputStream</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDataStreamDecorator\InputDataStreamDecorator.h">
+      <Filter>Source Files\InputDataStreamDecorator</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputDataStreamDecorator\OutputDataStreamDecorator.h">
+      <Filter>Source Files\OutputDataStreamDecorator</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputDataStreamDecorator\CompressOutputDecorator\CompressOutputStreamDecorator.h">
+      <Filter>Source Files\OutputDataStreamDecorator\CompressOutputDecorator</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.h">
+      <Filter>Source Files\OutputDataStreamDecorator\CryptOutputDecorator</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.h">
+      <Filter>Source Files\InputDataStreamDecorator\DecompressInputDecorator</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.h">
+      <Filter>Source Files\InputDataStreamDecorator\DecryptInputDecorator</Filter>
+    </ClInclude>
+    <ClInclude Include="Cryptographer\Cryptographer.h">
+      <Filter>Source Files\Cryptographer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

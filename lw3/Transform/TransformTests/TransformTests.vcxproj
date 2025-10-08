@@ -127,8 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Transform\Cryptographer\Cryptographer.cpp" />
+    <ClCompile Include="..\Transform\InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.cpp" />
+    <ClCompile Include="..\Transform\InputDataStreamDecorator\InputDataStreamDecorator.cpp" />
     <ClCompile Include="..\Transform\InputDataStream\FileInputStream\FileInputStream.cpp" />
     <ClCompile Include="..\Transform\InputDataStream\MemoryInputStream\MemoryInputStream.cpp" />
+    <ClCompile Include="..\Transform\OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.cpp" />
+    <ClCompile Include="..\Transform\OutputDataStreamDecorator\OutputDataStreamDecorator.cpp" />
     <ClCompile Include="..\Transform\OutputDataStream\FileOutputStream\FileOutputStream.cpp" />
     <ClCompile Include="..\Transform\OutputDataStream\MemoryOutputStream\MemoryOutputStream.cpp" />
     <ClCompile Include="main.cpp" />
@@ -139,8 +144,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Transform\Cryptographer\Cryptographer.h" />
+    <ClInclude Include="..\Transform\InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.h" />
+    <ClInclude Include="..\Transform\InputDataStreamDecorator\InputDataStreamDecorator.h" />
     <ClInclude Include="..\Transform\InputDataStream\FileInputStream\FileInputStream.h" />
     <ClInclude Include="..\Transform\InputDataStream\MemoryInputStream\MemoryInputStream.h" />
+    <ClInclude Include="..\Transform\OutputDataStreamDecorator\CryptOutputDecorator\CryptOutputStreamDecorator.h" />
+    <ClInclude Include="..\Transform\OutputDataStreamDecorator\OutputDataStreamDecorator.h" />
     <ClInclude Include="..\Transform\OutputDataStream\FileOutputStream\FileOutputStream.h" />
     <ClInclude Include="..\Transform\OutputDataStream\MemoryOutputStream\MemoryOutputStream.h" />
   </ItemGroup>
