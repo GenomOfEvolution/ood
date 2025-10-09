@@ -2,10 +2,10 @@
 #include "../Shape.h"
 #include "../ShapeTypes.h"
 
-class Ellipse : public Shape
+class CEllipse : public Shape
 {
 public:
-	Ellipse(Color color, Point center, double horizontalRadius, double verticalRadius);
+	CEllipse(Color color, Point center, double horizontalRadius, double verticalRadius);
 
 	Point GetCenter() const { return m_center; };
 	double GetHorizontalRadius() const { return m_horizontalRadius; };

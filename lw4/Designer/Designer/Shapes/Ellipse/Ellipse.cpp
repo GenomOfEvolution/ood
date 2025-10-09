@@ -1,6 +1,6 @@
 #include "Ellipse.h"
 
-Ellipse::Ellipse(Color color, Point center, double horizontalRadius, double verticalRadius)
+CEllipse::CEllipse(Color color, Point center, double horizontalRadius, double verticalRadius)
 	: Shape(color)
 	, m_center(center)
 	, m_horizontalRadius(horizontalRadius)
@@ -8,7 +8,7 @@ Ellipse::Ellipse(Color color, Point center, double horizontalRadius, double vert
 {
 }
 
-void Ellipse::Draw(ICanvas& canvas) const
+void CEllipse::Draw(ICanvas& canvas) const
 {
 	canvas.SetColor(GetColor());
 	canvas.DrawEllipse(m_center, m_horizontalRadius, m_verticalRadius);

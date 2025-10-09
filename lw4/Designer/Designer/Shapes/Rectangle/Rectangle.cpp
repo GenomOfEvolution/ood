@@ -1,6 +1,6 @@
 #include "Rectangle.h"
 
-Rectangle::Rectangle(Color color, Point leftTopCorner, double width, double height)
+CRectangle::CRectangle(Color color, Point leftTopCorner, double width, double height)
 	: Shape(color)
 	, m_leftTop(leftTopCorner)
 	, m_width(width)
@@ -8,7 +8,7 @@ Rectangle::Rectangle(Color color, Point leftTopCorner, double width, double heig
 {
 }
 
-void Rectangle::Draw(ICanvas& canvas) const
+void CRectangle::Draw(ICanvas& canvas) const
 {
 	canvas.SetColor(GetColor());
 

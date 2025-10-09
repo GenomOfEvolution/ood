@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Dependicies">
+      <UniqueIdentifier>{c203dcff-c5b6-4bab-aadc-5aa86597350f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Designer\Shapes\RegularPolygon\RegularPolygon.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Designer\Shapes\Ellipse\Ellipse.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Designer\Shapes\Rectangle\Rectangle.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Designer\Shapes\Triangle\Triangle.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Designer\Canvas\ICanvas.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Client\Client.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Designer\IDesigner.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Painter\Painter.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\PictureDraft\PictureDraft.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\ShapeFactory\IShapeFactory.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\ShapeFactory\ShapeFactory.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Shapes\Shape.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Shapes\ShapeTypes.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Shapes\Triangle\Triangle.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Shapes\RegularPolygon\RegularPolygon.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Shapes\Rectangle\Rectangle.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Designer\Shapes\Ellipse\Ellipse.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

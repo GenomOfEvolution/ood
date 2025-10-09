@@ -12,7 +12,7 @@ RegularPolygon::RegularPolygon(Color color, size_t vertexCount, double radius, P
 {
 	if (vertexCount < MIN_VERTICES)
 	{
-		throw std::runtime_error("Minimal vertices for Regular Polygon is 2!");
+		throw std::invalid_argument("Minimal vertices for Regular Polygon is 2!");
 	}
 }
 

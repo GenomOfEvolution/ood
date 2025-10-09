@@ -48,7 +48,7 @@ std::unique_ptr<Shape> ShapeFactory::CreateEllipse(std::istream& input)
         throw std::invalid_argument("Invalid arguments for ellipse");
     }
 
-    return std::make_unique<Ellipse>(
+    return std::make_unique<CEllipse>(
         color,
         Point{ x, y },
         horizontalRadius,
@@ -68,7 +68,7 @@ std::unique_ptr<Shape> ShapeFactory::CreateRectangle(std::istream& input)
         throw std::invalid_argument("Invalid arguments for rectangle (color, left top, width, height)");
     }
 
-    return std::make_unique<Rectangle>(
+    return std::make_unique<CRectangle>(
         color,
         Point{ x, y },
         width,
