@@ -3,7 +3,6 @@
 #include <vector>
 #include "../Shapes/Shape.h"
 
-
 class PictureDraft
 {
 public:

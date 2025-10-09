@@ -31,7 +31,7 @@ Color ShapeFactory::ParseColor(std::istream& line)
     auto it = m_stringToColor.find(colorStr);
     if (it == m_stringToColor.end())
     {
-        throw std::runtime_error("Unknown color " + colorStr);
+        throw std::invalid_argument("Unknown color " + colorStr);
     }
 
     return it->second;

@@ -33,6 +33,21 @@
     <ClCompile Include="..\Designer\Shapes\Triangle\Triangle.cpp">
       <Filter>Dependicies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Designer\ShapeFactory\ShapeFactory.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Designer\PictureDraft\PictureDraft.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Designer\Designer\Designer.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Designer\Client\Client.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Designer\Painter\Painter.cpp">
+      <Filter>Dependicies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Designer\Canvas\ICanvas.h">

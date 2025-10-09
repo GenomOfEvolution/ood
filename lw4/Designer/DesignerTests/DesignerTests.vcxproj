@@ -131,6 +131,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Designer\Client\Client.cpp" />
+    <ClCompile Include="..\Designer\Designer\Designer.cpp" />
+    <ClCompile Include="..\Designer\Painter\Painter.cpp" />
+    <ClCompile Include="..\Designer\PictureDraft\PictureDraft.cpp" />
+    <ClCompile Include="..\Designer\ShapeFactory\ShapeFactory.cpp" />
     <ClCompile Include="..\Designer\Shapes\Ellipse\Ellipse.cpp" />
     <ClCompile Include="..\Designer\Shapes\Rectangle\Rectangle.cpp" />
     <ClCompile Include="..\Designer\Shapes\RegularPolygon\RegularPolygon.cpp" />
