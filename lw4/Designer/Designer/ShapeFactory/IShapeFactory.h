@@ -1,5 +1,7 @@
 #pragma once
 #include "../Shapes/Shape.h"
+#include <memory>
+#include <string>
 
 class IShapeFactory
 {

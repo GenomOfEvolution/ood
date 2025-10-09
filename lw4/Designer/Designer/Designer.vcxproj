@@ -19,13 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Canvas\SVGCanvas\SVGCanvas.cpp" />
+    <ClCompile Include="Client\Client.cpp" />
+    <ClCompile Include="Designer\Designer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Painter\Painter.cpp" />
     <ClCompile Include="PictureDraft\PictureDraft.cpp" />
+    <ClCompile Include="ShapeFactory\ShapeFactory.cpp" />
+    <ClCompile Include="Shapes\Ellipse\Ellipse.cpp" />
+    <ClCompile Include="Shapes\Rectangle\Rectangle.cpp" />
+    <ClCompile Include="Shapes\RegularPolygon\RegularPolygon.cpp" />
+    <ClCompile Include="Shapes\Triangle\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Canvas\Canvas\Canvas.h" />
     <ClInclude Include="Canvas\ICanvas.h" />
+    <ClInclude Include="Canvas\SVGCanvas\simple_svg_1.0.0.hpp" />
     <ClInclude Include="Canvas\SVGCanvas\SVGCanvas.h" />
     <ClInclude Include="Client\Client.h" />
     <ClInclude Include="Designer\Designer.h" />
@@ -33,6 +42,7 @@
     <ClInclude Include="Painter\Painter.h" />
     <ClInclude Include="PictureDraft\PictureDraft.h" />
     <ClInclude Include="ShapeFactory\IShapeFactory.h" />
+    <ClInclude Include="ShapeFactory\ShapeFactory.h" />
     <ClInclude Include="Shapes\Ellipse\Ellipse.h" />
     <ClInclude Include="Shapes\Rectangle\Rectangle.h" />
     <ClInclude Include="Shapes\RegularPolygon\RegularPolygon.h" />

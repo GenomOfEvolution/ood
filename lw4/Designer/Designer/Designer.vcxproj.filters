@@ -63,6 +63,30 @@
     <ClCompile Include="Painter\Painter.cpp">
       <Filter>Source Files\Painter</Filter>
     </ClCompile>
+    <ClCompile Include="Shapes\Triangle\Triangle.cpp">
+      <Filter>Source Files\Shapes\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes\RegularPolygon\RegularPolygon.cpp">
+      <Filter>Source Files\Shapes\RegularPolygon</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes\Rectangle\Rectangle.cpp">
+      <Filter>Source Files\Shapes\Rectanle</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes\Ellipse\Ellipse.cpp">
+      <Filter>Source Files\Shapes\Ellipse</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeFactory\ShapeFactory.cpp">
+      <Filter>Source Files\ShapeFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Designer\Designer.cpp">
+      <Filter>Source Files\Designer</Filter>
+    </ClCompile>
+    <ClCompile Include="Canvas\SVGCanvas\SVGCanvas.cpp">
+      <Filter>Source Files\Canvas\SVGCanvas</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\Client.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Designer\IDesigner.h">
@@ -109,6 +133,12 @@
     </ClInclude>
     <ClInclude Include="Shapes\Rectangle\Rectangle.h">
       <Filter>Source Files\Shapes\Rectanle</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeFactory\ShapeFactory.h">
+      <Filter>Source Files\ShapeFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\SVGCanvas\simple_svg_1.0.0.hpp">
+      <Filter>Source Files\Canvas\SVGCanvas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
