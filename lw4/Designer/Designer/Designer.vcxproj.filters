@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Shapes">
+      <UniqueIdentifier>{6224a3e1-344b-4d9a-a1d1-28694745f444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ShapeFactory">
+      <UniqueIdentifier>{574ea7bf-6b65-4bfa-b64a-94d8d09b2d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PictureDraft">
+      <UniqueIdentifier>{c4cf4ada-7946-40b0-88d2-83309b60a2ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Painter">
+      <UniqueIdentifier>{2aa1266f-57de-45bc-9d0f-09114da89dbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Designer">
+      <UniqueIdentifier>{cc309625-a024-4faf-bd77-0d9fe4f4c865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Client">
+      <UniqueIdentifier>{99065dc0-4de0-4ea0-ac72-9e6602e28de9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Canvas">
+      <UniqueIdentifier>{9f8f4e71-45ce-49f3-b9f6-16e01267e84d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Canvas\Canvas">
+      <UniqueIdentifier>{d737e62f-4445-4d08-8531-ed650fb990ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Canvas\SVGCanvas">
+      <UniqueIdentifier>{f0ef8575-10e9-45f6-a04c-13697e5eafb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes\Rectanle">
+      <UniqueIdentifier>{0b2d7866-e834-4987-80bf-d4780a9e6ebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes\Triangle">
+      <UniqueIdentifier>{5f60d931-99f0-454e-92ae-1407e00fcbfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes\RegularPolygon">
+      <UniqueIdentifier>{cd5d8cbd-e28f-4dd3-8a43-53fe2149a4a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes\Ellipse">
+      <UniqueIdentifier>{257b955e-951e-4842-bf00-b6cc4591dc83}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PictureDraft\PictureDraft.cpp">
+      <Filter>Source Files\PictureDraft</Filter>
+    </ClCompile>
+    <ClCompile Include="Painter\Painter.cpp">
+      <Filter>Source Files\Painter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Designer\IDesigner.h">
+      <Filter>Source Files\Designer</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Client.h">
+      <Filter>Source Files\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\ICanvas.h">
+      <Filter>Source Files\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Painter\Painter.h">
+      <Filter>Source Files\Painter</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureDraft\PictureDraft.h">
+      <Filter>Source Files\PictureDraft</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeFactory\IShapeFactory.h">
+      <Filter>Source Files\ShapeFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\Shape.h">
+      <Filter>Source Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\ShapeTypes.h">
+      <Filter>Source Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\SVGCanvas\SVGCanvas.h">
+      <Filter>Source Files\Canvas\SVGCanvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\Canvas\Canvas.h">
+      <Filter>Source Files\Canvas\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Designer\Designer.h">
+      <Filter>Source Files\Designer</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\Ellipse\Ellipse.h">
+      <Filter>Source Files\Shapes\Ellipse</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\RegularPolygon\RegularPolygon.h">
+      <Filter>Source Files\Shapes\RegularPolygon</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\Triangle\Triangle.h">
+      <Filter>Source Files\Shapes\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\Rectangle\Rectangle.h">
+      <Filter>Source Files\Shapes\Rectanle</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
