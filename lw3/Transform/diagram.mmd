@@ -1,0 +1,136 @@
+classDiagram
+  class InputStream {
+    <<interface>>
+    + IsEOF() bool
+    + ReadByte() byte
+    + ReadBlock(dstData, dataSize) int
+  }
+
+  class FileInputStream {
+    + IsEOF() bool
+    + ReadByte() byte
+    + ReadBlock(dstData, dataSize) int
+  }
+
+  class MemoryInputStream {
+    + IsEOF() bool
+    + ReadByte() byte
+    + ReadBlock(dstData, dataSize) int
+  }
+
+  class InputStreamDecorator {
+    <<abstract>>
+    # inputStream InputStream
+    + InputStreamDecorator(stream)
+    + IsEOF() bool
+    + ReadByte() byte
+    + ReadBlock(dstData, dataSize) int
+  }
+
+  class CompressionInputStream {
+    + CompressionInputStream(stream)
+    + ReadByte() byte
+    + ReadBlock(dstData, dataSize) int
+    - decompressData(srcData, srcSize) byte[]
+  }
+
+  class EncryptionInputStream {
+    + EncryptionInputStream(stream, key)
+    + ReadByte() byte
+    + ReadBlock(dstData, dataSize) int
+    - decryptData(srcData, srcSize) byte[]
+  }
+
+  class IOutputStream {
+    <<interface>>
+    + WriteByte(data)
+    + WriteBlock(srcData, dataSize)
+  }
+
+  class FileOutputStream {
+    + WriteByte(data)
+    + WriteBlock(srcData, dataSize)
+  }
+
+  class MemoryOutputStream {
+    + WriteByte(data)
+    + WriteBlock(srcData, dataSize)
+  }
+
+  class OutputStreamDecorator {
+    <<abstract>>
+    # outputStream IOutputStream
+    + OutputStreamDecorator(stream)
+    + WriteByte(data)
+    + WriteBlock(srcData, dataSize)
+  }
+
+  class CompressionOutputStream {
+    + CompressionOutputStream(stream)
+    + WriteByte(data)
+    + WriteBlock(srcData, dataSize)
+    - compressData(srcData, srcSize) byte[]
+  }
+
+  class EncryptionOutputStream {
+    + EncryptionOutputStream(stream, key)
+    + WriteByte(data)
+    + WriteBlock(srcData, dataSize)
+    - encryptData(srcData, srcSize) byte[]
+  }
+
+  class Transformer {
+    -unique_ptr~InputStream~ m_input
+    -unique_ptr~IOutputStream~ m_output
+    +Transformer(Args& args)
+    +Transform() void
+    -ApplyDecorators(Args& args) void
+  }
+
+  class Args {
+    +string inputFileName
+    +string outputFileName
+    +vector~int~ cryptKeys
+    +vector~int~ decryptKeys
+    +bool compress
+    +bool decompress
+  }
+
+  class ArgsParser {
+    -ActionMap m_actionMap
+    -Args m_args
+    -vector~string~ m_argv
+    +ArgsParser(int argc, char* argv[])
+    +GetArgs() Args
+    -ApplyKey(string& param, vector~int~& keys, string& optionName) void
+    -ApplyCompress(string& param, Args& args) void
+    -ApplyDecompress(string& param, Args& args) void
+  }
+
+  class Cryptographer {
+    +BuildCryptTable(int key)* vector~uint8_t~
+    +BuildDecryptTable(int key)* vector~uint8_t~
+  }
+
+  InputStream <|.. FileInputStream
+  InputStream <|.. MemoryInputStream
+  InputStream <|.. InputStreamDecorator
+  InputStreamDecorator <|-- CompressionInputStream
+  InputStreamDecorator <|-- EncryptionInputStream
+  InputStreamDecorator o-- InputStream
+
+  IOutputStream <|.. FileOutputStream
+  IOutputStream <|.. MemoryOutputStream
+  IOutputStream <|.. OutputStreamDecorator
+  OutputStreamDecorator <|-- CompressionOutputStream
+  OutputStreamDecorator <|-- EncryptionOutputStream
+  OutputStreamDecorator o-- IOutputStream
+
+  Transformer --> Args : uses
+  Transformer --> InputStream : contains
+  Transformer --> IOutputStream : contains
+  ArgsParser --> Args : creates
+  EncryptionInputStream ..> Cryptographer : uses
+  EncryptionOutputStream ..> Cryptographer : uses
+  CompressionInputStream ..> Args : uses
+  CompressionOutputStream ..> Args : uses
