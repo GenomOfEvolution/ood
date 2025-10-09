@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArgsParser\ArgsParser.cpp" />
     <ClCompile Include="Cryptographer\Cryptographer.cpp" />
     <ClCompile Include="InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.cpp" />
     <ClCompile Include="InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.cpp" />
@@ -31,8 +32,10 @@
     <ClCompile Include="OutputDataStreamDecorator\OutputDataStreamDecorator.cpp" />
     <ClCompile Include="OutputDataStream\FileOutputStream\FileOutputStream.cpp" />
     <ClCompile Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.cpp" />
+    <ClCompile Include="Transformer\Transformer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArgsParser\ArgsParser.h" />
     <ClInclude Include="Cryptographer\Cryptographer.h" />
     <ClInclude Include="InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.h" />
     <ClInclude Include="InputDataStreamDecorator\DecryptInputDecorator\DecryptInputStreamDecorator.h" />
@@ -46,6 +49,7 @@
     <ClInclude Include="OutputDataStream\FileOutputStream\FileOutputStream.h" />
     <ClInclude Include="OutputDataStream\IOutputDataStream.h" />
     <ClInclude Include="OutputDataStream\MemoryOutputStream\MemoryOutputStream.h" />
+    <ClInclude Include="Transformer\Transformer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -52,6 +52,12 @@
     <Filter Include="Source Files\Cryptographer">
       <UniqueIdentifier>{abefa716-edab-471d-9ab5-bdd98dbfbe89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ArgsParser">
+      <UniqueIdentifier>{f53d2211-7f44-4bfc-a6c9-b671f5311e54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Transformer">
+      <UniqueIdentifier>{cabd2828-38e6-4e04-994e-a49ee75a7983}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +95,12 @@
     </ClCompile>
     <ClCompile Include="InputDataStreamDecorator\DecompressInputDecorator\DecompressInputStreamDecorator.cpp">
       <Filter>Source Files\InputDataStreamDecorator\DecompressInputDecorator</Filter>
+    </ClCompile>
+    <ClCompile Include="ArgsParser\ArgsParser.cpp">
+      <Filter>Source Files\ArgsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Transformer\Transformer.cpp">
+      <Filter>Source Files\Transformer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="Cryptographer\Cryptographer.h">
       <Filter>Source Files\Cryptographer</Filter>
+    </ClInclude>
+    <ClInclude Include="ArgsParser\ArgsParser.h">
+      <Filter>Source Files\ArgsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformer\Transformer.h">
+      <Filter>Source Files\Transformer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
