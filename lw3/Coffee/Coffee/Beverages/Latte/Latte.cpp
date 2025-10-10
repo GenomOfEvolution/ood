@@ -8,6 +8,7 @@ Latte::Latte(CoffeeSize portion)
 
 double Latte::GetCost() const
 {
+	// TODO: изменить цену
 	return 90;
 }
 

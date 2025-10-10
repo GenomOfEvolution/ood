@@ -8,6 +8,7 @@ Cappuccino::Cappuccino(CoffeeSize portion)
 
 double Cappuccino::GetCost() const
 {
+	// TODO: изменить цену
 	return 80;
 }
 
