@@ -37,10 +37,6 @@
 ## Постройте диаграмму классов этого паттерна.
 
 ```mermaid
----
-config:
-  layout: elk
----
 classDiagram 
     class Client {
     }
