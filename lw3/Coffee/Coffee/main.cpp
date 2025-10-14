@@ -16,8 +16,16 @@
 
 #include<iostream>
 
+// TODO: добавить диаграмму
 int main()
 {
+	auto coffe = std::make_unique<Coffee>();
+	auto coffeWithCrumbs = std::move(std::make_unique<ChocolateCrumbs>(std::move(coffe), 5));
+	auto coffeWithCrumbsAndCream = std::move(std::make_unique<Cream>(std::move(coffeWithCrumbs)));
 
+	std::cout << coffeWithCrumbsAndCream->GetCost() << "\n";
+	std::cout <<  coffeWithCrumbsAndCream->GetDescription();
+
+	return EXIT_SUCCESS;
 }
 

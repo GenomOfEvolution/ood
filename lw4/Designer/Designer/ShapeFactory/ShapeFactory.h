@@ -25,9 +25,11 @@ private:
 	static std::unique_ptr<Shape> CreateRegularPolygon(std::istream& input);
 	static std::unique_ptr<Shape> CreateTriangle(std::istream& input);
 
-	using Handler = std::function<std::unique_ptr<Shape>(std::istream&)>;
-	using ActionMap = std::map<std::string, Handler>;
-	static inline const ActionMap m_actionMap =
+	// TODO: назвать ShapeCreator
+	using ShapeCreator = std::function<std::unique_ptr<Shape>(std::istream&)>;
+	// TODO: ShapeCreators
+	using ShapeCreators = std::map<std::string, ShapeCreator>;
+	static inline const ShapeCreators m_actionMap =
 	{
 		{ "ellipse", CreateEllipse },
 		{ "rectangle", CreateRectangle },

@@ -189,6 +189,9 @@ TEST_CASE("Shapes")
 					{
 						fakeit::Verify(Method(mockCanvas, SetColor).Using(color));
 						fakeit::Verify(Method(mockCanvas, DrawLine)).Exactly(3);
+						fakeit::Verify(Method(mockCanvas, DrawLine).Using(vertex1, vertex2)).Once();
+						fakeit::Verify(Method(mockCanvas, DrawLine).Using(vertex2, vertex3)).Once();
+						fakeit::Verify(Method(mockCanvas, DrawLine).Using(vertex1, vertex3)).Once();
 					}
 				}
 			}

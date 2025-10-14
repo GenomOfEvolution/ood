@@ -14,5 +14,5 @@ void Triangle::Draw(ICanvas& canvas) const
 
 	canvas.DrawLine(m_p1, m_p2);
 	canvas.DrawLine(m_p2, m_p3);
-	canvas.DrawLine(m_p3, m_p1);
+	canvas.DrawLine(m_p1, m_p3);
 }
