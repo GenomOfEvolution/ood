@@ -32,7 +32,7 @@ std::shared_ptr<IImage> HtmlDocument::InsertImage(
 	std::filesystem::path relativePath = std::filesystem::path("images") / filename;
 	auto image = std::make_shared<CImage>(relativePath, width, height);
 
-	m_history->AddAndExecuteCommand(std::make_unique<InsertImageCommand>(m_items, image, position));
+	m_history->AddAndExecuteCommand(std::make_unique<InsertImageCommand>(m_items, image, position, path));
 
 	return image;
 }

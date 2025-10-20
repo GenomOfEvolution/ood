@@ -29,6 +29,7 @@ private:
 	std::vector<DocumentItem>& m_items;
 	std::shared_ptr<IImage> m_image;
 	std::optional<std::size_t> m_insertPos;
+	size_t m_actualPosition = 0;
 
 	bool m_shouldDelete = false;
 };
