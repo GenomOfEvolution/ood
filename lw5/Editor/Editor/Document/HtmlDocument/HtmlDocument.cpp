@@ -1,6 +1,7 @@
 #include "HtmlDocument.h"
 #include "../../Command/InsertParagraphCommand/InsertParagraphCommand.h"
 #include "../../Command/InsertImageCommand/InsertImageCommand.h"
+#include "../../Command/MergableCommand/SetTitleCommand/SetTitleCommand.h"
 #include "../../DocumentItem/Paragraph/Paragraph.h"
 #include "../../DocumentItem/Image/CImage.h"
 
@@ -32,7 +33,7 @@ std::shared_ptr<IImage> HtmlDocument::InsertImage(
 	std::filesystem::path relativePath = std::filesystem::path("images") / filename;
 	auto image = std::make_shared<CImage>(relativePath, width, height);
 
-	m_history->AddAndExecuteCommand(std::make_unique<InsertImageCommand>(m_items, image, position, path));
+	m_history->AddAndExecuteCommand(std::make_unique<InsertImageCommand>(m_items, image, position, path, *m_saver));
 
 	return image;
 }
@@ -64,7 +65,7 @@ std::string HtmlDocument::GetTitle() const
 
 void HtmlDocument::SetTitle(const std::string& title)
 {
-	m_title = title;
+	m_history->AddAndExecuteCommand(std::make_unique<SetTitleCommand>(m_title, title));
 }
 
 bool HtmlDocument::CanUndo() const

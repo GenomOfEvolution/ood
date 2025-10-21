@@ -27,9 +27,22 @@ void HtmlSaver::Save(const IDocument& document, const std::filesystem::path& pat
     htmlFile << "</html>" << std::endl;
 }
 
-void HtmlSaver::SaveTempImage(const IImage& image)
+void HtmlSaver::SaveTempImage(const IImage& image, const std::filesystem::path& srcPath)
 {
+    std::filesystem::path targetDir = m_tempPath / image.GetPath().parent_path();
+    std::filesystem::create_directories(targetDir);
 
+    // Формируем полный путь для копирования
+    std::filesystem::path targetPath = m_tempPath / image.GetPath();
+
+    try 
+    {
+        std::filesystem::copy_file(srcPath, targetPath, std::filesystem::copy_options::overwrite_existing);
+    }
+    catch (const std::filesystem::filesystem_error& ex) 
+    {
+        throw std::runtime_error("Failed to copy image to temp directory: " + std::string(ex.what()));
+    }
 }
 
 void HtmlSaver::DeleteTempImage(const IImage& image)

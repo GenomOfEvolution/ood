@@ -16,6 +16,8 @@ public:
 	void Redo() override;
 
 private:
+	bool CanMergeWithLastCommand(std::unique_ptr<ICommand>& newCommand);
+
 	static inline const size_t MAX_HISTORY_SIZE = 10;
 	size_t m_actionPos = 0;
 

@@ -10,7 +10,7 @@ public:
 	~HtmlSaver();
 
 	void Save(const IDocument& document, const std::filesystem::path& path) override;
-	void SaveTempImage(const IImage& image) override;
+	void SaveTempImage(const IImage& image, const std::filesystem::path& srcPath) override;
 	void DeleteTempImage(const IImage& image) override;
 
 private:

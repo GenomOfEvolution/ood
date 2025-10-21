@@ -37,14 +37,23 @@
     <Filter Include="Source Files\Saver">
       <UniqueIdentifier>{f5025ddd-14d1-4180-be08-624fd24aa03a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Command\CompoundCommand">
-      <UniqueIdentifier>{cf9bd7e8-78e3-47b8-a70a-e6a3e3d0843d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Command\InsertImageCommand">
       <UniqueIdentifier>{a237ae2e-9d13-4cf5-914b-e73c814d1b11}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Command\InsertParagraphCommand">
       <UniqueIdentifier>{b33cf28a-ff39-48fb-9aa1-ed60ea426003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\MergableCommand">
+      <UniqueIdentifier>{cf9bd7e8-78e3-47b8-a70a-e6a3e3d0843d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\MergableCommand\SetTitleCommand">
+      <UniqueIdentifier>{ac776875-4a5d-44a5-a193-7638ca763572}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\MergableCommand\ReplaceTextCommand">
+      <UniqueIdentifier>{d819421c-db94-4837-9521-880c87c07fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\MergableCommand\ResizeImageCommand">
+      <UniqueIdentifier>{f7c7456e-5a9c-4737-9d5a-f317983cc9d8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="DocumentItem\Image\CImage.cpp">
       <Filter>Source Files\DocumentItem\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\MergableCommand\SetTitleCommand\SetTitleCommand.cpp">
+      <Filter>Source Files\Command\MergableCommand\SetTitleCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\MergableCommand\ResizeImageCommand\ResizeImageCommand.cpp">
+      <Filter>Source Files\Command\MergableCommand\ResizeImageCommand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,14 +128,23 @@
     <ClInclude Include="Saver\HtmlSaver.h">
       <Filter>Source Files\Saver</Filter>
     </ClInclude>
-    <ClInclude Include="Command\CompoundCommand\CompoundCommand.h">
-      <Filter>Source Files\Command\CompoundCommand</Filter>
-    </ClInclude>
     <ClInclude Include="Command\InsertImageCommand\InsertImageCommand.h">
       <Filter>Source Files\Command\InsertImageCommand</Filter>
     </ClInclude>
     <ClInclude Include="Command\InsertParagraphCommand\InsertParagraphCommand.h">
       <Filter>Source Files\Command\InsertParagraphCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\MergableCommand\IMergableCommand.h">
+      <Filter>Source Files\Command\MergableCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\MergableCommand\ResizeImageCommand\ResizeImageCommand.h">
+      <Filter>Source Files\Command\MergableCommand\ResizeImageCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\MergableCommand\ReplaceTextCommand\ReplaceTextCommand.h">
+      <Filter>Source Files\Command\MergableCommand\ReplaceTextCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\MergableCommand\SetTitleCommand\SetTitleCommand.h">
+      <Filter>Source Files\Command\MergableCommand\SetTitleCommand</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

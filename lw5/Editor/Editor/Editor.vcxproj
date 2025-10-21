@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="Command\InsertImageCommand\InsertImageCommand.cpp" />
     <ClCompile Include="Command\InsertParagraphCommand\InsertParagraphCommand.cpp" />
+    <ClCompile Include="Command\MergableCommand\ResizeImageCommand\ResizeImageCommand.cpp" />
+    <ClCompile Include="Command\MergableCommand\SetTitleCommand\SetTitleCommand.cpp" />
     <ClCompile Include="DocumentItem\Image\CImage.cpp" />
     <ClCompile Include="DocumentItem\Paragraph\Paragraph.cpp" />
     <ClCompile Include="Document\HtmlDocument\HtmlDocument.cpp" />
@@ -138,10 +140,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command\AbstractCommand.h" />
-    <ClInclude Include="Command\CompoundCommand\CompoundCommand.h" />
     <ClInclude Include="Command\ICommand.h" />
     <ClInclude Include="Command\InsertImageCommand\InsertImageCommand.h" />
     <ClInclude Include="Command\InsertParagraphCommand\InsertParagraphCommand.h" />
+    <ClInclude Include="Command\MergableCommand\IMergableCommand.h" />
+    <ClInclude Include="Command\MergableCommand\ReplaceTextCommand\ReplaceTextCommand.h" />
+    <ClInclude Include="Command\MergableCommand\ResizeImageCommand\ResizeImageCommand.h" />
+    <ClInclude Include="Command\MergableCommand\SetTitleCommand\SetTitleCommand.h" />
     <ClInclude Include="DocumentItem\DocumentItem.h" />
     <ClInclude Include="DocumentItem\Image\CImage.h" />
     <ClInclude Include="DocumentItem\Image\IImage.h" />
