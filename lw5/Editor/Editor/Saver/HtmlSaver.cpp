@@ -17,6 +17,12 @@ void HtmlSaver::Save(const IDocument& document, const std::filesystem::path& pat
 {
 	std::filesystem::create_directory(path);
 	std::filesystem::path imagesPath = path / "images";
+
+    if (std::filesystem::exists(imagesPath))
+    {
+        std::filesystem::remove_all(imagesPath);
+    }
+
 	std::filesystem::create_directory(imagesPath);
 
     CopyTempImagesToFinal(imagesPath);

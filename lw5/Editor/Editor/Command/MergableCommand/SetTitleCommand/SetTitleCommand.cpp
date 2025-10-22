@@ -1,27 +1,26 @@
 #include "SetTitleCommand.h"
 
-SetTitleCommand::SetTitleCommand(std::string& title, std::string newTitle)
-	: m_oldTitle(title)
-	, m_title(title)
+SetTitleCommand::SetTitleCommand(IDocument& doc, std::string newTitle)
+	: m_document(doc)
 	, m_newTitle(std::move(newTitle))
 {
 }
 
 void SetTitleCommand::DoExecute()
 {
-	m_oldTitle = m_title;
-	m_title = m_newTitle;
+	m_oldTitle = m_document.GetTitle();
+	m_document.SetTitle(m_newTitle);
 }
 
 void SetTitleCommand::DoUnexecute()
 {
-	m_title = m_oldTitle;
+	m_document.SetTitle(m_oldTitle);
 }
 
 bool SetTitleCommand::CanMergeWith(const ICommand& other) const
 {
 	auto otherCmd = dynamic_cast<const SetTitleCommand*>(&other);
-	return otherCmd != nullptr && &m_title == &otherCmd->m_title;
+	return otherCmd != nullptr && &m_document == &otherCmd->m_document;
 }
 
 void SetTitleCommand::MergeWith(std::unique_ptr<ICommand> other)

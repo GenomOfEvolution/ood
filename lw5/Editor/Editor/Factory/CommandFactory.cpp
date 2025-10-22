@@ -112,9 +112,8 @@ std::unique_ptr<ICommand> CommandFactory::CreateResizeImageCommand(IDocument& do
 std::unique_ptr<ICommand> CommandFactory::CreateSetTitleCommand(IDocument& doc, ISaver&saver, std::istream& input)
 {
     std::string newTitle = ReadRemainingText(input);
-    std::string currentTitle = doc.GetTitle();
 
-    return std::make_unique<SetTitleCommand>(currentTitle, newTitle);
+    return std::make_unique<SetTitleCommand>(doc, newTitle);
 }
 
 std::unique_ptr<ICommand> CommandFactory::CreateDeleteItemCommand(IDocument& doc, ISaver&saver, std::istream& input)

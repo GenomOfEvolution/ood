@@ -70,12 +70,6 @@
     <Filter Include="Source Files\Command\SaveCommand">
       <UniqueIdentifier>{20c8588c-e1a5-4410-b5f7-b3adfa75c73c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Command\MenuHelpCommand">
-      <UniqueIdentifier>{618a5800-e1b0-4df6-8ed1-898c906678b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Command\MenuExitCommand">
-      <UniqueIdentifier>{c134fff6-445d-4738-aeee-d8d03bb63d09}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Menu">
       <UniqueIdentifier>{bb80b187-66a3-4697-9794-30451ad0d716}</UniqueIdentifier>
     </Filter>
