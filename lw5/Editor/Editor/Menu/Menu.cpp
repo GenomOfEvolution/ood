@@ -1,0 +1,87 @@
+#include "Menu.h"
+#include <iostream>
+#include <sstream>
+
+Menu::Menu(
+	std::shared_ptr<ISaver>&& saver,
+	std::shared_ptr<IHistory>&& history,
+	std::unique_ptr<IDocument>&& doc,
+	std::unique_ptr<ICommandFactory>&& factory)
+	: m_document(std::move(doc))
+	, m_saver(std::move(saver))
+	, m_history(std::move(history))
+	, m_commandFactory(std::move(factory))
+{
+}
+
+void Menu::ShowInstructions() const
+{
+	std::cout << "Available commands:\n"
+		<< "InsertParagraph <position>|end <text>\n"
+		<< "InsertImage <position>|end <width> <height> <image path>\n"
+		<< "SetTitle <document title>\n"
+		<< "List\n"
+		<< "ReplaceText <position> <paragraph text>\n"
+		<< "ResizeImage <position> <width> <height>\n"
+		<< "DeleteItem <position>\n"
+		<< "Help\n"
+		<< "Undo\n"
+		<< "Redo\n"
+		<< "Save <path>\n"
+		<< std::endl;
+}
+
+void Menu::Run()
+{
+	ShowInstructions();
+
+	std::string command;
+	while (!m_exit 
+		&& (std::cout << ">")
+		&& getline(std::cin, command))
+	{
+		m_currentInput = command;
+		auto iss = std::istringstream(m_currentInput);
+		iss >> command;
+
+		auto it = m_commandExecution.find(command);
+		if (it == m_commandExecution.end())
+		{
+			std::cout << "Unknown command: " << command << "\n";
+		}
+		else
+		{
+			try
+			{
+				it->second();
+			}
+			catch (const std::exception& e)
+			{
+				std::cout << e.what() << std::endl;
+			}
+		}
+	}
+}
+
+void Menu::Exit()
+{
+	m_exit = true;
+}
+
+void Menu::ExecuteCommand()
+{
+	auto cmd = m_commandFactory->CreateCommand(*m_document, *m_saver, m_currentInput);
+	if (cmd)
+	{
+		cmd->Execute();
+	}
+}
+
+void Menu::HistoryExecute()
+{
+	auto cmd = m_commandFactory->CreateCommand(*m_document, *m_saver, m_currentInput);
+	if (cmd)
+	{
+		m_history->AddAndExecuteCommand(std::move(cmd));
+	}
+}

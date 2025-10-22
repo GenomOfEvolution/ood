@@ -55,6 +55,33 @@
     <Filter Include="Source Files\Command\MergableCommand\ResizeImageCommand">
       <UniqueIdentifier>{f7c7456e-5a9c-4737-9d5a-f317983cc9d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Command\DeleteItemCommand">
+      <UniqueIdentifier>{51eeeda7-3e6b-4657-a61a-0eb4eeda4420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\ListCommand">
+      <UniqueIdentifier>{9ba65918-58a6-4f15-8060-3bff4bfbd8b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\UndoCommand">
+      <UniqueIdentifier>{82b5b6e0-0834-44ff-8b63-34bf78510680}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\RedoCommand">
+      <UniqueIdentifier>{9a0e77c9-4ff0-4494-a648-260c76201957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\SaveCommand">
+      <UniqueIdentifier>{20c8588c-e1a5-4410-b5f7-b3adfa75c73c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\MenuHelpCommand">
+      <UniqueIdentifier>{618a5800-e1b0-4df6-8ed1-898c906678b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\MenuExitCommand">
+      <UniqueIdentifier>{c134fff6-445d-4738-aeee-d8d03bb63d09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menu">
+      <UniqueIdentifier>{bb80b187-66a3-4697-9794-30451ad0d716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factory">
+      <UniqueIdentifier>{22ef4be4-6de3-4c71-933b-b83f9d6f75be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +116,27 @@
     </ClCompile>
     <ClCompile Include="Command\MergableCommand\ReplaceTextCommand\ReplaceTextCommand.cpp">
       <Filter>Source Files\Command\MergableCommand\ReplaceTextCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\DeleteItemCommand\DeleteItemCommand.cpp">
+      <Filter>Source Files\Command\DeleteItemCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\UndoCommand\UndoCommand.cpp">
+      <Filter>Source Files\Command\UndoCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\RedoCommand\RedoCommand.cpp">
+      <Filter>Source Files\Command\RedoCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\SaveCommand\SaveCommand.cpp">
+      <Filter>Source Files\Command\SaveCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\ListCommand\ListCommand.cpp">
+      <Filter>Source Files\Command\ListCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\Menu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory\CommandFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +196,30 @@
     </ClInclude>
     <ClInclude Include="Command\MergableCommand\SetTitleCommand\SetTitleCommand.h">
       <Filter>Source Files\Command\MergableCommand\SetTitleCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\DeleteItemCommand\DeleteItemCommand.h">
+      <Filter>Source Files\Command\DeleteItemCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\SaveCommand\SaveCommand.h">
+      <Filter>Source Files\Command\SaveCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\RedoCommand\RedoCommand.h">
+      <Filter>Source Files\Command\RedoCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\UndoCommand\UndoCommand.h">
+      <Filter>Source Files\Command\UndoCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ListCommand\ListCommand.h">
+      <Filter>Source Files\Command\ListCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Menu.h">
+      <Filter>Source Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\CommandFactory.h">
+      <Filter>Source Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\ICommandFactory.h">
+      <Filter>Source Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

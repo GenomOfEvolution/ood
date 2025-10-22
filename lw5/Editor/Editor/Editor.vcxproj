@@ -127,27 +127,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Command\DeleteItemCommand\DeleteItemCommand.cpp" />
     <ClCompile Include="Command\InsertImageCommand\InsertImageCommand.cpp" />
     <ClCompile Include="Command\InsertParagraphCommand\InsertParagraphCommand.cpp" />
+    <ClCompile Include="Command\ListCommand\ListCommand.cpp" />
     <ClCompile Include="Command\MergableCommand\ReplaceTextCommand\ReplaceTextCommand.cpp" />
     <ClCompile Include="Command\MergableCommand\ResizeImageCommand\ResizeImageCommand.cpp" />
     <ClCompile Include="Command\MergableCommand\SetTitleCommand\SetTitleCommand.cpp" />
+    <ClCompile Include="Command\RedoCommand\RedoCommand.cpp" />
+    <ClCompile Include="Command\SaveCommand\SaveCommand.cpp" />
+    <ClCompile Include="Command\UndoCommand\UndoCommand.cpp" />
     <ClCompile Include="DocumentItem\Image\CImage.cpp" />
     <ClCompile Include="DocumentItem\Paragraph\Paragraph.cpp" />
     <ClCompile Include="Document\HtmlDocument\HtmlDocument.cpp" />
+    <ClCompile Include="Factory\CommandFactory.cpp" />
     <ClCompile Include="History\History.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu\Menu.cpp" />
     <ClCompile Include="Saver\HtmlSaver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command\AbstractCommand.h" />
+    <ClInclude Include="Command\DeleteItemCommand\DeleteItemCommand.h" />
     <ClInclude Include="Command\ICommand.h" />
     <ClInclude Include="Command\InsertImageCommand\InsertImageCommand.h" />
     <ClInclude Include="Command\InsertParagraphCommand\InsertParagraphCommand.h" />
+    <ClInclude Include="Command\ListCommand\ListCommand.h" />
     <ClInclude Include="Command\MergableCommand\IMergableCommand.h" />
     <ClInclude Include="Command\MergableCommand\ReplaceTextCommand\ReplaceTextCommand.h" />
     <ClInclude Include="Command\MergableCommand\ResizeImageCommand\ResizeImageCommand.h" />
     <ClInclude Include="Command\MergableCommand\SetTitleCommand\SetTitleCommand.h" />
+    <ClInclude Include="Command\RedoCommand\RedoCommand.h" />
+    <ClInclude Include="Command\SaveCommand\SaveCommand.h" />
+    <ClInclude Include="Command\UndoCommand\UndoCommand.h" />
     <ClInclude Include="DocumentItem\DocumentItem.h" />
     <ClInclude Include="DocumentItem\Image\CImage.h" />
     <ClInclude Include="DocumentItem\Image\IImage.h" />
@@ -155,8 +167,11 @@
     <ClInclude Include="DocumentItem\Paragraph\Paragraph.h" />
     <ClInclude Include="Document\HtmlDocument\HtmlDocument.h" />
     <ClInclude Include="Document\IDocument.h" />
+    <ClInclude Include="Factory\CommandFactory.h" />
+    <ClInclude Include="Factory\ICommandFactory.h" />
     <ClInclude Include="History\History.h" />
     <ClInclude Include="History\IHistory.h" />
+    <ClInclude Include="Menu\Menu.h" />
     <ClInclude Include="Saver\HtmlSaver.h" />
     <ClInclude Include="Saver\ISaver.h" />
   </ItemGroup>

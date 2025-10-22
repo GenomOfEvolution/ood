@@ -1,8 +1,8 @@
 #include "Document/HtmlDocument/HtmlDocument.h"
 #include "History/History.h"
 #include "Saver/HtmlSaver.h"
-#include "DocumentItem/Image/IImage.h"
-#include "Command/InsertImageCommand/InsertImageCommand.h"
+#include "Factory/CommandFactory.h"
+#include "Menu/Menu.h"
 
 #include <iostream>
 #include <memory>
@@ -11,26 +11,12 @@ int main()
 {
     auto saver = std::make_shared<HtmlSaver>();
     auto history = std::make_shared<History>();
+    auto document = std::make_unique<HtmlDocument>(history, saver);
+    auto commandFactory = std::make_unique<CommandFactory>();
 
-    HtmlDocument doc(history, saver);
+    Menu menu(std::move(saver), std::move(history), std::move(document), std::move(commandFactory));
 
-    doc.InsertParagraph("<Cool text> &\n 'Comma text'\n");
-    doc.InsertParagraph("Hello1 world");
-    doc.InsertParagraph("Hello2 world");
-    doc.InsertParagraph("Hello 3world");
-
-    std::optional<size_t> pos = 1;
-
-    auto cmd = std::make_unique<InsertImageCommand>(doc, *saver, pos, 800, 600, "D:/Sword.png");
-    cmd->Execute();
-
-    doc.SetTitle("Hello world");
-    doc.SetTitle("Hello worl3");
-
-    auto item = doc.GetItem(1);
-    auto img = item.GetImage();
-
-    doc.Save("D:\\test\\");
+    menu.Run();
 
     return EXIT_SUCCESS;
 }
