@@ -9,7 +9,7 @@
 class HtmlDocument : public IDocument
 {
 public:
-	HtmlDocument(std::unique_ptr<IHistory> history, std::unique_ptr<ISaver> saver);
+	HtmlDocument(std::shared_ptr<IHistory> history, std::shared_ptr<ISaver> saver);
 	~HtmlDocument() = default;
 
 	std::shared_ptr<IParagraph> InsertParagraph(
@@ -39,9 +39,11 @@ public:
 	void Save(const std::filesystem::path& path) const override;
 
 private:
-	std::unique_ptr<IHistory> m_history;
-	std::unique_ptr<ISaver> m_saver;
+	std::shared_ptr<IHistory> m_history;
+	std::shared_ptr<ISaver> m_saver;
 
 	std::vector<DocumentItem> m_items;
 	std::string m_title;
+
+	void InsertDocumentItem(DocumentItem item, std::optional<size_t> position);
 };

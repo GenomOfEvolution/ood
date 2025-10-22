@@ -12,6 +12,11 @@ std::filesystem::path CImage::GetPath() const
     return m_path;
 }
 
+void CImage::SetPath(const std::filesystem::path& path)
+{
+    m_path = path;
+}
+
 int CImage::GetWidth() const
 {
     return m_width;

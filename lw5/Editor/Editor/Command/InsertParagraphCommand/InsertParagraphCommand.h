@@ -1,24 +1,23 @@
 #pragma once
 #include "../AbstractCommand.h"
-#include "../../DocumentItem/DocumentItem.h"
-#include <vector>
-#include <memory>
+#include "../../Document/IDocument.h"
 #include <optional>
+#include <string>
 
 
 class InsertParagraphCommand : public AbstractCommand
 {
 public:
 	InsertParagraphCommand(
-		std::vector<DocumentItem>& items,
-		std::shared_ptr<IParagraph> newItem,
-		std::optional<size_t> index);
+		IDocument& doc,
+		std::optional<size_t> index,
+		std::string text);
 private:
 	void DoExecute() override;
 	void DoUnexecute() override;
 
-	std::vector<DocumentItem>& m_items;
-	std::shared_ptr<IParagraph> m_newItem;
+	IDocument& m_document;
+	std::string m_text;
 	std::optional<size_t> m_insertPos;
 	size_t m_actualPosition = 0;
 };

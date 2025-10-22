@@ -87,6 +87,9 @@
     <ClCompile Include="Command\MergableCommand\ResizeImageCommand\ResizeImageCommand.cpp">
       <Filter>Source Files\Command\MergableCommand\ResizeImageCommand</Filter>
     </ClCompile>
+    <ClCompile Include="Command\MergableCommand\ReplaceTextCommand\ReplaceTextCommand.cpp">
+      <Filter>Source Files\Command\MergableCommand\ReplaceTextCommand</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Document\IDocument.h">

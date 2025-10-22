@@ -1,6 +1,7 @@
 ﻿#include "HtmlSaver.h"
 #include <iostream>
 #include <iterator>
+#include <random>
 
 HtmlSaver::HtmlSaver()
 {
@@ -18,6 +19,8 @@ void HtmlSaver::Save(const IDocument& document, const std::filesystem::path& pat
 	std::filesystem::path imagesPath = path / "images";
 	std::filesystem::create_directory(imagesPath);
 
+    CopyTempImagesToFinal(imagesPath);
+
     std::ofstream htmlFile(path / "document.html");
 
     htmlFile << "<!DOCTYPE html>" << std::endl;
@@ -27,26 +30,51 @@ void HtmlSaver::Save(const IDocument& document, const std::filesystem::path& pat
     htmlFile << "</html>" << std::endl;
 }
 
-void HtmlSaver::SaveTempImage(const IImage& image, const std::filesystem::path& srcPath)
+std::string HtmlSaver::GenerateUniqueFilename()
 {
-    std::filesystem::path targetDir = m_tempPath / image.GetPath().parent_path();
-    std::filesystem::create_directories(targetDir);
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    static std::uniform_int_distribution<> dis(100000, 999999);
 
-    // Формируем полный путь для копирования
-    std::filesystem::path targetPath = m_tempPath / image.GetPath();
+    return "image_" + std::to_string(dis(gen));
+}
 
-    try 
+std::filesystem::path HtmlSaver::SaveTempImage(const std::filesystem::path& srcPath)
+{
+    std::filesystem::path tempImagesDir = m_tempPath / "images";
+    std::filesystem::create_directories(tempImagesDir);
+
+    std::string extension = srcPath.extension().string();
+    std::string filename = GenerateUniqueFilename() + extension;
+    std::filesystem::path targetPath = tempImagesDir / filename;
+
+    try
     {
         std::filesystem::copy_file(srcPath, targetPath, std::filesystem::copy_options::overwrite_existing);
+
+        return std::filesystem::path("images") / filename;
     }
-    catch (const std::filesystem::filesystem_error& ex) 
+    catch (const std::filesystem::filesystem_error& ex)
     {
         throw std::runtime_error("Failed to copy image to temp directory: " + std::string(ex.what()));
     }
 }
 
-void HtmlSaver::DeleteTempImage(const IImage& image)
+void HtmlSaver::DeleteTempImage(const std::filesystem::path& srcPath)
 {
+    try
+    {
+        std::filesystem::path fullPath = m_tempPath / srcPath;
+
+        if (std::filesystem::exists(fullPath))
+        {
+            std::filesystem::remove(fullPath);
+        }
+    }
+    catch (const std::filesystem::filesystem_error& ex)
+    {
+        std::cout << "Failed to delete temp image: " << ex.what() << std::endl;
+    }
 }
 
 void HtmlSaver::SetTempPath()
@@ -70,6 +98,31 @@ void HtmlSaver::ClearTempFolder() const
     catch (const std::filesystem::filesystem_error& e)
     {
         std::cout << e.what();
+    }
+}
+
+void HtmlSaver::CopyTempImagesToFinal(const std::filesystem::path& finalImagesDir)
+{
+    try
+    {
+        std::filesystem::path tempImagesDir = m_tempPath / "images";
+
+        if (std::filesystem::exists(tempImagesDir))
+        {
+            for (const auto& entry : std::filesystem::directory_iterator(tempImagesDir))
+            {
+                if (entry.is_regular_file())
+                {
+                    std::filesystem::path targetPath = finalImagesDir / entry.path().filename();
+                    std::filesystem::copy_file(entry.path(), targetPath,
+                        std::filesystem::copy_options::overwrite_existing);
+                }
+            }
+        }
+    }
+    catch (const std::filesystem::filesystem_error& ex)
+    {
+        throw std::runtime_error("Failed to copy images to final directory: " + std::string(ex.what()));
     }
 }
 

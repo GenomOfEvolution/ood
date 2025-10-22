@@ -10,18 +10,20 @@ public:
 	~HtmlSaver();
 
 	void Save(const IDocument& document, const std::filesystem::path& path) override;
-	void SaveTempImage(const IImage& image, const std::filesystem::path& srcPath) override;
-	void DeleteTempImage(const IImage& image) override;
+	std::filesystem::path SaveTempImage(const std::filesystem::path& srcPath) override;
+	void DeleteTempImage(const std::filesystem::path& srcPath) override;
 
 private:
 	void SetTempPath();
 	void ClearTempFolder() const;
+	void CopyTempImagesToFinal(const std::filesystem::path& finalImagesDir);
 
 	void PrintParagraph(const IParagraph& paragraph, std::ofstream& htmlFile) const;
 	void PrintImage(const IImage& image, std::ofstream& htmlFile) const;
 	void PrintHtmlHead(const IDocument& document, std::ofstream& htmlFile) const;
 	void PrintHtmlBody(const IDocument& document, std::ofstream& htmlFile) const;
 	std::string HtmlEncode(const std::string& text) const;
+	std::string GenerateUniqueFilename();
 
 	const static inline std::map<std::string, std::string> HTML_ENTITY_TABLE
 	{

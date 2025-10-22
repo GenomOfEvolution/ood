@@ -1,16 +1,18 @@
 #include "InsertImageCommand.h"
 
 InsertImageCommand::InsertImageCommand(
-	std::vector<DocumentItem>& items,
-	std::shared_ptr<IImage> image,
-	std::optional<size_t> index,
-	std::filesystem::path path,
-    ISaver& saver)
-	: m_items(items)
-	, m_image(std::move(image))
+    IDocument& doc,
+    ISaver& saver,
+    std::optional<size_t> index,
+    int width,
+    int height,
+    std::filesystem::path sourcePath)
+	: m_document(doc)
+	, m_saver(saver)
 	, m_insertPos(index)
-    , m_imgSrcPath(path)
-    , m_saver(saver)
+    , m_width(width)
+    , m_height(height)
+    , m_imgSrcPath(sourcePath)
 {
 }
 
@@ -21,24 +23,16 @@ InsertImageCommand::~InsertImageCommand()
 
 void InsertImageCommand::DoExecute()
 {
-    // Вставить картинку в temp папку
+    m_tempPath = m_saver.SaveTempImage(m_imgSrcPath);
+    m_image = m_document.InsertImage(m_tempPath, m_width, m_height, m_insertPos);
 
-    const DocumentItem item(m_image);
-
-    if (m_insertPos.has_value())
+    if (m_insertPos.has_value()) 
     {
-        if (*m_insertPos > m_items.size())
-        {
-            throw std::out_of_range("Insert position is out of range");
-        }
-
-        m_items.insert(m_items.begin() + *m_insertPos, item);
-        m_actualPosition = *m_insertPos;
+        m_actualPosition = m_insertPos.value();
     }
-    else
+    else 
     {
-        m_items.push_back(item);
-        m_actualPosition = m_items.size() - 1;
+        m_actualPosition = m_document.GetItemsCount() - 1;
     }
 
     m_shouldDelete = false;
@@ -46,24 +40,20 @@ void InsertImageCommand::DoExecute()
 
 void InsertImageCommand::DoUnexecute()
 {
-    // удалить картинку из temp папки
-
-    m_shouldDelete = true;
-
-    if (m_actualPosition >= m_items.size())
+    if (m_actualPosition >= m_document.GetItemsCount())
     {
         throw std::runtime_error("Cannot unexecute: position is out of range");
     }
 
-    m_items.erase(m_items.begin() + m_actualPosition);
+    m_shouldDelete = true;
+    m_document.DeleteItem(m_actualPosition);
 }
 
 void InsertImageCommand::Destroy()
 {
-    if (m_shouldDelete)
+    if (m_shouldDelete && !m_tempPath.empty()) 
     {
-        // Удлить картинку из temp папки
+        m_saver.DeleteTempImage(m_tempPath);
+        m_tempPath.clear();
     }
-
-    m_shouldDelete = false;
 }

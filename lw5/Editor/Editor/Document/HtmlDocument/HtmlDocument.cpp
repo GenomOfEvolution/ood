@@ -1,11 +1,8 @@
 #include "HtmlDocument.h"
-#include "../../Command/InsertParagraphCommand/InsertParagraphCommand.h"
-#include "../../Command/InsertImageCommand/InsertImageCommand.h"
-#include "../../Command/MergableCommand/SetTitleCommand/SetTitleCommand.h"
-#include "../../DocumentItem/Paragraph/Paragraph.h"
 #include "../../DocumentItem/Image/CImage.h"
+#include "../../DocumentItem/Paragraph/Paragraph.h"
 
-HtmlDocument::HtmlDocument(std::unique_ptr<IHistory> history, std::unique_ptr<ISaver> saver)
+HtmlDocument::HtmlDocument(std::shared_ptr<IHistory> history, std::shared_ptr<ISaver> saver)
 	: m_history(std::move(history))
 	, m_saver(std::move(saver))
 {
@@ -13,9 +10,11 @@ HtmlDocument::HtmlDocument(std::unique_ptr<IHistory> history, std::unique_ptr<IS
 
 std::shared_ptr<IParagraph> HtmlDocument::InsertParagraph(const std::string& text, std::optional<size_t> position)
 {
-	auto paragraph = std::make_shared<Paragraph>(text);
-	m_history->AddAndExecuteCommand(std::make_unique<InsertParagraphCommand>(m_items, paragraph, position));
+	auto paragraph = std::make_shared<Paragraph>();
+	paragraph->SetText(text);
 
+	InsertDocumentItem(DocumentItem(paragraph), position);
+	
 	return paragraph;
 }
 
@@ -24,16 +23,11 @@ std::shared_ptr<IImage> HtmlDocument::InsertImage(
 	int width, int height,
 	std::optional<size_t> position)
 {
-	static size_t imageCounter = 0;
-	imageCounter++;
+	auto image = std::make_shared<CImage>();
+	image->Resize(width, height);
+	image->SetPath(path);
 
-	std::string extension = path.extension().string();
-	std::string filename = "image_" + std::to_string(imageCounter) + extension;
-
-	std::filesystem::path relativePath = std::filesystem::path("images") / filename;
-	auto image = std::make_shared<CImage>(relativePath, width, height);
-
-	m_history->AddAndExecuteCommand(std::make_unique<InsertImageCommand>(m_items, image, position, path, *m_saver));
+	InsertDocumentItem(DocumentItem(image), position);
 
 	return image;
 }
@@ -55,7 +49,7 @@ DocumentItem HtmlDocument::GetItem(size_t index)
 
 void HtmlDocument::DeleteItem(size_t index)
 {
-
+	m_items.erase(m_items.begin() + index);
 }
 
 std::string HtmlDocument::GetTitle() const
@@ -65,7 +59,7 @@ std::string HtmlDocument::GetTitle() const
 
 void HtmlDocument::SetTitle(const std::string& title)
 {
-	m_history->AddAndExecuteCommand(std::make_unique<SetTitleCommand>(m_title, title));
+	m_title = title;
 }
 
 bool HtmlDocument::CanUndo() const
@@ -91,4 +85,16 @@ void HtmlDocument::Redo()
 void HtmlDocument::Save(const std::filesystem::path& path) const
 {
 	m_saver->Save(*this, path);
+}
+
+void HtmlDocument::InsertDocumentItem(DocumentItem item, std::optional<size_t> position)
+{
+	if (position.has_value())
+	{
+		m_items.insert(m_items.begin() + *position, item);
+	}
+	else
+	{
+		m_items.push_back(item);
+	}
 }

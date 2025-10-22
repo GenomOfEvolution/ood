@@ -4,9 +4,12 @@
 class CImage : public IImage
 {
 public:
+	CImage() = default;
 	CImage(std::filesystem::path path, int width, int height);
 
 	std::filesystem::path GetPath() const override;
+	void SetPath(const std::filesystem::path& path) override;
+
 	int GetWidth() const override;
 	int GetHeight() const override;
 	void Resize(int width, int height) override;

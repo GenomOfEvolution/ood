@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Command\InsertImageCommand\InsertImageCommand.cpp" />
     <ClCompile Include="Command\InsertParagraphCommand\InsertParagraphCommand.cpp" />
+    <ClCompile Include="Command\MergableCommand\ReplaceTextCommand\ReplaceTextCommand.cpp" />
     <ClCompile Include="Command\MergableCommand\ResizeImageCommand\ResizeImageCommand.cpp" />
     <ClCompile Include="Command\MergableCommand\SetTitleCommand\SetTitleCommand.cpp" />
     <ClCompile Include="DocumentItem\Image\CImage.cpp" />
