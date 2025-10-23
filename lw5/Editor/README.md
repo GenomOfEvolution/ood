@@ -42,13 +42,58 @@ classDiagram
 
     class IImage {
         <<interface>>
+        + GetPath() std::filesystem::path
+        + SetPath(const std::filesystem::path& path) void
+
+        + GetWidth() int
+        + GetHeight() int
+        + Resize(int width, int height) void
+    }
+
+    CImage ..|> IImage
+    class CImage {
+        + CImage(std::filesystem::path path, int width, int height)
+        + GetPath() std::filesystem::path
+        + SetPath(const std::filesystem::path& path) void
+
+        + GetWidth() int
+        + GetHeight() int
+        + Resize(int width, int height) void
+
+        - IsCorrectSize(int size) bool
+        - m_width: int
+        - m_height: int
+        - m_path: std::filesystem::path
     }
 
     class IParagraph {
         <<interface>>
+        + GetText() string
+        + SetText(const std::string& text) void
     }
 
+    Paragraph ..|> IParagraph
+    class Paragraph {
+        + Paragraph()
+        + Paragraph(const std::string& text)
+        + GetText() string
+        + SetText(const std::string& text) void
+
+        - m_text: std::string
+    }
+
+    IParagraph --> DocumentItem
+    IImage --> DocumentItem
     class DocumentItem {
+        + DocumentItem(std::shared_ptr<IImage> image)
+        + DocumentItem(std::shared_ptr<IParagraph> paragraph)
+
+        + GetParagraph() std::shared_ptr<IParagraph>
+        + GetImage() std::shared_ptr<IImage>
+        + GetParagraph() std::shared_ptr<const IParagraph>
+        + GetImage() std::shared_ptr<const IImage>
+
+        -  m_item: variant~shared_ptr~IImage~, shared_ptr~IParagraph~~ 
     }
 
     class IHistory {
@@ -163,9 +208,6 @@ classDiagram
     ListCommand ..|> AbstractCommand
     SaveCommand ..|> AbstractCommand
 
-    MenuHelpCommand ..|> AbstractCommand
-    MenuExitCommand ..|> AbstractCommand
-
     SetTitleCommand --> IDocument
     ResizeImageCommand --> IDocument
     ReplaceTextCommand --> IDocument
@@ -177,7 +219,5 @@ classDiagram
     ListCommand --> IDocument
     SaveCommand --> IDocument
 
-    MenuHelpCommand --> Menu
-    MenuExitCommand --> Menu
     IHistory --* Menu
 ```
