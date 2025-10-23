@@ -12,6 +12,13 @@ namespace modern_graphics_lib
         int y;
     };
 
+    class CRGBAColor
+    {
+    public:
+        CRGBAColor(float r, float g, float b, float a) :r(r), g(g), b(b), a(a) {}
+        float r, g, b, a;
+    };
+
     class CModernGraphicsRenderer
     {
     public:
@@ -37,15 +44,20 @@ namespace modern_graphics_lib
             m_drawing = true;
         }
 
-        void DrawLine(const CPoint& start, const CPoint& end)
+        void DrawLine(const CPoint& start, const CPoint& end, const CRGBAColor& color)
         {
             if (!m_drawing)
             {
                 throw std::logic_error("DrawLine is allowed between BeginDraw()/EndDraw() only");
             }
 
-            m_out << std::format(R"(  <line fromX="{}" fromY="{}" toX="{}" toY="{}"/>)",
+            m_out << std::format(R"(  <line fromX="{}" fromY="{}" toX="{}" toY="{}">)",
                 start.x, start.y, end.x, end.y) << std::endl;
+
+            m_out << std::format(R"(    <color r="{:.2f}" g="{:.2f}" b="{:.2f}" a="{:.2f}" />)",
+                color.r, color.g, color.b, color.a) << std::endl;
+
+            m_out << "  </line>" << std::endl;
         }
 
         void EndDraw()

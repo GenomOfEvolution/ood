@@ -2,14 +2,15 @@
 #include "../lib/shape_drawing_lib/CRectangle.h"
 #include "../lib/shape_drawing_lib/CTriangle.h"
 #include "../lib/graphics_lib/CCanvas.h"
+#include "../lib/modern_graphics_lib/CModernGraphicsRenderer.h"
 #include "Adapter/ModernToOldLibAdapter.h"
 #include <iostream>
 
 void app::PaintPicture(shape_drawing_lib::CCanvasPainter& painter)
 {
 	using namespace shape_drawing_lib;
-	CRectangle rect({ 200, 200 }, 400, 400);
-	CTriangle triangle({ 200, 200 }, { 300, 100 }, { 200, 400 });
+	CRectangle rect({ 200, 200 }, 400, 400, 0xff00ff);
+	CTriangle triangle({ 200, 200 }, { 300, 100 }, { 200, 400 }, 0x00ff00);
 
 	painter.Draw(rect);
 	painter.Draw(triangle);
@@ -31,8 +32,9 @@ void app::PaintPictureOnModernGraphicsRenderer()
 	using namespace graphics_lib;
 	using namespace modern_graphics_lib;
 
-	CModernGraphicsRenderer renderer(std::cout);
-	ModernToOldLibAdapter adapter(renderer);
+	CModernGraphicsRenderer rendrer(std::cout);
+	ModernToOldLibAdapter adapter(rendrer);
 	CCanvasPainter painter(adapter);
+
 	PaintPicture(painter);
 }
