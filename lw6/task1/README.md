@@ -2,18 +2,22 @@
 classDiagram
     namespace app {
         class ModernToOldLibAdapter {
-            + ModernToOldLibAdapter(std::ostream& out);
-            + ~ModernToOldLibAdapter() override;
+            + ModernToOldLibAdapter(std::ostream& out)
+            + ~ModernToOldLibAdapter()
 
             + MoveTo(int x, int y) void
             + LineTo(int x, int y) void
+            + SetColor(uint32_t rgbColor) void
 
+            - FromRGB(uint32_t rgb) CRGBAColor
             - m_pos: CPoint
+            - m_color: CRGBAColor
         }
     }
 
     Client ..> ModernToOldLibAdapter : Use
     CPoint --* ModernToOldLibAdapter
+    CRGBAColor --* ModernToOldLibAdapter
     ModernToOldLibAdapter ..|> ICanvas
     ModernToOldLibAdapter --|> CModernGraphicsRenderer
 
@@ -23,11 +27,13 @@ classDiagram
             <<interface>>
             + MoveTo(int x, int y) void
             + LineTo(int x, int y) void
+            + SetColor(uint32_t rgbColor) void
         }
 
         class CCanvas {
             + MoveTo(int x, int y) void
             + LineTo(int x, int y) void
+            + SetColor(uint32_t rgbColor) void
         }
     }
     CCanvas ..|> ICanvas
@@ -39,17 +45,23 @@ classDiagram
             + y: int
         }
 
+        class CRGBAColor  {
+            + CRGBAColor(float r, float g, float b, float a)
+            + r, g, b, a: float
+        }
+
         class CModernGraphicsRenderer {
             + CModernGraphicsRenderer(ostream& strm)
             + ~CModernGraphicsRenderer()
             + BeginDraw() void
             + EndDraw() void
-            + DrawLine(const CPoint& start, const CPoint& end) void
+            + DrawLine(const CPoint& start, const CPoint& end, const CRGBAColor& color) void
             - m_out: ostream&
             - m_drawing: bool
         }
     }
     CPoint ..> CModernGraphicsRenderer
+    CRGBAColor ..> CModernGraphicsRenderer
 
     namespace shape_drawing_lib {
         class Point {
@@ -63,18 +75,20 @@ classDiagram
         }
 
         class CTriangle {
-            + CTriangle(const Point& p1, const Point& p2, const Point& p3)
+            + CTriangle(const Point& p1, const Point& p2, const Point& p3, uint32_t color = 0x000000)
             + Draw(graphics_lib::ICanvas& canvas) const void
 
             - m_p1, m_p2, m_p3: Point
+            - m_color: uint32_t
         }
 
         class CRectangle {
-            + CRectangle(const Point& leftTop, int width, int height)
+            + CRectangle(const Point& leftTop, int width, int height, uint32_t color = 0x000000)
             + Draw(graphics_lib::ICanvas& canvas) const void
 
             - m_leftTop: Point
             - m_width, m_height: int
+            - m_color: uint32_t
         }
 
         class CCanvasPainter {
@@ -90,5 +104,4 @@ classDiagram
     Point --* CRectangle
     CTriangle ..|> ICanvasDrawable
     CRectangle ..|> ICanvasDrawable
-
 ```

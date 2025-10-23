@@ -8,8 +8,8 @@
 void app::PaintPicture(shape_drawing_lib::CCanvasPainter& painter)
 {
 	using namespace shape_drawing_lib;
-	CRectangle rect({ 200, 200 }, 400, 400);
-	CTriangle triangle({ 200, 200 }, { 300, 100 }, { 200, 400 });
+	CRectangle rect({ 200, 200 }, 400, 400, 0xff00ff);
+	CTriangle triangle({ 200, 200 }, { 300, 100 }, { 200, 400 }, 0x00ff00);
 
 	painter.Draw(rect);
 	painter.Draw(triangle);
