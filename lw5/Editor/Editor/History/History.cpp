@@ -49,7 +49,7 @@ void History::Redo()
 	if (CanRedo())
 	{
 		size_t nextIndex = m_actionPos++;
-		m_commands[nextIndex]->Unexecute();
+		m_commands[nextIndex]->Execute();
 	}
 }
 
