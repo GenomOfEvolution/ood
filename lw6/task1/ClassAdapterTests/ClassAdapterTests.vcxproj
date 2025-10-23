@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3b9f1935-b79d-49d1-9a8a-1b39f2c9e190}</ProjectGuid>
-    <RootNamespace>ObjectAdapter</RootNamespace>
+    <ProjectGuid>{fa7eb110-da88-4191-b10f-57d2beb27096}</ProjectGuid>
+    <RootNamespace>ClassAdapterTests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -77,6 +77,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,6 +93,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,6 +107,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,6 +123,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,20 +131,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="App\Adapter\ModernToOldLibAdapter.cpp" />
-    <ClCompile Include="App\App.cpp" />
+    <ClCompile Include="..\ClassAdapter\App\Adapter\ModernToOldLibAdapter.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="App\Adapter\ModernToOldLibAdapter.h" />
-    <ClInclude Include="App\App.h" />
-    <ClInclude Include="lib\graphics_lib\CCanvas.h" />
-    <ClInclude Include="lib\graphics_lib\ICanvas.h" />
-    <ClInclude Include="lib\modern_graphics_lib\CModernGraphicsRenderer.h" />
-    <ClInclude Include="lib\shape_drawing_lib\CCanvasPainter.h" />
-    <ClInclude Include="lib\shape_drawing_lib\CRectangle.h" />
-    <ClInclude Include="lib\shape_drawing_lib\CTriangle.h" />
-    <ClInclude Include="lib\shape_drawing_lib\ICanvasDrawable.h" />
+    <ProjectReference Include="..\ClassAdapter\ClassAdapter.vcxproj">
+      <Project>{3b9f1935-b79d-49d1-9a8a-1b39f2c9e190}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ClassAdapter\App\Adapter\ModernToOldLibAdapter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
