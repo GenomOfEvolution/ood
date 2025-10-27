@@ -22,9 +22,6 @@
     <Filter Include="Source Files\DocumentItem">
       <UniqueIdentifier>{535f2cc3-697c-4963-a654-7f463c10ec66}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\History">
-      <UniqueIdentifier>{86bf7d6c-5bc9-47d6-a798-842105c81a67}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\DocumentItem\Image">
       <UniqueIdentifier>{3d5ad203-3720-4212-b85e-7fc7829ed26b}</UniqueIdentifier>
     </Filter>
@@ -76,6 +73,9 @@
     <Filter Include="Source Files\Factory">
       <UniqueIdentifier>{22ef4be4-6de3-4c71-933b-b83f9d6f75be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Factory\History">
+      <UniqueIdentifier>{86bf7d6c-5bc9-47d6-a798-842105c81a67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -91,7 +91,7 @@
       <Filter>Source Files\DocumentItem\Paragraph</Filter>
     </ClCompile>
     <ClCompile Include="History\History.cpp">
-      <Filter>Source Files\History</Filter>
+      <Filter>Source Files\Factory\History</Filter>
     </ClCompile>
     <ClCompile Include="Command\InsertParagraphCommand\InsertParagraphCommand.cpp">
       <Filter>Source Files\Command\InsertParagraphCommand</Filter>
@@ -153,10 +153,10 @@
       <Filter>Source Files\DocumentItem</Filter>
     </ClInclude>
     <ClInclude Include="History\History.h">
-      <Filter>Source Files\History</Filter>
+      <Filter>Source Files\Factory\History</Filter>
     </ClInclude>
     <ClInclude Include="History\IHistory.h">
-      <Filter>Source Files\History</Filter>
+      <Filter>Source Files\Factory\History</Filter>
     </ClInclude>
     <ClInclude Include="Command\AbstractCommand.h">
       <Filter>Source Files\Command</Filter>

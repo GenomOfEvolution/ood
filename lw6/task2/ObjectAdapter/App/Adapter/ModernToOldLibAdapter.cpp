@@ -3,6 +3,7 @@
 app::ModernToOldLibAdapter::ModernToOldLibAdapter(modern_graphics_lib::CModernGraphicsRenderer& rendrer)
 	: m_renderer(rendrer)
 {
+	// TODO: должен вызывать клиент, т.к. ему доступны эти методы
 	m_renderer.BeginDraw();
 }
 
