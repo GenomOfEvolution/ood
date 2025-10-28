@@ -1,11 +1,10 @@
 #pragma once
 #include "ICommand.h"
-#include <iostream>
 
-class AbstractCommand : public ICommand
+class AbstractUndoableCommand : public ICommand
 {
 public:
-	void Execute() override
+	void Execute() override 
 	{
 		if (!m_executed)
 		{
@@ -14,18 +13,23 @@ public:
 		}
 	}
 
-	void Unexecute() override
+	void Unexecute() override 
 	{
-		throw std::logic_error("Can't unexecute this command!");
+		if (m_executed)
+		{
+			DoUnexecute();
+			m_executed = false;
+		}
 	}
 
 	bool ShouldSaveToHistory() const override
 	{
-		return false;
+		return true;
 	}
 
 protected:
 	virtual void DoExecute() = 0;
+	virtual void DoUnexecute() = 0;
 
 private:
 	bool m_executed = false;

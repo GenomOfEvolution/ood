@@ -10,7 +10,3 @@ void SaveCommand::DoExecute()
 {
 	m_document.Save(m_path);
 }
-
-void SaveCommand::DoUnexecute()
-{
-}

@@ -1,9 +1,9 @@
 #pragma once
-#include "../AbstractCommand.h"
+#include "../AbstractUndoableCommand.h"
 #include <string>
 #include <memory>
 
-class IMergableCommand : public AbstractCommand
+class IMergableCommand : public AbstractUndoableCommand
 {
 public:
     virtual bool CanMergeWith(const ICommand& other) const = 0;

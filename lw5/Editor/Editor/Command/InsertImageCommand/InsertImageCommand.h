@@ -1,5 +1,5 @@
 #pragma once
-#include "../AbstractCommand.h"
+#include "../AbstractUndoableCommand.h"
 #include "../../Document/IDocument.h"
 #include "../../Saver/ISaver.h"
 
@@ -7,7 +7,7 @@
 #include <filesystem>
 #include <memory>
 
-class InsertImageCommand : public AbstractCommand
+class InsertImageCommand : public AbstractUndoableCommand
 {
 public:
 	InsertImageCommand(

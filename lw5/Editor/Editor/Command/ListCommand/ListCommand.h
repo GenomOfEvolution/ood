@@ -10,7 +10,6 @@ public:
 
 private:
 	void DoExecute() override;
-	void DoUnexecute() override;
 
 	void PrintParagraph(const IParagraph& paragraph) const;
 	void PrintImage(const IImage& image) const;

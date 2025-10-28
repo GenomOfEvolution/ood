@@ -27,10 +27,6 @@ void ListCommand::DoExecute()
 	}
 }
 
-void ListCommand::DoUnexecute()
-{
-}
-
 void ListCommand::PrintParagraph(const IParagraph& paragraph) const
 {
 	std::cout << "Paragraph: " << paragraph.GetText();

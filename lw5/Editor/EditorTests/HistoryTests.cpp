@@ -13,6 +13,7 @@ class MockCommand : public ICommand
 public:
     void Execute() override { executeCount++; }
     void Unexecute() override { unexecuteCount++; }
+    bool ShouldSaveToHistory() const override { return true; }
 
     int executeCount = 0;
     int unexecuteCount = 0;

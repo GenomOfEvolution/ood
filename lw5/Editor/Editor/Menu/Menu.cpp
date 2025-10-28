@@ -1,16 +1,16 @@
 #include "Menu.h"
+#include "../Factory/CommandFactory.h"
 #include <iostream>
 #include <sstream>
 
 Menu::Menu(
 	std::shared_ptr<ISaver>&& saver,
 	std::shared_ptr<ICommandExecutor>&& history,
-	std::unique_ptr<IDocument>&& doc,
-	std::unique_ptr<ICommandFactory>&& factory)
+	std::unique_ptr<IDocument>&& doc)
 	: m_document(std::move(doc))
 	, m_saver(std::move(saver))
 	, m_history(std::move(history))
-	, m_commandFactory(std::move(factory))
+	, m_commandFactory(std::make_unique<CommandFactory>(*m_document, *m_saver, *this))
 {
 }
 
@@ -40,25 +40,14 @@ void Menu::Run()
 		&& (std::cout << ">")
 		&& getline(std::cin, command))
 	{
-		m_currentInput = command;
-		auto iss = std::istringstream(m_currentInput);
-		iss >> command;
-
-		auto it = m_commandExecution.find(command);
-		if (it == m_commandExecution.end())
+		try
 		{
-			std::cout << "Unknown command: " << command << "\n";
+			auto cmd = m_commandFactory->CreateCommand(command);
+			m_history->AddAndExecuteCommand(std::move(cmd));
 		}
-		else
+		catch (const std::exception& e)
 		{
-			try
-			{
-				it->second();
-			}
-			catch (const std::exception& e)
-			{
-				std::cout << e.what() << std::endl;
-			}
+			std::cout << e.what() << std::endl;
 		}
 	}
 }
@@ -66,22 +55,4 @@ void Menu::Run()
 void Menu::Exit()
 {
 	m_exit = true;
-}
-
-void Menu::ExecuteCommand()
-{
-	auto cmd = m_commandFactory->CreateCommand(*m_document, *m_saver, m_currentInput);
-	if (cmd)
-	{
-		cmd->Execute();
-	}
-}
-
-void Menu::HistoryExecute()
-{
-	auto cmd = m_commandFactory->CreateCommand(*m_document, *m_saver, m_currentInput);
-	if (cmd)
-	{
-		m_history->AddAndExecuteCommand(std::move(cmd));
-	}
 }

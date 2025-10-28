@@ -1,11 +1,11 @@
 #pragma once
-#include "../AbstractCommand.h"
+#include "../AbstractUndoableCommand.h"
 #include "../../Document/IDocument.h"
 #include <optional>
 #include <string>
 
 
-class InsertParagraphCommand : public AbstractCommand
+class InsertParagraphCommand : public AbstractUndoableCommand
 {
 public:
 	InsertParagraphCommand(

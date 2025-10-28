@@ -5,6 +5,11 @@ void History::AddAndExecuteCommand(std::unique_ptr<ICommand>&& command)
 {
 	command->Execute();
 
+	if (!command->ShouldSaveToHistory())
+	{
+		return;
+	}
+
 	if (m_actionPos < m_commands.size())
 	{
 		m_commands.erase(m_commands.begin() + m_actionPos, m_commands.end());

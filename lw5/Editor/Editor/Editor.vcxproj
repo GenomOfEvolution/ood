@@ -128,6 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Command\DeleteItemCommand\DeleteItemCommand.cpp" />
+    <ClCompile Include="Command\ExitCommand\ExitCommand.cpp" />
+    <ClCompile Include="Command\HelpCommand\HelpCommand.cpp" />
     <ClCompile Include="Command\InsertImageCommand\InsertImageCommand.cpp" />
     <ClCompile Include="Command\InsertParagraphCommand\InsertParagraphCommand.cpp" />
     <ClCompile Include="Command\ListCommand\ListCommand.cpp" />
@@ -148,7 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command\AbstractCommand.h" />
+    <ClInclude Include="Command\AbstractUndoableCommand.h" />
     <ClInclude Include="Command\DeleteItemCommand\DeleteItemCommand.h" />
+    <ClInclude Include="Command\ExitCommand\ExitCommand.h" />
+    <ClInclude Include="Command\HelpCommand\HelpCommand.h" />
     <ClInclude Include="Command\ICommand.h" />
     <ClInclude Include="Command\InsertImageCommand\InsertImageCommand.h" />
     <ClInclude Include="Command\InsertParagraphCommand\InsertParagraphCommand.h" />

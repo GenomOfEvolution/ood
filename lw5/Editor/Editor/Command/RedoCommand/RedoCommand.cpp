@@ -16,7 +16,3 @@ void RedoCommand::DoExecute()
 		throw std::runtime_error("Can't make redo!");
 	}
 }
-
-void RedoCommand::DoUnexecute()
-{
-}

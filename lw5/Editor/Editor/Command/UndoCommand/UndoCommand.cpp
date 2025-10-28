@@ -16,7 +16,3 @@ void UndoCommand::DoExecute()
 		throw std::runtime_error("Can't make undo!");
 	}
 }
-
-void UndoCommand::DoUnexecute()
-{
-}

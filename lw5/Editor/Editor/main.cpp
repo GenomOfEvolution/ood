@@ -12,9 +12,8 @@ int main()
     auto saver = std::make_shared<HtmlSaver>();
     auto history = std::make_shared<History>();
     auto document = std::make_unique<HtmlDocument>(history, saver);
-    auto commandFactory = std::make_unique<CommandFactory>();
 
-    Menu menu(std::move(saver), std::move(history), std::move(document), std::move(commandFactory));
+    Menu menu(std::move(saver), std::move(history), std::move(document));
 
     menu.Run();
 

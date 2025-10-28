@@ -9,6 +9,8 @@
 #include "../Command/RedoCommand/RedoCommand.h"
 #include "../Command/SaveCommand/SaveCommand.h"
 #include "../Command/UndoCommand/UndoCommand.h"
+#include "../Command/ExitCommand/ExitCommand.h"
+#include "../Command/HelpCommand/HelpCommand.h"
 #include <sstream>
 #include <filesystem>
 
@@ -45,7 +47,28 @@ namespace
     }
 } // namespace
 
-std::unique_ptr<ICommand> CommandFactory::CreateCommand(IDocument& doc, ISaver& saver, const std::string& description)
+CommandFactory::CommandFactory(IDocument& doc, ISaver& saver, Menu& menu)
+    : m_document(doc)
+    , m_saver(saver)
+    , m_menu(menu)
+    , m_actionMap {
+          { "InsertImage", [this](std::istream& input) { return CreateInsertImageCommand(input); }},
+          { "InsertParagraph", [this](std::istream& input) { return CreateInsertParagraphCommand(input); }},
+          { "ReplaceText", [this](std::istream& input) { return CreateReplaceTextCommand(input); }},
+          { "ResizeImage", [this](std::istream& input) { return CreateResizeImageCommand(input); }},
+          { "SetTitle", [this](std::istream& input) { return CreateSetTitleCommand(input); }},
+          { "DeleteItem", [this](std::istream& input) { return CreateDeleteItemCommand(input); }},
+          { "List", [this](std::istream& input) { return CreateListCommand(input); }},
+          { "Save", [this](std::istream& input) { return CreateSaveCommand(input); }},
+          { "Undo", [this](std::istream& input) { return CreateUndoCommand(input); }},
+          { "Redo", [this](std::istream& input) { return CreateRedoCommand(input); }},
+          { "Help", [this](std::istream& input) { return CreateHelpCommand(input); }},
+          { "Exit", [this](std::istream& input) { return CreateExitCommand(input); }}
+    }
+{
+}
+
+std::unique_ptr<ICommand> CommandFactory::CreateCommand(const std::string& description)
 {
     std::istringstream input(description);
 
@@ -58,34 +81,34 @@ std::unique_ptr<ICommand> CommandFactory::CreateCommand(IDocument& doc, ISaver& 
         throw std::runtime_error("Unknown command!");
     }
 
-    return it->second(doc, saver, input);
+    return it->second(input);
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateInsertImageCommand(IDocument& doc, ISaver& saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateInsertImageCommand(std::istream& input)
 {
     auto index = ReadIndex(input);
     int width, height;
     std::string pathStr;
     input >> width >> height >> pathStr;
 
-    return std::make_unique<InsertImageCommand>(doc, saver, index, width, height, std::filesystem::path(pathStr));
+    return std::make_unique<InsertImageCommand>(m_document, m_saver, index, width, height, std::filesystem::path(pathStr));
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateInsertParagraphCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateInsertParagraphCommand(std::istream& input)
 {
     auto index = ReadIndex(input);
     std::string text = ReadRemainingText(input);
 
-    return std::make_unique<InsertParagraphCommand>(doc, index, text);
+    return std::make_unique<InsertParagraphCommand>(m_document, index, text);
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateReplaceTextCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateReplaceTextCommand(std::istream& input)
 {
     size_t index;
     input >> index;
     std::string newText = ReadRemainingText(input);
 
-    auto item = doc.GetItem(index);
+    auto item = m_document.GetItem(index);
     if (!item.GetParagraph())
     {
         throw std::runtime_error("Item at index " + std::to_string(index) + " is not a paragraph");
@@ -94,13 +117,13 @@ std::unique_ptr<ICommand> CommandFactory::CreateReplaceTextCommand(IDocument& do
     return std::make_unique<ReplaceTextCommand>(item.GetParagraph(), newText);
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateResizeImageCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateResizeImageCommand(std::istream& input)
 {
     size_t index;
     int width, height;
     input >> index >> width >> height;
 
-    auto item = doc.GetItem(index);
+    auto item = m_document.GetItem(index);
     if (item.GetImage() == nullptr)
     {
         throw std::runtime_error("Item at index " + std::to_string(index) + " is not a image");
@@ -109,40 +132,50 @@ std::unique_ptr<ICommand> CommandFactory::CreateResizeImageCommand(IDocument& do
     return std::make_unique<ResizeImageCommand>(item.GetImage(), width, height);
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateSetTitleCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateSetTitleCommand(std::istream& input)
 {
     std::string newTitle = ReadRemainingText(input);
 
-    return std::make_unique<SetTitleCommand>(doc, newTitle);
+    return std::make_unique<SetTitleCommand>(m_document, newTitle);
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateDeleteItemCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateDeleteItemCommand(std::istream& input)
 {
     size_t index;
     input >> index;
 
-    return std::make_unique<DeleteItemCommand>(doc, saver, index);
+    return std::make_unique<DeleteItemCommand>(m_document, m_saver, index);
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateListCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateListCommand(std::istream& input)
 {
-    return std::make_unique<ListCommand>(doc);
+    return std::make_unique<ListCommand>(m_document);
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateSaveCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateSaveCommand(std::istream& input)
 {
     std::string pathStr;
     input >> pathStr;
 
-    return std::make_unique<SaveCommand>(doc, std::filesystem::path(pathStr));
+    return std::make_unique<SaveCommand>(m_document, std::filesystem::path(pathStr));
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateUndoCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateUndoCommand(std::istream& input)
 {
-    return std::make_unique<UndoCommand>(doc);
+    return std::make_unique<UndoCommand>(m_document);
 }
 
-std::unique_ptr<ICommand> CommandFactory::CreateRedoCommand(IDocument& doc, ISaver&saver, std::istream& input)
+std::unique_ptr<ICommand> CommandFactory::CreateRedoCommand( std::istream& input)
 {
-    return std::make_unique<RedoCommand>(doc);
+    return std::make_unique<RedoCommand>(m_document);
+}
+
+std::unique_ptr<ICommand> CommandFactory::CreateHelpCommand(std::istream& input)
+{
+    return std::make_unique<HelpCommand>(m_menu);
+}
+
+std::unique_ptr<ICommand> CommandFactory::CreateExitCommand(std::istream& input)
+{
+    return std::make_unique<ExitCommand>(m_menu);
 }

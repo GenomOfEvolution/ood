@@ -5,6 +5,7 @@ class ICommand
 public:
 	virtual void Execute() = 0;
 	virtual void Unexecute() = 0;
+	virtual bool ShouldSaveToHistory() const = 0;
 
 	virtual ~ICommand() = default;
 };

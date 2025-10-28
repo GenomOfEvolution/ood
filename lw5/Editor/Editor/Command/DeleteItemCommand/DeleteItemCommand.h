@@ -1,11 +1,11 @@
 #pragma once
-#include "../AbstractCommand.h"
+#include "../AbstractUndoableCommand.h"
 #include "../../Document/IDocument.h"
 #include "../../DocumentItem/DocumentItem.h"
 #include "../../Saver/ISaver.h"
 #include <memory>
 
-class DeleteItemCommand : public AbstractCommand
+class DeleteItemCommand : public AbstractUndoableCommand
 {
 public:
     DeleteItemCommand(IDocument& doc, ISaver& saver, size_t index);

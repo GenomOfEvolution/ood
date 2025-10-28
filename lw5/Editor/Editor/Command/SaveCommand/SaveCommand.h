@@ -10,7 +10,6 @@ public:
 
 private:
 	void DoExecute() override;
-	void DoUnexecute() override;
 
 	IDocument& m_document;
 	std::filesystem::path m_path;

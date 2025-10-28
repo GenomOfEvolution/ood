@@ -73,8 +73,14 @@
     <Filter Include="Source Files\Factory">
       <UniqueIdentifier>{22ef4be4-6de3-4c71-933b-b83f9d6f75be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Factory\History">
+    <Filter Include="Source Files\History">
       <UniqueIdentifier>{86bf7d6c-5bc9-47d6-a798-842105c81a67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\ExitCommand">
+      <UniqueIdentifier>{06217957-89c9-46be-b08d-8e125d31fa24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\HelpCommand">
+      <UniqueIdentifier>{73008857-65a6-4d7c-9577-430cbd1ec7e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +97,7 @@
       <Filter>Source Files\DocumentItem\Paragraph</Filter>
     </ClCompile>
     <ClCompile Include="History\History.cpp">
-      <Filter>Source Files\Factory\History</Filter>
+      <Filter>Source Files\History</Filter>
     </ClCompile>
     <ClCompile Include="Command\InsertParagraphCommand\InsertParagraphCommand.cpp">
       <Filter>Source Files\Command\InsertParagraphCommand</Filter>
@@ -132,6 +138,12 @@
     <ClCompile Include="Factory\CommandFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="Command\ExitCommand\ExitCommand.cpp">
+      <Filter>Source Files\Command\ExitCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\HelpCommand\HelpCommand.cpp">
+      <Filter>Source Files\Command\HelpCommand</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Document\IDocument.h">
@@ -153,12 +165,12 @@
       <Filter>Source Files\DocumentItem</Filter>
     </ClInclude>
     <ClInclude Include="History\History.h">
-      <Filter>Source Files\Factory\History</Filter>
+      <Filter>Source Files\History</Filter>
     </ClInclude>
     <ClInclude Include="History\IHistory.h">
-      <Filter>Source Files\Factory\History</Filter>
+      <Filter>Source Files\History</Filter>
     </ClInclude>
-    <ClInclude Include="Command\AbstractCommand.h">
+    <ClInclude Include="Command\AbstractUndoableCommand.h">
       <Filter>Source Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="Command\ICommand.h">
@@ -217,6 +229,15 @@
     </ClInclude>
     <ClInclude Include="History\ICommandExecutor.h">
       <Filter>Source Files\History</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\AbstractCommand.h">
+      <Filter>Source Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\ExitCommand\ExitCommand.h">
+      <Filter>Source Files\Command\ExitCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\HelpCommand\HelpCommand.h">
+      <Filter>Source Files\Command\HelpCommand</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
