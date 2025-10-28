@@ -3,6 +3,7 @@
 #include <fakeit.hpp>
 #include "../Editor/Document/HtmlDocument/HtmlDocument.h"
 #include "../Editor/History/IHistory.h"
+#include "../Editor/History/ICommandExecutor.h"
 #include "../Editor/Saver/ISaver.h"
 #include "../Editor/DocumentItem/DocumentItem.h"
 
@@ -47,7 +48,7 @@ public:
     int resizeCount = 0;
 };
 
-class MockHistory : public IHistory 
+class MockHistory : public IHistory, public ICommandExecutor
 {
 public:
     void AddAndExecuteCommand(std::unique_ptr<ICommand>&& command) override 

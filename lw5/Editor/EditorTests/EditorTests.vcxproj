@@ -156,6 +156,7 @@
     <ClInclude Include="..\Editor\DocumentItem\Paragraph\Paragraph.h" />
     <ClInclude Include="..\Editor\Document\HtmlDocument\HtmlDocument.h" />
     <ClInclude Include="..\Editor\History\History.h" />
+    <ClInclude Include="..\Editor\History\ICommandExecutor.h" />
     <ClInclude Include="..\Editor\History\IHistory.h" />
     <ClInclude Include="..\Editor\Saver\HtmlSaver.h" />
     <ClInclude Include="..\Editor\Saver\ISaver.h" />

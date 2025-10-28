@@ -1,10 +1,11 @@
 #pragma once
 #include "IHistory.h"
+#include "ICommandExecutor.h"
 #include "../Command/ICommand.h"
 #include <vector>
 #include <memory>
 
-class History : public IHistory
+class History : public IHistory, public ICommandExecutor
 {
 public:
 	void AddAndExecuteCommand(std::unique_ptr<ICommand>&& command) override;

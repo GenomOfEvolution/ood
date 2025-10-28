@@ -170,6 +170,7 @@
     <ClInclude Include="Factory\CommandFactory.h" />
     <ClInclude Include="Factory\ICommandFactory.h" />
     <ClInclude Include="History\History.h" />
+    <ClInclude Include="History\ICommandExecutor.h" />
     <ClInclude Include="History\IHistory.h" />
     <ClInclude Include="Menu\Menu.h" />
     <ClInclude Include="Saver\HtmlSaver.h" />

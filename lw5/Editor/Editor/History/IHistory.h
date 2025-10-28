@@ -1,6 +1,5 @@
 #pragma once
-#include "../Command/ICommand.h"
-#include <memory>
+
 
 
 // TODO: какие средства ооп позвол€ют ограничить доступ к опред объекту
@@ -10,8 +9,6 @@
 class IHistory
 {
 public:
-	virtual void AddAndExecuteCommand(std::unique_ptr<ICommand>&& command) = 0;
-
 	virtual bool CanUndo() const = 0;
 	virtual void Undo() = 0;
 

@@ -4,7 +4,7 @@
 
 Menu::Menu(
 	std::shared_ptr<ISaver>&& saver,
-	std::shared_ptr<IHistory>&& history,
+	std::shared_ptr<ICommandExecutor>&& history,
 	std::unique_ptr<IDocument>&& doc,
 	std::unique_ptr<ICommandFactory>&& factory)
 	: m_document(std::move(doc))

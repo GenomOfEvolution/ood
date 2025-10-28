@@ -1,7 +1,7 @@
 #pragma once
 #include "../Document/IDocument.h"
 #include "../Saver/ISaver.h"
-#include "../History/IHistory.h"
+#include "../History/ICommandExecutor.h"
 #include "../Factory/ICommandFactory.h"
 
 #include <map>
@@ -13,7 +13,7 @@ class Menu
 {
 public:
 	Menu(std::shared_ptr<ISaver>&& saver,
-		std::shared_ptr<IHistory>&& history,
+		std::shared_ptr<ICommandExecutor>&& history,
 		std::unique_ptr<IDocument>&& doc,
         std::unique_ptr<ICommandFactory>&& factory);
 
@@ -43,7 +43,7 @@ private:
     };
 
 	std::shared_ptr<ISaver> m_saver;
-	std::shared_ptr<IHistory> m_history;
+	std::shared_ptr<ICommandExecutor> m_history;
 	std::unique_ptr<IDocument> m_document;
     std::unique_ptr<ICommandFactory> m_commandFactory;
 

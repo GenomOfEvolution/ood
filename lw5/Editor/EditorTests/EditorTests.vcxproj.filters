@@ -83,5 +83,8 @@
     <ClInclude Include="..\Editor\DocumentItem\Image\IImage.h">
       <Filter>Dependicies</Filter>
     </ClInclude>
+    <ClInclude Include="..\Editor\History\ICommandExecutor.h">
+      <Filter>Dependicies</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
