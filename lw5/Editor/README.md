@@ -98,11 +98,15 @@ classDiagram
 
     class IHistory {
         <<interface>>
-        + virtual AddAndExecuteCommand(unqiue_ptr~ICommand~&& command) void
         + virtual CanUndo() bool
         + virtual Undo() void
         + virtual CanRedo() void
         + virtual Redo() void
+    }
+
+    class ICommandExecutor {
+        <<interface>>
+        + virtual AddAndExecuteCommand(unqiue_ptr~ICommand~&& command) void
     }
 
     class History {
@@ -122,12 +126,22 @@ classDiagram
         <<interface>>
         + virtual Execute() void
         + virtual Unexecute() void
+        + virtual ShouldSaveToHistory() bool
         + virtual ~ICommand()
     }
 
     class AbstractCommand {
+       + Execute() void
+       + Unexecute() void
+       + ShouldSaveToHistory() bool
+
+       # DoExecute() void
+    }
+
+    class AbstractUndoableCommand {
         + Execute() void
         + Unexecute() void
+        + ShouldSaveToHistory() bool
 
         # DoExecute() void
         # DoUnexecute() void
@@ -178,9 +192,153 @@ classDiagram
         - m_index: size_t
     }
 
+    class DeleteItemCommand {
+        + DeleteItemCommand(IDocument& doc, ISaver& saver, size_t index)
+
+        - DoExecute() void
+        - DoUnexecute() void
+        - Destroy() void
+
+        - m_document: IDocument&
+        - m_saver: ISaver&
+        - m_deletePos: size_t
+        - m_deletedItem: unique_ptr~DocumentItem~
+        - m_shouldDeleteImage: bool
+        - m_imagePath: filesystem::path
+    }
+
+    class InsertImageCommand {
+        -IDocument& m_document
+        -ISaver& m_saver
+        -optional~size_t~ m_insertPos
+        -size_t m_actualPosition
+        -int m_width
+        -int m_height
+        -filesystem::path m_imgSrcPath
+        -filesystem::path m_tempPath
+        -shared_ptr~IImage~ m_image
+        -bool m_shouldDelete
+        +InsertImageCommand(IDocument&, ISaver&, optional~size_t~, int, int, filesystem::path)
+        +~InsertImageCommand()
+        -DoExecute() void
+        -DoUnexecute() void
+        -Destroy() void
+    }
+
+    class InsertParagraphCommand {
+        -IDocument& m_document
+        -string m_text
+        -optional~size_t~ m_insertPos
+        -size_t m_actualPosition
+        +InsertParagraphCommand(IDocument&, optional~size_t~, string)
+        -DoExecute() void
+        -DoUnexecute() void
+    }
+
+    class ListCommand {
+        -IDocument& m_document
+        +ListCommand(IDocument&)
+        -DoExecute() void
+        -PrintParagraph(const IParagraph&) void
+        -PrintImage(const IImage&) void
+    }
+
+    class ExitCommand {
+        -Menu& m_menu
+        +ExitCommand(Menu&)
+        -DoExecute() void
+    }
+
+    class HelpCommand {
+        -Menu& m_menu
+        +HelpCommand(Menu&)
+        -DoExecute() void
+    }
+
+    class RedoCommand {
+        -IDocument& m_document
+        +RedoCommand(IDocument&)
+        -DoExecute() void
+    }
+
+    class SaveCommand {
+        -IDocument& m_document
+        -filesystem::path m_path
+        +SaveCommand(IDocument&, filesystem::path)
+        -DoExecute() void
+    }
+
+    class UndoCommand {
+        -IDocument& m_document
+        +UndoCommand(IDocument&)
+        -DoExecute() void
+    }
+
     class ISaver {
         <<interface>>
         Save(const IDocument& document, const Path& path) void 
+    }
+
+    HtmlSaver ..|> ISaver
+    class HtmlSaver {
+        -filesystem::path m_tempPath
+        -static const map~string, string~ HTML_ENTITY_TABLE
+        +HtmlSaver()
+        +~HtmlSaver()
+        +Save(const IDocument&, const filesystem::path&) void
+        +SaveTempImage(const filesystem::path&) filesystem::path
+        +DeleteTempImage(const filesystem::path&) void
+        -SetTempPath() void
+        -ClearTempFolder() void
+        -CopyTempImagesToFinal(const filesystem::path&) void
+        -PrintParagraph(const IParagraph&, ofstream&) void
+        -PrintImage(const IImage&, ofstream&) void
+        -PrintHtmlHead(const IDocument&, ofstream&) void
+        -PrintHtmlBody(const IDocument&, ofstream&) void
+        -HtmlEncode(const string&) string
+        -GenerateUniqueFilename() string
+    }
+
+    class ICommandFactory {
+        <<interface>>
+        +CreateCommand(const string&) unique_ptr~ICommand~
+        +~ICommandFactory()*
+    }
+
+    CommandFactory ..|> ICommandFactory
+    CommandFactory --> ICommand
+
+    class CommandFactory {
+        -const CommandCreators m_actionMap
+        -IDocument& m_document
+        -ISaver& m_saver
+        -Menu& m_menu
+        +CommandFactory(IDocument&, ISaver&, Menu&)
+        +CreateCommand(const string&) unique_ptr~ICommand~
+        -CreateInsertImageCommand(istream&) unique_ptr~ICommand~
+        -CreateInsertParagraphCommand(istream&) unique_ptr~ICommand~
+        -CreateReplaceTextCommand(istream&) unique_ptr~ICommand~
+        -CreateResizeImageCommand(istream&) unique_ptr~ICommand~
+        -CreateSetTitleCommand(istream&) unique_ptr~ICommand~
+        -CreateDeleteItemCommand(istream&) unique_ptr~ICommand~
+        -CreateListCommand(istream&) unique_ptr~ICommand~
+        -CreateSaveCommand(istream&) unique_ptr~ICommand~
+        -CreateUndoCommand(istream&) unique_ptr~ICommand~
+        -CreateRedoCommand(istream&) unique_ptr~ICommand~
+        -CreateHelpCommand(istream&) unique_ptr~ICommand~
+        -CreateExitCommand(istream&) unique_ptr~ICommand~
+    }
+
+    class Menu {
+        -shared_ptr~ISaver~ m_saver
+        -shared_ptr~ICommandExecutor~ m_history
+        -unique_ptr~IDocument~ m_document
+        -unique_ptr~ICommandFactory~ m_commandFactory
+        -bool m_exit
+        +Menu(shared_ptr~ISaver~&&, shared_ptr~ICommandExecutor~&&, unique_ptr~IDocument~&&)
+        +Run() void
+        +ShowInstructions() void
+        +Exit() void
     }
 
     HtmlDocument ..|> IDocument
@@ -192,32 +350,44 @@ classDiagram
     HtmlDocument *-- DocumentItem
 
     History ..|> IHistory
+    History ..|> ICommandExecutor
     ICommand --* History
+    AbstractUndoableCommand ..|> ICommand
     AbstractCommand ..|> ICommand
-    IMergeableCommand ..|> AbstractCommand
+    IMergeableCommand ..|> AbstractUndoableCommand
     IMergeableCommand ..> ICommand
 
     SetTitleCommand ..|> IMergeableCommand
     ResizeImageCommand ..|> IMergeableCommand
     ReplaceTextCommand ..|> IMergeableCommand
-    InsertParagraphCommand ..|> AbstractCommand
-    InsertImageCommand ..|> AbstractCommand
-    DeleteItem ..|> AbstractCommand
+
+    InsertParagraphCommand ..|> AbstractUndoableCommand
+    InsertImageCommand ..|> AbstractUndoableCommand
+    DeleteItemCommand ..|> AbstractUndoableCommand
+
     UndoCommand ..|> AbstractCommand
     RedoCommand ..|> AbstractCommand
     ListCommand ..|> AbstractCommand
     SaveCommand ..|> AbstractCommand
+    ExitCommand ..|> AbstractCommand
+    HelpCommand ..|> AbstractCommand
 
+    HelpCommand --> Menu 
+    ExitCommand --> Menu
     SetTitleCommand --> IDocument
     ResizeImageCommand --> IDocument
     ReplaceTextCommand --> IDocument
     InsertParagraphCommand --> IDocument
     InsertImageCommand --> IDocument
-    DeleteItem --> IDocument
+    DeleteItemCommand --> IDocument
     UndoCommand --> IDocument
     RedoCommand --> IDocument
     ListCommand --> IDocument
     SaveCommand --> IDocument
 
-    IHistory --* Menu
+    ICommandFactory --* Menu 
+    ISaver --o Menu 
+    ICommandExecutor --o Menu 
+    IDocument --* Menu
+
 ```

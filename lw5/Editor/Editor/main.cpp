@@ -1,7 +1,6 @@
 #include "Document/HtmlDocument/HtmlDocument.h"
 #include "History/History.h"
 #include "Saver/HtmlSaver.h"
-#include "Factory/CommandFactory.h"
 #include "Menu/Menu.h"
 
 #include <iostream>
