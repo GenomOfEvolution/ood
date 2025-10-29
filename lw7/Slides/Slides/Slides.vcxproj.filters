@@ -13,10 +13,93 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{c094c81f-284c-4743-bbbf-14d50aab266b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Canvas">
+      <UniqueIdentifier>{26884211-213e-4ead-aabf-fab7a8c58242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape">
+      <UniqueIdentifier>{8dfea426-44d7-48be-a034-cabdfdfac529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ShapeGroup">
+      <UniqueIdentifier>{c76d19db-6975-4185-87b3-32c4c6565818}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape\Triangle">
+      <UniqueIdentifier>{8148e051-27d3-4b33-9b3f-18cacb0bccb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape\Rectangle">
+      <UniqueIdentifier>{69ecadab-bb07-476b-beee-01da79dc2d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape\Ellipse">
+      <UniqueIdentifier>{424934d8-0bb7-4629-8ef8-6bcc41248df3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Style">
+      <UniqueIdentifier>{fea37b56-05fb-491f-bb59-3b2445e22ac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Style\GroupStyles">
+      <UniqueIdentifier>{c5e4493a-e8f7-4007-86ec-59261f0a3acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Style\ShapeStyles">
+      <UniqueIdentifier>{a087963c-fc8d-42c6-acb0-aedf46c13a95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ShapeGroup\GroupShape.cpp">
+      <Filter>Source Files\ShapeGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Triangle\Triangle.cpp">
+      <Filter>Source Files\Shape\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Ellipse\Ellipse.cpp">
+      <Filter>Source Files\Shape\Ellipse</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Rectangle\Rectangle.cpp">
+      <Filter>Source Files\Shape\Rectangle</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\CommonTypes.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\Canvas.h">
+      <Filter>Source Files\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\ICanvas.h">
+      <Filter>Source Files\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\IShape.h">
+      <Filter>Source Files\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeGroup\IGroup.h">
+      <Filter>Source Files\ShapeGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeGroup\GroupShape.h">
+      <Filter>Source Files\ShapeGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Shape.h">
+      <Filter>Source Files\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\IDrawable.h">
+      <Filter>Source Files\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="Style\IOutlineStyle.h">
+      <Filter>Source Files\Style</Filter>
+    </ClInclude>
+    <ClInclude Include="Style\IStyle.h">
+      <Filter>Source Files\Style</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Ellipse\Ellipse.h">
+      <Filter>Source Files\Shape\Ellipse</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Rectangle\Rectangle.h">
+      <Filter>Source Files\Shape\Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Triangle\Triangle.h">
+      <Filter>Source Files\Shape\Triangle</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -128,6 +128,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShapeGroup\GroupShape.cpp" />
+    <ClCompile Include="Shape\Ellipse\Ellipse.cpp" />
+    <ClCompile Include="Shape\Rectangle\Rectangle.cpp" />
+    <ClCompile Include="Shape\Triangle\Triangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Canvas\Canvas.h" />
+    <ClInclude Include="Canvas\ICanvas.h" />
+    <ClInclude Include="Canvas\IDrawable.h" />
+    <ClInclude Include="Common\CommonTypes.h" />
+    <ClInclude Include="ShapeGroup\GroupShape.h" />
+    <ClInclude Include="ShapeGroup\IGroup.h" />
+    <ClInclude Include="Shape\Ellipse\Ellipse.h" />
+    <ClInclude Include="Shape\IShape.h" />
+    <ClInclude Include="Shape\Rectangle\Rectangle.h" />
+    <ClInclude Include="Shape\Shape.h" />
+    <ClInclude Include="Shape\Triangle\Triangle.h" />
+    <ClInclude Include="Style\IOutlineStyle.h" />
+    <ClInclude Include="Style\IStyle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
