@@ -26,5 +26,9 @@ void Ellipse::SetFrame(const RectD& rect)
 
 void Ellipse::Draw(ICanvas& canvas) const
 {
-	
+	canvas.SetFillColor(GetFillColor());
+	canvas.SetLineColor(GetOutlineColor());
+	canvas.SetLineThickness(GetOutlineThickness());
+
+	canvas.DrawEllipse(m_center, m_hRadius, m_vRadius);
 }

@@ -33,7 +33,11 @@ void Triangle::SetFrame(const RectD& rect)
 
 void Triangle::Draw(ICanvas& canvas) const
 {
+	canvas.SetFillColor(GetFillColor());
+	canvas.SetLineColor(GetOutlineColor());
+	canvas.SetLineThickness(GetOutlineThickness());
 
+	canvas.DrawPolygon({ m_points[0], m_points[1], m_points[2] });
 }
 
 void Triangle::ScalePoint(PointD& point,

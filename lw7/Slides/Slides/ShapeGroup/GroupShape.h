@@ -32,6 +32,8 @@ public:
     void InsertShape(std::shared_ptr<IShape> shape, size_t index) override;
     void RemoveShapeAtIndex(size_t index) override;
 
+    void Draw(ICanvas& canvas) const override;
+
 private:
     std::vector<std::shared_ptr<IShape>> m_shapes;
     std::shared_ptr<GroupFillStyle> m_fillStyle;

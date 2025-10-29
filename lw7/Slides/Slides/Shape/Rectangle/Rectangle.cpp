@@ -27,4 +27,14 @@ void Rectangle::SetFrame(const RectD& rect)
 
 void Rectangle::Draw(ICanvas& canvas) const
 {
+	canvas.SetFillColor(GetFillColor());
+	canvas.SetLineColor(GetOutlineColor());
+	canvas.SetLineThickness(GetOutlineThickness());
+
+	canvas.DrawPolygon({
+		m_leftTop,
+		{ m_leftTop.x + m_width, m_leftTop.y },
+		{ m_leftTop.x + m_width, m_leftTop.y + m_height },
+		{ m_leftTop.x, m_leftTop.y + m_height },
+	});
 }

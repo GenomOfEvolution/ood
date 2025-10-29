@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Style\ShapeStyles">
       <UniqueIdentifier>{a087963c-fc8d-42c6-acb0-aedf46c13a95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Canvas\CanvasSVG">
+      <UniqueIdentifier>{f1ea9ffc-04ad-4542-9a61-3925fcb95f41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slide">
+      <UniqueIdentifier>{f53066ae-1d7f-497c-8a96-1c6a7a5444ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,13 +66,16 @@
     <ClCompile Include="Shape\Rectangle\Rectangle.cpp">
       <Filter>Source Files\Shape\Rectangle</Filter>
     </ClCompile>
+    <ClCompile Include="Canvas\CanvasSVG\CanvasSVG.cpp">
+      <Filter>Source Files\Canvas\CanvasSVG</Filter>
+    </ClCompile>
+    <ClCompile Include="Slide\Slide.cpp">
+      <Filter>Source Files\Slide</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h">
       <Filter>Source Files\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Canvas\Canvas.h">
-      <Filter>Source Files\Canvas</Filter>
     </ClInclude>
     <ClInclude Include="Canvas\ICanvas.h">
       <Filter>Source Files\Canvas</Filter>
@@ -115,6 +124,18 @@
     </ClInclude>
     <ClInclude Include="Style\GroupStyles\GroupStyleBase.h">
       <Filter>Source Files\Style\GroupStyles</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\CanvasSVG\CanvasSVG.h">
+      <Filter>Source Files\Canvas\CanvasSVG</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas\CanvasSVG\simple_svg_1.0.0.hpp">
+      <Filter>Source Files\Canvas\CanvasSVG</Filter>
+    </ClInclude>
+    <ClInclude Include="Slide\ISlide.h">
+      <Filter>Source Files\Slide</Filter>
+    </ClInclude>
+    <ClInclude Include="Slide\Slide.h">
+      <Filter>Source Files\Slide</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

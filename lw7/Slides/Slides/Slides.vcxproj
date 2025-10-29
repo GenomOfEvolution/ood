@@ -127,14 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Canvas\CanvasSVG\CanvasSVG.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShapeGroup\GroupShape.cpp" />
     <ClCompile Include="Shape\Ellipse\Ellipse.cpp" />
     <ClCompile Include="Shape\Rectangle\Rectangle.cpp" />
     <ClCompile Include="Shape\Triangle\Triangle.cpp" />
+    <ClCompile Include="Slide\Slide.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Canvas\Canvas.h" />
+    <ClInclude Include="Canvas\CanvasSVG\CanvasSVG.h" />
+    <ClInclude Include="Canvas\CanvasSVG\simple_svg_1.0.0.hpp" />
     <ClInclude Include="Canvas\ICanvas.h" />
     <ClInclude Include="Canvas\IDrawable.h" />
     <ClInclude Include="Common\CommonTypes.h" />
@@ -145,6 +148,8 @@
     <ClInclude Include="Shape\Rectangle\Rectangle.h" />
     <ClInclude Include="Shape\Shape.h" />
     <ClInclude Include="Shape\Triangle\Triangle.h" />
+    <ClInclude Include="Slide\ISlide.h" />
+    <ClInclude Include="Slide\Slide.h" />
     <ClInclude Include="Style\GroupStyles\GroupFillStyle.h" />
     <ClInclude Include="Style\GroupStyles\GroupOutlineStyle.h" />
     <ClInclude Include="Style\GroupStyles\GroupStyleBase.h" />

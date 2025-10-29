@@ -1,9 +1,16 @@
 #pragma once
 #include "IShape.h"
+#include "../Style/ShapeStyles/ShapeFillStyle.h"
+#include "../Style/ShapeStyles/ShapeLineStyle.h"
 
 class Shape : public IShape 
 {
 public:
+    Shape() 
+        : m_fillStyle(std::move(std::make_shared<ShapeFillStyle>()))
+        , m_outlineStyle(std::move(std::make_shared<ShapeLineStyle>()))
+    {};
+
     std::shared_ptr<IGroup> GetGroup() override { return nullptr; }
     std::shared_ptr<const IGroup> GetGroup() const override { return nullptr; }
 

@@ -175,3 +175,11 @@ void GroupShape::RemoveShapeAtIndex(size_t index)
 
     m_shapes.erase(m_shapes.begin() + index);
 }
+
+void GroupShape::Draw(ICanvas& canvas) const
+{
+    for (size_t i = 0; i < m_shapes.size(); i++)
+    {
+        m_shapes[i]->Draw(canvas);
+    }
+}
