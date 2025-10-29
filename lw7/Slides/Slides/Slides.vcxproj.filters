@@ -101,5 +101,20 @@
     <ClInclude Include="Shape\Triangle\Triangle.h">
       <Filter>Source Files\Shape\Triangle</Filter>
     </ClInclude>
+    <ClInclude Include="Style\GroupStyles\GroupFillStyle.h">
+      <Filter>Source Files\Style\GroupStyles</Filter>
+    </ClInclude>
+    <ClInclude Include="Style\GroupStyles\GroupOutlineStyle.h">
+      <Filter>Source Files\Style\GroupStyles</Filter>
+    </ClInclude>
+    <ClInclude Include="Style\ShapeStyles\ShapeLineStyle.h">
+      <Filter>Source Files\Style\ShapeStyles</Filter>
+    </ClInclude>
+    <ClInclude Include="Style\ShapeStyles\ShapeFillStyle.h">
+      <Filter>Source Files\Style\ShapeStyles</Filter>
+    </ClInclude>
+    <ClInclude Include="Style\GroupStyles\GroupStyleBase.h">
+      <Filter>Source Files\Style\GroupStyles</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

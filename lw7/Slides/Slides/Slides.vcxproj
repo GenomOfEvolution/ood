@@ -145,8 +145,13 @@
     <ClInclude Include="Shape\Rectangle\Rectangle.h" />
     <ClInclude Include="Shape\Shape.h" />
     <ClInclude Include="Shape\Triangle\Triangle.h" />
+    <ClInclude Include="Style\GroupStyles\GroupFillStyle.h" />
+    <ClInclude Include="Style\GroupStyles\GroupOutlineStyle.h" />
+    <ClInclude Include="Style\GroupStyles\GroupStyleBase.h" />
     <ClInclude Include="Style\IOutlineStyle.h" />
     <ClInclude Include="Style\IStyle.h" />
+    <ClInclude Include="Style\ShapeStyles\ShapeFillStyle.h" />
+    <ClInclude Include="Style\ShapeStyles\ShapeLineStyle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
