@@ -8,33 +8,39 @@
 
 std::shared_ptr<IShape> MakeCat()
 {
-	const auto head = std::make_shared<Ellipse>(PointD{ 300, 100 }, 80, 70);
+	const auto head = std::make_shared<CEllipse>(PointD{ 300, 100 }, 80, 70);
 	head->GetFillStyle()->SetColor(0xfc8403ff);
 	head->GetOutlineStyle()->Disable();
 
-	const auto nose = std::make_shared<Triangle>(PointD{ 295, 120 }, PointD{ 300, 125 }, PointD{ 305, 120 });
+	const auto nose = std::make_shared<CTriangle>(PointD{ 295, 120 }, PointD{ 300, 125 }, PointD{ 305, 120 });
 	nose->GetFillStyle()->SetColor(0xfc4eb4);
 	nose->GetOutlineStyle()->SetColor(0xffffff);
 	nose->GetOutlineStyle()->SetThickness(1);
 
-	const auto leftEar = std::make_shared<Triangle>(PointD{ 230, 70 }, PointD{ 250, 10 }, PointD{ 270, 50 });
+	const auto leftEar = std::make_shared<CTriangle>(PointD{ 230, 70 }, PointD{ 250, 10 }, PointD{ 270, 50 });
 	leftEar->GetFillStyle()->SetColor(0xfc8403ff);
 	leftEar->GetOutlineStyle()->Disable();
+	leftEar->GetOutlineStyle()->Enable();
+	leftEar->GetOutlineStyle()->SetThickness(5);
+	leftEar->GetOutlineStyle()->SetColor(0xbd550bff);
 
-	const auto rightEar = std::make_shared<Triangle>(PointD{ 330, 50 }, PointD{ 350, 10 }, PointD{ 370, 70 });
+	const auto rightEar = std::make_shared<CTriangle>(PointD{ 330, 50 }, PointD{ 350, 10 }, PointD{ 370, 70 });
 	rightEar->GetFillStyle()->SetColor(0xfc8403ff);
 	rightEar->GetOutlineStyle()->Disable();
+	rightEar->GetOutlineStyle()->Enable();
+	rightEar->GetOutlineStyle()->SetThickness(5);
+	rightEar->GetOutlineStyle()->SetColor(0xbd550bff);
 
-	const auto mouth = std::make_shared<Triangle>(PointD{ 295, 130 }, PointD{ 300, 135 }, PointD{ 305, 130 });
+	const auto mouth = std::make_shared<CTriangle>(PointD{ 295, 130 }, PointD{ 300, 135 }, PointD{ 305, 130 });
 	mouth->GetFillStyle()->SetColor(0x000000);
 	mouth->GetOutlineStyle()->SetColor(0xffffff);
 	mouth->GetOutlineStyle()->SetThickness(2);
 
-	const auto leftSclera = std::make_shared<Ellipse>(PointD{ 270, 90 }, 15, 20);
+	const auto leftSclera = std::make_shared<CEllipse>(PointD{ 270, 90 }, 15, 20);
 	leftSclera->GetFillStyle()->SetColor(0xffffff);
 	leftSclera->GetOutlineStyle()->Disable();
 
-	const auto leftPupil = std::make_shared<Ellipse>(PointD{ 270, 95 }, 10, 15);
+	const auto leftPupil = std::make_shared<CEllipse>(PointD{ 270, 95 }, 10, 15);
 	leftPupil->GetFillStyle()->SetColor(0xeb4efc);
 	leftPupil->GetOutlineStyle()->Disable();
 
@@ -42,11 +48,11 @@ std::shared_ptr<IShape> MakeCat()
 	leftEye->InsertShape(leftSclera, 0);
 	leftEye->InsertShape(leftPupil, 1);
 
-	const auto rightSclera = std::make_shared<Ellipse>(PointD{ 330, 90 }, 15, 20);
+	const auto rightSclera = std::make_shared<CEllipse>(PointD{ 330, 90 }, 15, 20);
 	rightSclera->GetFillStyle()->SetColor(0xffffff);
 	rightSclera->GetOutlineStyle()->Disable();
 
-	const auto rightPupil = std::make_shared<Ellipse>(PointD{ 330, 95 }, 10, 15);
+	const auto rightPupil = std::make_shared<CEllipse>(PointD{ 330, 95 }, 10, 15);
 	rightPupil->GetFillStyle()->SetColor(0xeb4efc);
 	rightPupil->GetOutlineStyle()->Disable();
 
@@ -54,13 +60,15 @@ std::shared_ptr<IShape> MakeCat()
 	rightEye->InsertShape(rightSclera, 0);
 	rightEye->InsertShape(rightPupil, 1);
 
-	const auto body = std::make_shared<Ellipse>(PointD{ 420, 200 }, 150, 60);
+	const auto body = std::make_shared<CEllipse>(PointD{ 420, 200 }, 150, 60);
 	body->GetFillStyle()->SetColor(0xfc8403ff);
 	body->GetOutlineStyle()->Disable();
 
-	const auto tail = std::make_shared<Rectangle>(PointD{ 520, 50 }, 30, 150);
+	const auto tail = std::make_shared<CRectangle>(PointD{ 520, 50 }, 30, 150);
 	tail->GetFillStyle()->SetColor(0xfc8403ff);
-	tail->GetOutlineStyle()->Disable();
+	tail->GetOutlineStyle()->Enable();
+	tail->GetOutlineStyle()->SetThickness(5);
+	tail->GetOutlineStyle()->SetColor(0xbd550bff);
 
 	auto cutieKitty = std::make_shared<GroupShape>();
 	cutieKitty->InsertShape(leftEar, 0);

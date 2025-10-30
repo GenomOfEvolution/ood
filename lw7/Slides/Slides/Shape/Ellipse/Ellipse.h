@@ -1,10 +1,10 @@
 #pragma once
 #include "../Shape.h"
 
-class Ellipse : public Shape
+class CEllipse : public Shape
 {
 public:
-	Ellipse(const PointD& center, double horizontalRadius, double vertRadius);
+	CEllipse(const PointD& center, double horizontalRadius, double vertRadius);
 
 	std::optional<RectD> GetFrame() const override;
 	void SetFrame(const RectD& rect) override;

@@ -2,10 +2,10 @@
 #include "../Shape.h"
 #include <array>
 
-class Triangle : public Shape
+class CTriangle : public Shape
 {
 public:
-	Triangle(const PointD& p1, const PointD& p2, const PointD& p3);
+	CTriangle(const PointD& p1, const PointD& p2, const PointD& p3);
 
 	std::optional<RectD> GetFrame() const override;
 	void SetFrame(const RectD& rect) override;

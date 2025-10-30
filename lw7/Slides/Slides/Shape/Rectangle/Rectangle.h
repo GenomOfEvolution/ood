@@ -1,10 +1,10 @@
 #pragma once
 #include "../Shape.h"
 
-class Rectangle : public Shape
+class CRectangle : public Shape
 {
 public:
-	Rectangle(PointD leftTop, double width, double height);
+	CRectangle(PointD leftTop, double width, double height);
 
 	std::optional<RectD> GetFrame() const override;
 	void SetFrame(const RectD& rect) override;

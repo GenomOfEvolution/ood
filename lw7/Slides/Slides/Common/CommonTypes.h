@@ -8,6 +8,14 @@ struct Rect
 	T top;
 	T width;
 	T height;
+
+	friend bool operator==(const Rect& lhs, const Rect& rhs) 
+	{
+		return lhs.left == rhs.left
+			&& lhs.top == rhs.top
+			&& lhs.width == rhs.width
+			&& lhs.height == rhs.height;
+	}
 };
 
 template <typename T>

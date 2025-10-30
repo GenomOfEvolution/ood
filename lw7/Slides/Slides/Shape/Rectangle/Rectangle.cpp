@@ -1,14 +1,14 @@
 #include "Rectangle.h"
 #include <algorithm>
 
-Rectangle::Rectangle(PointD leftTop, double width, double height)
+CRectangle::CRectangle(PointD leftTop, double width, double height)
 	: m_leftTop(leftTop)
 	, m_width(width)
 	, m_height(height)
 {
 }
 
-std::optional<RectD> Rectangle::GetFrame() const
+std::optional<RectD> CRectangle::GetFrame() const
 {
 	return { {
 		.left = m_leftTop.x,
@@ -18,14 +18,14 @@ std::optional<RectD> Rectangle::GetFrame() const
 	} };
 }
 
-void Rectangle::SetFrame(const RectD& rect)
+void CRectangle::SetFrame(const RectD& rect)
 {
 	m_leftTop = { rect.left, rect.top };
 	m_width = rect.width;
 	m_height = rect.height;
 }
 
-void Rectangle::Draw(ICanvas& canvas) const
+void CRectangle::Draw(ICanvas& canvas) const
 {
 	canvas.SetFillColor(GetFillColor());
 	canvas.SetLineColor(GetOutlineColor());

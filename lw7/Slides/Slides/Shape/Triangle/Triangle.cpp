@@ -1,12 +1,12 @@
 #include "Triangle.h"
 #include <algorithm>
 
-Triangle::Triangle(const PointD& p1, const PointD& p2, const PointD& p3)
+CTriangle::CTriangle(const PointD& p1, const PointD& p2, const PointD& p3)
 	: m_points({p1, p2, p3})
 {
 }
 
-std::optional<RectD> Triangle::GetFrame() const
+std::optional<RectD> CTriangle::GetFrame() const
 {
 	const auto& [minX, maxX] = std::minmax({ m_points[0].x, m_points[1].x, m_points[2].x });
 	const auto& [minY, maxY] = std::minmax({ m_points[0].y, m_points[1].y, m_points[2].y });
@@ -19,7 +19,7 @@ std::optional<RectD> Triangle::GetFrame() const
 	} };
 }
 
-void Triangle::SetFrame(const RectD& rect)
+void CTriangle::SetFrame(const RectD& rect)
 {
 	const auto curFrame = GetFrame().value();
 
@@ -31,7 +31,7 @@ void Triangle::SetFrame(const RectD& rect)
 	ScalePoint(m_points[2], curFrame, rect, scaleFactorX, scaleFactorY);
 }
 
-void Triangle::Draw(ICanvas& canvas) const
+void CTriangle::Draw(ICanvas& canvas) const
 {
 	canvas.SetFillColor(GetFillColor());
 	canvas.SetLineColor(GetOutlineColor());
@@ -40,7 +40,7 @@ void Triangle::Draw(ICanvas& canvas) const
 	canvas.DrawPolygon({ m_points[0], m_points[1], m_points[2] });
 }
 
-void Triangle::ScalePoint(PointD& point,
+void CTriangle::ScalePoint(PointD& point,
 	const RectD& initialFrame, const RectD& newFrame,
 	double scaleX, double scaleY)
 {
