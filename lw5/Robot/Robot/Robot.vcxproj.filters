@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Menu">
       <UniqueIdentifier>{604d7ec5-db96-4bdc-8d25-54bcb7d647fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Command\MacroCommandBuilder">
+      <UniqueIdentifier>{2d32b6fe-c67b-458d-8321-4c9ba85ca8e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -32,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="Command\MakeMacroCommand.cpp">
       <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\MacroCommandBuilder\MacroCommandBuilder.cpp">
+      <Filter>Source Files\Command\MacroCommandBuilder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +73,12 @@
     </ClInclude>
     <ClInclude Include="Command\MakeMacroCommand.h">
       <Filter>Source Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\MacroCommandBuilder\IMacroCommandBuidler.h">
+      <Filter>Source Files\Command\MacroCommandBuilder</Filter>
+    </ClInclude>
+    <ClInclude Include="Command\MacroCommandBuilder\MacroCommandBuilder.h">
+      <Filter>Source Files\Command\MacroCommandBuilder</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

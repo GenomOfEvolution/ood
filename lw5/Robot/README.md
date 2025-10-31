@@ -84,15 +84,32 @@ classDiagram
 
     class MakeMacroCommand {
         -Menu& m_menu
-        -static string m_END_MACRO
-        -static string m_START_MACRO
         +MakeMacroCommand(Menu&)
         +Execute() void
         +Clone() unique_ptr~ICommand~
-        -GetMacroName() string
-        -GetMacroDescription() string
-        -BuildMacroCommand() unique_ptr~MacroCommand~
+       
     }
+
+    class IMacroCommandBuidler {
+        <<interface>>
+        + GetMacroName() string
+        + GetMacroDescription() string
+        + BuildMacroCommand() unique_ptr~MacroCommand~
+    }
+
+    class MacroCommandBuilder {
+        + GetMacroName() string
+        + GetMacroDescription() string
+        + BuildMacroCommand() unique_ptr~MacroCommand~
+
+        -m_menu: Menu&
+        -m_input: istream&
+        -static string m_END_MACRO
+        -static string m_START_MACRO
+    }
+
+    MacroCommandBuilder ..|> IMacroCommandBuidler
+    IMacroCommandBuidler --* MakeMacroCommand
 
     Item --* Menu
     WalkCommand ..|> ICommand

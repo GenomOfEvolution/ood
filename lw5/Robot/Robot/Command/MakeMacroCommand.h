@@ -2,6 +2,7 @@
 #include "ICommand.h"
 #include "MacroCommand.h"
 #include "../Menu/Menu.h"
+#include "MacroCommandBuilder/IMacroCommandBuidler.h"
 #include <string>
 
 class MakeMacroCommand : public ICommand
@@ -13,11 +14,5 @@ public:
 
 private:
 	Menu& m_menu;
-
-	std::string GetMacroName() const;
-	std::string GetMacroDescription() const;
-	std::unique_ptr<MacroCommand> BuildMacroCommand() const;
-
-	static inline std::string m_END_MACRO = "end_macro";
-	static inline std::string m_START_MACRO = "begin_macro";
+	std::unique_ptr<IMacroCommandBuidler> m_builder;
 };

@@ -81,12 +81,14 @@ std::shared_ptr<IShape> MakeCat()
 	cutieKitty->InsertShape(tail, 7);
 	cutieKitty->InsertShape(body, 8);
 
+	cutieKitty->GetFillStyle()->SetColor(0x00000000);
+
 	return cutieKitty;
 }
 
 int main()
 {
-    CanvasSvg canvas("D:/888/cat.svg");
+    CanvasSvg canvas;
     try
     {
 		auto slide = std::make_shared<Slide>();

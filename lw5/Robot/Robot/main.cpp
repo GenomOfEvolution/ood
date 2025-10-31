@@ -10,6 +10,9 @@
 #include "Command/WalkCommand.h"
 #include "Command/MakeMacroCommand.h"
 
+// TODO: убрать логику сборки макрокоманды в отдельный класс
+// чтобы MakeMacroCommand была тонкой
+
 int main()
 {
 	Robot robot;
