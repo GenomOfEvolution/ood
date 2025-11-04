@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Menu">
       <UniqueIdentifier>{b7e6e2b1-fd37-4768-a3be-2700133eb1dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Menu\Command">
+      <UniqueIdentifier>{8f91e828-4113-4a36-bc82-b7d6d1371dc6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -29,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="GumballMachine\GumballMachine.cpp">
       <Filter>Source Files\GumballMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\Menu.cpp">
+      <Filter>Source Files\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +61,33 @@
     </ClInclude>
     <ClInclude Include="State\SoldState.h">
       <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Menu.h">
+      <Filter>Source Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Command\ICommand.h">
+      <Filter>Source Files\Menu\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Command\EjectQuarterCommand.h">
+      <Filter>Source Files\Menu\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Command\ExitCommand.h">
+      <Filter>Source Files\Menu\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Command\HelpCommand.h">
+      <Filter>Source Files\Menu\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Command\InsertQuarterCommand.h">
+      <Filter>Source Files\Menu\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Command\RefillCommand.h">
+      <Filter>Source Files\Menu\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Command\ToStringCommand.h">
+      <Filter>Source Files\Menu\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Command\TurnCranckCommand.h">
+      <Filter>Source Files\Menu\Command</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

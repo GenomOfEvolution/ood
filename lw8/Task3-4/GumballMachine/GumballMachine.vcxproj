@@ -21,11 +21,21 @@
   <ItemGroup>
     <ClCompile Include="GumballMachine\GumballMachine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu\Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GumballMachine\GumballMachine.h" />
     <ClInclude Include="GumballMachine\IGumballMachine.h" />
     <ClInclude Include="GumballMachine\IStateExecutor.h" />
+    <ClInclude Include="Menu\Command\EjectQuarterCommand.h" />
+    <ClInclude Include="Menu\Command\ExitCommand.h" />
+    <ClInclude Include="Menu\Command\HelpCommand.h" />
+    <ClInclude Include="Menu\Command\ICommand.h" />
+    <ClInclude Include="Menu\Command\InsertQuarterCommand.h" />
+    <ClInclude Include="Menu\Command\RefillCommand.h" />
+    <ClInclude Include="Menu\Command\ToStringCommand.h" />
+    <ClInclude Include="Menu\Command\TurnCranckCommand.h" />
+    <ClInclude Include="Menu\Menu.h" />
     <ClInclude Include="State\HasQuarterState.h" />
     <ClInclude Include="State\IState.h" />
     <ClInclude Include="State\NoQuarterState.h" />
