@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Dependicies">
+      <UniqueIdentifier>{4a4eefef-50f4-4d31-9c30-d9ebe7f77de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependicies\Naive">
+      <UniqueIdentifier>{265e9a44-4284-4786-8dd9-c2f8de078907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependicies\NonNaive">
+      <UniqueIdentifier>{d9617854-a47f-4920-ac0f-4e1efaa57fd7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiGumballMachineTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NaiveGumballMachineTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MultiGumballMachine\GumballMachine\GumballMachine.cpp">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\NaiveGumballMachine\GumballMachine\GumballMachine.h">
+      <Filter>Dependicies\Naive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MultiGumballMachine\State\HasQuarterState.h">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MultiGumballMachine\State\IState.h">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MultiGumballMachine\State\NoQuarterState.h">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MultiGumballMachine\State\SoldOutState.h">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MultiGumballMachine\State\SoldState.h">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MultiGumballMachine\GumballMachine\GumballMachine.h">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MultiGumballMachine\GumballMachine\IGumballMachine.h">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MultiGumballMachine\GumballMachine\IStateExecutor.h">
+      <Filter>Dependicies\NonNaive</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
