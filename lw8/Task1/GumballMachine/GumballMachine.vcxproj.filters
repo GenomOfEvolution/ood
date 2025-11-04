@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\State">
+      <UniqueIdentifier>{07df782b-21eb-41a9-880f-9413ac34a760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GumballMachine">
+      <UniqueIdentifier>{3b3c40d8-4ced-43cf-9e99-93b32d5f3f3f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GumballMachine\GumballMachine.cpp">
+      <Filter>Source Files\GumballMachine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GumballMachine\GumballMachine.h">
+      <Filter>Source Files\GumballMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="GumballMachine\IGumballMachine.h">
+      <Filter>Source Files\GumballMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="GumballMachine\IStateExecutor.h">
+      <Filter>Source Files\GumballMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="State\HasQuarterState.h">
+      <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="State\IState.h">
+      <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="State\NoQuarterState.h">
+      <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="State\SoldOutState.h">
+      <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="State\SoldState.h">
+      <Filter>Source Files\State</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
