@@ -11,7 +11,7 @@ public:
 	constexpr static int SIZE = 8;
 
 	// Конструктор по умолчанию. Заполняет тайл указанным цветом.
-	Tile(char color = ' ') noexcept
+	Tile(uint32_t color = ' ') noexcept
 	{
 		m_pixels.fill(color);
 		// -------------- не удалять ------------
@@ -42,7 +42,7 @@ public:
 	 * Изменяет цвет пикселя тайла.
 	 * Если координаты выходят за пределы тайла, метод ничего не делает.
 	 */
-	void SetPixel(Point p, char color) noexcept
+	void SetPixel(Point p, uint32_t color) noexcept
 	{
 		/* Реализуйте недостающий код самостоятельно. */
 		if (IsPointInBound(p))
@@ -54,7 +54,7 @@ public:
 	/**
 	 * Возвращает цвет пикселя. Если координаты выходят за пределы тайла, возвращается пробел.
 	 */
-	char GetPixel(Point p) const noexcept
+	uint32_t GetPixel(Point p) const noexcept
 	{
 		if (!IsPointInBound(p))
 		{
@@ -81,5 +81,5 @@ private:
 	inline static int m_instanceCount = 0;
 	// -------------- не удалять ------------
 
-	std::array<char, SIZE* SIZE> m_pixels;
+	std::array<uint32_t, SIZE* SIZE> m_pixels;
 };

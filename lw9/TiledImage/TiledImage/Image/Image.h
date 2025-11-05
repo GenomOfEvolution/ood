@@ -14,7 +14,7 @@ public:
      * Конструирует изображение заданного размера. Если размеры не являются положительными,
      * выбрасывает исключение std::out_of_range.
      */
-    explicit Image(Size size, char color = ' ');
+    explicit Image(Size size, uint32_t color = ' ');
 
     // Возвращает размер изображения в пикселях.
     Size GetSize() const noexcept;
@@ -23,13 +23,13 @@ public:
      * Возвращает «цвет» пикселя в указанных координатах.Если координаты выходят за пределы
      * изображения, возвращает «пробел».
      */
-    char GetPixel(Point p) const noexcept;
+    uint32_t GetPixel(Point p) const noexcept;
 
     /**
      * Задаёт «цвет» пикселя в указанных координатах. Если координаты выходят за пределы изображения
      * действие игнорируется.
      */
-    void SetPixel(Point p, char color);
+    void SetPixel(Point p, uint32_t color);
 
 private:
     Size m_size;
@@ -46,3 +46,5 @@ void Print(const Image& img, std::ostream& out);
  * Размеры картинки определяются по количеству переводов строки и самой длинной линии.
  */
 Image LoadImage(const std::string& pixels);
+
+void SaveImageAsPPM(const Image& image, const std::string& filepath);

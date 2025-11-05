@@ -1,11 +1,12 @@
 #include "Image.h"
 #include <iostream>
+#include <fstream>
 #include <cassert>
 #include <sstream>
 #include <stdexcept>
 #include <vector>
 
-Image::Image(Size size, char color)
+Image::Image(Size size, uint32_t color)
 {
 	if (size.height < 0 || size.width < 0)
 	{
@@ -29,7 +30,7 @@ Size Image::GetSize() const noexcept
 	return m_size;
 }
 
-char Image::GetPixel(Point p) const noexcept
+uint32_t Image::GetPixel(Point p) const noexcept
 {
 	if (!IsPointInSize(p, m_size))
 	{
@@ -43,7 +44,7 @@ char Image::GetPixel(Point p) const noexcept
 	return m_tiles[tileY][tileX]->GetPixel(inTile);
 }
 
-void Image::SetPixel(Point p, char color)
+void Image::SetPixel(Point p, uint32_t color)
 {
 	if (!IsPointInSize(p, m_size))
 	{
@@ -97,4 +98,36 @@ Image LoadImage(const std::string& pixels)
 	}
 
 	return img;
+}
+
+void SaveImageAsPPM(const Image& image, const std::string& filepath)
+{
+	std::ofstream file(filepath);
+	if (!file.is_open())
+	{
+		throw std::runtime_error("Could not open the file for writing");
+	}
+
+	file << "P3\n";
+	file << image.GetSize().width << " " << image.GetSize().height << "\n";
+	file << "255\n";
+
+	for (int y = 0; y < image.GetSize().height; ++y)
+	{
+		for (int x = 0; x < image.GetSize().width; ++x)
+		{
+			const uint32_t color = image.GetPixel({ x, y });
+
+			const uint8_t r = (color >> 16) & 0xFF;
+			const uint8_t g = (color >> 8) & 0xFF;
+			const uint8_t b = color & 0xFF;
+
+			file << static_cast<int>(r) << " "
+				<< static_cast<int>(g) << " "
+				<< static_cast<int>(b) << " ";
+		}
+		file << "\n";
+	}
+
+	file.close();
 }

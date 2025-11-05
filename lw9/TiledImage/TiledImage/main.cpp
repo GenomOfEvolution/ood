@@ -3,8 +3,6 @@
 
 #include "Drawer/Drawer.h"
 
-constexpr int STAR_COUNT = 20;
-
 int main()
 {
 	{
@@ -18,27 +16,33 @@ int main()
 	}
 
 	{
-		Image img{ { 21, 21 }, '.' };
+		Image img{ { 40, 40 }, '.' };
 
-		/*DrawLine(img, { 3, 2 }, { 26, 5 }, '#');
-		DrawLine(img, { 26, 5 }, { 21, 18 }, '#');
-		DrawLine(img, { 21, 18 }, { 3, 2 }, '#');*/
+		FillCircle(img, { 4, 4 }, 5, '#');
+		DrawCircle(img, { 20, 16 }, 4, '#');
 
-		FillCircle(img, { 10, 10 }, 10, '#');
+		DrawLine(img, { 20, 20 }, { 20, 30 }, '#');
+		DrawLine(img, { 20, 20 }, { 15, 25 }, '#');
+		DrawLine(img, { 20, 20 }, { 25, 25 }, '#');
+		DrawLine(img, { 20, 30 }, { 25, 35 }, '#');
+		DrawLine(img, { 20, 30 }, { 15, 35 }, '#');
 
 		Print(img, std::cout);
 	}
 
 	{
-		Image img{ { 10, 10 }, '.' };
+		Image img{ { 40, 40 }, 0x00ff00 };
 
-		/*DrawLine(img, { 3, 2 }, { 26, 5 }, '#');
-		DrawLine(img, { 26, 5 }, { 21, 18 }, '#');
-		DrawLine(img, { 21, 18 }, { 3, 2 }, '#');*/
+		FillCircle(img, { 4, 4 }, 5, 0xffdd00);
+		DrawCircle(img, { 20, 16 }, 4, 0x000000);
 
-		FillCircle(img, { 4, 4 }, 4, '#');
+		DrawLine(img, { 20, 20 }, { 20, 30 }, 0x000000);
+		DrawLine(img, { 20, 20 }, { 15, 25 }, 0x000000);
+		DrawLine(img, { 20, 20 }, { 25, 25 }, 0x000000);
+		DrawLine(img, { 20, 30 }, { 25, 35 }, 0x000000);
+		DrawLine(img, { 20, 30 }, { 15, 35 }, 0x000000);
 
-		Print(img, std::cout);
+		SaveImageAsPPM(img, "pic.ppm");
 	}
 
 	return EXIT_SUCCESS;

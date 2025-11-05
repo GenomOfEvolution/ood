@@ -13,7 +13,7 @@ namespace
 	/**
 	 * Рисование крутой линии (для случая |to.y - from.y| >= |to.x - from.x|).
 	 */
-	void DrawSteepLine(Image& image, Point from, Point to, char color)
+	void DrawSteepLine(Image& image, Point from, Point to, uint32_t color)
 	{
 		const int deltaX = std::abs(to.x - from.x);
 		const int deltaY = std::abs(to.y - from.y);
@@ -50,7 +50,7 @@ namespace
 	/**
 	 * Рисование пологой линии (для случая |to.x - from.x| >= |to.y - from.y|).
 	 */
-	void DrawSlopeLine(Image& image, Point from, Point to, char color)
+	void DrawSlopeLine(Image& image, Point from, Point to, uint32_t color)
 	{
 		const int deltaX = std::abs(to.x - from.x);
 		const int deltaY = std::abs(to.y - from.y);
@@ -85,10 +85,8 @@ namespace
 		}
 	}
 
-	void DrawMirrorPoints(Image& image, Point center, int x, int y, char color)
+	void DrawMirrorPoints(Image& image, Point center, int x, int y, uint32_t color)
 	{
-		std::cout << center.x + x << " " << center.y - y << std::endl;
-
 		int actualY = -y;  
 
 		image.SetPixel(Point(center.x + x, center.y + actualY), color);
@@ -104,7 +102,7 @@ namespace
 		image.SetPixel(Point(center.x - actualY, center.y - x), color);
 	}
 
-	void DrawMirrorLines(Image& image, Point center, int x, int y, char color)
+	void DrawMirrorLines(Image& image, Point center, int x, int y, uint32_t color)
 	{
 		int actualY = -y;
 
@@ -127,7 +125,7 @@ namespace
 
 } // namespace
 
-void DrawLine(Image& image, Point from, Point to, char color)
+void DrawLine(Image& image, Point from, Point to, uint32_t color)
 {
 	const int deltaX = std::abs(to.x - from.x);
 	const int deltaY = std::abs(to.y - from.y);
@@ -142,7 +140,7 @@ void DrawLine(Image& image, Point from, Point to, char color)
 	}
 }
 
-void DrawCircle(Image& image, Point center, int radius, char color)
+void DrawCircle(Image& image, Point center, int radius, uint32_t color)
 {
 	if (radius < 0) 
 	{
@@ -176,7 +174,7 @@ void DrawCircle(Image& image, Point center, int radius, char color)
 	}
 }
 
-void FillCircle(Image& image, Point center, int radius, char color)
+void FillCircle(Image& image, Point center, int radius, uint32_t color)
 {
 	if (radius < 0)
 	{
