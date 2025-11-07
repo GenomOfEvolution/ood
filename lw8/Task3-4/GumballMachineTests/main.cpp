@@ -601,6 +601,7 @@ TEST_CASE("States")
         WHEN("refilling balls")
         {
             fakeit::When(Method(machineMock, GetQuarterCount)).Return(2);
+            fakeit::When(Method(machineMock, GetBallCount)).Return(5);
             state.Refill(5);
 
             THEN("balls are added and state changes to has quarter")
@@ -610,15 +611,17 @@ TEST_CASE("States")
             }
         }
 
-        WHEN("refilling balls 2")
+        WHEN("refilling results in zero total balls without quarters")
         {
-            state.Refill(5);
             fakeit::When(Method(machineMock, GetQuarterCount)).Return(0);
+            fakeit::When(Method(machineMock, GetBallCount)).Return(0);
 
-            THEN("balls are added and state changes to no quarter")
+            state.Refill(0);
+
+            THEN("state remains sold out")
             {
-                fakeit::Verify(Method(machineMock, AddBalls).Using(5)).Once();
-                fakeit::Verify(Method(stateExecutorMock, SetNoQuarterState)).Once();
+                fakeit::Verify(Method(machineMock, AddBalls).Using(0)).Once();
+                fakeit::VerifyNoOtherInvocations(stateExecutorMock);
             }
         }
     }

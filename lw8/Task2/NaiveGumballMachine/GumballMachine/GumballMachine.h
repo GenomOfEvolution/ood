@@ -149,7 +149,7 @@ namespace naive
                     if (m_quarterCount > 0)
                     {
                         cout << "Ejecting leftover quarters: " << m_quarterCount << endl;
-                        m_quarterCount = 0;
+                       m_quarterCount = 0;
                     }
                     m_state = State::SoldOut;
                 }

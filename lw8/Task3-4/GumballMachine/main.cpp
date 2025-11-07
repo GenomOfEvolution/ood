@@ -10,6 +10,8 @@
 #include "Menu/Command/TurnCranckCommand.h"
 #include "Menu/Command/RefillCommand.h"
 
+
+// TODO: При refill из 0 шариков должен остаться в SoldOut
 int main()
 {
 	GumballMachine machine(0);

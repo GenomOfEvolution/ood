@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <iostream>
+#include <functional>
 
 namespace
 {
@@ -87,7 +88,7 @@ namespace
 
 	void DrawMirrorPoints(Image& image, Point center, int x, int y, uint32_t color)
 	{
-		int actualY = -y;  
+		int actualY = -y;
 
 		image.SetPixel(Point(center.x + x, center.y + actualY), color);
 		image.SetPixel(Point(center.x + x, center.y - actualY), color);
@@ -106,8 +107,8 @@ namespace
 	{
 		int actualY = -y;
 
-		DrawLine(image, 
-			Point(center.x + x, center.y + actualY), 
+		DrawLine(image,
+			Point(center.x + x, center.y + actualY),
 			Point(center.x + x, center.y - actualY), color);
 
 		DrawLine(image,
@@ -121,6 +122,58 @@ namespace
 		DrawLine(image,
 			Point(center.x - actualY, center.y + x),
 			Point(center.x - actualY, center.y - x), color);
+	}
+
+	/**
+	 * Общая функция для рисования круга с использованием алгоритма Брезенхэма.
+	 * Принимает функцию отрисовки, которая определяет, как рисовать точки (контур или заполнение).
+	 */
+	template<typename DrawFunc>
+	void ProcessCircle(Image& image, Point center, int radius, uint32_t color, DrawFunc drawFunc)
+	{
+		if (radius < 0)
+		{
+			return;
+		}
+
+		// Текущие координаты относительно центра окружности
+		int currentX = 0;
+		int currentY = -radius;  // Начинаем с самой верхней точки
+
+		// Параметр решения (определяет следующую точку)
+		int decisionParameter = 1 - radius;
+
+		// Приращения для параметра решения:
+		int deltaEast = 4;        // При движении только по X
+		int deltaNorthEast = -(radius << 1) + 5;  // При движении по X и Y
+
+		// Рисуем начальные точки/линии
+		drawFunc(image, center, currentX, currentY, color);
+
+		// Основной цикл (проходим 1/8 окружности)
+		while (currentX < -currentY)
+		{
+			if (decisionParameter < 0)
+			{
+				// Выбираем восточный пиксель (только увеличиваем X)
+				decisionParameter += deltaEast;
+			}
+			else
+			{
+				// Выбираем северо-восточный пиксель (увеличиваем X и Y)
+				decisionParameter += deltaNorthEast;
+				deltaNorthEast += 2;  // Корректируем приращение
+				currentY += 1;        // Двигаемся по Y
+			}
+
+			// Обновляем приращения для следующей итерации
+			deltaEast += 2;
+			deltaNorthEast += 2;
+			currentX += 1;           // Всегда двигаемся по X
+
+			// Рисуем симметричные точки/линии
+			drawFunc(image, center, currentX, currentY, color);
+		}
 	}
 
 } // namespace
@@ -142,68 +195,10 @@ void DrawLine(Image& image, Point from, Point to, uint32_t color)
 
 void DrawCircle(Image& image, Point center, int radius, uint32_t color)
 {
-	if (radius < 0) 
-	{
-		return;
-	}
-
-	int x = 0;
-	int y = -radius;  
-	int F_M = 1 - radius;
-	int d_e = 4;
-	int d_ne = -(radius << 1) + 5; 
-
-	DrawMirrorPoints(image, center, x, y, color);
-
-	while (x < -y) 
-	{  
-		if (F_M < 0) 
-		{
-			F_M += d_e;
-		}
-		else 
-		{
-			F_M += d_ne;
-			d_ne += 2;
-			y += 1;
-		}
-		d_e += 2;
-		d_ne += 2;
-		x += 1;
-		DrawMirrorPoints(image, center, x, y, color);
-	}
+	ProcessCircle(image, center, radius, color, DrawMirrorPoints);
 }
 
 void FillCircle(Image& image, Point center, int radius, uint32_t color)
 {
-	if (radius < 0)
-	{
-		return;
-	}
-
-	int x = 0;
-	int y = -radius;
-	int F_M = 1 - radius;
-	int d_e = 4;
-	int d_ne = -(radius << 1) + 5;
-
-	DrawMirrorLines(image, center, x, y, color);
-
-	while (x < -y)
-	{
-		if (F_M < 0)
-		{
-			F_M += d_e;
-		}
-		else
-		{
-			F_M += d_ne;
-			d_ne += 2;
-			y += 1;
-		}
-		d_e += 2;
-		d_ne += 2;
-		x += 1;
-		DrawMirrorLines(image, center, x, y, color);
-	}
+	ProcessCircle(image, center, radius, color, DrawMirrorLines);
 }

@@ -40,13 +40,16 @@ public:
 	void Refill(unsigned amount) override
 	{
 		m_machine.AddBalls(amount);
-		if (m_machine.GetQuarterCount() > 0)
+		if (m_machine.GetQuarterCount() > 0 && m_machine.GetBallCount() > 0)
 		{
 			m_stateExecutor.SetHasQuarterState();
 		}
 		else
 		{
-			m_stateExecutor.SetNoQuarterState();
+			if (m_machine.GetBallCount() > 0)
+			{
+				m_stateExecutor.SetNoQuarterState();
+			}
 		}
 	}
 
