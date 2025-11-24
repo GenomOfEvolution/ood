@@ -1,4 +1,5 @@
 out/
+Qt/*
 
 lw4/Shapes/SFML-2.6.2/*
 lw4/Shapes/Shapes/*.dll
