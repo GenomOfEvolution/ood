@@ -21,10 +21,117 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{43777c4d-db20-4cb4-aa57-931eae1ca148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Document">
+      <UniqueIdentifier>{4817e104-527d-4486-9481-c1ee7c0875cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\History">
+      <UniqueIdentifier>{553831b9-0b54-430d-bd31-5787f33599bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Shape">
+      <UniqueIdentifier>{bb1b3378-94de-4242-a4e9-902510544cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command">
+      <UniqueIdentifier>{30b29899-bff4-4fb8-9a07-918683025548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views">
+      <UniqueIdentifier>{de969c82-d334-4a26-9be8-74c54cf1430a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers">
+      <UniqueIdentifier>{67f22b86-32ff-440b-b0d2-dd0967531592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\SaveCommand">
+      <UniqueIdentifier>{534f9589-9cbd-4551-ad99-3f9afcff2ba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\LoadCommand">
+      <UniqueIdentifier>{191873d4-d0a1-478c-96fa-8964e4f6bffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\UndoCommand">
+      <UniqueIdentifier>{586e6424-2ee0-41e7-b11a-f1d50d6e1b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\RedoCommand">
+      <UniqueIdentifier>{e123749d-104a-49fc-ae96-571366596ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\AddShapeCommand">
+      <UniqueIdentifier>{aec22c12-f33c-416f-af11-f59f0b40e272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Shape\Triangle">
+      <UniqueIdentifier>{f833afa4-fc72-4fc2-8efe-b3f3f0e26e02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Shape\Rectangle">
+      <UniqueIdentifier>{7c802d5a-cbf4-468b-a2f9-c275aacfb4e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Shape\ShapeGroup">
+      <UniqueIdentifier>{26c44b60-9893-4677-93b1-a961a952db2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Shape\Ellipse">
+      <UniqueIdentifier>{7a54e8b5-bea7-46a3-abbe-c6c8ec5b071d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\RemoveShapeCommand">
+      <UniqueIdentifier>{37d33b9e-a4c3-4e0e-bf55-9226928ce71a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Models\History\CommandHistory.cpp">
+      <Filter>Source Files\Models\History</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Shape\Triangle\CTriangle.cpp">
+      <Filter>Source Files\Models\Shape\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Shape\Rectangle\CRectangle.cpp">
+      <Filter>Source Files\Models\Shape\Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Shape\Ellipse\CEllipse.cpp">
+      <Filter>Source Files\Models\Shape\Ellipse</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Shape\ShapeGroup\ShapeGroup.cpp">
+      <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Models\Command\AbstractCommand.h">
+      <Filter>Source Files\Models\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Command\AbstractUndoablecommand.h">
+      <Filter>Source Files\Models\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Command\ICommand.h">
+      <Filter>Source Files\Models\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Command\IUndoableCommand.h">
+      <Filter>Source Files\Models\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\History\IHistory.h">
+      <Filter>Source Files\Models\History</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\History\ICommandExecutor.h">
+      <Filter>Source Files\Models\History</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\History\CommandHistory.h">
+      <Filter>Source Files\Models\History</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Shape\IShape.h">
+      <Filter>Source Files\Models\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Shape\Ellipse\CEllipse.h">
+      <Filter>Source Files\Models\Shape\Ellipse</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Shape\ShapeGroup\IGroup.h">
+      <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Shape\Rectangle\CRectangle.h">
+      <Filter>Source Files\Models\Shape\Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Shape\Triangle\CTriangle.h">
+      <Filter>Source Files\Models\Shape\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h">
+      <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

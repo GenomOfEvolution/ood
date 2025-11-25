@@ -103,6 +103,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Models\History\CommandHistory.cpp" />
+    <ClCompile Include="Models\Shape\Ellipse\CEllipse.cpp" />
+    <ClCompile Include="Models\Shape\Rectangle\CRectangle.cpp" />
+    <ClCompile Include="Models\Shape\ShapeGroup\ShapeGroup.cpp" />
+    <ClCompile Include="Models\Shape\Triangle\CTriangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Models\Command\AbstractCommand.h" />
+    <ClInclude Include="Models\Command\AbstractUndoablecommand.h" />
+    <ClInclude Include="Models\Command\ICommand.h" />
+    <ClInclude Include="Models\Command\IUndoableCommand.h" />
+    <ClInclude Include="Models\History\CommandHistory.h" />
+    <ClInclude Include="Models\History\ICommandExecutor.h" />
+    <ClInclude Include="Models\History\IHistory.h" />
+    <ClInclude Include="Models\Shape\Ellipse\CEllipse.h" />
+    <ClInclude Include="Models\Shape\IShape.h" />
+    <ClInclude Include="Models\Shape\Rectangle\CRectangle.h" />
+    <ClInclude Include="Models\Shape\ShapeGroup\IGroup.h" />
+    <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h" />
+    <ClInclude Include="Models\Shape\Triangle\CTriangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
