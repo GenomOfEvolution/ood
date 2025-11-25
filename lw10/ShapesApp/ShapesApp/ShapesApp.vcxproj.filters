@@ -72,6 +72,24 @@
     <Filter Include="Source Files\Models\Command\RemoveShapeCommand">
       <UniqueIdentifier>{37d33b9e-a4c3-4e0e-bf55-9226928ce71a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Views\Ribbon">
+      <UniqueIdentifier>{fc30d0e8-d854-4968-acfc-59f839f7c03a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views\Ribbon\RibbonBar">
+      <UniqueIdentifier>{5f2c686c-caf7-43f9-a01f-2b06a91bbf14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views\Ribbon\RibbonGroup">
+      <UniqueIdentifier>{2027657e-cfea-410d-ac60-eb8ea3cf3f38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views\Ribbon\RibbonButton">
+      <UniqueIdentifier>{c4a9d507-41b2-4661-af12-dff4ac0bf12f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views\Ribbon\RibbonTab">
+      <UniqueIdentifier>{f083a3e7-5553-4055-b3f1-6b3008c5675f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views\MainView">
+      <UniqueIdentifier>{e149c9ef-8c84-48d6-a316-1bf2c2ac7859}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -91,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="Models\Shape\ShapeGroup\ShapeGroup.cpp">
       <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\Ribbon\RibbonBar\RibbonBar.cpp">
+      <Filter>Source Files\Views\Ribbon\RibbonBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\MainView\MainView.cpp">
+      <Filter>Source Files\Views\MainView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,5 +157,13 @@
     <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h">
       <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Views\Ribbon\RibbonBar\RibbonBar.h">
+      <Filter>Source Files\Views\Ribbon\RibbonBar</Filter>
+    </QtMoc>
+    <QtMoc Include="Views\MainView\MainView.h">
+      <Filter>Source Files\Views\MainView</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

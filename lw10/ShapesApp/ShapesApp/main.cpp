@@ -1,19 +1,22 @@
 ﻿#include <QApplication>
-#include <QLabel>
-#include <QWidget>
+#include <qscreen.h>
+#include "Views/MainView/MainView.h"
+
+using namespace UI;
 
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
 
-    QWidget window;
-    window.setWindowTitle("Проверка Qt");
-    window.resize(300, 150);
+    MainView view;
 
-    QLabel label("Привет, Qt работает! 🎉", &window);
-    label.move(70, 60);
+    const QRect screenGeometry = QGuiApplication::primaryScreen()->availableGeometry();
+    view.resize(1200, 700);
+    view.move((screenGeometry.width() - view.width()) / 2,
+        (screenGeometry.height() - view.height()) / 2);
 
-    window.show();
+    // 4. Показываем UI
+    view.show();
 
     return app.exec();
 }

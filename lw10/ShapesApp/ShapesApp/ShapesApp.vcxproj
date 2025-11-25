@@ -108,6 +108,8 @@
     <ClCompile Include="Models\Shape\Rectangle\CRectangle.cpp" />
     <ClCompile Include="Models\Shape\ShapeGroup\ShapeGroup.cpp" />
     <ClCompile Include="Models\Shape\Triangle\CTriangle.cpp" />
+    <ClCompile Include="Views\MainView\MainView.cpp" />
+    <ClCompile Include="Views\Ribbon\RibbonBar\RibbonBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Models\Command\AbstractCommand.h" />
@@ -123,6 +125,8 @@
     <ClInclude Include="Models\Shape\ShapeGroup\IGroup.h" />
     <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h" />
     <ClInclude Include="Models\Shape\Triangle\CTriangle.h" />
+    <QtMoc Include="Views\MainView\MainView.h" />
+    <QtMoc Include="Views\Ribbon\RibbonBar\RibbonBar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
