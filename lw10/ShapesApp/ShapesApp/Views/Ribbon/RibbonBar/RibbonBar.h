@@ -4,19 +4,14 @@
 
 namespace UI 
 {
-	class RibbonBar : public QTabWidget
-	{
-		Q_OBJECT
-	public:
-		RibbonBar(QWidget* parent = nullptr);
+    class RibbonBar : public QTabWidget 
+    {
+        Q_OBJECT
+    public:
+        explicit RibbonBar(QWidget* parent = nullptr);
+        void addRibbonTab(const QString& tabName, QWidget* tabContent);
 
-		void AddTab(const QString& tabName);
-		void AddTab(const QIcon& tabIcon, const QString& tabName);
-		void RemoveTab(const QString& tabName);
-
-		void AddGroup(const QString& tabName, const QString& groupName);
-
-		void AddButton(const QString& tabName, const QString& groupName, QToolButton* button);
-		void RemoveButton(const QString& tabName, const QString& groupName, QToolButton* button);
-	};
+    protected:
+        void paintEvent(QPaintEvent* event) override;
+    };
 } // namespace UI

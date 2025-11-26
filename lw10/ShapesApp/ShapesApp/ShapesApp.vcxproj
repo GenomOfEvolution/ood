@@ -108,8 +108,11 @@
     <ClCompile Include="Models\Shape\Rectangle\CRectangle.cpp" />
     <ClCompile Include="Models\Shape\ShapeGroup\ShapeGroup.cpp" />
     <ClCompile Include="Models\Shape\Triangle\CTriangle.cpp" />
+    <ClCompile Include="Views\CustomTitleBar\CustomTitleBar.cpp" />
     <ClCompile Include="Views\MainView\MainView.cpp" />
     <ClCompile Include="Views\Ribbon\RibbonBar\RibbonBar.cpp" />
+    <ClCompile Include="Views\Ribbon\RibbonGroup\RibbonGroup.cpp" />
+    <ClCompile Include="Views\Ribbon\RibbonTab\RibbonTab.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Models\Command\AbstractCommand.h" />
@@ -125,8 +128,32 @@
     <ClInclude Include="Models\Shape\ShapeGroup\IGroup.h" />
     <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h" />
     <ClInclude Include="Models\Shape\Triangle\CTriangle.h" />
+    <QtMoc Include="Views\CustomTitleBar\CustomTitleBar.h" />
+    <QtMoc Include="Views\Ribbon\RibbonGroup\RibbonGroup.h" />
+    <QtMoc Include="Views\Ribbon\RibbonTab\RibbonTab.h" />
     <QtMoc Include="Views\MainView\MainView.h" />
     <QtMoc Include="Views\Ribbon\RibbonBar\RibbonBar.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resources\icons\ellipse-icon.svg" />
+    <None Include="..\resources\icons\image-icon.svg" />
+    <None Include="..\resources\icons\open-file-icon.svg" />
+    <None Include="..\resources\icons\rectangle-icon.svg" />
+    <None Include="..\resources\icons\redo-icon.svg" />
+    <None Include="..\resources\icons\save-as-icon.svg" />
+    <None Include="..\resources\icons\save-icon.svg" />
+    <None Include="..\resources\icons\triangle-icon.svg" />
+    <None Include="..\resources\icons\undo-icon.svg" />
+    <None Include="..\resources\icons\window-close-icon.svg" />
+    <None Include="..\resources\icons\window-maximize-icon.svg" />
+    <None Include="..\resources\icons\window-minimize-icon.svg" />
+    <None Include="..\resources\icons\window-restore-icon.svg" />
+    <None Include="..\resources\styles\BaseStyles.qss" />
+    <None Include="..\resources\styles\RibbonStyles.qss" />
+    <None Include="..\resources\styles\TitleBarStyles.qss" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\resources\resources.qrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -1,0 +1,8 @@
+MainWindow {
+    background-color: white; 
+    border: 1px solid #888;
+}
+
+#centralWidget {
+    background-color: #b7462a;
+}

@@ -1,20 +1,38 @@
-#include "MainView.h"
-#include <QVBoxLayout>
+﻿#include "MainView.h"
+#include "../../Views/Ribbon/RibbonTab/RibbonTab.h"
+#include "../../Views/Ribbon/RibbonGroup/RibbonGroup.h"
+
 #include <QFile>
 #include <QScreen>
+
+namespace 
+{
+    void LoadStyleSheet(QWidget* widget, const QString& resourcePath) 
+    {
+        QFile file(resourcePath);
+        if (file.open(QFile::ReadOnly)) 
+        {
+            QString styleSheet = QLatin1String(file.readAll());
+            widget->setStyleSheet(styleSheet);
+            file.close();
+        }
+    }
+}
+
 
 UI::MainView::MainView(QWidget* parent)
 	: QMainWindow(parent)
 {
-    setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
-    setAttribute(Qt::WA_TranslucentBackground);
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+    setAttribute(Qt::WA_OpaquePaintEvent);
 
     QWidget* centralWidget = new QWidget(this);
+    setCentralWidget(centralWidget); 
     centralWidget->setObjectName("centralWidget");
-    QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget);
-    mainLayout->setContentsMargins(0, 0, 0, 0);
-    mainLayout->setSpacing(0);
 
+    m_mainLayout = new QVBoxLayout(centralWidget);
+    m_mainLayout->setContentsMargins(0, 0, 0, 0);
+    m_mainLayout->setSpacing(0);
     setCentralWidget(centralWidget);
 
     SetupUI();
@@ -35,28 +53,29 @@ void UI::MainView::SetupUI()
 
 void UI::MainView::SetupCustomTitleBar()
 {
-    // m_titleBar = new CustomTitleBar(this);
+    m_titleBar = new CustomTitleBar(this);
+    m_mainLayout->addWidget(m_titleBar);
 }
 
 void UI::MainView::SetupRibbonBar()
 {
     m_ribbonBar = new RibbonBar(this);
 
-    m_ribbonBar->AddTab("File");
-    m_ribbonBar->AddTab("Home");
-    m_ribbonBar->AddTab("Insert");
+    // Вкладки
+    RibbonTab* fileTab = new RibbonTab();
+    RibbonTab* homeTab = new RibbonTab();
+    RibbonTab* insertTab = new RibbonTab();
 
-    QToolButton* openFileButton = new QToolButton;
-    openFileButton->setText("Open");
-    openFileButton->setToolTip("Open existing file");
-    // openProjectButton->setIcon(QIcon(""));
-    openFileButton->setEnabled(true);
-    m_ribbonBar->AddButton("Project", "Project", openFileButton);
+    m_ribbonBar->addRibbonTab("File", fileTab);
+    m_ribbonBar->addRibbonTab("Home", homeTab);
+    m_ribbonBar->addRibbonTab("Insert", insertTab);
 
-    static_cast<QVBoxLayout*>(centralWidget()->layout())->addWidget(m_ribbonBar, 1);
+    m_mainLayout->addWidget(m_ribbonBar, 0);
 }
 
 void UI::MainView::LoadStyles()
 {
-    
+    LoadStyleSheet(this, ":/styles/BaseStyles.qss");
+    LoadStyleSheet(m_titleBar, ":/styles/TitleBarStyles.qss");
+    LoadStyleSheet(m_ribbonBar, ":/styles/RibbonStyles.qss");
 }

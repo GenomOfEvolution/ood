@@ -1,0 +1,20 @@
+#titleBar {
+    background-color: #67462a; 
+    border: none; 
+    min-height: 34px;
+    max-height: 34px;
+    padding: 0; 
+}
+
+#titleBar QToolButton {
+    border: none;
+    background: transparent;
+    width: 40px;
+    height: 34px;
+    padding: 0; 
+    margin: 0; 
+}
+
+#titleBar QToolButton:hover {
+    background-color: #a9261a; 
+}

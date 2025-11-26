@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/ellipse-icon.svg</file>
+        <file>icons/image-icon.svg</file>
+        <file>icons/rectangle-icon.svg</file>
+        <file>icons/redo-icon.svg</file>
+        <file>icons/save-as-icon.svg</file>
+        <file>icons/save-icon.svg</file>
+        <file>icons/triangle-icon.svg</file>
+        <file>icons/undo-icon.svg</file>
+        <file>icons/open-file-icon.svg</file>
+        <file>icons/window-minimize-icon.svg</file>
+        <file>icons/window-restore-icon.svg</file>
+        <file>icons/window-maximize-icon.svg</file>
+        <file>icons/window-close-icon.svg</file>
+        <file>styles/RibbonStyles.qss</file>
+        <file>styles/TitleBarStyles.qss</file>
+        <file>styles/BaseStyles.qss</file>
+    </qresource>
+</RCC>

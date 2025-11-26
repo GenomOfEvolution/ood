@@ -1,7 +1,9 @@
 #pragma once
 #include <QMainWindow>
+#include <QVBoxLayout>
 #include <memory>
 #include "../Ribbon/RibbonBar/RibbonBar.h"
+#include "../../Views/CustomTitleBar/CustomTitleBar.h"
 
 namespace UI
 {
@@ -21,5 +23,7 @@ namespace UI
 		void LoadStyles();
 
 		RibbonBar* m_ribbonBar = nullptr;
+		QVBoxLayout* m_mainLayout = nullptr;
+		CustomTitleBar* m_titleBar = nullptr;
 	};
 } // namespace UI

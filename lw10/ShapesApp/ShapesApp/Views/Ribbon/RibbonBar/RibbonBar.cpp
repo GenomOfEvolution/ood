@@ -1,34 +1,21 @@
 #include "RibbonBar.h"
-#include <QApplication>
-#include <QStyleOption>
 #include <QPainter>
+#include <qfile.h>
 
-using namespace UI;
-
-RibbonBar::RibbonBar(QWidget* parent)
+UI::RibbonBar::RibbonBar(QWidget* parent) : QTabWidget(parent) 
 {
+    setObjectName("RibbonBar");
+    setMovable(false);
+    setTabsClosable(false);
 }
 
-void RibbonBar::AddTab(const QString& tabName)
+void UI::RibbonBar::addRibbonTab(const QString& tabName, QWidget* tabContent) 
 {
+    addTab(tabContent, tabName);
 }
 
-void RibbonBar::AddTab(const QIcon& tabIcon, const QString& tabName)
+void UI::RibbonBar::paintEvent(QPaintEvent*) 
 {
-}
-
-void RibbonBar::RemoveTab(const QString& tabName)
-{
-}
-
-void RibbonBar::AddGroup(const QString& tabName, const QString& groupName)
-{
-}
-
-void RibbonBar::AddButton(const QString& tabName, const QString& groupName, QToolButton* button)
-{
-}
-
-void RibbonBar::RemoveButton(const QString& tabName, const QString& groupName, QToolButton* button)
-{
+    QPainter painter(this);
+    painter.fillRect(rect(), QColor("#f5f5f5")); 
 }

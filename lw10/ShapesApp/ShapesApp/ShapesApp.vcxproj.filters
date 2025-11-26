@@ -84,11 +84,20 @@
     <Filter Include="Source Files\Views\Ribbon\RibbonButton">
       <UniqueIdentifier>{c4a9d507-41b2-4661-af12-dff4ac0bf12f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Views\MainView">
+      <UniqueIdentifier>{e149c9ef-8c84-48d6-a316-1bf2c2ac7859}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Views\Ribbon\RibbonTab">
       <UniqueIdentifier>{f083a3e7-5553-4055-b3f1-6b3008c5675f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Views\MainView">
-      <UniqueIdentifier>{e149c9ef-8c84-48d6-a316-1bf2c2ac7859}</UniqueIdentifier>
+    <Filter Include="Source Files\Views\CustomTitleBar">
+      <UniqueIdentifier>{14d252f3-8bc0-4f06-b55e-4181c4b608c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\icons">
+      <UniqueIdentifier>{5342a6f5-dc4c-46cc-93f2-4cd458147755}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\styles">
+      <UniqueIdentifier>{219aac6d-2206-40a2-b6e6-caea81317ef3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +124,15 @@
     </ClCompile>
     <ClCompile Include="Views\MainView\MainView.cpp">
       <Filter>Source Files\Views\MainView</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\Ribbon\RibbonTab\RibbonTab.cpp">
+      <Filter>Source Files\Views\Ribbon\RibbonTab</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\Ribbon\RibbonGroup\RibbonGroup.cpp">
+      <Filter>Source Files\Views\Ribbon\RibbonGroup</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\CustomTitleBar\CustomTitleBar.cpp">
+      <Filter>Source Files\Views\CustomTitleBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,5 +183,69 @@
     <QtMoc Include="Views\MainView\MainView.h">
       <Filter>Source Files\Views\MainView</Filter>
     </QtMoc>
+    <QtMoc Include="Views\Ribbon\RibbonTab\RibbonTab.h">
+      <Filter>Source Files\Views\Ribbon\RibbonTab</Filter>
+    </QtMoc>
+    <QtMoc Include="Views\Ribbon\RibbonGroup\RibbonGroup.h">
+      <Filter>Source Files\Views\Ribbon\RibbonGroup</Filter>
+    </QtMoc>
+    <QtMoc Include="Views\CustomTitleBar\CustomTitleBar.h">
+      <Filter>Source Files\Views\CustomTitleBar</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resources\icons\ellipse-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\image-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\rectangle-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\redo-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\save-as-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\save-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\triangle-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\undo-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\open-file-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\styles\RibbonStyles.qss">
+      <Filter>Resource Files\styles</Filter>
+    </None>
+    <None Include="..\resources\styles\TitleBarStyles.qss">
+      <Filter>Resource Files\styles</Filter>
+    </None>
+    <None Include="..\resources\styles\BaseStyles.qss">
+      <Filter>Resource Files\styles</Filter>
+    </None>
+    <None Include="..\resources\icons\window-close-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\window-maximize-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\window-minimize-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\window-restore-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\resources\resources.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>
