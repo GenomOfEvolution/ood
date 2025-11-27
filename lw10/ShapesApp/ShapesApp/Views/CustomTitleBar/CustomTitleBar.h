@@ -3,7 +3,8 @@
 #include <QMainWindow>
 #include <qtoolbutton.h>
 
-class CustomTitleBar : public QWidget {
+class CustomTitleBar : public QWidget 
+{
     Q_OBJECT
 public:
     explicit CustomTitleBar(QWidget* parent = nullptr);
@@ -23,8 +24,11 @@ private:
     void updateMaximizeButtonIcon();
 
     QMainWindow* m_mainWindow = nullptr;
+
     QToolButton* m_undoButton = nullptr;
     QToolButton* m_redoButton = nullptr;
+    QToolButton* m_saveButton = nullptr;
+
     QToolButton* m_maxButton = nullptr;
     QPoint m_dragPosition;
 };

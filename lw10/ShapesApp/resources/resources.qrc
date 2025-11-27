@@ -16,5 +16,6 @@
         <file>styles/RibbonStyles.qss</file>
         <file>styles/TitleBarStyles.qss</file>
         <file>styles/BaseStyles.qss</file>
+        <file>icons/save-icon-white.svg</file>
     </qresource>
 </RCC>

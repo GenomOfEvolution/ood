@@ -7,15 +7,14 @@
 
 namespace 
 {
-    void LoadStyleSheet(QWidget* widget, const QString& resourcePath) 
+    QString LoadResource(const QString& path)
     {
-        QFile file(resourcePath);
+        QFile file(path);
         if (file.open(QFile::ReadOnly)) 
         {
-            QString styleSheet = QLatin1String(file.readAll());
-            widget->setStyleSheet(styleSheet);
-            file.close();
+            return file.readAll();
         }
+        return QString();
     }
 }
 
@@ -61,21 +60,41 @@ void UI::MainView::SetupRibbonBar()
 {
     m_ribbonBar = new RibbonBar(this);
 
-    // Вкладки
-    RibbonTab* fileTab = new RibbonTab();
-    RibbonTab* homeTab = new RibbonTab();
-    RibbonTab* insertTab = new RibbonTab();
+    // Создание вкладок
+    auto fileTab = new RibbonTab();
+    auto homeTab = new RibbonTab();
+    auto insertTab = new RibbonTab();
 
     m_ribbonBar->addRibbonTab("File", fileTab);
     m_ribbonBar->addRibbonTab("Home", homeTab);
     m_ribbonBar->addRibbonTab("Insert", insertTab);
+
+    // === File Tab ===
+    auto fileGroup = fileTab->addGroup("File");
+    fileGroup->addButton("Open", ":/icons/open-file-icon.svg", [this]() { });
+    fileGroup->addButton("Save", ":/icons/save-icon.svg", [this]() { });
+    fileGroup->addButton("Save As", ":/icons/save-as-icon.svg", [this]() { });
+
+    // === Home Tab ===
+    auto shapesGroup = homeTab->addGroup("Shapes");
+    shapesGroup->addButton("Rectangle", ":/icons/rectangle-icon.svg", [this]() { });
+    shapesGroup->addButton("Triangle", ":/icons/triangle-icon.svg", [this]() {  });
+    shapesGroup->addButton("Ellipse", ":/icons/ellipse-icon.svg", [this]() {  });
+
+    // === Insert Tab ===
+    auto mediaGroup = insertTab->addGroup("Media");
+    mediaGroup->addButton("Image", ":/icons/image-icon.svg", [this]() {  });
 
     m_mainLayout->addWidget(m_ribbonBar, 0);
 }
 
 void UI::MainView::LoadStyles()
 {
-    LoadStyleSheet(this, ":/styles/BaseStyles.qss");
-    LoadStyleSheet(m_titleBar, ":/styles/TitleBarStyles.qss");
-    LoadStyleSheet(m_ribbonBar, ":/styles/RibbonStyles.qss");
+    QString baseStyle = LoadResource(":/styles/BaseStyles.qss");
+    QString titleStyle = LoadResource(":/styles/TitleBarStyles.qss");
+    QString ribbonStyle = LoadResource(":/styles/RibbonStyles.qss");
+
+    setStyleSheet(baseStyle + ribbonStyle);
+
+    m_titleBar->setStyleSheet(titleStyle);
 }

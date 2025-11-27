@@ -1,12 +1,16 @@
 #pragma once
-#include <QFrame>
+#include <QVBoxLayout>
+#include <QScrollArea>
+#include <QToolButton>
+#include <functional>
 
-namespace UI 
+class RibbonGroup : public QWidget 
 {
-    class RibbonGroup : public QFrame 
-    {
-        Q_OBJECT
-    public:
-        explicit RibbonGroup(const QString& title, QWidget* parent = nullptr);
-    };
-}
+    Q_OBJECT
+public:
+    explicit RibbonGroup(const QString& title, QWidget* parent = nullptr);
+    void addButton(const QString& text, const QString& iconPath = "", std::function<void()> callback = nullptr);
+
+private:
+    QHBoxLayout* m_buttonLayout;
+};

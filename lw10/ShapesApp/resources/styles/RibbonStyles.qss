@@ -1,0 +1,91 @@
+QTabWidget::pane 
+{
+    border-top: none;
+    top: -1px; 
+    background: white;
+}
+
+QTabBar::tab 
+{
+    padding: 8px 16px; 
+    min-width: 80px;
+    font-weight: bold;
+    font-size: 10pt;
+    color: #333;
+}
+
+QTabBar::tab:!selected 
+{
+    background-color: #f3f2f1; 
+    border: none;
+    font: normal;
+}
+
+QTabBar::tab:selected 
+{
+    border-bottom: 3px solid #b7462a;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #f3f2f1;
+    font: bold;
+}
+
+QTabBar::tab:selected:hover 
+{
+    background-color: white;
+}
+
+QTabBar::tab:!selected:hover 
+{
+    background-color: white; 
+    font: bold;
+}
+
+QTabBar 
+{
+    border: none;
+}
+
+QWidget#RibbonBar QWidget#RibbonTab {
+    border: none;
+    background: #f3f2f1;
+}
+
+QWidget#RibbonBar QWidget#RibbonTab[selected="true"] {
+    background: rgb(64, 128, 255);
+}
+
+QWidget#RibbonBar QWidget#RibbonGroup {
+    border: 2px solid #ff0000; /* Ярко-красная рамка */
+    border-radius: 4px;
+    background: #ff4444; /* Насыщенный красный фон */
+}
+
+QWidget#RibbonBar QLabel#RibbonGroupTitle {
+    font-weight: normal;
+    color: black;
+    font-size: 10pt;
+    background: transparent;
+    border-bottom: 1px solid #b7462a;
+    padding: 2px;
+    margin-bottom: 6px;
+}
+
+QWidget#RibbonBar QWidget#RibbonGroup QToolButton {
+    padding: 6px;
+    font-size: 9pt;
+    color: white;
+    background: #eb6f50;
+    border: 1px solid #b7462a;
+    border-radius: 3px;
+    min-width: 80px;
+}
+
+QWidget#RibbonBar QWidget#RibbonGroup QToolButton:hover {
+    background: #f56845;
+}
+
+QWidget#RibbonBar QWidget#RibbonGroup QToolButton:pressed {
+    background: #eb4921;
+}

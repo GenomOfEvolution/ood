@@ -1,5 +1,5 @@
 MainWindow {
-    background-color: white; 
+    background-color: #f3f2f1; 
     border: 1px solid #888;
 }
 

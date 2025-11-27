@@ -81,9 +81,6 @@
     <Filter Include="Source Files\Views\Ribbon\RibbonGroup">
       <UniqueIdentifier>{2027657e-cfea-410d-ac60-eb8ea3cf3f38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Views\Ribbon\RibbonButton">
-      <UniqueIdentifier>{c4a9d507-41b2-4661-af12-dff4ac0bf12f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Views\MainView">
       <UniqueIdentifier>{e149c9ef-8c84-48d6-a316-1bf2c2ac7859}</UniqueIdentifier>
     </Filter>

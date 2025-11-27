@@ -1,37 +1,36 @@
 #include "RibbonTab.h"
 #include <QVBoxLayout>
-#include <qvariant.h>
-#include <qstyle.h>
+#include <QLabel>
+#include <QToolButton>
+#include <QIcon>
+#include <QStyle>
 
-UI::RibbonTab::RibbonTab(QWidget* parent)
+RibbonTab::RibbonTab(QWidget* parent)
     : QScrollArea(parent)
 {
     setObjectName("RibbonTab");
-
+    setAttribute(Qt::WA_Hover);
     setFrameShape(QFrame::NoFrame);
     setWidgetResizable(true);
 
-    QWidget* content = new QWidget(this);
-    QVBoxLayout* layout = new QVBoxLayout(content);
-    layout->setContentsMargins(10, 5, 10, 10); 
-    setWidget(content);
+    auto contentWidget = new QWidget(this);
+    m_mainLayout = new QVBoxLayout(contentWidget);
+    m_mainLayout->setContentsMargins(10, 5, 10, 10);
+    m_mainLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+
+    setWidget(contentWidget);
 }
 
-void UI::RibbonTab::addGroup(const QString& groupName, QWidget* groupContent)
+RibbonGroup* RibbonTab::addGroup(const QString& groupName)
 {
-    if (!widget()) return;
-
-    QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(widget()->layout());
-    if (layout) 
-    {
-        layout->addWidget(groupContent);
-    }
+    auto group = new RibbonGroup(groupName, this);
+    m_mainLayout->addWidget(group);
+    return group;
 }
 
-void UI::RibbonTab::setSelected(bool selected)
+void RibbonTab::setSelected(bool selected)
 {
     if (m_selected == selected) return;
-
     m_selected = selected;
     setProperty("selected", selected);
     style()->polish(this);

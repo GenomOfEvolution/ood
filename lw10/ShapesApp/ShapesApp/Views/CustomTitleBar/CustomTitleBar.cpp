@@ -8,17 +8,19 @@ CustomTitleBar::CustomTitleBar(QWidget* parent) : QWidget(parent)
     setObjectName("titleBar");
 
     QToolButton* minButton = new QToolButton();
+    minButton->setObjectName("minButton"); 
     minButton->setIcon(QIcon(":/icons/window-minimize-icon.svg"));
     minButton->setToolTip("Minimize");
 
     QToolButton* maxButton = new QToolButton();
+    maxButton->setObjectName("maxButton"); 
     maxButton->setIcon(QIcon(":/icons/window-maximize-icon.svg"));
     maxButton->setToolTip("Maximize");
 
     QToolButton* closeButton = new QToolButton();
+    closeButton->setObjectName("closeButton");
     closeButton->setIcon(QIcon(":/icons/window-close-icon.svg"));
     closeButton->setToolTip("Close");
-    closeButton->setObjectName("closeButton");
 
     // Кнопки Undo/Redo
     m_undoButton = new QToolButton();
@@ -29,11 +31,17 @@ CustomTitleBar::CustomTitleBar(QWidget* parent) : QWidget(parent)
     m_redoButton->setIcon(QIcon(":/icons/redo-icon.svg"));
     m_redoButton->setToolTip("Redo (Ctrl+Y)");
 
+    m_saveButton = new QToolButton();
+    m_saveButton->setIcon(QIcon(":/icons/save-icon-white.svg"));
+    m_saveButton->setToolTip("Save (Ctrl+S)");
+    m_saveButton->setObjectName("saveButton");
+
     // Сборка макета
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
+    layout->addWidget(m_saveButton);
     layout->addWidget(m_undoButton);
     layout->addWidget(m_redoButton);
     layout->addStretch();
