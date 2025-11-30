@@ -6,3 +6,9 @@ MainWindow {
 #centralWidget {
     background-color: #b7462a;
 }
+
+QGraphicsView {
+    background-color: white;
+    border: 1px solid #b7462a;
+    margin: 1px;
+}

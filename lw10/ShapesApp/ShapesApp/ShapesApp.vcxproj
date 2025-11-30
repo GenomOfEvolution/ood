@@ -113,21 +113,28 @@
     <ClCompile Include="Views\Ribbon\RibbonBar\RibbonBar.cpp" />
     <ClCompile Include="Views\Ribbon\RibbonGroup\RibbonGroup.cpp" />
     <ClCompile Include="Views\Ribbon\RibbonTab\RibbonTab.cpp" />
+    <ClCompile Include="Views\Workspace\WorkspaceWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Controllers\AppController\AppController.h" />
     <ClInclude Include="Models\Command\AbstractCommand.h" />
     <ClInclude Include="Models\Command\AbstractUndoablecommand.h" />
     <ClInclude Include="Models\Command\ICommand.h" />
     <ClInclude Include="Models\Command\IUndoableCommand.h" />
+    <ClInclude Include="Models\Document\Document.h" />
+    <ClInclude Include="Models\Document\IDocument.h" />
     <ClInclude Include="Models\History\CommandHistory.h" />
     <ClInclude Include="Models\History\ICommandExecutor.h" />
     <ClInclude Include="Models\History\IHistory.h" />
+    <ClInclude Include="Models\Selection\DocumentSelection.h" />
+    <ClInclude Include="Models\Selection\ISelection.h" />
     <ClInclude Include="Models\Shape\Ellipse\CEllipse.h" />
     <ClInclude Include="Models\Shape\IShape.h" />
     <ClInclude Include="Models\Shape\Rectangle\CRectangle.h" />
     <ClInclude Include="Models\Shape\ShapeGroup\IGroup.h" />
     <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h" />
     <ClInclude Include="Models\Shape\Triangle\CTriangle.h" />
+    <QtMoc Include="Views\Workspace\WorkspaceWidget.h" />
     <QtMoc Include="Views\CustomTitleBar\CustomTitleBar.h" />
     <QtMoc Include="Views\Ribbon\RibbonGroup\RibbonGroup.h" />
     <QtMoc Include="Views\Ribbon\RibbonTab\RibbonTab.h" />
@@ -154,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="..\resources\resources.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\resources\icons\app-icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

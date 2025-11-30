@@ -1,4 +1,4 @@
-#include "RibbonGroup.h"
+п»ї#include "RibbonGroup.h"
 #include <QLabel>
 
 RibbonGroup::RibbonGroup(const QString& title, QWidget* parent)
@@ -9,14 +9,13 @@ RibbonGroup::RibbonGroup(const QString& title, QWidget* parent)
     mainLayout->setContentsMargins(0, 0, 0, 4);
     mainLayout->setSpacing(2);
 
-    // Контейнер для кнопок
     auto buttonContainer = new QWidget(this);
     buttonContainer->setObjectName("RibbonGroupContent");
     m_buttonLayout = new QHBoxLayout(buttonContainer);
     m_buttonLayout->setContentsMargins(4, 0, 4, 0);
     m_buttonLayout->setAlignment(Qt::AlignCenter);
 
-    // Заголовок группы
+    // Р—Р°РіРѕР»РѕРІРѕРє РіСЂСѓРїРїС‹
     auto titleLabel = new QLabel(title, this);
     titleLabel->setObjectName("RibbonGroupTitle");
     titleLabel->setAlignment(Qt::AlignHCenter);

@@ -4,6 +4,7 @@
 #include <memory>
 #include "../Ribbon/RibbonBar/RibbonBar.h"
 #include "../../Views/CustomTitleBar/CustomTitleBar.h"
+#include "../../Views/Workspace/WorkspaceWidget.h"
 
 namespace UI
 {
@@ -20,10 +21,13 @@ namespace UI
 		void SetupUI();
 		void SetupCustomTitleBar();
 		void SetupRibbonBar();
+		void SetupWorkspace();
+
 		void LoadStyles();
 
 		RibbonBar* m_ribbonBar = nullptr;
 		QVBoxLayout* m_mainLayout = nullptr;
 		CustomTitleBar* m_titleBar = nullptr;
+		WorkspaceWidget* m_workspaceWidget;
 	};
 } // namespace UI

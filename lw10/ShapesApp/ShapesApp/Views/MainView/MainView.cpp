@@ -48,6 +48,7 @@ void UI::MainView::SetupUI()
 {
     SetupCustomTitleBar();
     SetupRibbonBar();
+    SetupWorkspace();
 }
 
 void UI::MainView::SetupCustomTitleBar()
@@ -86,6 +87,12 @@ void UI::MainView::SetupRibbonBar()
     mediaGroup->addButton("Image", ":/icons/image-icon.svg", [this]() {  });
 
     m_mainLayout->addWidget(m_ribbonBar, 0);
+}
+
+void UI::MainView::SetupWorkspace()
+{
+    m_workspaceWidget = new WorkspaceWidget(this);
+    m_mainLayout->addWidget(m_workspaceWidget, 1);
 }
 
 void UI::MainView::LoadStyles()

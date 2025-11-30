@@ -7,6 +7,7 @@ using namespace UI;
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
+    app.setWindowIcon(QIcon(":/icons/app-icon.ico"));
 
     MainView view;
 
@@ -15,7 +16,6 @@ int main(int argc, char* argv[])
     view.move((screenGeometry.width() - view.width()) / 2,
         (screenGeometry.height() - view.height()) / 2);
 
-    // 4. Показываем UI
     view.show();
 
     return app.exec();

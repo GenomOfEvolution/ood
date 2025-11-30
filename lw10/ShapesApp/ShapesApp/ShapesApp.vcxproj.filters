@@ -96,6 +96,15 @@
     <Filter Include="Resource Files\styles">
       <UniqueIdentifier>{219aac6d-2206-40a2-b6e6-caea81317ef3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Controllers\AppController">
+      <UniqueIdentifier>{eddf81b3-a76d-4e9b-940b-fedeaa99f1b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Selection">
+      <UniqueIdentifier>{6a736b10-9323-4c74-97b8-22521cf5ec04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views\Workspace">
+      <UniqueIdentifier>{0ef262f6-4017-4669-b252-b5918da3dc9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -130,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="Views\CustomTitleBar\CustomTitleBar.cpp">
       <Filter>Source Files\Views\CustomTitleBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\Workspace\WorkspaceWidget.cpp">
+      <Filter>Source Files\Views\Workspace</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +184,21 @@
     <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h">
       <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
     </ClInclude>
+    <ClInclude Include="Controllers\AppController\AppController.h">
+      <Filter>Source Files\Controllers\AppController</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Document\Document.h">
+      <Filter>Source Files\Models\Document</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Document\IDocument.h">
+      <Filter>Source Files\Models\Document</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Selection\ISelection.h">
+      <Filter>Source Files\Models\Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Selection\DocumentSelection.h">
+      <Filter>Source Files\Models\Selection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Views\Ribbon\RibbonBar\RibbonBar.h">
@@ -188,6 +215,9 @@
     </QtMoc>
     <QtMoc Include="Views\CustomTitleBar\CustomTitleBar.h">
       <Filter>Source Files\Views\CustomTitleBar</Filter>
+    </QtMoc>
+    <QtMoc Include="Views\Workspace\WorkspaceWidget.h">
+      <Filter>Source Files\Views\Workspace</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -244,5 +274,10 @@
     <QtRcc Include="..\resources\resources.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\resources\icons\app-icon.ico">
+      <Filter>Resource Files\icons</Filter>
+    </Image>
   </ItemGroup>
 </Project>
