@@ -102,12 +102,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Controllers\DocumentController\DocumentController.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Models\DocumentItem\Image\CImage.cpp" />
+    <ClCompile Include="Models\DocumentItem\Shape\Ellipse\CEllipse.cpp" />
+    <ClCompile Include="Models\DocumentItem\Shape\Rectangle\CRectangle.cpp" />
+    <ClCompile Include="Models\DocumentItem\Shape\Triangle\CTriangle.cpp" />
+    <ClCompile Include="Models\DocumentSerializer\XmlSerializer.cpp" />
+    <ClCompile Include="Models\Document\DocumentModel.cpp" />
     <ClCompile Include="Models\History\CommandHistory.cpp" />
-    <ClCompile Include="Models\Shape\Ellipse\CEllipse.cpp" />
-    <ClCompile Include="Models\Shape\Rectangle\CRectangle.cpp" />
-    <ClCompile Include="Models\Shape\ShapeGroup\ShapeGroup.cpp" />
-    <ClCompile Include="Models\Shape\Triangle\CTriangle.cpp" />
     <ClCompile Include="Views\CustomTitleBar\CustomTitleBar.cpp" />
     <ClCompile Include="Views\MainView\MainView.cpp" />
     <ClCompile Include="Views\Ribbon\RibbonBar\RibbonBar.cpp" />
@@ -116,24 +119,30 @@
     <ClCompile Include="Views\Workspace\WorkspaceWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Controllers\AppController\AppController.h" />
+    <ClInclude Include="Controllers\DocumentController\DocumentController.h" />
+    <ClInclude Include="Controllers\DocumentController\IDocumentController.h" />
+    <ClInclude Include="Models\Shared\Geometry.h" />
     <ClInclude Include="Models\Command\AbstractCommand.h" />
-    <ClInclude Include="Models\Command\AbstractUndoablecommand.h" />
+    <ClInclude Include="Models\Command\AbstractUndoableCommand.h" />
+    <ClInclude Include="Models\Command\DeleteItemsCommand\DeleteItemsCommand.h" />
     <ClInclude Include="Models\Command\ICommand.h" />
     <ClInclude Include="Models\Command\IUndoableCommand.h" />
-    <ClInclude Include="Models\Document\Document.h" />
+    <ClInclude Include="Models\DocumentItem\DocumentItem.h" />
+    <ClInclude Include="Models\DocumentItem\Image\CImage.h" />
+    <ClInclude Include="Models\DocumentItem\Image\IImage.h" />
+    <ClInclude Include="Models\DocumentItem\Shape\Ellipse\CEllipse.h" />
+    <ClInclude Include="Models\DocumentItem\Shape\IShape.h" />
+    <ClInclude Include="Models\DocumentItem\Shape\Rectangle\CRectangle.h" />
+    <ClInclude Include="Models\DocumentItem\Shape\Triangle\CTriangle.h" />
+    <ClInclude Include="Models\DocumentSerializer\ISerializer.h" />
+    <ClInclude Include="Models\DocumentSerializer\XmlSerializer.h" />
+    <ClInclude Include="Models\Document\DocumentModel.h" />
     <ClInclude Include="Models\Document\IDocument.h" />
     <ClInclude Include="Models\History\CommandHistory.h" />
     <ClInclude Include="Models\History\ICommandExecutor.h" />
     <ClInclude Include="Models\History\IHistory.h" />
     <ClInclude Include="Models\Selection\DocumentSelection.h" />
     <ClInclude Include="Models\Selection\ISelection.h" />
-    <ClInclude Include="Models\Shape\Ellipse\CEllipse.h" />
-    <ClInclude Include="Models\Shape\IShape.h" />
-    <ClInclude Include="Models\Shape\Rectangle\CRectangle.h" />
-    <ClInclude Include="Models\Shape\ShapeGroup\IGroup.h" />
-    <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h" />
-    <ClInclude Include="Models\Shape\Triangle\CTriangle.h" />
     <QtMoc Include="Views\Workspace\WorkspaceWidget.h" />
     <QtMoc Include="Views\CustomTitleBar\CustomTitleBar.h" />
     <QtMoc Include="Views\Ribbon\RibbonGroup\RibbonGroup.h" />

@@ -25,7 +25,4 @@ private:
     QGraphicsView* m_view;
 
     QPointF m_lastCenter;
-    qreal m_currentScale = 1.0;
-    const qreal MIN_SCALE = 0.0001;
-    const qreal MAX_SCALE = 10000.0;
 };

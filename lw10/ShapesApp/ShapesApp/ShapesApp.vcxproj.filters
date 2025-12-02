@@ -30,9 +30,6 @@
     <Filter Include="Source Files\Models\History">
       <UniqueIdentifier>{553831b9-0b54-430d-bd31-5787f33599bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Models\Shape">
-      <UniqueIdentifier>{bb1b3378-94de-4242-a4e9-902510544cc8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Models\Command">
       <UniqueIdentifier>{30b29899-bff4-4fb8-9a07-918683025548}</UniqueIdentifier>
     </Filter>
@@ -56,21 +53,6 @@
     </Filter>
     <Filter Include="Source Files\Models\Command\AddShapeCommand">
       <UniqueIdentifier>{aec22c12-f33c-416f-af11-f59f0b40e272}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Shape\Triangle">
-      <UniqueIdentifier>{f833afa4-fc72-4fc2-8efe-b3f3f0e26e02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Shape\Rectangle">
-      <UniqueIdentifier>{7c802d5a-cbf4-468b-a2f9-c275aacfb4e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Shape\ShapeGroup">
-      <UniqueIdentifier>{26c44b60-9893-4677-93b1-a961a952db2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Shape\Ellipse">
-      <UniqueIdentifier>{7a54e8b5-bea7-46a3-abbe-c6c8ec5b071d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Command\RemoveShapeCommand">
-      <UniqueIdentifier>{37d33b9e-a4c3-4e0e-bf55-9226928ce71a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Views\Ribbon">
       <UniqueIdentifier>{fc30d0e8-d854-4968-acfc-59f839f7c03a}</UniqueIdentifier>
@@ -96,14 +78,41 @@
     <Filter Include="Resource Files\styles">
       <UniqueIdentifier>{219aac6d-2206-40a2-b6e6-caea81317ef3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Controllers\AppController">
-      <UniqueIdentifier>{eddf81b3-a76d-4e9b-940b-fedeaa99f1b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Models\Selection">
       <UniqueIdentifier>{6a736b10-9323-4c74-97b8-22521cf5ec04}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Views\Workspace">
       <UniqueIdentifier>{0ef262f6-4017-4669-b252-b5918da3dc9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\DocumentSerializer">
+      <UniqueIdentifier>{bfe6ee91-895b-4548-a64a-0edaea003523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\DeleteItemsCommand">
+      <UniqueIdentifier>{37d33b9e-a4c3-4e0e-bf55-9226928ce71a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\DocumentItem">
+      <UniqueIdentifier>{6378c31a-9b16-44b2-b95e-06f07b1b2604}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\DocumentItem\Shape">
+      <UniqueIdentifier>{1f1b28bd-f08e-483f-a8a0-71e464818668}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\DocumentItem\Image">
+      <UniqueIdentifier>{181b0625-927e-47e6-83c3-96a9dcd96391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Shared">
+      <UniqueIdentifier>{95c9d5d3-3f5f-4e49-9d31-b2d39ebc35f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\DocumentItem\Shape\Ellipse">
+      <UniqueIdentifier>{629c1591-ef9a-4c38-9798-7cbb7cd6ce5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\DocumentItem\Shape\Rectangle">
+      <UniqueIdentifier>{acfac361-05fb-4d96-b16b-64c02a39ff23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\DocumentItem\Shape\Triangle">
+      <UniqueIdentifier>{cfc13476-cbf9-4d91-9006-c7efd2ff3f6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers\DocmentController">
+      <UniqueIdentifier>{7735b8c6-13ae-4011-90ea-9c1a0bac1eff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -112,18 +121,6 @@
     </ClCompile>
     <ClCompile Include="Models\History\CommandHistory.cpp">
       <Filter>Source Files\Models\History</Filter>
-    </ClCompile>
-    <ClCompile Include="Models\Shape\Triangle\CTriangle.cpp">
-      <Filter>Source Files\Models\Shape\Triangle</Filter>
-    </ClCompile>
-    <ClCompile Include="Models\Shape\Rectangle\CRectangle.cpp">
-      <Filter>Source Files\Models\Shape\Rectangle</Filter>
-    </ClCompile>
-    <ClCompile Include="Models\Shape\Ellipse\CEllipse.cpp">
-      <Filter>Source Files\Models\Shape\Ellipse</Filter>
-    </ClCompile>
-    <ClCompile Include="Models\Shape\ShapeGroup\ShapeGroup.cpp">
-      <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
     </ClCompile>
     <ClCompile Include="Views\Ribbon\RibbonBar\RibbonBar.cpp">
       <Filter>Source Files\Views\Ribbon\RibbonBar</Filter>
@@ -143,12 +140,33 @@
     <ClCompile Include="Views\Workspace\WorkspaceWidget.cpp">
       <Filter>Source Files\Views\Workspace</Filter>
     </ClCompile>
+    <ClCompile Include="Models\Document\DocumentModel.cpp">
+      <Filter>Source Files\Models\Document</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\DocumentSerializer\XmlSerializer.cpp">
+      <Filter>Source Files\Models\DocumentSerializer</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\DocumentItem\Image\CImage.cpp">
+      <Filter>Source Files\Models\DocumentItem\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\DocumentItem\Shape\Ellipse\CEllipse.cpp">
+      <Filter>Source Files\Models\DocumentItem\Shape\Ellipse</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\DocumentItem\Shape\Triangle\CTriangle.cpp">
+      <Filter>Source Files\Models\DocumentItem\Shape\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\DocumentItem\Shape\Rectangle\CRectangle.cpp">
+      <Filter>Source Files\Models\DocumentItem\Shape\Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Controllers\DocumentController\DocumentController.cpp">
+      <Filter>Source Files\Controllers\DocmentController</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Models\Command\AbstractCommand.h">
       <Filter>Source Files\Models\Command</Filter>
     </ClInclude>
-    <ClInclude Include="Models\Command\AbstractUndoablecommand.h">
+    <ClInclude Include="Models\Command\AbstractUndoableCommand.h">
       <Filter>Source Files\Models\Command</Filter>
     </ClInclude>
     <ClInclude Include="Models\Command\ICommand.h">
@@ -166,28 +184,7 @@
     <ClInclude Include="Models\History\CommandHistory.h">
       <Filter>Source Files\Models\History</Filter>
     </ClInclude>
-    <ClInclude Include="Models\Shape\IShape.h">
-      <Filter>Source Files\Models\Shape</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\Shape\Ellipse\CEllipse.h">
-      <Filter>Source Files\Models\Shape\Ellipse</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\Shape\ShapeGroup\IGroup.h">
-      <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\Shape\Rectangle\CRectangle.h">
-      <Filter>Source Files\Models\Shape\Rectangle</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\Shape\Triangle\CTriangle.h">
-      <Filter>Source Files\Models\Shape\Triangle</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\Shape\ShapeGroup\ShapeGroup.h">
-      <Filter>Source Files\Models\Shape\ShapeGroup</Filter>
-    </ClInclude>
-    <ClInclude Include="Controllers\AppController\AppController.h">
-      <Filter>Source Files\Controllers\AppController</Filter>
-    </ClInclude>
-    <ClInclude Include="Models\Document\Document.h">
+    <ClInclude Include="Models\Document\DocumentModel.h">
       <Filter>Source Files\Models\Document</Filter>
     </ClInclude>
     <ClInclude Include="Models\Document\IDocument.h">
@@ -198,6 +195,45 @@
     </ClInclude>
     <ClInclude Include="Models\Selection\DocumentSelection.h">
       <Filter>Source Files\Models\Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentSerializer\ISerializer.h">
+      <Filter>Source Files\Models\DocumentSerializer</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentSerializer\XmlSerializer.h">
+      <Filter>Source Files\Models\DocumentSerializer</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Command\DeleteItemsCommand\DeleteItemsCommand.h">
+      <Filter>Source Files\Models\Command\DeleteItemsCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentItem\DocumentItem.h">
+      <Filter>Source Files\Models\DocumentItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentItem\Image\CImage.h">
+      <Filter>Source Files\Models\DocumentItem\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentItem\Image\IImage.h">
+      <Filter>Source Files\Models\DocumentItem\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentItem\Shape\IShape.h">
+      <Filter>Source Files\Models\DocumentItem\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentItem\Shape\Ellipse\CEllipse.h">
+      <Filter>Source Files\Models\DocumentItem\Shape\Ellipse</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentItem\Shape\Triangle\CTriangle.h">
+      <Filter>Source Files\Models\DocumentItem\Shape\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\DocumentItem\Shape\Rectangle\CRectangle.h">
+      <Filter>Source Files\Models\DocumentItem\Shape\Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Shared\Geometry.h">
+      <Filter>Source Files\Models\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\DocumentController\IDocumentController.h">
+      <Filter>Source Files\Controllers\DocmentController</Filter>
+    </ClInclude>
+    <ClInclude Include="Controllers\DocumentController\DocumentController.h">
+      <Filter>Source Files\Controllers\DocmentController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

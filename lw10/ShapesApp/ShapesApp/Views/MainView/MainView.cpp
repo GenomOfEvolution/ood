@@ -4,6 +4,8 @@
 
 #include <QFile>
 #include <QScreen>
+#include <QApplication>
+#include <qfiledialog.h>
 
 namespace 
 {
@@ -18,10 +20,15 @@ namespace
     }
 }
 
-
-UI::MainView::MainView(QWidget* parent)
+UI::MainView::MainView(IDocumentController* controller, QWidget* parent)
 	: QMainWindow(parent)
+    , m_controller(controller)
 {
+    const QRect screenGeometry = QGuiApplication::primaryScreen()->availableGeometry();
+    this->resize(1200, 700);
+    this->move((screenGeometry.width() - this->width()) / 2,
+        (screenGeometry.height() - this->height()) / 2);
+
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_OpaquePaintEvent);
 
@@ -72,19 +79,68 @@ void UI::MainView::SetupRibbonBar()
 
     // === File Tab ===
     auto fileGroup = fileTab->addGroup("File");
-    fileGroup->addButton("Open", ":/icons/open-file-icon.svg", [this]() { });
-    fileGroup->addButton("Save", ":/icons/save-icon.svg", [this]() { });
-    fileGroup->addButton("Save As", ":/icons/save-as-icon.svg", [this]() { });
+    fileGroup->addButton("Open", ":/icons/open-file-icon.svg", 
+        [this]() 
+        {
+            QString path = QFileDialog::getOpenFileName(
+                this, "Open Document", "", "Documents (*.xml)"
+            );
+            if (!path.isEmpty()) 
+            {
+                m_controller->Load(path.toStdString());
+            }
+        });
 
-    // === Home Tab ===
+    fileGroup->addButton("Save", ":/icons/save-icon.svg", 
+        [this]() 
+        {
+            if (m_controller->WasDocumentSaved())
+            {
+                m_controller->Save();
+            }
+            else
+            {
+                QString path = QFileDialog::getSaveFileName(
+                    this, "Save Document As", "", "Documents (*.xml)"
+                );
+                if (!path.isEmpty()) {
+                    m_controller->SaveAs(path.toStdString());
+                }
+            }
+        });
+
+    fileGroup->addButton("Save As", ":/icons/save-as-icon.svg", 
+        [this]() {
+            QString path = QFileDialog::getSaveFileName(
+                this, "Save Document As", "", "Documents (*.xml)"
+            );
+            if (!path.isEmpty()) {
+                m_controller->SaveAs(path.toStdString());
+            }
+        });
+
+    // === Home Tab - Shapes ===
     auto shapesGroup = homeTab->addGroup("Shapes");
-    shapesGroup->addButton("Rectangle", ":/icons/rectangle-icon.svg", [this]() { });
-    shapesGroup->addButton("Triangle", ":/icons/triangle-icon.svg", [this]() {  });
-    shapesGroup->addButton("Ellipse", ":/icons/ellipse-icon.svg", [this]() {  });
+    shapesGroup->addButton("Rectangle", ":/icons/rectangle-icon.svg", [this]() {
+        m_controller->AddShape("rectangle");
+        });
+    shapesGroup->addButton("Triangle", ":/icons/triangle-icon.svg", [this]() {
+        m_controller->AddShape("triangle");
+        });
+    shapesGroup->addButton("Ellipse", ":/icons/ellipse-icon.svg", [this]() {
+        m_controller->AddShape("ellipse");
+        });
 
     // === Insert Tab ===
     auto mediaGroup = insertTab->addGroup("Media");
-    mediaGroup->addButton("Image", ":/icons/image-icon.svg", [this]() {  });
+    mediaGroup->addButton("Image", ":/icons/image-icon.svg", [this]() {
+        QString path = QFileDialog::getOpenFileName(
+            this, "Insert Image", "", "Images (*.png *.jpg *.bmp)"
+        );
+        if (!path.isEmpty()) {
+            m_controller->AddImageItem(path.toStdString());
+        }
+        });
 
     m_mainLayout->addWidget(m_ribbonBar, 0);
 }

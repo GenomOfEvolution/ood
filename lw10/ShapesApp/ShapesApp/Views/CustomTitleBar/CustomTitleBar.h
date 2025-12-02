@@ -9,9 +9,6 @@ class CustomTitleBar : public QWidget
 public:
     explicit CustomTitleBar(QWidget* parent = nullptr);
 
-    QToolButton* undoButton() const { return m_undoButton; }
-    QToolButton* redoButton() const { return m_redoButton; }
-
 protected:
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
