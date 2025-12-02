@@ -1,5 +1,6 @@
 #include "DocumentController.h"
 #include "../../Models/DocumentItem/DocumentItem.h"
+#include "../../Models/Command/AddShapeCommand/AddShapeCommand.h"
 
 DocumentController::DocumentController(
 	std::shared_ptr<IDocument>&& document,
@@ -55,8 +56,9 @@ void DocumentController::Redo()
 
 void DocumentController::AddShape(const std::string& description)
 {
-	//m_history->AddAndExecuteCommand();
-	m_document->AddItem(std::move(m_itemFactory.CreateItem(description)));
+	auto cmd = std::make_unique<AddShapeCommand>(*m_document, description);
+	m_history->AddAndExecuteCommand(std::move(cmd));
+	
 	emit itemAdded(description);
 }
 

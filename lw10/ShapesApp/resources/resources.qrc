@@ -18,5 +18,6 @@
         <file>styles/BaseStyles.qss</file>
         <file>icons/save-icon-white.svg</file>
         <file>icons/app-icon.ico</file>
+        <file>icons/delete-item-icon.svg</file>
     </qresource>
 </RCC>

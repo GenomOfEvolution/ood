@@ -6,13 +6,6 @@
 #include <sstream>
 
 DocItemFactory::DocItemFactory()
-    : m_actionMap
-    {
-        { "rectangle", [this](std::istream& input) {return CreateRectangle(input); }},
-        { "triangle",  [this](std::istream& input) {return CreateTriangle(input); }},
-        { "ellipse",  [this](std::istream& input) {return CreateEllipse(input); }},
-        { "image",  [this](std::istream& input) {return CreateImage(input); }},
-    }
 {
 }
 

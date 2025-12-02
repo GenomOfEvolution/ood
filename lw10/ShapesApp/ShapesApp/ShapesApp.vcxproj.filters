@@ -39,18 +39,6 @@
     <Filter Include="Source Files\Controllers">
       <UniqueIdentifier>{67f22b86-32ff-440b-b0d2-dd0967531592}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Models\Command\SaveCommand">
-      <UniqueIdentifier>{534f9589-9cbd-4551-ad99-3f9afcff2ba4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Command\LoadCommand">
-      <UniqueIdentifier>{191873d4-d0a1-478c-96fa-8964e4f6bffd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Command\UndoCommand">
-      <UniqueIdentifier>{586e6424-2ee0-41e7-b11a-f1d50d6e1b2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Models\Command\RedoCommand">
-      <UniqueIdentifier>{e123749d-104a-49fc-ae96-571366596ed2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Models\Command\AddShapeCommand">
       <UniqueIdentifier>{aec22c12-f33c-416f-af11-f59f0b40e272}</UniqueIdentifier>
     </Filter>
@@ -123,6 +111,9 @@
     <Filter Include="Source Files\Views\Factory">
       <UniqueIdentifier>{cb1b863f-d6a1-4109-a2f1-d41488dfbd52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Models\Command\AddImageCommand">
+      <UniqueIdentifier>{d4b84ef5-e98a-4782-a919-81059ff7edfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -175,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="Views\Factory\QtGraphicsItemFactory.cpp">
       <Filter>Source Files\Views\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Command\AddShapeCommand\AddShapeCommand.cpp">
+      <Filter>Source Files\Models\Command\AddShapeCommand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +247,12 @@
     <ClInclude Include="Views\Factory\QtGraphicsItemFactory.h">
       <Filter>Source Files\Views\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="Models\Command\AddShapeCommand\AddShapeCommand.h">
+      <Filter>Source Files\Models\Command\AddShapeCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Command\AddImageCommand\AddImageCommand.h">
+      <Filter>Source Files\Models\Command\AddImageCommand</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Views\Ribbon\RibbonBar\RibbonBar.h">
@@ -324,6 +324,9 @@
       <Filter>Resource Files\icons</Filter>
     </None>
     <None Include="..\resources\icons\window-restore-icon.svg">
+      <Filter>Resource Files\icons</Filter>
+    </None>
+    <None Include="..\resources\icons\delete-item-icon.svg">
       <Filter>Resource Files\icons</Filter>
     </None>
   </ItemGroup>
