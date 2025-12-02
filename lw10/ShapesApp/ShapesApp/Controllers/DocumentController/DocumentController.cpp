@@ -3,7 +3,8 @@
 
 DocumentController::DocumentController(
 	std::shared_ptr<IDocument>&& document,
-	std::shared_ptr<ICommandExecutor>&& history)
+	std::shared_ptr<ICommandExecutor>&& history,
+	QObject* parent)
 	: m_document(std::move(document))
 	, m_history(std::move(history))
 {
@@ -55,14 +56,20 @@ void DocumentController::Redo()
 void DocumentController::AddShape(const std::string& description)
 {
 	//m_history->AddAndExecuteCommand();
+	m_document->AddItem(std::move(m_itemFactory.CreateItem(description)));
+	emit itemAdded(description);
 }
 
 void DocumentController::AddImageItem(const std::string& imagePath, int width, int height)
 {
 	//m_history->AddAndExecuteCommand();
+	m_document->AddItem(std::move(m_itemFactory.CreateItem("image " + imagePath)));
+
+	emit itemAdded("image " + imagePath);
 }
 
 void DocumentController::RemoveItemAtIndex(size_t index)
 {
 	//m_history->AddAndExecuteCommand();
+	emit itemRemoved((int)index);
 }

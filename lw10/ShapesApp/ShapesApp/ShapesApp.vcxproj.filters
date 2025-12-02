@@ -114,6 +114,15 @@
     <Filter Include="Source Files\Controllers\DocmentController">
       <UniqueIdentifier>{7735b8c6-13ae-4011-90ea-9c1a0bac1eff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Models\Factory">
+      <UniqueIdentifier>{758eb3e6-8240-4006-927b-ed840a1bf887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Factory\DocItemFactory">
+      <UniqueIdentifier>{c89374ed-3bc8-4801-acf3-c87561e52f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views\Factory">
+      <UniqueIdentifier>{cb1b863f-d6a1-4109-a2f1-d41488dfbd52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -160,6 +169,12 @@
     </ClCompile>
     <ClCompile Include="Controllers\DocumentController\DocumentController.cpp">
       <Filter>Source Files\Controllers\DocmentController</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Factory\DocItemFactory\DocItemFactory.cpp">
+      <Filter>Source Files\Models\Factory\DocItemFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\Factory\QtGraphicsItemFactory.cpp">
+      <Filter>Source Files\Views\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,8 +247,11 @@
     <ClInclude Include="Controllers\DocumentController\IDocumentController.h">
       <Filter>Source Files\Controllers\DocmentController</Filter>
     </ClInclude>
-    <ClInclude Include="Controllers\DocumentController\DocumentController.h">
-      <Filter>Source Files\Controllers\DocmentController</Filter>
+    <ClInclude Include="Models\Factory\DocItemFactory\DocItemFactory.h">
+      <Filter>Source Files\Models\Factory\DocItemFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\Factory\QtGraphicsItemFactory.h">
+      <Filter>Source Files\Views\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +272,9 @@
     </QtMoc>
     <QtMoc Include="Views\Workspace\WorkspaceWidget.h">
       <Filter>Source Files\Views\Workspace</Filter>
+    </QtMoc>
+    <QtMoc Include="Controllers\DocumentController\DocumentController.h">
+      <Filter>Source Files\Controllers\DocmentController</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

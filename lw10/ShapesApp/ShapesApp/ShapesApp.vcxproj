@@ -110,8 +110,10 @@
     <ClCompile Include="Models\DocumentItem\Shape\Triangle\CTriangle.cpp" />
     <ClCompile Include="Models\DocumentSerializer\XmlSerializer.cpp" />
     <ClCompile Include="Models\Document\DocumentModel.cpp" />
+    <ClCompile Include="Models\Factory\DocItemFactory\DocItemFactory.cpp" />
     <ClCompile Include="Models\History\CommandHistory.cpp" />
     <ClCompile Include="Views\CustomTitleBar\CustomTitleBar.cpp" />
+    <ClCompile Include="Views\Factory\QtGraphicsItemFactory.cpp" />
     <ClCompile Include="Views\MainView\MainView.cpp" />
     <ClCompile Include="Views\Ribbon\RibbonBar\RibbonBar.cpp" />
     <ClCompile Include="Views\Ribbon\RibbonGroup\RibbonGroup.cpp" />
@@ -119,8 +121,10 @@
     <ClCompile Include="Views\Workspace\WorkspaceWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Controllers\DocumentController\DocumentController.h" />
+    <ClInclude Include="Views\Factory\QtGraphicsItemFactory.h" />
+    <QtMoc Include="Controllers\DocumentController\DocumentController.h" />
     <ClInclude Include="Controllers\DocumentController\IDocumentController.h" />
+    <ClInclude Include="Models\Factory\DocItemFactory\DocItemFactory.h" />
     <ClInclude Include="Models\Shared\Geometry.h" />
     <ClInclude Include="Models\Command\AbstractCommand.h" />
     <ClInclude Include="Models\Command\AbstractUndoableCommand.h" />

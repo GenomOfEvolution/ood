@@ -5,7 +5,7 @@
 #include "../Ribbon/RibbonBar/RibbonBar.h"
 #include "../../Views/CustomTitleBar/CustomTitleBar.h"
 #include "../../Views/Workspace/WorkspaceWidget.h"
-#include "../../Controllers/DocumentController/IDocumentController.h"
+#include "../../Controllers/DocumentController/DocumentController.h"
 
 namespace UI
 {
@@ -13,7 +13,7 @@ namespace UI
 	{
 		Q_OBJECT
 	public:
-		explicit MainView(IDocumentController* controller, QWidget* parent = nullptr);
+		explicit MainView(DocumentController* controller, QWidget* parent = nullptr);
 		void UpdateUndoRedoState(bool undoAvailable, bool redoAvailable);
 
 		~MainView() override;
@@ -31,6 +31,6 @@ namespace UI
 		CustomTitleBar* m_titleBar = nullptr;
 		WorkspaceWidget* m_workspaceWidget;
 
-		IDocumentController* m_controller = nullptr;
+		DocumentController* m_controller = nullptr;
 	};
 } // namespace UI

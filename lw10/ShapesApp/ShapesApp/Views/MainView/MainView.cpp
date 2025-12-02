@@ -20,7 +20,7 @@ namespace
     }
 }
 
-UI::MainView::MainView(IDocumentController* controller, QWidget* parent)
+UI::MainView::MainView(DocumentController* controller, QWidget* parent)
 	: QMainWindow(parent)
     , m_controller(controller)
 {
@@ -121,14 +121,17 @@ void UI::MainView::SetupRibbonBar()
 
     // === Home Tab - Shapes ===
     auto shapesGroup = homeTab->addGroup("Shapes");
-    shapesGroup->addButton("Rectangle", ":/icons/rectangle-icon.svg", [this]() {
-        m_controller->AddShape("rectangle");
+    shapesGroup->addButton("Rectangle", ":/icons/rectangle-icon.svg", 
+        [this]() {
+             m_controller->AddShape("rectangle");
         });
-    shapesGroup->addButton("Triangle", ":/icons/triangle-icon.svg", [this]() {
-        m_controller->AddShape("triangle");
+    shapesGroup->addButton("Triangle", ":/icons/triangle-icon.svg", 
+        [this]() {
+         m_controller->AddShape("triangle");
         });
-    shapesGroup->addButton("Ellipse", ":/icons/ellipse-icon.svg", [this]() {
-        m_controller->AddShape("ellipse");
+    shapesGroup->addButton("Ellipse", ":/icons/ellipse-icon.svg", 
+        [this]() {
+            m_controller->AddShape("ellipse");
         });
 
     // === Insert Tab ===
@@ -147,7 +150,7 @@ void UI::MainView::SetupRibbonBar()
 
 void UI::MainView::SetupWorkspace()
 {
-    m_workspaceWidget = new WorkspaceWidget(this);
+    m_workspaceWidget = new WorkspaceWidget(m_controller, this);
     m_mainLayout->addWidget(m_workspaceWidget, 1);
 }
 

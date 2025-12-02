@@ -8,8 +8,13 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsRectItem>
 
-WorkspaceWidget::WorkspaceWidget(QWidget* parent)
+#include <iostream>
+
+WorkspaceWidget::WorkspaceWidget(
+    DocumentController* controller,
+    QWidget* parent)
     : QWidget(parent)
+    , m_controller(controller)
     , m_lastCenter(0, 0)
 {
     m_scene = new QGraphicsScene(0, 0, 1200, 500, this);
@@ -22,18 +27,18 @@ WorkspaceWidget::WorkspaceWidget(QWidget* parent)
     layout->addWidget(m_view);
     setLayout(layout);
 
-    QGraphicsPixmapItem* pPixmapItem = m_scene->addPixmap(QPixmap(":/icons/app-icon.ico"));
-    pPixmapItem->setPos(100, 100);
-    pPixmapItem->setFlags(QGraphicsItem::ItemIsMovable);
-
-    QGraphicsRectItem* pRectItem = new QGraphicsRectItem(0, 0, 120, 80);
-    pRectItem->setPen(QPen(Qt::black));
-    pRectItem->setBrush(QBrush(Qt::green));
-    pRectItem->setPos(200, 200); 
-    pRectItem->setFlags(QGraphicsItem::ItemIsMovable);
-    m_scene->addItem(pRectItem);
+    connect(controller, &DocumentController::itemAdded,
+        this, &WorkspaceWidget::HandleItemAdded);
 
     QTimer::singleShot(0, this, &WorkspaceWidget::FitSceneToView);
+}
+
+void WorkspaceWidget::HandleItemAdded(const std::string& itemName)
+{
+    auto item = m_factory.CreateItem(itemName).release();
+    item->setFlags(QGraphicsItem::ItemIsMovable);
+    m_scene->addItem(item);
+    std::cout << "Workspce widget: " << itemName << "\n";
 }
 
 void WorkspaceWidget::SetupView()
