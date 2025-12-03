@@ -43,3 +43,12 @@ void CRectangle::Resize(const Rect& newBoundingBox)
 {
     m_rect = newBoundingBox;
 }
+
+DocItemPreview CRectangle::GetPreview() const
+{
+    return DocItemPreview
+    {
+        .m_type = DocItemPreview::ItemType::Rectangle,
+        .m_boundingBox = m_rect
+    };
+}

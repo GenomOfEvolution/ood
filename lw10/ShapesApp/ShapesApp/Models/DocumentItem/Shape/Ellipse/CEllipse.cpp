@@ -67,3 +67,13 @@ void CEllipse::Resize(const Rect& newBoundingBox)
     if (std::abs(m_horizRadius) < 1e-6) m_horizRadius = 1e-6 * (newBoundingBox.width >= 0 ? 1 : -1);
     if (std::abs(m_vertRadius) < 1e-6) m_vertRadius = 1e-6 * (newBoundingBox.height >= 0 ? 1 : -1);
 }
+
+DocItemPreview CEllipse::GetPreview() const
+{
+    return DocItemPreview
+    {
+        .m_type = DocItemPreview::ItemType::Ellipse,
+        .m_points = { m_center },
+        .m_boundingBox = this->GetBoundingBox()
+    };;
+}

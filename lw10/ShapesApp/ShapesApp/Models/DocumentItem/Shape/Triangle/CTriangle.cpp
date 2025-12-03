@@ -89,6 +89,16 @@ void CTriangle::Resize(const Rect& newBoundingBox)
     }
 }
 
+DocItemPreview CTriangle::GetPreview() const
+{
+    return DocItemPreview
+    {
+        .m_type = DocItemPreview::ItemType::Triangle,
+        .m_points = { m_points.begin(), m_points.end() },
+        .m_boundingBox = this->GetBoundingBox()
+    };
+}
+
 std::array<Point, 3> CTriangle::GetPoints() const
 {
     return m_points;

@@ -14,6 +14,7 @@ public:
 	Rect GetBoundingBox() const override;
 	void MoveBy(const Point& delta) override;
 	void Resize(const Rect& newBoundingBox) override;
+	DocItemPreview GetPreview() const override;
 
 private:
 	Point m_center;

@@ -29,7 +29,7 @@ void ImageStorage::CopyAllImagesToStorage(const std::string& srcPath)
 	}
 	catch (const std::filesystem::filesystem_error& ex)
 	{
-		throw std::runtime_error("Failed to copy image to temp directory: " + std::string(ex.what()));
+		std::cerr << "Failed to copy image to temp directory: " + std::string(ex.what()) << std::endl;
 	}
 }
 

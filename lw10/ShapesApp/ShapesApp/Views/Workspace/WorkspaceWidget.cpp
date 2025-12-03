@@ -33,7 +33,7 @@ WorkspaceWidget::WorkspaceWidget(
     QTimer::singleShot(0, this, &WorkspaceWidget::FitSceneToView);
 }
 
-void WorkspaceWidget::HandleItemAdded(const std::string& itemName)
+void WorkspaceWidget::HandleItemAdded(const DocItemPreview& itemName)
 {
     auto item = m_factory.CreateItem(itemName).release();
     item->setFlags(QGraphicsItem::ItemIsMovable);

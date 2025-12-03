@@ -43,6 +43,14 @@ public:
             : nullptr;
     }
 
+    DocItemPreview GetPreview() const 
+    {
+        if (std::holds_alternative<std::shared_ptr<IImage>>(m_item))
+            return std::get<std::shared_ptr<IImage>>(m_item)->GetPreview();
+        else
+            return std::get<std::shared_ptr<IShape>>(m_item)->GetPreview();
+    }
+
 private:
     std::variant<
         std::shared_ptr<IImage>,

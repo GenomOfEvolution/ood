@@ -17,6 +17,8 @@ public:
 		std::shared_ptr<IImageStorage>&& storage,
 		QObject* parent = nullptr);
 
+	DocItemPreview ConvertToDTO(size_t index);
+
 	bool WasDocumentSaved() const override;
 
 	void Save() override;
@@ -29,13 +31,13 @@ public:
 	void Redo() override;
 
 	void AddShape(const std::string& description) override;
-	void AddImageItem(const std::string& imagePath, int width = 0, int height = 0) override;
+	void AddImageItem(const std::string& imagePath, double width = 0, double height = 0) override;
 	void RemoveItemAtIndex(size_t index) override;
 
 signals:
 	void undoRedoAvailabilityChanged(bool canUndo, bool canRedo);
 	void itemRemoved(int index);
-	void itemAdded(const std::string& itemName);
+	void itemAdded(const DocItemPreview& preview);
 	void documentLoaded();
 	//void itemResized(int index, Rect boundingBox);
 

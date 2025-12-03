@@ -268,6 +268,9 @@
     <ClInclude Include="Models\ImageStorage\ImageStorage.h">
       <Filter>Source Files\Models\ImageStorage</Filter>
     </ClInclude>
+    <ClInclude Include="Models\Shared\ItemPreviewDTO.h">
+      <Filter>Source Files\Models\Shared</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Views\Ribbon\RibbonBar\RibbonBar.h">

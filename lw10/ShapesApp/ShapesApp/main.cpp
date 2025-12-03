@@ -6,6 +6,7 @@
 #include "Models/History/CommandHistory.h"
 #include "Models/DocumentSerializer/XmlSerializer.h"
 #include "Models/ImageStorage/ImageStorage.h"
+#include "Models/Shared/ItemPreviewDTO.h"
 
 #include "Controllers/DocumentController/DocumentController.h"
 
@@ -15,6 +16,8 @@ int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/icons/app-icon.ico"));
+
+    qRegisterMetaType<DocItemPreview>();
 
     auto imgStorage = std::make_shared<ImageStorage>();
     auto history = std::make_shared<CommandHistory>();

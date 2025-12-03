@@ -14,6 +14,22 @@ DocumentController::DocumentController(
 {
 }
 
+DocItemPreview DocumentController::ConvertToDTO(size_t index)
+{
+	auto item = m_document->GetItemAtIndex(index);
+
+	if (item->GetImage())
+	{
+		return item->GetImage()->GetPreview();
+	}
+	else
+	{
+		return item->GetShape()->GetPreview();
+	}
+
+	return DocItemPreview();
+}
+
 bool DocumentController::WasDocumentSaved() const
 {
 	return m_wasDocumentSaved;
@@ -66,15 +82,22 @@ void DocumentController::AddShape(const std::string& description)
 	auto cmd = std::make_unique<AddShapeCommand>(*m_document, description);
 	m_history->AddAndExecuteCommand(std::move(cmd));
 	
-	emit itemAdded(description);
+	emit itemAdded(m_document->GetItemAtIndex(m_document->GetItemsCount() - 1)->GetPreview());
 }
 
-void DocumentController::AddImageItem(const std::string& imagePath, int width, int height)
+void DocumentController::AddImageItem(const std::string& imagePath, double width, double height)
 {
 	auto cmd = std::make_unique<AddImageCommand>(*m_document, *m_storage, imagePath, width, height);
 	m_history->AddAndExecuteCommand(std::move(cmd));
 
-	emit itemAdded("image " + imagePath);
+	DocItemPreview preview
+	{
+		.m_type = DocItemPreview::ItemType::Image,
+		.m_boundingBox = Rect{ 0, 0, width, height },
+		.m_imgPath = imagePath,
+	};
+
+	emit itemAdded(preview);
 }
 
 void DocumentController::RemoveItemAtIndex(size_t index)

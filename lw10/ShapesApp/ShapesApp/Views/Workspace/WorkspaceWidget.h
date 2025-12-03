@@ -24,7 +24,7 @@ protected:
     void resizeEvent(QResizeEvent* event) override;
 
 private:
-    void HandleItemAdded(const std::string& itemName);
+    void HandleItemAdded(const DocItemPreview& itemName);
 
     void SetupView();
     void FitSceneToView();

@@ -41,7 +41,7 @@ std::unique_ptr<DocumentItem> DocItemFactory::CreateRectangle(std::istream& inpu
 
 std::unique_ptr<DocumentItem> DocItemFactory::CreateEllipse(std::istream& input)
 {
-    auto shape = std::make_shared<CEllipse>(Point{ 50, 25 }, 50, 25);
+    auto shape = std::make_shared<CEllipse>(Point{ 50, 25 }, 25, 50);
 
     return std::make_unique<DocumentItem>(shape);
 }

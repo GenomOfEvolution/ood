@@ -34,3 +34,13 @@ void CImage::Resize(const Rect& newBoundingBox)
 {
     m_boundingBox.Resize(newBoundingBox);
 }
+
+DocItemPreview CImage::GetPreview() const
+{
+    return DocItemPreview
+    {
+        .m_type = DocItemPreview::ItemType::Image,
+        .m_boundingBox = m_boundingBox.GetBoundingBox(),
+        .m_imgPath = m_path
+    };
+}
