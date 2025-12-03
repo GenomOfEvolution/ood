@@ -6,6 +6,7 @@ class IImageStorage
 public:
 	virtual ~IImageStorage() = default;
 
+	virtual void CopyAllImagesToStorage(const std::string& srcPath) = 0;
 	virtual std::string SaveImage(const std::string& srcPath) = 0;
 	virtual void DeleteTempImage(const std::string& srcPath) = 0;
 	virtual void CopyAllImagesFromStorage(const std::string& copyTo) = 0;

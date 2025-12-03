@@ -38,7 +38,6 @@ void WorkspaceWidget::HandleItemAdded(const std::string& itemName)
     auto item = m_factory.CreateItem(itemName).release();
     item->setFlags(QGraphicsItem::ItemIsMovable);
     m_scene->addItem(item);
-    std::cout << "Workspce widget: " << itemName << "\n";
 }
 
 void WorkspaceWidget::SetupView()

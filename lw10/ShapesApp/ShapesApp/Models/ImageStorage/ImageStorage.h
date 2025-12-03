@@ -7,6 +7,7 @@ public:
 	ImageStorage();
 	ImageStorage(const std::string& tempDirPath);
 
+	void CopyAllImagesToStorage(const std::string& srcPath) override;
 	std::string SaveImage(const std::string& srcPath) override;
 	void DeleteTempImage(const std::string& srcPath) override;
 	void CopyAllImagesFromStorage(const std::string& copyTo) override;

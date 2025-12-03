@@ -27,6 +27,9 @@ void DocumentController::Save()
 
 void DocumentController::SaveAs(const std::string& path)
 {
+	if (!m_document->GetSavePath().empty())
+		m_storage->CopyAllImagesToStorage(m_document->GetSavePath() + "/images");
+
 	m_wasDocumentSaved = true;
 	m_document->SaveAs(path);
 }

@@ -24,13 +24,27 @@ void XmlSerializer::Serialize(const std::string& path)
     QString docDir = fileInfo.absoluteDir().path();
     QString imagesDir = QDir(docDir).filePath("images");
 
-    if (!QDir().mkpath(imagesDir)) 
+    if (QDir(imagesDir).exists())
+    {
+        QDir dir(imagesDir);
+        QStringList files = dir.entryList(QDir::Files);
+
+        for (const QString& file : files)
+        {
+            if (!dir.remove(file))
+            {
+                throw std::runtime_error("Failed to remove existing file: " +
+                    QDir::cleanPath(imagesDir + "/" + file).toStdString());
+            }
+        }
+    }
+    else if (!QDir().mkpath(imagesDir))
     {
         throw std::runtime_error("Failed to create images directory: " + imagesDir.toStdString());
     }
 
     m_storage->CopyAllImagesFromStorage(imagesDir.toStdString());
-
+    
     SaveXmlDocument(path, docDir);
 }
 

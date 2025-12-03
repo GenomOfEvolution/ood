@@ -139,10 +139,10 @@ void UI::MainView::SetupRibbonBar()
     mediaGroup->addButton("Image", ":/icons/image-icon.svg", 
         [this]() {
             QString path = QFileDialog::getOpenFileName(
-                this, "Insert Image", "", "Images (*.png *.jpg *.bmp)"
+                this, "Insert Image", "", "Images (*.png)"
             );
             if (!path.isEmpty()) {
-                m_controller->AddImageItem(path.toStdString());
+                m_controller->AddImageItem(path.toStdString(), 100, 50);
             }
         });
 

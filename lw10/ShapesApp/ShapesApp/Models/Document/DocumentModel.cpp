@@ -49,6 +49,12 @@ void DocumentModel::Load(const std::string& path)
 	}
 }
 
+std::string DocumentModel::GetSavePath() const
+{
+	std::filesystem::path path = m_savePath;
+	return path.parent_path().string();
+}
+
 void DocumentModel::AddItem(std::unique_ptr<DocumentItem>&& item)
 {
 	m_items.push_back(std::move(item));

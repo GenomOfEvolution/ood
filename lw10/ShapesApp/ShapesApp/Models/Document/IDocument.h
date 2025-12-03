@@ -9,6 +9,7 @@ public:
 	virtual void Save() = 0;
 	virtual void SaveAs(const std::string& path) = 0;
 	virtual void Load(const std::string& path) = 0;
+	virtual std::string GetSavePath() const = 0;
 
 	virtual void AddItem(std::unique_ptr<DocumentItem>&& item) = 0;
 	virtual std::shared_ptr<DocumentItem> GetItemAtIndex(size_t index) = 0;

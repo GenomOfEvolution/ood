@@ -16,6 +16,23 @@ ImageStorage::ImageStorage(const std::string& tempDirPath)
 	ClearTempDirectory();
 }
 
+void ImageStorage::CopyAllImagesToStorage(const std::string& srcPath)
+{
+	std::filesystem::path imgPath = srcPath;
+
+	try
+	{
+		for (const auto& entry : std::filesystem::directory_iterator(imgPath))
+		{
+			std::filesystem::copy(entry.path(), m_storageDir);
+		}
+	}
+	catch (const std::filesystem::filesystem_error& ex)
+	{
+		throw std::runtime_error("Failed to copy image to temp directory: " + std::string(ex.what()));
+	}
+}
+
 std::string ImageStorage::SaveImage(const std::string& srcPath)
 {
 	std::filesystem::path imgPath = srcPath;

@@ -14,6 +14,7 @@ public:
 	void Save() override;
 	void SaveAs(const std::string& path) override;
 	void Load(const std::string& path) override;
+	std::string GetSavePath() const override;
 
 	void AddItem(std::unique_ptr<DocumentItem>&& item) override;
 	std::shared_ptr<DocumentItem> GetItemAtIndex(size_t index) override;
