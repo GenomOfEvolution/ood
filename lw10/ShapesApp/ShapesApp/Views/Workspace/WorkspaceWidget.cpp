@@ -30,6 +30,9 @@ WorkspaceWidget::WorkspaceWidget(
     connect(controller, &DocumentController::itemAdded,
         this, &WorkspaceWidget::HandleItemAdded);
 
+    connect(controller, &DocumentController::documentLoaded,
+        this, &WorkspaceWidget::HandleDocumentLoaded);
+
     QTimer::singleShot(0, this, &WorkspaceWidget::FitSceneToView);
 }
 
@@ -38,6 +41,11 @@ void WorkspaceWidget::HandleItemAdded(const DocItemPreview& itemName)
     auto item = m_factory.CreateItem(itemName).release();
     item->setFlags(QGraphicsItem::ItemIsMovable);
     m_scene->addItem(item);
+}
+
+void WorkspaceWidget::HandleDocumentLoaded()
+{
+    m_scene->clear();
 }
 
 void WorkspaceWidget::SetupView()

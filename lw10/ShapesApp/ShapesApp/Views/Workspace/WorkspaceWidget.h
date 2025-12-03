@@ -25,6 +25,7 @@ protected:
 
 private:
     void HandleItemAdded(const DocItemPreview& itemName);
+    void HandleDocumentLoaded();
 
     void SetupView();
     void FitSceneToView();

@@ -55,6 +55,16 @@ void DocumentController::Load(const std::string& path)
 	m_wasDocumentSaved = true;
 	m_document->Load(path);
 	m_history->Clear();
+
+	emit documentLoaded();
+
+	for (size_t i = 0; i < m_document->GetItemsCount(); i++)
+	{
+		auto preview = m_document->GetItemAtIndex(i)->GetPreview();
+		preview.m_imgPath = m_document->GetSavePath() + "/" + preview.m_imgPath;
+
+		emit itemAdded(preview);
+	}
 }
 
 bool DocumentController::CanUndo() const
