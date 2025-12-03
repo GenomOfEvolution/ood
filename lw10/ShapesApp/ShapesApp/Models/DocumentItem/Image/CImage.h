@@ -3,7 +3,7 @@
 #include "../Shape/IShape.h" 
 #include "../Shape/Rectangle/CRectangle.h"
 
-class CImage : public IImage, public IShape
+class CImage : public IImage
 {
 public:
     CImage(const std::string& path, const Point& position, double width, double height);

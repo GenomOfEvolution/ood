@@ -1,13 +1,16 @@
 #include "DocumentController.h"
 #include "../../Models/DocumentItem/DocumentItem.h"
 #include "../../Models/Command/AddShapeCommand/AddShapeCommand.h"
+#include "../../Models/Command/AddImageCommand/AddImageCommand.h"
 
 DocumentController::DocumentController(
 	std::shared_ptr<IDocument>&& document,
 	std::shared_ptr<ICommandExecutor>&& history,
+	std::shared_ptr<IImageStorage>&& storage,
 	QObject* parent)
 	: m_document(std::move(document))
 	, m_history(std::move(history))
+	, m_storage(std::move(storage))
 {
 }
 
@@ -32,6 +35,7 @@ void DocumentController::Load(const std::string& path)
 {
 	m_wasDocumentSaved = true;
 	m_document->Load(path);
+	m_history->Clear();
 }
 
 bool DocumentController::CanUndo() const
@@ -64,8 +68,8 @@ void DocumentController::AddShape(const std::string& description)
 
 void DocumentController::AddImageItem(const std::string& imagePath, int width, int height)
 {
-	//m_history->AddAndExecuteCommand();
-	m_document->AddItem(std::move(m_itemFactory.CreateItem("image " + imagePath)));
+	auto cmd = std::make_unique<AddImageCommand>(*m_document, *m_storage, imagePath, width, height);
+	m_history->AddAndExecuteCommand(std::move(cmd));
 
 	emit itemAdded("image " + imagePath);
 }

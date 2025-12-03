@@ -6,6 +6,10 @@ class CEllipse : public IShape
 public:
 	CEllipse(const Point& center, double verticalRadius, double horizontalRadius);
 
+	Point GetCenter() const;
+	double GetVertRadius() const;
+	double GetHorizRadius() const;
+
 	bool ContainsPoint(const Point& point) const override;
 	Rect GetBoundingBox() const override;
 	void MoveBy(const Point& delta) override;

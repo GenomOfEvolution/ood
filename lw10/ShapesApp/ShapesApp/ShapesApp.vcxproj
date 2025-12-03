@@ -104,6 +104,7 @@
   <ItemGroup>
     <ClCompile Include="Controllers\DocumentController\DocumentController.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Models\Command\AddImageCommand\AddImageCommand.cpp" />
     <ClCompile Include="Models\Command\AddShapeCommand\AddShapeCommand.cpp" />
     <ClCompile Include="Models\DocumentItem\Image\CImage.cpp" />
     <ClCompile Include="Models\DocumentItem\Shape\Ellipse\CEllipse.cpp" />
@@ -113,6 +114,7 @@
     <ClCompile Include="Models\Document\DocumentModel.cpp" />
     <ClCompile Include="Models\Factory\DocItemFactory\DocItemFactory.cpp" />
     <ClCompile Include="Models\History\CommandHistory.cpp" />
+    <ClCompile Include="Models\ImageStorage\ImageStorage.cpp" />
     <ClCompile Include="Views\CustomTitleBar\CustomTitleBar.cpp" />
     <ClCompile Include="Views\Factory\QtGraphicsItemFactory.cpp" />
     <ClCompile Include="Views\MainView\MainView.cpp" />
@@ -124,6 +126,8 @@
   <ItemGroup>
     <ClInclude Include="Models\Command\AddImageCommand\AddImageCommand.h" />
     <ClInclude Include="Models\Command\AddShapeCommand\AddShapeCommand.h" />
+    <ClInclude Include="Models\ImageStorage\IImageStorage.h" />
+    <ClInclude Include="Models\ImageStorage\ImageStorage.h" />
     <ClInclude Include="Views\Factory\QtGraphicsItemFactory.h" />
     <QtMoc Include="Controllers\DocumentController\DocumentController.h" />
     <ClInclude Include="Controllers\DocumentController\IDocumentController.h" />

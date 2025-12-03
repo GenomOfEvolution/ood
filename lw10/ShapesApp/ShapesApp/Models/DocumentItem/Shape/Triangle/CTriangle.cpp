@@ -88,3 +88,8 @@ void CTriangle::Resize(const Rect& newBoundingBox)
         point.y = newTop + relY * newHeight;
     }
 }
+
+std::array<Point, 3> CTriangle::GetPoints() const
+{
+    return m_points;
+}

@@ -9,6 +9,7 @@ class CommandHistory : public IHistory, public ICommandExecutor
 {
 public:
 	void AddAndExecuteCommand(std::unique_ptr<ICommand>&& command) override;
+	void Clear() override;
 
 	bool CanUndo() const override;
 	void Undo() override;

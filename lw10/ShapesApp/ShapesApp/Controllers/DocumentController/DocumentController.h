@@ -3,6 +3,7 @@
 #include "../../Models/Document/IDocument.h"
 #include "../../Models/History/ICommandExecutor.h"
 #include "../../Models/Factory/DocItemFactory/DocItemFactory.h"
+#include "../../Models/ImageStorage/IImageStorage.h"
 #include <memory>
 #include <qobject.h>
 
@@ -13,6 +14,7 @@ public:
 	DocumentController(
 		std::shared_ptr<IDocument>&& document,
 		std::shared_ptr<ICommandExecutor>&& history,
+		std::shared_ptr<IImageStorage>&& storage,
 		QObject* parent = nullptr);
 
 	bool WasDocumentSaved() const override;
@@ -34,11 +36,13 @@ signals:
 	void undoRedoAvailabilityChanged(bool canUndo, bool canRedo);
 	void itemRemoved(int index);
 	void itemAdded(const std::string& itemName);
+	void documentLoaded();
 	//void itemResized(int index, Rect boundingBox);
 
 private:
 	std::shared_ptr<IDocument> m_document;
 	std::shared_ptr<ICommandExecutor> m_history;
+	std::shared_ptr<IImageStorage> m_storage;
 	DocItemFactory m_itemFactory;
 
 	bool m_wasDocumentSaved = false;

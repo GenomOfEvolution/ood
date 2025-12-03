@@ -19,6 +19,12 @@ void CommandHistory::AddAndExecuteCommand(std::unique_ptr<ICommand>&& command)
 	m_actionPos++;
 }
 
+void CommandHistory::Clear()
+{
+	m_actionPos = 0;
+	m_commands.clear();
+}
+
 bool CommandHistory::CanUndo() const
 {
 	return m_actionPos > 0;

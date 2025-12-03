@@ -136,13 +136,14 @@ void UI::MainView::SetupRibbonBar()
 
     // === Insert Tab ===
     auto mediaGroup = insertTab->addGroup("Media");
-    mediaGroup->addButton("Image", ":/icons/image-icon.svg", [this]() {
-        QString path = QFileDialog::getOpenFileName(
-            this, "Insert Image", "", "Images (*.png *.jpg *.bmp)"
-        );
-        if (!path.isEmpty()) {
-            m_controller->AddImageItem(path.toStdString());
-        }
+    mediaGroup->addButton("Image", ":/icons/image-icon.svg", 
+        [this]() {
+            QString path = QFileDialog::getOpenFileName(
+                this, "Insert Image", "", "Images (*.png *.jpg *.bmp)"
+            );
+            if (!path.isEmpty()) {
+                m_controller->AddImageItem(path.toStdString());
+            }
         });
 
     m_mainLayout->addWidget(m_ribbonBar, 0);

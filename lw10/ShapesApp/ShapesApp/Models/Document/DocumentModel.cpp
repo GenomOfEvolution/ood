@@ -38,8 +38,15 @@ void DocumentModel::Load(const std::string& path)
         throw std::invalid_argument("Load path cannot be empty");
     }
 
-    m_saver->Deserialize(path);
-    m_savePath = path;
+	try
+	{
+		m_saver->Deserialize(path);
+		m_savePath = path;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 void DocumentModel::AddItem(std::unique_ptr<DocumentItem>&& item)

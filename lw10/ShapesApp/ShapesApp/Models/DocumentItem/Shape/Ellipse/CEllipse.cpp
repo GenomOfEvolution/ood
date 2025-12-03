@@ -7,6 +7,21 @@ CEllipse::CEllipse(const Point& center, double verticalRadius, double horizontal
 {
 }
 
+Point CEllipse::GetCenter() const
+{
+    return m_center;
+}
+
+double CEllipse::GetVertRadius() const
+{
+    return m_vertRadius;
+}
+
+double CEllipse::GetHorizRadius() const
+{
+    return m_horizRadius;
+}
+
 bool CEllipse::ContainsPoint(const Point& point) const
 {
     if (std::abs(m_horizRadius) < 1e-6 || std::abs(m_vertRadius) < 1e-6) 

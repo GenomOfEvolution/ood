@@ -1,7 +1,8 @@
 #pragma once
+#include "../Shape/IShape.h"
 #include <string>
 
-class IImage
+class IImage : public IShape
 {
 public:
 	virtual std::string GetPath() const = 0;
