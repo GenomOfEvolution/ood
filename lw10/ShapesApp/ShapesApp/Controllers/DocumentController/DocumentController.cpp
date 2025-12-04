@@ -145,6 +145,22 @@ void DocumentController::RemoveSelectedItems()
 	emit selectionChanged();
 }
 
+void DocumentController::Resize(HandleType type, double dx, double dy)
+{
+	std::vector<QRectF> newBoundingBoxes;
+	auto indexes = m_selection->GetSelectedIndexes();
+
+	for (auto index : indexes)
+	{
+		auto item = m_document->GetItemAtIndex(index);
+		item->Resize(type, dx, dy);
+		auto bbox = item->GetBoundingBox();
+		newBoundingBoxes.push_back(QRectF{ bbox.x, bbox.y, bbox.width, bbox.height });
+	}
+
+	emit itemsResized(newBoundingBoxes);
+}
+
 bool DocumentController::IsPointOverSelectedItem(const Point& point) const
 {
 	for (auto index : m_selection->GetSelectedIndexes()) 

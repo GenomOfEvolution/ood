@@ -29,6 +29,10 @@ private slots:
     void HandleItemAdded(const DocItemPreview& preview);
     void HandleItemRemoved(int index);
 
+    void HandleItemsResized(const std::vector<QRectF>& newBoundingBoxes);
+    void HandleResizeRequested(HandleType type, qreal dx, qreal dy);
+    void HandleResizeFinished();
+
     void HandleSelectionChanged();
     void UpdateSelectionBoxes();
 

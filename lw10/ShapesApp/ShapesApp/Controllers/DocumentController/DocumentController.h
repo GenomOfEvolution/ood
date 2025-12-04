@@ -6,6 +6,7 @@
 #include "../../Models/ImageStorage/IImageStorage.h"
 #include "../../Models/Selection/ISelection.h"
 #include <memory>
+#include <QRectF>
 #include <qobject.h>
 #include <qpoint.h>
 
@@ -37,6 +38,8 @@ public:
 	void AddImageItem(const std::string& imagePath, double width = 0, double height = 0) override;
 	void RemoveSelectedItems() override;
 
+	void Resize(HandleType type, double dx, double dy) override;
+
 	std::vector<size_t> GetSelectedIndexes() const;
 
 	void handleMousePress(const QPointF& scenePos, Qt::KeyboardModifiers modifiers);
@@ -50,6 +53,7 @@ signals:
 	void itemsMoved(std::vector<size_t> indexes, double dx, double dy);
 	void documentLoaded();
 	void selectionChanged();
+	void itemsResized(std::vector<QRectF> newBounds);
 
 private:
 	bool IsPointOverSelectedItem(const Point& point) const;

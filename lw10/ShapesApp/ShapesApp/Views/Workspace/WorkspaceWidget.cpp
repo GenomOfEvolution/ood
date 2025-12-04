@@ -36,6 +36,8 @@ WorkspaceWidget::WorkspaceWidget(
     connect(m_controller, &DocumentController::selectionChanged,
         this, &WorkspaceWidget::HandleSelectionChanged);
 
+    connect(m_controller, &DocumentController::itemsResized, this, &WorkspaceWidget::HandleItemsResized);
+
     QTimer::singleShot(0, this, &WorkspaceWidget::FitSceneToView);
     m_view->installEventFilter(this);
 }
@@ -80,6 +82,39 @@ void WorkspaceWidget::HandleItemRemoved(int index)
     }
 }
 
+void WorkspaceWidget::HandleItemsResized(const std::vector<QRectF>& newBoundingBoxes)
+{
+    if (m_selectionBoxes.size() != newBoundingBoxes.size())
+    {
+        UpdateSelectionBoxes();
+        return;
+    }
+
+    for (size_t i = 0; i < m_selectionBoxes.size(); ++i) 
+    {
+        SelectionBoxItem* box = m_selectionBoxes[i];
+        if (i < newBoundingBoxes.size()) 
+        {
+            box->HandleResizeMove(newBoundingBoxes[i]);
+        }
+    }
+}
+
+void WorkspaceWidget::HandleResizeRequested(HandleType type, qreal dx, qreal dy)
+{
+    auto selectedIndexes = m_controller->GetSelectedIndexes();
+    if (selectedIndexes.empty()) 
+        return;
+
+    QPointF sceneDelta = m_view->mapToScene(QPoint(dx, dy)) - m_view->mapToScene(QPoint(0, 0));
+
+    m_controller->Resize(type, sceneDelta.x(), sceneDelta.y());
+}
+
+void WorkspaceWidget::HandleResizeFinished()
+{
+}
+
 void WorkspaceWidget::HandleSelectionChanged()
 {
     if (m_updatingSelection) 
@@ -101,6 +136,13 @@ void WorkspaceWidget::UpdateSelectionBoxes()
         {
             SelectionBoxItem* box = new SelectionBoxItem();
             box->SetTargetItem(item);
+
+            connect(box, &SelectionBoxItem::resizeRequested,
+                this, &WorkspaceWidget::HandleResizeRequested);
+
+            connect(box, &SelectionBoxItem::resizeFinished,
+                this, &WorkspaceWidget::HandleResizeFinished);
+
             m_scene->addItem(box);
             m_selectionBoxes.push_back(box);
         }

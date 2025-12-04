@@ -7,6 +7,7 @@
 #include "Models/DocumentSerializer/XmlSerializer.h"
 #include "Models/ImageStorage/ImageStorage.h"
 #include "Models/Shared/ItemPreviewDTO.h"
+#include "Models/Shared/HandleType.h"
 #include "Models/Selection/DocumentSelection.h"
 
 #include "Controllers/DocumentController/DocumentController.h"
@@ -19,6 +20,7 @@ int main(int argc, char* argv[])
     app.setWindowIcon(QIcon(":/icons/app-icon.ico"));
 
     qRegisterMetaType<DocItemPreview>();
+    qRegisterMetaType<HandleType>("HandleType");
 
     auto selection = std::make_shared<DocumentSelection>();
     auto imgStorage = std::make_shared<ImageStorage>();

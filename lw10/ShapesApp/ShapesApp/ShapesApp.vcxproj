@@ -131,8 +131,9 @@
     <ClInclude Include="Models\Command\AddShapeCommand\AddShapeCommand.h" />
     <ClInclude Include="Models\ImageStorage\IImageStorage.h" />
     <ClInclude Include="Models\ImageStorage\ImageStorage.h" />
+    <ClInclude Include="Models\Shared\HandleType.h" />
     <ClInclude Include="Models\Shared\ItemPreviewDTO.h" />
-    <ClInclude Include="Views\SelectionBox\SelectionBoxItem.h" />
+    <QtMoc Include="Views\SelectionBox\SelectionBoxItem.h" />
     <QtMoc Include="Views\CustomGraphicsScene\CustomGraphicsScene.h" />
     <ClInclude Include="Views\Factory\QtGraphicsItemFactory.h" />
     <QtMoc Include="Controllers\DocumentController\DocumentController.h" />
