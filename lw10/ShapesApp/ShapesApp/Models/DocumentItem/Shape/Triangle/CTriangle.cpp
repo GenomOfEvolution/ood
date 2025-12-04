@@ -32,7 +32,7 @@ bool CTriangle::ContainsPoint(const Point& point) const
     double u = (dot11 * dot02 - dot01 * dot12) * invDenom;
     double v = (dot00 * dot12 - dot01 * dot02) * invDenom;
 
-    return (u >= 0) && (v >= 0) && (u + v <= 1);
+    return (u >= 0) && (v >= 0) && (u + v <= 1) || this->GetBoundingBox().ContainsPoint(point);
 }
 
 Rect CTriangle::GetBoundingBox() const

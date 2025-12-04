@@ -37,6 +37,8 @@ public:
 	void AddImageItem(const std::string& imagePath, double width = 0, double height = 0) override;
 	void RemoveSelectedItems() override;
 
+	std::vector<size_t> GetSelectedIndexes() const;
+
 	void handleMousePress(const QPointF& scenePos, Qt::KeyboardModifiers modifiers);
 	void handleMouseMove(const QPointF& scenePos, Qt::KeyboardModifiers modifiers);
 	void handleMouseRelease(const QPointF& scenePos, Qt::KeyboardModifiers modifiers);
@@ -47,6 +49,7 @@ signals:
 	void itemAdded(const DocItemPreview& preview);
 	void itemsMoved(std::vector<size_t> indexes, double dx, double dy);
 	void documentLoaded();
+	void selectionChanged();
 
 private:
 	bool IsPointOverSelectedItem(const Point& point) const;

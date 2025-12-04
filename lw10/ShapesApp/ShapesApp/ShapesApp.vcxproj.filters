@@ -120,6 +120,9 @@
     <Filter Include="Source Files\Views\CustomGraphicsScene">
       <UniqueIdentifier>{780c8b02-05ed-4556-aff2-8c6220e52f9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Views\SelectionBox">
+      <UniqueIdentifier>{eb3d1bed-0ab8-40ac-b4fd-04b4ba29b1d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -187,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="Views\CustomGraphicsScene\CustomGraphicsScene.cpp">
       <Filter>Source Files\Views\CustomGraphicsScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\SelectionBox\SelectionBoxItem.cpp">
+      <Filter>Source Files\Views\SelectionBox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +285,9 @@
     </ClInclude>
     <ClInclude Include="Models\Shared\ItemPreviewDTO.h">
       <Filter>Source Files\Models\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\SelectionBox\SelectionBoxItem.h">
+      <Filter>Source Files\Views\SelectionBox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

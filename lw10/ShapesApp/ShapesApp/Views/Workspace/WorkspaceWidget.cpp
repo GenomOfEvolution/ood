@@ -33,6 +33,9 @@ WorkspaceWidget::WorkspaceWidget(
     connect(m_controller, &DocumentController::itemsMoved, this, &WorkspaceWidget::HandleItemsMoved);
     connect(m_controller, &DocumentController::documentLoaded, this, &WorkspaceWidget::HandleDocumentLoaded);
 
+    connect(m_controller, &DocumentController::selectionChanged,
+        this, &WorkspaceWidget::HandleSelectionChanged);
+
     QTimer::singleShot(0, this, &WorkspaceWidget::FitSceneToView);
     m_view->installEventFilter(this);
 }
@@ -51,6 +54,8 @@ void WorkspaceWidget::HandleItemsMoved(std::vector<size_t> indexes, double dx, d
             item->setPos(item->pos() + delta);
         }
     }
+
+    UpdateSelectionBoxes();
 
     m_scene->blockSignals(false);
     m_scene->update();
@@ -75,6 +80,35 @@ void WorkspaceWidget::HandleItemRemoved(int index)
     }
 }
 
+void WorkspaceWidget::HandleSelectionChanged()
+{
+    if (m_updatingSelection) 
+        return;
+    UpdateSelectionBoxes();
+}
+
+void WorkspaceWidget::UpdateSelectionBoxes()
+{
+    m_updatingSelection = true;
+    ClearSelectionBoxes();
+
+    auto selectedIndexes = m_controller->GetSelectedIndexes();
+
+    for (size_t index : selectedIndexes) 
+    {
+        QGraphicsItem* item = FindSceneItemByIndex(index);
+        if (item) 
+        {
+            SelectionBoxItem* box = new SelectionBoxItem();
+            box->SetTargetItem(item);
+            m_scene->addItem(box);
+            m_selectionBoxes.push_back(box);
+        }
+    }
+
+    m_updatingSelection = false;
+}
+
 void WorkspaceWidget::HandleDocumentLoaded()
 {
     m_scene->clear();
@@ -94,6 +128,17 @@ QGraphicsItem* WorkspaceWidget::FindSceneItemByIndex(size_t index) const
         }
     }
     return nullptr;
+}
+
+void WorkspaceWidget::ClearSelectionBoxes()
+{
+    for (SelectionBoxItem* box : m_selectionBoxes) 
+    {
+        m_scene->removeItem(box);
+        delete box;
+    }
+
+    m_selectionBoxes.clear();
 }
 
 void WorkspaceWidget::SetupView()
@@ -118,6 +163,7 @@ void WorkspaceWidget::resizeEvent(QResizeEvent* event)
 {
     QWidget::resizeEvent(event);
     FitSceneToView();
+    UpdateSelectionBoxes();
 }
 
 void WorkspaceWidget::FitSceneToView()

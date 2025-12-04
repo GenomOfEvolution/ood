@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <string>
 
 class IDocumentController
@@ -19,4 +20,6 @@ public:
 	virtual void AddShape(const std::string& description) = 0;
 	virtual void AddImageItem(const std::string& imagePath, double width = 0, double height = 0) = 0;
 	virtual void RemoveSelectedItems() = 0;
+
+	virtual std::vector<size_t> GetSelectedIndexes() const = 0;
 };

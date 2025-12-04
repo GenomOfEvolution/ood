@@ -35,7 +35,7 @@ bool CEllipse::ContainsPoint(const Point& point) const
     double normalizedX = dx / m_horizRadius;
     double normalizedY = dy / m_vertRadius;
 
-    return (normalizedX * normalizedX + normalizedY * normalizedY) <= 1.0 + 1e-6;
+    return ((normalizedX * normalizedX + normalizedY * normalizedY) <= 1.0 + 1e-6) || this->GetBoundingBox().ContainsPoint(point);
 }
 
 Rect CEllipse::GetBoundingBox() const

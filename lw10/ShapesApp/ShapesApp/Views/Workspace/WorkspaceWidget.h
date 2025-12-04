@@ -2,6 +2,7 @@
 #include "../../Controllers/DocumentController/DocumentController.h"
 #include "../Factory/QtGraphicsItemFactory.h"
 #include "../CustomGraphicsScene/CustomGraphicsScene.h"
+#include "../SelectionBox/SelectionBoxItem.h"
 
 #include <qwidget.h>
 #include <QGraphicsScene>
@@ -27,10 +28,15 @@ private slots:
     void HandleItemsMoved(std::vector<size_t> indexes, double dx, double dy);
     void HandleItemAdded(const DocItemPreview& preview);
     void HandleItemRemoved(int index);
+
+    void HandleSelectionChanged();
+    void UpdateSelectionBoxes();
+
     void HandleDocumentLoaded();
 
 private:
     QGraphicsItem* FindSceneItemByIndex(size_t index) const;
+    void ClearSelectionBoxes();
     void SetupView();
     void FitSceneToView();
 
@@ -44,4 +50,6 @@ private:
     QtGraphicsItemFactory m_factory;
 
     bool m_isLeftButtonDown = false;
+    bool m_updatingSelection = false;
+    std::vector<SelectionBoxItem*> m_selectionBoxes;
 };

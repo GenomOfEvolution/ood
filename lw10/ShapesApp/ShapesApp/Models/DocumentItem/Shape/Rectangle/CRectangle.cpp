@@ -20,7 +20,7 @@ bool CRectangle::ContainsPoint(const Point& point) const
     double bottom = std::max(m_rect.y, m_rect.y + m_rect.height);
 
     return (point.x >= left && point.x <= right) &&
-        (point.y >= top && point.y <= bottom);
+        (point.y >= top && point.y <= bottom) || this->GetBoundingBox().ContainsPoint(point);
 }
 
 Rect CRectangle::GetBoundingBox() const

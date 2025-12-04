@@ -59,7 +59,9 @@ void DocumentController::Load(const std::string& path)
 	m_wasDocumentSaved = true;
 	m_document->Load(path);
 	m_history->Clear();
+	m_selection->ClearSelection();
 
+	emit selectionChanged();
 	emit documentLoaded();
 
 	for (size_t i = 0; i < m_document->GetItemsCount(); i++)
@@ -119,6 +121,11 @@ void DocumentController::AddImageItem(const std::string& imagePath, double width
 	emit itemAdded(preview);
 }
 
+std::vector<size_t> DocumentController::GetSelectedIndexes() const
+{
+	return m_selection->GetSelectedIndexes();
+}
+
 void DocumentController::RemoveSelectedItems()
 {
 	//m_history->AddAndExecuteCommand();
@@ -133,7 +140,9 @@ void DocumentController::RemoveSelectedItems()
 		m_document->RemoveItemAtIndex(i);
 		emit itemRemoved((int)i);
 	}
+
 	m_selection->ClearSelection();
+	emit selectionChanged();
 }
 
 bool DocumentController::IsPointOverSelectedItem(const Point& point) const
@@ -164,6 +173,8 @@ void DocumentController::handleMousePress(const QPointF& scenePos, Qt::KeyboardM
 	else {
 		m_selection->SelectItem(clickPoint, ctrlPressed);
 		m_dragging = false;
+
+		emit selectionChanged();
 
 		if (!m_selection->GetSelectedIndexes().empty() && IsPointOverSelectedItem(clickPoint)) 
 		{
@@ -196,6 +207,6 @@ void DocumentController::handleMouseRelease(const QPointF& scenePos, Qt::Keyboar
 	if (m_dragging) 
 	{
 		m_dragging = false;
-		qDebug() << "[DocumentController] Dragging completed";
+		emit selectionChanged();
 	}
 }
