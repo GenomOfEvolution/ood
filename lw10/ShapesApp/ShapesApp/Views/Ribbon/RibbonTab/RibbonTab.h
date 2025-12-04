@@ -15,5 +15,5 @@ public:
 
 private:
     bool m_selected = false;
-    QVBoxLayout* m_mainLayout;
+    QHBoxLayout* m_mainLayout;
 };

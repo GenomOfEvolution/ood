@@ -18,5 +18,5 @@ public:
 
 	virtual void AddShape(const std::string& description) = 0;
 	virtual void AddImageItem(const std::string& imagePath, double width = 0, double height = 0) = 0;
-	virtual void RemoveItemAtIndex(size_t index) = 0;
+	virtual void RemoveSelectedItems() = 0;
 };

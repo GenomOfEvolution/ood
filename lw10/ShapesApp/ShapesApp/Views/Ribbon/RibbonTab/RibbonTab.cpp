@@ -14,7 +14,7 @@ RibbonTab::RibbonTab(QWidget* parent)
     setWidgetResizable(true);
 
     auto contentWidget = new QWidget(this);
-    m_mainLayout = new QVBoxLayout(contentWidget);
+    m_mainLayout = new QHBoxLayout(contentWidget);
     m_mainLayout->setContentsMargins(10, 5, 10, 10);
     m_mainLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 

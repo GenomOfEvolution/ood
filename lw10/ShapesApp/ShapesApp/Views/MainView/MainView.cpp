@@ -134,6 +134,13 @@ void UI::MainView::SetupRibbonBar()
             m_controller->AddShape("ellipse");
         });
 
+    auto editGroup = homeTab->addGroup("Edit");
+    editGroup->addButton("Delete", ":/icons/delete-item-icon.svg",
+        [this]() 
+        {
+            m_controller->RemoveSelectedItems();
+        });
+
     // === Insert Tab ===
     auto mediaGroup = insertTab->addGroup("Media");
     mediaGroup->addButton("Image", ":/icons/image-icon.svg", 

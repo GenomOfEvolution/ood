@@ -1,16 +1,20 @@
-#include "DocumentController.h"
+﻿#include "DocumentController.h"
 #include "../../Models/DocumentItem/DocumentItem.h"
 #include "../../Models/Command/AddShapeCommand/AddShapeCommand.h"
 #include "../../Models/Command/AddImageCommand/AddImageCommand.h"
+#include <qdebug.h>
+#include <algorithm>
 
 DocumentController::DocumentController(
 	std::shared_ptr<IDocument>&& document,
 	std::shared_ptr<ICommandExecutor>&& history,
 	std::shared_ptr<IImageStorage>&& storage,
+	std::shared_ptr<ISelection>&& selection,
 	QObject* parent)
 	: m_document(std::move(document))
 	, m_history(std::move(history))
 	, m_storage(std::move(storage))
+	, m_selection(std::move(selection))
 {
 }
 
@@ -92,7 +96,11 @@ void DocumentController::AddShape(const std::string& description)
 	auto cmd = std::make_unique<AddShapeCommand>(*m_document, description);
 	m_history->AddAndExecuteCommand(std::move(cmd));
 	
-	emit itemAdded(m_document->GetItemAtIndex(m_document->GetItemsCount() - 1)->GetPreview());
+	auto prview = m_document->GetItemAtIndex(m_document->GetItemsCount() - 1)->GetPreview();
+
+	prview.m_index = m_document->GetItemsCount() - 1;
+
+	emit itemAdded(prview);
 }
 
 void DocumentController::AddImageItem(const std::string& imagePath, double width, double height)
@@ -105,13 +113,89 @@ void DocumentController::AddImageItem(const std::string& imagePath, double width
 		.m_type = DocItemPreview::ItemType::Image,
 		.m_boundingBox = Rect{ 0, 0, width, height },
 		.m_imgPath = imagePath,
+		.m_index = m_document->GetItemsCount() - 1
 	};
 
 	emit itemAdded(preview);
 }
 
-void DocumentController::RemoveItemAtIndex(size_t index)
+void DocumentController::RemoveSelectedItems()
 {
 	//m_history->AddAndExecuteCommand();
-	emit itemRemoved((int)index);
+	auto indexes = m_selection->GetSelectedIndexes();
+
+	std::sort(indexes.begin(), indexes.end(), [](size_t a, size_t b) {
+		return a > b;
+	});
+
+	for (auto i : indexes)
+	{
+		m_document->RemoveItemAtIndex(i);
+		emit itemRemoved((int)i);
+	}
+	m_selection->ClearSelection();
+}
+
+bool DocumentController::IsPointOverSelectedItem(const Point& point) const
+{
+	for (auto index : m_selection->GetSelectedIndexes()) 
+	{
+		auto item = m_document->GetItemAtIndex(index);
+		if (item->ContainsPoint(point)) 
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void DocumentController::handleMousePress(const QPointF& scenePos, Qt::KeyboardModifiers modifiers)
+{
+	bool ctrlPressed = modifiers.testFlag(Qt::ControlModifier);
+	Point clickPoint(scenePos.x(), scenePos.y());
+
+	bool clickedOnSelectedItem = IsPointOverSelectedItem(clickPoint);
+
+	if (clickedOnSelectedItem && !ctrlPressed) 
+	{
+		m_dragging = true;
+		m_dragStartPoint = clickPoint;
+	}
+	else {
+		m_selection->SelectItem(clickPoint, ctrlPressed);
+		m_dragging = false;
+
+		if (!m_selection->GetSelectedIndexes().empty() && IsPointOverSelectedItem(clickPoint)) 
+		{
+			m_dragging = true;
+			m_dragStartPoint = clickPoint;
+		}
+	}
+}
+
+void DocumentController::handleMouseMove(const QPointF& scenePos, Qt::KeyboardModifiers modifiers)
+{
+	if (m_dragging) 
+	{
+		Point currentPoint(scenePos.x(), scenePos.y());
+		Point delta = currentPoint - m_dragStartPoint;
+
+		for (auto index : m_selection->GetSelectedIndexes()) 
+		{
+			auto item = m_document->GetItemAtIndex(index);
+			item->MoveBy(delta);
+		}
+
+		m_dragStartPoint = currentPoint;
+		emit itemsMoved(m_selection->GetSelectedIndexes(), delta.x, delta.y);
+	}
+}
+
+void DocumentController::handleMouseRelease(const QPointF& scenePos, Qt::KeyboardModifiers modifiers)
+{
+	if (m_dragging) 
+	{
+		m_dragging = false;
+		qDebug() << "[DocumentController] Dragging completed";
+	}
 }

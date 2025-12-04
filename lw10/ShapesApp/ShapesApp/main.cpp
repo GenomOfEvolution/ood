@@ -7,6 +7,7 @@
 #include "Models/DocumentSerializer/XmlSerializer.h"
 #include "Models/ImageStorage/ImageStorage.h"
 #include "Models/Shared/ItemPreviewDTO.h"
+#include "Models/Selection/DocumentSelection.h"
 
 #include "Controllers/DocumentController/DocumentController.h"
 
@@ -19,14 +20,16 @@ int main(int argc, char* argv[])
 
     qRegisterMetaType<DocItemPreview>();
 
+    auto selection = std::make_shared<DocumentSelection>();
     auto imgStorage = std::make_shared<ImageStorage>();
     auto history = std::make_shared<CommandHistory>();
     auto saver = std::make_shared<XmlSerializer>(imgStorage);
     auto doc = std::make_shared<DocumentModel>(history, saver);
-
+    
+    selection->SetDocument(doc);
     saver->SetDocument(doc);
 
-    auto docController = new DocumentController(doc, history, imgStorage);
+    auto docController = new DocumentController(doc, history, imgStorage, selection);
 
     MainView view(docController);
 

@@ -57,9 +57,9 @@ QWidget#RibbonBar QWidget#RibbonTab[selected="true"] {
 }
 
 QWidget#RibbonBar QWidget#RibbonGroup {
-    border: 2px solid #ff0000; /* Ярко-красная рамка */
+    border: 2px solid #ff0000;
     border-radius: 4px;
-    background: #ff4444; /* Насыщенный красный фон */
+    background: #ff4444; 
 }
 
 QWidget#RibbonBar QLabel#RibbonGroupTitle {

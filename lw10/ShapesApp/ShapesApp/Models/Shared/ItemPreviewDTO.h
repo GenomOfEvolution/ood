@@ -12,6 +12,7 @@ struct DocItemPreview
 	std::vector<Point> m_points;
 	Rect m_boundingBox;
 	std::string m_imgPath;
+	size_t m_index;
 };
 
 Q_DECLARE_METATYPE(DocItemPreview);

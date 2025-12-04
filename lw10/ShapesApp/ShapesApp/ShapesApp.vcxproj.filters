@@ -117,6 +117,9 @@
     <Filter Include="Source Files\Models\ImageStorage">
       <UniqueIdentifier>{8523a5ca-9d12-4a1d-9d48-9ecec0ce98c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Views\CustomGraphicsScene">
+      <UniqueIdentifier>{780c8b02-05ed-4556-aff2-8c6220e52f9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -178,6 +181,12 @@
     </ClCompile>
     <ClCompile Include="Models\Command\AddImageCommand\AddImageCommand.cpp">
       <Filter>Source Files\Models\Command\AddImageCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Selection\DocumentSelection.cpp">
+      <Filter>Source Files\Models\Selection</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\CustomGraphicsScene\CustomGraphicsScene.cpp">
+      <Filter>Source Files\Views\CustomGraphicsScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +302,9 @@
     </QtMoc>
     <QtMoc Include="Controllers\DocumentController\DocumentController.h">
       <Filter>Source Files\Controllers\DocmentController</Filter>
+    </QtMoc>
+    <QtMoc Include="Views\CustomGraphicsScene\CustomGraphicsScene.h">
+      <Filter>Source Files\Views\CustomGraphicsScene</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

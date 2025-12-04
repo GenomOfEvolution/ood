@@ -51,6 +51,22 @@ public:
             return std::get<std::shared_ptr<IShape>>(m_item)->GetPreview();
     }
 
+    bool ContainsPoint(const Point& point) const 
+    {
+        if (std::holds_alternative<std::shared_ptr<IImage>>(m_item))
+            return std::get<std::shared_ptr<IImage>>(m_item)->ContainsPoint(point);
+        else
+            return std::get<std::shared_ptr<IShape>>(m_item)->ContainsPoint(point);
+    }
+
+    void MoveBy(const Point& delta) 
+    {
+        if (std::holds_alternative<std::shared_ptr<IImage>>(m_item))
+            std::get<std::shared_ptr<IImage>>(m_item)->MoveBy(delta);
+        else
+            std::get<std::shared_ptr<IShape>>(m_item)->MoveBy(delta);
+    }
+
 private:
     std::variant<
         std::shared_ptr<IImage>,
