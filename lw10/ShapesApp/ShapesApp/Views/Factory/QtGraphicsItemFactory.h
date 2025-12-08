@@ -19,8 +19,16 @@ public:
     QtGraphicsItemFactory();
 
     std::unique_ptr<QGraphicsItem> CreateItem(const DocItemPreview& item);
+    std::unique_ptr<QGraphicsItem> Clone(QGraphicsItem* item) const;
 
 private:
+    std::unique_ptr<QGraphicsItem> CloneRectangle(QGraphicsRectItem* source) const;
+    std::unique_ptr<QGraphicsItem> CloneEllipse(QGraphicsEllipseItem* source) const;
+    std::unique_ptr<QGraphicsItem> CloneTriangle(QGraphicsPolygonItem* source) const;
+    std::unique_ptr<QGraphicsItem> CloneImage(QGraphicsPixmapItem* source) const;
+
+    void CopyCommonProperties(const QGraphicsItem* source, QGraphicsItem* target) const;
+
     std::unique_ptr<QGraphicsItem> CreateRectangle(const DocItemPreview& input);
     std::unique_ptr<QGraphicsItem> CreateTriangle(const DocItemPreview& input);
     std::unique_ptr<QGraphicsItem> CreateEllipse(const DocItemPreview& input);

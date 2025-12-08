@@ -97,30 +97,34 @@ public:
 private:
     Rect GetResizedBoundingBox(const Rect& bbox, HandleType type, double dx, double dy)
     {
+        const double minSize = 20.0;
         Rect newRect = bbox;
 
-        switch(type) 
+        switch (type)
         {
-            case HandleType::TopLeft:
-                newRect.x += dx;
-                newRect.y += dy;
-                newRect.width -= dx;
-                newRect.height -= dy;
-                break;
-            case HandleType::TopRight:
-                newRect.y += dy;
-                newRect.width += dx;
-                newRect.height -= dy;
-                break;
-            case HandleType::BottomLeft:
-                newRect.x += dx;
-                newRect.width -= dx;
-                newRect.height += dy;
-                break;
-            case HandleType::BottomRight:
-                newRect.width += dx;
-                newRect.height += dy;
-                break;
+        case HandleType::TopLeft: // NW
+            newRect.x = std::min(bbox.x + bbox.width - minSize, bbox.x + dx);
+            newRect.y = std::min(bbox.y + bbox.height - minSize, bbox.y + dy);
+            newRect.width = std::max(minSize, bbox.width - dx);
+            newRect.height = std::max(minSize, bbox.height - dy);
+            break;
+
+        case HandleType::TopRight: // NE
+            newRect.y = std::min(bbox.y + bbox.height - minSize, bbox.y + dy);
+            newRect.width = std::max(minSize, bbox.width + dx);
+            newRect.height = std::max(minSize, bbox.height - dy);
+            break;
+
+        case HandleType::BottomLeft: // SW
+            newRect.x = std::min(bbox.x + bbox.width - minSize, bbox.x + dx);
+            newRect.width = std::max(minSize, bbox.width - dx);
+            newRect.height = std::max(minSize, bbox.height + dy);
+            break;
+
+        case HandleType::BottomRight: // SE
+            newRect.width = std::max(minSize, bbox.width + dx);
+            newRect.height = std::max(minSize, bbox.height + dy);
+            break;
         }
 
         return newRect;

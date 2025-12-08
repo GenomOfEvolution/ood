@@ -29,7 +29,7 @@ WorkspaceWidget::WorkspaceWidget(
     setLayout(layout);
 
     connect(m_controller, &DocumentController::itemAdded, this, &WorkspaceWidget::HandleItemAdded);
-    connect(m_controller, &DocumentController::itemRemoved, this, &WorkspaceWidget::HandleItemRemoved);
+    connect(m_controller, &DocumentController::itemsRemoved, this, &WorkspaceWidget::HandleItemRemoved);
     connect(m_controller, &DocumentController::itemsMoved, this, &WorkspaceWidget::HandleItemsMoved);
     connect(m_controller, &DocumentController::documentLoaded, this, &WorkspaceWidget::HandleDocumentLoaded);
 
@@ -72,14 +72,85 @@ void WorkspaceWidget::HandleItemAdded(const DocItemPreview& itemName)
     m_scene->addItem(item);
 }
 
-void WorkspaceWidget::HandleItemRemoved(int index)
+
+struct ItemData {
+    int type;
+    QPointF pos;
+    qreal rotation;
+    qreal scaleX;
+    qreal scaleY;
+    int zValue;
+    QVariant userData;
+    QRectF boundingRect;
+
+    // Для фигур
+    QRectF rect;
+    QBrush brush;
+    QPen pen;
+    QPolygonF polygon;
+
+    // Для изображений
+    QPixmap pixmap;
+    QPointF offset;
+    Qt::TransformationMode transformationMode;
+};
+
+void WorkspaceWidget::HandleItemRemoved(std::vector<size_t> indexes)
 {
-    QGraphicsItem* item = FindSceneItemByIndex(static_cast<size_t>(index));
-    if (item) 
-    {
-        m_scene->removeItem(item);
-        delete item;
+    ClearSelectionBoxes();
+    std::sort(indexes.begin(), indexes.end(), std::greater<size_t>());
+
+    // 2. Собираем элементы для удаления
+    std::vector<QGraphicsItem*> itemsToDelete;
+    for (auto index : indexes) {
+        QGraphicsItem* item = FindSceneItemByIndex(index);
+        if (item) {
+            itemsToDelete.push_back(item);
+        }
     }
+
+    // 3. Сохраняем параметры вида
+    QTransform transform = m_view->transform();
+    QPointF centerPoint = m_view->mapToScene(m_view->viewport()->rect().center());
+
+    // 4. Создаем клоны для сохранения
+    std::vector<std::unique_ptr<QGraphicsItem>> savedClones;
+
+    for (QGraphicsItem* item : m_scene->items()) {
+        // Проверяем, нужно ли удалить этот элемент
+        bool shouldDelete = false;
+        for (QGraphicsItem* delItem : itemsToDelete) {
+            if (item == delItem) {
+                shouldDelete = true;
+                break;
+            }
+        }
+
+        if (!shouldDelete) 
+        {
+            if (auto clone = m_factory.Clone(item)) 
+            {
+                savedClones.push_back(std::move(clone));
+            }
+        }
+    }
+
+    qDeleteAll(m_scene->items());
+    m_scene->clear();
+
+    int index = 0;
+    for (auto& clone : savedClones) 
+    {
+        clone->setFlags(QGraphicsItem::ItemIsMovable);
+        clone->setData(DocumentIndexRole, static_cast<qint64>(index));
+        m_scene->addItem(clone.release());
+    }
+
+    // 7. Восстанавливаем вид
+    m_view->setTransform(transform);
+    m_view->centerOn(centerPoint);
+
+    UpdateSelectionBoxes();
 }
 
 void WorkspaceWidget::HandleItemsResized(const std::vector<QRectF>& newBoundingBoxes)

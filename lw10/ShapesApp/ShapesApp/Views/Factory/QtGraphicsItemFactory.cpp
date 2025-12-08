@@ -24,6 +24,89 @@ std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CreateItem(const DocItemPr
     throw std::runtime_error("Unknown graphical item type");
 }
 
+std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::Clone(QGraphicsItem* item) const
+{
+    if (!item) 
+    {
+        return nullptr;
+    }
+
+    if (auto rectItem = dynamic_cast<QGraphicsRectItem*>(item)) 
+    {
+        return CloneRectangle(rectItem);
+    }
+    else if (auto ellipseItem = dynamic_cast<QGraphicsEllipseItem*>(item)) 
+    {
+        return CloneEllipse(ellipseItem);
+    }
+    else if (auto polygonItem = dynamic_cast<QGraphicsPolygonItem*>(item)) 
+    {
+        return CloneTriangle(polygonItem);
+    }
+    else if (auto pixmapItem = dynamic_cast<QGraphicsPixmapItem*>(item)) 
+    {
+        return CloneImage(pixmapItem);
+    }
+
+    return nullptr;
+}
+
+void QtGraphicsItemFactory::CopyCommonProperties(const QGraphicsItem* source, QGraphicsItem* target) const
+{
+    if (!source || !target) return;
+
+    target->setPos(source->pos());
+    target->setRotation(source->rotation());
+    target->setScale(source->scale());
+    target->setZValue(source->zValue());
+    target->setTransform(source->transform());
+    target->setFlags(source->flags());
+
+    for (int role = Qt::UserRole; role < Qt::UserRole + 10; ++role) {
+        target->setData(role, source->data(role));
+    }
+}
+
+std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CloneRectangle(QGraphicsRectItem* source) const
+{
+    auto newItem = std::make_unique<QGraphicsRectItem>(source->rect());
+    newItem->setBrush(source->brush());
+    newItem->setPen(source->pen());
+    CopyCommonProperties(source, newItem.get());
+    return newItem;
+}
+
+std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CloneEllipse(QGraphicsEllipseItem* source) const
+{
+    auto newItem = std::make_unique<QGraphicsEllipseItem>(source->rect());
+    newItem->setBrush(source->brush());
+    newItem->setPen(source->pen());
+    CopyCommonProperties(source, newItem.get());
+    return newItem;
+}
+
+std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CloneTriangle(QGraphicsPolygonItem* source) const
+{
+    auto newItem = std::make_unique<QGraphicsPolygonItem>(source->polygon());
+    newItem->setBrush(source->brush());
+    newItem->setPen(source->pen());
+    CopyCommonProperties(source, newItem.get());
+    return newItem;
+}
+
+std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CloneImage(QGraphicsPixmapItem* source) const
+{
+    auto newItem = std::make_unique<QGraphicsPixmapItem>(source->pixmap());
+    newItem->setOffset(source->offset());
+    newItem->setTransformationMode(source->transformationMode());
+
+    // Для изображений также копируем альфа-канал
+    newItem->setOpacity(source->opacity());
+
+    CopyCommonProperties(source, newItem.get());
+    return newItem;
+}
+
 std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CreateRectangle(const DocItemPreview& input)
 {
     double 

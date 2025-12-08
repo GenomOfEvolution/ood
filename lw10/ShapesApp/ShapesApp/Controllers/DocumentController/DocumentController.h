@@ -48,7 +48,7 @@ public:
 
 signals:
 	void undoRedoAvailabilityChanged(bool canUndo, bool canRedo);
-	void itemRemoved(int index);
+	void itemsRemoved(std::vector<size_t> indexes);
 	void itemAdded(const DocItemPreview& preview);
 	void itemsMoved(std::vector<size_t> indexes, double dx, double dy);
 	void documentLoaded();

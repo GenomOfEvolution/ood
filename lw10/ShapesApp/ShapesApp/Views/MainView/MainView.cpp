@@ -149,7 +149,7 @@ void UI::MainView::SetupRibbonBar()
                 this, "Insert Image", "", "Images (*.png)"
             );
             if (!path.isEmpty()) {
-                m_controller->AddImageItem(path.toStdString(), 100, 50);
+                m_controller->AddImageItem(path.toUtf8().toStdString(), 100, 50);
             }
         });
 

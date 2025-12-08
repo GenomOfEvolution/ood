@@ -128,18 +128,15 @@ std::vector<size_t> DocumentController::GetSelectedIndexes() const
 
 void DocumentController::RemoveSelectedItems()
 {
-	//m_history->AddAndExecuteCommand();
+	m_dragging = false;
 	auto indexes = m_selection->GetSelectedIndexes();
+	std::sort(indexes.rbegin(), indexes.rend(), std::greater<size_t>());
 
-	std::sort(indexes.begin(), indexes.end(), [](size_t a, size_t b) {
-		return a > b;
-	});
-
-	for (auto i : indexes)
+	for (size_t index : indexes) 
 	{
-		m_document->RemoveItemAtIndex(i);
-		emit itemRemoved((int)i);
+		m_document->RemoveItemAtIndex(index);
 	}
+	emit itemsRemoved(indexes);
 
 	m_selection->ClearSelection();
 	emit selectionChanged();
@@ -181,12 +178,24 @@ void DocumentController::handleMousePress(const QPointF& scenePos, Qt::KeyboardM
 
 	bool clickedOnSelectedItem = IsPointOverSelectedItem(clickPoint);
 
+	qDebug() << "Selected in model:";
+	auto indexes = m_selection->GetSelectedIndexes();
+	for (size_t i : indexes)
+	{
+		qDebug() << i;
+	}
+
+	qDebug() << "Clicked: " << clickPoint.x << ", " << clickPoint.y;
+	qDebug() << " m_dragging: " << m_dragging;
+	qDebug() << " clickedOnSelectedItem: " << clickedOnSelectedItem;
+
 	if (clickedOnSelectedItem && !ctrlPressed) 
 	{
 		m_dragging = true;
 		m_dragStartPoint = clickPoint;
 	}
-	else {
+	else 
+	{
 		m_selection->SelectItem(clickPoint, ctrlPressed);
 		m_dragging = false;
 
