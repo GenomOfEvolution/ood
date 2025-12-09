@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include "../DocumentItem/DocumentItem.h"
+#include "../Shared/Geometry.h"
 
 class IDocument
 {
@@ -10,6 +11,9 @@ public:
 	virtual void SaveAs(const std::string& path) = 0;
 	virtual void Load(const std::string& path) = 0;
 	virtual std::string GetSavePath() const = 0;
+
+	virtual Rect GetBounds() const = 0;
+	virtual Point MoveItemsBy(const std::vector<size_t> indexes, const Point& delta) = 0;
 
 	virtual void AddItem(std::unique_ptr<DocumentItem>&& item) = 0;
 	virtual std::shared_ptr<DocumentItem> GetItemAtIndex(size_t index) = 0;

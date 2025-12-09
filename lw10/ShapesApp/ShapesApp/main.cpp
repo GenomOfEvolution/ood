@@ -22,11 +22,13 @@ int main(int argc, char* argv[])
     qRegisterMetaType<DocItemPreview>();
     qRegisterMetaType<HandleType>("HandleType");
 
+    const Rect docWorkArea = Rect(0, 0, 1200, 500);
+
     auto selection = std::make_shared<DocumentSelection>();
     auto imgStorage = std::make_shared<ImageStorage>();
     auto history = std::make_shared<CommandHistory>();
     auto saver = std::make_shared<XmlSerializer>(imgStorage);
-    auto doc = std::make_shared<DocumentModel>(history, saver);
+    auto doc = std::make_shared<DocumentModel>(history, saver, docWorkArea);
     
     selection->SetDocument(doc);
     saver->SetDocument(doc);

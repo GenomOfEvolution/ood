@@ -207,14 +207,11 @@ void DocumentController::handleMouseMove(const QPointF& scenePos, Qt::KeyboardMo
 		Point currentPoint(scenePos.x(), scenePos.y());
 		Point delta = currentPoint - m_dragStartPoint;
 
-		for (auto index : m_selection->GetSelectedIndexes()) 
-		{
-			auto item = m_document->GetItemAtIndex(index);
-			item->MoveBy(delta);
-		}
+		auto actualDelta = m_document->MoveItemsBy(m_selection->GetSelectedIndexes(), delta);
 
 		m_dragStartPoint = currentPoint;
-		emit itemsMoved(m_selection->GetSelectedIndexes(), delta.x, delta.y);
+
+		emit itemsMoved(m_selection->GetSelectedIndexes(), actualDelta.x, actualDelta.y);
 	}
 }
 
