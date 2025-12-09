@@ -144,6 +144,7 @@ void DocumentController::RemoveSelectedItems()
 
 void DocumentController::Resize(HandleType type, double dx, double dy)
 {
+	qDebug() << "Controller: " << dx << dy;
 	std::vector<QRectF> newBoundingBoxes;
 	auto indexes = m_selection->GetSelectedIndexes();
 
@@ -177,17 +178,7 @@ void DocumentController::handleMousePress(const QPointF& scenePos, Qt::KeyboardM
 	Point clickPoint(scenePos.x(), scenePos.y());
 
 	bool clickedOnSelectedItem = IsPointOverSelectedItem(clickPoint);
-
-	qDebug() << "Selected in model:";
 	auto indexes = m_selection->GetSelectedIndexes();
-	for (size_t i : indexes)
-	{
-		qDebug() << i;
-	}
-
-	qDebug() << "Clicked: " << clickPoint.x << ", " << clickPoint.y;
-	qDebug() << " m_dragging: " << m_dragging;
-	qDebug() << " clickedOnSelectedItem: " << clickedOnSelectedItem;
 
 	if (clickedOnSelectedItem && !ctrlPressed) 
 	{

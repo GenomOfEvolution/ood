@@ -10,7 +10,8 @@ CustomGraphicsScene::CustomGraphicsScene(DocumentController* controller, QObject
 
 void CustomGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-    if (event->button() == Qt::LeftButton) {
+    if (event->button() == Qt::LeftButton) 
+    {
         m_leftButtonPressed = true;
         m_controller->handleMousePress(event->scenePos(), event->modifiers());
     }
@@ -19,7 +20,8 @@ void CustomGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
 void CustomGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
-    if (m_leftButtonPressed) {
+    if (m_leftButtonPressed) 
+    {
         m_controller->handleMouseMove(event->scenePos(), event->modifiers());
     }
     QGraphicsScene::mouseMoveEvent(event); 

@@ -287,7 +287,7 @@
       <Filter>Source Files\Models\Shared</Filter>
     </ClInclude>
     <ClInclude Include="Models\Shared\HandleType.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Models\Shared</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

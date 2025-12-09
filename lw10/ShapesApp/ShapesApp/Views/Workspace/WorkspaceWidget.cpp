@@ -154,7 +154,7 @@ void WorkspaceWidget::HandleResizeRequested(HandleType type, qreal dx, qreal dy)
     if (selectedIndexes.empty()) 
         return;
 
-    QPointF sceneDelta = m_view->mapToScene(QPoint(dx, dy)) - m_view->mapToScene(QPoint(0, 0));
+    QPointF sceneDelta = m_view->mapToScene(QPoint(dx * m_scale, dy * m_scale)) - m_view->mapToScene(QPoint(0, 0));
 
     m_controller->Resize(type, sceneDelta.x(), sceneDelta.y());
 }
@@ -269,4 +269,6 @@ void WorkspaceWidget::FitSceneToView()
     QTransform transform;
     transform.scale(scale, scale);
     m_view->setTransform(transform);
+
+    m_scale = scale;
 }

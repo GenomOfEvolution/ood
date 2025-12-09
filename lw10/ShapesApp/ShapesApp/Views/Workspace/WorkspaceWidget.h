@@ -49,6 +49,7 @@ private:
     QRectF m_sceneBoundary;
 
     QPointF m_lastCenter;
+    float m_scale = 1.0f;
 
     DocumentController* m_controller;
     QtGraphicsItemFactory m_factory;
