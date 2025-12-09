@@ -68,6 +68,7 @@ void DocumentController::Load(const std::string& path)
 	{
 		auto preview = m_document->GetItemAtIndex(i)->GetPreview();
 		preview.m_imgPath = m_document->GetSavePath() + "/" + preview.m_imgPath;
+		preview.m_index = i;
 
 		emit itemAdded(preview);
 	}
@@ -144,7 +145,6 @@ void DocumentController::RemoveSelectedItems()
 
 void DocumentController::Resize(HandleType type, double dx, double dy)
 {
-	qDebug() << "Controller: " << dx << dy;
 	std::vector<QRectF> newBoundingBoxes;
 	auto indexes = m_selection->GetSelectedIndexes();
 

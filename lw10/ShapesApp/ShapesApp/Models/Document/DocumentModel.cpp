@@ -40,6 +40,7 @@ void DocumentModel::Load(const std::string& path)
 
 	try
 	{
+		m_items.clear();
 		m_saver->Deserialize(path);
 		m_savePath = path;
 	}
