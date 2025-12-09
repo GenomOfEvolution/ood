@@ -203,16 +203,16 @@ void DocumentController::handleMousePress(const QPointF& scenePos, Qt::KeyboardM
 void DocumentController::handleMouseMove(const QPointF& scenePos, Qt::KeyboardModifiers modifiers)
 {
 	if (m_dragging) 
-	{
-		Point currentPoint(scenePos.x(), scenePos.y());
-		Point delta = currentPoint - m_dragStartPoint;
+    {
+        Point currentPoint(scenePos.x(), scenePos.y());
+        Point delta = currentPoint - m_dragStartPoint;
 
-		auto actualDelta = m_document->MoveItemsBy(m_selection->GetSelectedIndexes(), delta);
+        Point actualDelta = m_document->MoveItemsBy(m_selection->GetSelectedIndexes(), delta);
 
-		m_dragStartPoint = currentPoint;
+        m_dragStartPoint = m_dragStartPoint + actualDelta;
 
-		emit itemsMoved(m_selection->GetSelectedIndexes(), actualDelta.x, actualDelta.y);
-	}
+        emit itemsMoved(m_selection->GetSelectedIndexes(), actualDelta.x, actualDelta.y);
+    }
 }
 
 void DocumentController::handleMouseRelease(const QPointF& scenePos, Qt::KeyboardModifiers modifiers)
