@@ -35,7 +35,7 @@ public:
 	void Redo() override;
 
 	void AddShape(const std::string& description) override;
-	void AddImageItem(const std::string& imagePath, double width = 0, double height = 0) override;
+	void AddImageItem(const std::filesystem::path& imagePath, double width = 0, double height = 0) override;
 	void RemoveSelectedItems() override;
 
 	void Resize(HandleType type, double dx, double dy) override;

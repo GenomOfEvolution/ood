@@ -1,4 +1,7 @@
 #include "CImage.h"
+#include <codecvt>
+#include <locale>
+
 
 CImage::CImage(const std::string& path, const Point& position, double width, double height)
     : m_path(path), m_boundingBox(position, width, height)

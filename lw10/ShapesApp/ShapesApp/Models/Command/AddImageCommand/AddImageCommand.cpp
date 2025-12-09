@@ -5,7 +5,7 @@
 AddImageCommand::AddImageCommand(
 	IDocument& doc, 
 	IImageStorage& storage,
-	const std::string& srcPath, double width, double height)
+	const std::filesystem::path& srcPath, double width, double height)
 	: m_document(doc)
 	, m_storage(storage)
 	, m_srcPath(srcPath)

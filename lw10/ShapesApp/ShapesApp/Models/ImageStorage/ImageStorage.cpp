@@ -16,13 +16,11 @@ ImageStorage::ImageStorage(const std::string& tempDirPath)
 	ClearTempDirectory();
 }
 
-void ImageStorage::CopyAllImagesToStorage(const std::string& srcPath)
+void ImageStorage::CopyAllImagesToStorage(const std::filesystem::path& srcPath)
 {
-	std::filesystem::path imgPath = srcPath;
-
 	try
 	{
-		for (const auto& entry : std::filesystem::directory_iterator(imgPath))
+		for (const auto& entry : std::filesystem::directory_iterator(srcPath))
 		{
 			std::filesystem::copy(entry.path(), m_storageDir);
 		}
@@ -33,7 +31,7 @@ void ImageStorage::CopyAllImagesToStorage(const std::string& srcPath)
 	}
 }
 
-std::string ImageStorage::SaveImage(const std::string& srcPath)
+std::string ImageStorage::SaveImage(const std::filesystem::path& srcPath)
 {
 	std::filesystem::path imgPath = srcPath;
 
@@ -54,7 +52,7 @@ std::string ImageStorage::SaveImage(const std::string& srcPath)
 	}
 }
 
-void ImageStorage::DeleteTempImage(const std::string& srcPath)
+void ImageStorage::DeleteTempImage(const std::filesystem::path& srcPath)
 {
 	try
 	{
@@ -71,15 +69,13 @@ void ImageStorage::DeleteTempImage(const std::string& srcPath)
 	}
 }
 
-void ImageStorage::CopyAllImagesFromStorage(const std::string& copyTo)
+void ImageStorage::CopyAllImagesFromStorage(const std::filesystem::path& copyTo)
 {
-	std::filesystem::path targetPath = copyTo;
-
 	try
 	{
 		for (const auto& entry : std::filesystem::directory_iterator(m_storageDir))
 		{
-			std::filesystem::copy(entry.path(), targetPath);
+			std::filesystem::copy(entry.path(), copyTo);
 		}
 	}
 	catch (const std::exception& e)

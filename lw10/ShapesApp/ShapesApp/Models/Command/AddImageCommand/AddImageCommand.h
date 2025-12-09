@@ -9,7 +9,7 @@ public:
 	AddImageCommand(
 		IDocument& doc,
 		IImageStorage& storage,
-		const std::string& srcPath, double width, double height);
+		const std::filesystem::path& srcPath, double width, double height);
 	~AddImageCommand();
 
 private:
@@ -19,7 +19,8 @@ private:
 
 	IDocument& m_document;
 	IImageStorage& m_storage;
-	std::string m_srcPath, m_tempPath;
+	std::filesystem::path m_srcPath;
+	std::string m_tempPath;
 	double m_width, m_height;
 	std::shared_ptr<IImage> m_image;
 

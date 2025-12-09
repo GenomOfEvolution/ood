@@ -1,4 +1,4 @@
-#include "QtGraphicsItemFactory.h"
+ï»¿#include "QtGraphicsItemFactory.h"
 #include <QPixmap>
 #include <qpen.h>
 #include <QPolygonF>
@@ -100,7 +100,7 @@ std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CloneImage(QGraphicsPixmap
     newItem->setOffset(source->offset());
     newItem->setTransformationMode(source->transformationMode());
 
-    // Äëÿ èçîáðàæåíèé òàêæå êîïèðóåì àëüôà-êàíàë
+    // Ð”Ð»Ñ Ð¸Ð·Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ð¹ Ñ‚Ð°ÐºÐ¶Ðµ ÐºÐ¾Ð¿Ð¸Ñ€ÑƒÐµÐ¼ Ð°Ð»ÑŒÑ„Ð°-ÐºÐ°Ð½Ð°Ð»
     newItem->setOpacity(source->opacity());
 
     CopyCommonProperties(source, newItem.get());
@@ -153,17 +153,17 @@ std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CreateEllipse(const DocIte
 
 std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CreateImage(const DocItemPreview& input)
 {
-    std::string path = input.m_imgPath;
+    QString path = QString::fromLocal8Bit(input.m_imgPath.c_str());
     double
         x = input.m_boundingBox.x,
         y = input.m_boundingBox.y,
         targetWidth = input.m_boundingBox.width,
         targetHeight = input.m_boundingBox.height;
 
-    QPixmap originalPixmap(QString::fromStdString(path));
+    QPixmap originalPixmap(path);
     if (originalPixmap.isNull())
     {
-        throw std::runtime_error("Failed to load image: " + path);
+        throw std::runtime_error("Failed to load image: ");
     }
 
     int absWidth = qAbs(static_cast<int>(targetWidth));
@@ -179,7 +179,7 @@ std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CreateImage(const DocItemP
 
     imageItem->setPos(posX, posY);
 
-    // Ñîõðàíÿåì äàííûå
+    // Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÑÐµÐ¼ Ð´Ð°Ð½Ð½Ñ‹Ðµ
     imageItem->setData(OriginalPixmapRole, originalPixmap);
     imageItem->setData(TargetSizeRole, QSizeF(absWidth, absHeight));
     imageItem->setData(OriginalSizeRole, QSizeF(originalPixmap.width(), originalPixmap.height()));

@@ -106,7 +106,7 @@ void DocumentController::AddShape(const std::string& description)
 	emit itemAdded(prview);
 }
 
-void DocumentController::AddImageItem(const std::string& imagePath, double width, double height)
+void DocumentController::AddImageItem(const std::filesystem::path& imagePath, double width, double height)
 {
 	auto cmd = std::make_unique<AddImageCommand>(*m_document, *m_storage, imagePath, width, height);
 	m_history->AddAndExecuteCommand(std::move(cmd));
@@ -115,7 +115,7 @@ void DocumentController::AddImageItem(const std::string& imagePath, double width
 	{
 		.m_type = DocItemPreview::ItemType::Image,
 		.m_boundingBox = Rect{ 0, 0, width, height },
-		.m_imgPath = imagePath,
+		.m_imgPath = imagePath.string(),
 		.m_index = m_document->GetItemsCount() - 1
 	};
 

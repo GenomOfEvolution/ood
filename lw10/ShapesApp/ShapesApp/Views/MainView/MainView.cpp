@@ -145,11 +145,13 @@ void UI::MainView::SetupRibbonBar()
     auto mediaGroup = insertTab->addGroup("Media");
     mediaGroup->addButton("Image", ":/icons/image-icon.svg", 
         [this]() {
-            QString path = QFileDialog::getOpenFileName(
-                this, "Insert Image", "", "Images (*.png)"
-            );
+            QString path = QFileDialog::getOpenFileName(this, "Insert Image", "", "Images (*.png)");
+
+            auto p = path.toStdU16String();
+            std::filesystem::path pp = p;
+
             if (!path.isEmpty()) {
-                m_controller->AddImageItem(path.toUtf8().toStdString(), 100, 50);
+                m_controller->AddImageItem(pp, 100, 50);
             }
         });
 
