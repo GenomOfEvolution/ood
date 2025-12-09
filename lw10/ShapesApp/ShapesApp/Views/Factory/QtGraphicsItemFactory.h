@@ -16,6 +16,10 @@
 class QtGraphicsItemFactory
 {
 public:
+    static const int OriginalPixmapRole = Qt::UserRole + 2;
+    static const int TargetSizeRole = Qt::UserRole + 3;
+    static const int OriginalSizeRole = Qt::UserRole + 4;
+
     QtGraphicsItemFactory();
 
     std::unique_ptr<QGraphicsItem> CreateItem(const DocItemPreview& item);

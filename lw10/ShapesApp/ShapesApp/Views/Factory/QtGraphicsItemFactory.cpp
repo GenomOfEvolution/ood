@@ -154,21 +154,35 @@ std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CreateEllipse(const DocIte
 std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CreateImage(const DocItemPreview& input)
 {
     std::string path = input.m_imgPath;
-    double 
+    double
         x = input.m_boundingBox.x,
         y = input.m_boundingBox.y,
-        width = input.m_boundingBox.width,
-        height = input.m_boundingBox.height;
+        targetWidth = input.m_boundingBox.width,
+        targetHeight = input.m_boundingBox.height;
 
-    QPixmap pixmap(QString::fromStdString(path));
-    if (pixmap.isNull()) 
+    QPixmap originalPixmap(QString::fromStdString(path));
+    if (originalPixmap.isNull())
     {
         throw std::runtime_error("Failed to load image: " + path);
     }
 
-    pixmap = pixmap.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    int absWidth = qAbs(static_cast<int>(targetWidth));
+    int absHeight = qAbs(static_cast<int>(targetHeight));
 
-    auto image = std::make_unique<QGraphicsPixmapItem>(pixmap);
-    image->setPos(x, y);
-    return image;
+    QPixmap scaled = originalPixmap.scaled(absWidth, absHeight,
+        Qt::IgnoreAspectRatio,
+        Qt::SmoothTransformation);
+
+    auto imageItem = std::make_unique<QGraphicsPixmapItem>(scaled);
+    double posX = targetWidth < 0 ? x + targetWidth : x;
+    double posY = targetHeight < 0 ? y + targetHeight : y;
+
+    imageItem->setPos(posX, posY);
+
+    // Сохраняем данные
+    imageItem->setData(OriginalPixmapRole, originalPixmap);
+    imageItem->setData(TargetSizeRole, QSizeF(absWidth, absHeight));
+    imageItem->setData(OriginalSizeRole, QSizeF(originalPixmap.width(), originalPixmap.height()));
+
+    return imageItem;
 }

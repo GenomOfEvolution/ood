@@ -1,7 +1,8 @@
-#include "SelectionBoxItem.h"
+﻿#include "SelectionBoxItem.h"
 #include <QPen>
 #include <QGraphicsSceneMouseEvent>
 #include <QCursor>
+#include "../Factory/QtGraphicsItemFactory.h"
 
 SelectionBoxItem::SelectionBoxItem(QGraphicsItem* parent)
     : QGraphicsRectItem(parent)
@@ -43,11 +44,24 @@ void SelectionBoxItem::HandleResizeMove(const QRectF& newBoundingBox)
     {
         QRectF itemRect = m_targetItem->mapRectFromScene(newBoundingBox);
 
-        if (m_targetItem) {
-            m_targetItem->setTransform(QTransform().scale(
-                newBoundingBox.width() / m_targetItem->boundingRect().width(),
-                newBoundingBox.height() / m_targetItem->boundingRect().height()
-            ));
+        if (m_targetItem) 
+        {
+            if (auto ellipse = dynamic_cast<QGraphicsEllipseItem*>(m_targetItem))
+            {
+                ResizeEllipseItem(ellipse, itemRect);
+            }
+            else if (auto rect = dynamic_cast<QGraphicsRectItem*>(m_targetItem))
+            {
+                ResizeRectItem(rect, itemRect);
+            }
+            else if (auto polygon = dynamic_cast<QGraphicsPolygonItem*>(m_targetItem))
+            {
+                ResizeTriangleItem(polygon, itemRect);
+            }
+            else if (auto image = dynamic_cast<QGraphicsPixmapItem*>(m_targetItem))
+            {
+                ResizeImageItem(image, newBoundingBox);
+            }
         }
     }
 }
@@ -89,6 +103,90 @@ void SelectionBoxItem::PositionHandles()
     m_handles[1]->setPos(rect.topRight());     
     m_handles[2]->setPos(rect.bottomLeft());   
     m_handles[3]->setPos(rect.bottomRight()); 
+}
+
+void SelectionBoxItem::ResizeImageItem(QGraphicsPixmapItem* image, const QRectF& newBox)
+{
+    if (!image) return;
+
+    QPixmap original = image->data(QtGraphicsItemFactory::OriginalPixmapRole).value<QPixmap>();
+    if (original.isNull()) return;
+
+    int targetWidth = qAbs(static_cast<int>(newBox.width()));
+    int targetHeight = qAbs(static_cast<int>(newBox.height()));
+
+    // Растягиваем без сохранения пропорций
+    QPixmap scaled = original.scaled(targetWidth, targetHeight,
+        Qt::IgnoreAspectRatio,
+        Qt::SmoothTransformation);
+
+    // Позиционируем
+    double posX = newBox.width() < 0 ? newBox.right() : newBox.left();
+    double posY = newBox.height() < 0 ? newBox.bottom() : newBox.top();
+
+    image->setPixmap(scaled);
+    image->setPos(posX, posY);
+
+    image->setData(QtGraphicsItemFactory::TargetSizeRole, QSizeF(targetWidth, targetHeight));
+}
+
+void SelectionBoxItem::ResizeRectItem(QGraphicsRectItem* rect, const QRectF& newBox)
+{
+    rect->setRect(newBox);
+}
+
+void SelectionBoxItem::ResizeTriangleItem(QGraphicsPolygonItem* triangle, const QRectF& newBox)
+{
+    if (!triangle) return;
+
+    QPolygonF polygon = triangle->polygon();
+    if (polygon.isEmpty()) return;
+
+    QRectF currentBox = polygon.boundingRect();
+    double currentWidth = currentBox.width();
+    double currentHeight = currentBox.height();
+
+    if (qFuzzyIsNull(currentWidth)) currentWidth = 1.0;
+    if (qFuzzyIsNull(currentHeight)) currentHeight = 1.0;
+ 
+    bool flipX = (newBox.width() < 0);
+    bool flipY = (newBox.height() < 0);
+
+    double newLeft = flipX ?
+        newBox.right() :
+        newBox.left();
+
+    double newTop = flipY ?
+        newBox.bottom() :
+        newBox.top();
+
+    double newWidth = qAbs(newBox.width());
+    double newHeight = qAbs(newBox.height());
+
+    QPolygonF newPolygon;
+    for (const QPointF& point : polygon)
+    {
+        double relX = (point.x() - currentBox.left()) / currentWidth;
+        double relY = (point.y() - currentBox.top()) / currentHeight;
+
+        if (flipX) relX = 1.0 - relX;
+        if (flipY) relY = 1.0 - relY;
+
+        // Вычисляем новые абсолютные координаты
+        double newX = newLeft + relX * newWidth;
+        double newY = newTop + relY * newHeight;
+
+        newPolygon.append(QPointF(newX, newY));
+    }
+
+    triangle->setPolygon(newPolygon);
+    triangle->setPos(0, 0);
+    triangle->resetTransform();
+}
+
+void SelectionBoxItem::ResizeEllipseItem(QGraphicsEllipseItem* ellipse, const QRectF& newBox)
+{
+    ellipse->setRect(newBox);
 }
 
 ResizeHandle::ResizeHandle(HandleType type, QGraphicsItem* parent)

@@ -72,55 +72,33 @@ void WorkspaceWidget::HandleItemAdded(const DocItemPreview& itemName)
     m_scene->addItem(item);
 }
 
-
-struct ItemData {
-    int type;
-    QPointF pos;
-    qreal rotation;
-    qreal scaleX;
-    qreal scaleY;
-    int zValue;
-    QVariant userData;
-    QRectF boundingRect;
-
-    // Для фигур
-    QRectF rect;
-    QBrush brush;
-    QPen pen;
-    QPolygonF polygon;
-
-    // Для изображений
-    QPixmap pixmap;
-    QPointF offset;
-    Qt::TransformationMode transformationMode;
-};
-
 void WorkspaceWidget::HandleItemRemoved(std::vector<size_t> indexes)
 {
     ClearSelectionBoxes();
     std::sort(indexes.begin(), indexes.end(), std::greater<size_t>());
 
-    // 2. Собираем элементы для удаления
     std::vector<QGraphicsItem*> itemsToDelete;
-    for (auto index : indexes) {
+    for (auto index : indexes) 
+    {
         QGraphicsItem* item = FindSceneItemByIndex(index);
-        if (item) {
+        if (item) 
+        {
             itemsToDelete.push_back(item);
         }
     }
 
-    // 3. Сохраняем параметры вида
     QTransform transform = m_view->transform();
     QPointF centerPoint = m_view->mapToScene(m_view->viewport()->rect().center());
 
-    // 4. Создаем клоны для сохранения
     std::vector<std::unique_ptr<QGraphicsItem>> savedClones;
-
-    for (QGraphicsItem* item : m_scene->items()) {
+    for (QGraphicsItem* item : m_scene->items()) 
+    {
         // Проверяем, нужно ли удалить этот элемент
         bool shouldDelete = false;
-        for (QGraphicsItem* delItem : itemsToDelete) {
-            if (item == delItem) {
+        for (QGraphicsItem* delItem : itemsToDelete)
+        {
+            if (item == delItem) 
+            {
                 shouldDelete = true;
                 break;
             }
@@ -146,7 +124,6 @@ void WorkspaceWidget::HandleItemRemoved(std::vector<size_t> indexes)
         m_scene->addItem(clone.release());
     }
 
-    // 7. Восстанавливаем вид
     m_view->setTransform(transform);
     m_view->centerOn(centerPoint);
 

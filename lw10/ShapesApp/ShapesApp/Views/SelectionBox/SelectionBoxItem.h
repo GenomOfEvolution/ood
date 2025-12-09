@@ -53,6 +53,11 @@ private:
     void CreateHandles();
     void PositionHandles();
 
+    void ResizeImageItem(QGraphicsPixmapItem* image, const QRectF& newBox);
+    void ResizeRectItem(QGraphicsRectItem* rect, const QRectF& newBox);
+    void ResizeTriangleItem(QGraphicsPolygonItem* triangle, const QRectF& newBox);
+    void ResizeEllipseItem(QGraphicsEllipseItem* ellipse, const QRectF& newBox);
+
     QGraphicsItem* m_targetItem = nullptr;
 
     static constexpr qreal kHandleSize = 8.0;

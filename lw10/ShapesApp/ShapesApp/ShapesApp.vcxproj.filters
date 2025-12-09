@@ -286,8 +286,8 @@
     <ClInclude Include="Models\Shared\ItemPreviewDTO.h">
       <Filter>Source Files\Models\Shared</Filter>
     </ClInclude>
-    <ClInclude Include="Views\SelectionBox\SelectionBoxItem.h">
-      <Filter>Source Files\Views\SelectionBox</Filter>
+    <ClInclude Include="Models\Shared\HandleType.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +314,9 @@
     </QtMoc>
     <QtMoc Include="Views\CustomGraphicsScene\CustomGraphicsScene.h">
       <Filter>Source Files\Views\CustomGraphicsScene</Filter>
+    </QtMoc>
+    <QtMoc Include="Views\SelectionBox\SelectionBoxItem.h">
+      <Filter>Source Files\Views\SelectionBox</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
