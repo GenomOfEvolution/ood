@@ -19,6 +19,7 @@ public:
 
 	Rect GetBounds() const override;
 	Point MoveItemsBy(const std::vector<size_t> indexes, const Point& delta) override;
+	std::vector<Rect> ResizeItemsBy(const std::vector<size_t> indexes, const Point& delta, HandleType resizePoint) override;
 
 	void AddItem(std::unique_ptr<DocumentItem>&& item) override;
 	std::shared_ptr<DocumentItem> GetItemAtIndex(size_t index) override;

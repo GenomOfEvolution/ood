@@ -147,12 +147,10 @@ void DocumentController::Resize(HandleType type, double dx, double dy)
 {
 	std::vector<QRectF> newBoundingBoxes;
 	auto indexes = m_selection->GetSelectedIndexes();
+	auto newBBoxes = m_document->ResizeItemsBy(indexes, { dx, dy }, type);
 
-	for (auto index : indexes)
+	for (const auto& bbox : newBBoxes)
 	{
-		auto item = m_document->GetItemAtIndex(index);
-		item->Resize(type, dx, dy);
-		auto bbox = item->GetBoundingBox();
 		newBoundingBoxes.push_back(QRectF{ bbox.x, bbox.y, bbox.width, bbox.height });
 	}
 

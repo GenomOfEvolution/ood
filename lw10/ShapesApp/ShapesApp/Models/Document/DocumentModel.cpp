@@ -124,6 +124,101 @@ Point DocumentModel::MoveItemsBy(const std::vector<size_t> indexes, const Point&
     return actualDelta;
 }
 
+std::vector<Rect> DocumentModel::ResizeItemsBy(const std::vector<size_t> indexes, const Point& delta, HandleType resizePoint)
+{
+    if (indexes.empty()) {
+        return {};
+    }
+
+    // 1. Вычисляем текущий общий bounding box
+    Rect groupBBox = CalculateGroupBoundingBox(indexes);
+    if (groupBBox.width <= 0 || groupBBox.height <= 0) {
+        return {};
+    }
+
+    // 2. Вычисляем потенциальный новый bbox с текущим delta
+    Rect potentialNewBBox = groupBBox;
+
+    switch (resizePoint) {
+    case HandleType::TopLeft:
+        potentialNewBBox.x += delta.x;
+        potentialNewBBox.y += delta.y;
+        potentialNewBBox.width -= delta.x;
+        potentialNewBBox.height -= delta.y;
+        break;
+    case HandleType::TopRight:
+        potentialNewBBox.y += delta.y;
+        potentialNewBBox.width += delta.x;
+        potentialNewBBox.height -= delta.y;
+        break;
+    case HandleType::BottomLeft:
+        potentialNewBBox.x += delta.x;
+        potentialNewBBox.width -= delta.x;
+        potentialNewBBox.height += delta.y;
+        break;
+    case HandleType::BottomRight:
+        potentialNewBBox.width += delta.x;
+        potentialNewBBox.height += delta.y;
+        break;
+    default:
+        return {}; // Неизвестный тип ручки
+    }
+
+    // 3. Ограничиваем потенциальный bbox границами поля
+    Point constrainedTopLeft = ConstrainPoint({ potentialNewBBox.x, potentialNewBBox.y });
+    Point constrainedBottomRight = ConstrainPoint({ potentialNewBBox.x + potentialNewBBox.width, potentialNewBBox.y + potentialNewBBox.height });
+
+    Rect constrainedBBox = {
+        constrainedTopLeft.x,
+        constrainedTopLeft.y,
+        std::max(1.0, constrainedBottomRight.x - constrainedTopLeft.x),
+        std::max(1.0, constrainedBottomRight.y - constrainedTopLeft.y)
+    };
+
+    // 4. Вычисляем скорректированные delta на основе ограниченного bbox
+    Point constrainedDelta;
+
+    switch (resizePoint) {
+    case HandleType::TopLeft:
+        constrainedDelta.x = constrainedBBox.x - groupBBox.x;
+        constrainedDelta.y = constrainedBBox.y - groupBBox.y;
+        break;
+    case HandleType::TopRight:
+        constrainedDelta.x = (constrainedBBox.x + constrainedBBox.width) - (groupBBox.x + groupBBox.width);
+        constrainedDelta.y = constrainedBBox.y - groupBBox.y;
+        break;
+    case HandleType::BottomLeft:
+        constrainedDelta.x = constrainedBBox.x - groupBBox.x;
+        constrainedDelta.y = (constrainedBBox.y + constrainedBBox.height) - (groupBBox.y + groupBBox.height);
+        break;
+    case HandleType::BottomRight:
+        constrainedDelta.x = (constrainedBBox.x + constrainedBBox.width) - (groupBBox.x + groupBBox.width);
+        constrainedDelta.y = (constrainedBBox.y + constrainedBBox.height) - (groupBBox.y + groupBBox.height);
+        break;
+    default:
+        constrainedDelta = { 0, 0 };
+    }
+
+    // 5. Применяем скорректированный delta к каждому объекту
+    std::vector<Rect> newBoundingBoxes;
+    newBoundingBoxes.reserve(indexes.size());
+
+    for (size_t index : indexes) {
+        if (index >= m_items.size()) {
+            continue;
+        }
+
+        // Применяем ресайз с ограниченными значениями
+        m_items[index]->Resize(resizePoint, constrainedDelta.x, constrainedDelta.y);
+
+        // Получаем новый bbox
+        Rect newBBox = m_items[index]->GetBoundingBox();
+        newBoundingBoxes.push_back(newBBox);
+    }
+
+    return newBoundingBoxes;
+}
+
 Point DocumentModel::ConstrainPoint(const Point& p) const
 {
 	double minX = m_fieldArea.x;
