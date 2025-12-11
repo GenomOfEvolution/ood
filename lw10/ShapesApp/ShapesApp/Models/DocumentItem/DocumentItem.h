@@ -81,16 +81,30 @@ public:
     {
         if (std::holds_alternative<std::shared_ptr<IImage>>(m_item))
         {
-            auto item = std::get<std::shared_ptr<IImage>>(m_item);
+            auto& item = std::get<std::shared_ptr<IImage>>(m_item);
             auto bbox = GetResizedBoundingBox(item->GetBoundingBox(), type, dx, dy);
             item->Resize(bbox);
         }
         else
         {
-            auto item = std::get<std::shared_ptr<IShape>>(m_item);
+            auto& item = std::get<std::shared_ptr<IShape>>(m_item);
             auto oldBbox = item->GetBoundingBox();
             auto bbox = GetResizedBoundingBox(oldBbox, type, dx, dy);
             item->Resize(bbox);
+        }
+    }
+
+    void Resize(Rect newBbox)
+    {
+        if (std::holds_alternative<std::shared_ptr<IImage>>(m_item))
+        {
+            auto& item = std::get<std::shared_ptr<IImage>>(m_item);
+            item->Resize(newBbox);
+        }
+        else
+        {
+            auto& item = std::get<std::shared_ptr<IShape>>(m_item);
+            item->Resize(newBbox);
         }
     }
 

@@ -270,6 +270,11 @@ void DocumentModel::AddItem(std::unique_ptr<DocumentItem>&& item)
 	m_items.push_back(std::move(item));
 }
 
+void DocumentModel::InsertItemAtIndex(std::unique_ptr<DocumentItem>&& item, size_t index)
+{
+    m_items.insert(m_items.begin() + index, std::move(item));
+}
+
 std::shared_ptr<DocumentItem> DocumentModel::GetItemAtIndex(size_t index)
 {
 	return m_items.at(index);

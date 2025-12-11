@@ -2,6 +2,10 @@
 #include "../../Models/DocumentItem/DocumentItem.h"
 #include "../../Models/Command/AddShapeCommand/AddShapeCommand.h"
 #include "../../Models/Command/AddImageCommand/AddImageCommand.h"
+#include "../../Models/Command/MegrableCommands/ResizeItemsCommand/ResizeItemsCommand.h"
+#include "../../Models/Command/MegrableCommands/MoveItemsCommand/MoveItemsCommand.h"
+#include "../../Models/Command/DeleteItemsCommand/DeleteItemsCommand.h"
+
 #include <qdebug.h>
 #include <algorithm>
 
@@ -96,14 +100,28 @@ void DocumentController::Redo()
 
 void DocumentController::AddShape(const std::string& description)
 {
-	auto cmd = std::make_unique<AddShapeCommand>(*m_document, description);
-	m_history->AddAndExecuteCommand(std::move(cmd));
-	
-	auto prview = m_document->GetItemAtIndex(m_document->GetItemsCount() - 1)->GetPreview();
+	auto onShapeAdded = [this]() 
+	{
+		auto item = m_document->GetItemAtIndex(m_document->GetItemsCount() - 1);
+		auto preview = item->GetPreview();
+		preview.m_index = m_document->GetItemsCount() - 1;
+		emit itemAdded(preview);
+	};
 
-	prview.m_index = m_document->GetItemsCount() - 1;
+	auto onShapeRemoved = [this]()
+	{
+		emit deleteLastItem(m_document->GetItemsCount() - 1);
+	};
 
-	emit itemAdded(prview);
+	auto command = std::make_unique<AddShapeCommand>(
+		*m_document,
+		*m_selection,
+		description,
+		std::move(onShapeAdded),
+		std::move(onShapeRemoved)
+	);
+
+	m_history->AddAndExecuteCommand(std::move(command));
 }
 
 void DocumentController::AddImageItem(const std::filesystem::path& imagePath, double width, double height)
@@ -129,32 +147,60 @@ std::vector<size_t> DocumentController::GetSelectedIndexes() const
 
 void DocumentController::RemoveSelectedItems()
 {
-	m_dragging = false;
-	auto indexes = m_selection->GetSelectedIndexes();
-	std::sort(indexes.rbegin(), indexes.rend(), std::greater<size_t>());
+	if (m_selection->GetSelectedIndexes().empty())
+		return;
 
-	for (size_t index : indexes) 
+	auto callback = [this]() 
 	{
-		m_document->RemoveItemAtIndex(index);
-	}
-	emit itemsRemoved(indexes);
+		emit documentChanged();
+	};
 
-	m_selection->ClearSelection();
-	emit selectionChanged();
+	auto command = std::make_unique<DeleteItemsCommand>(
+		*m_document,
+		*m_selection,
+		*m_storage,
+		std::move(callback)
+	);
+
+	m_history->AddAndExecuteCommand(std::move(command));
+	m_dragging = false;
 }
 
 void DocumentController::Resize(HandleType type, double dx, double dy)
 {
-	std::vector<QRectF> newBoundingBoxes;
-	auto indexes = m_selection->GetSelectedIndexes();
-	auto newBBoxes = m_document->ResizeItemsBy(indexes, { dx, dy }, type);
+	if (m_selection->GetSelectedIndexes().empty())
+		return;
 
-	for (const auto& bbox : newBBoxes)
+	ItemsResizedCallback callback = [this](const std::vector<Rect>& newBoundingBoxes)
 	{
-		newBoundingBoxes.push_back(QRectF{ bbox.x, bbox.y, bbox.width, bbox.height });
-	}
+		std::vector<QRectF> qtBoxes;
+		qtBoxes.reserve(newBoundingBoxes.size());
+		for (const auto& bbox : newBoundingBoxes) 
+		{
+			qtBoxes.emplace_back(bbox.x, bbox.y, bbox.width, bbox.height);
+		}
+		emit itemsResized(qtBoxes);
+	};
 
-	emit itemsResized(newBoundingBoxes);
+	auto command = std::make_unique<ResizeItemsCommand>(
+		*m_document,
+		*m_selection,
+		type,
+		Point{ dx, dy },
+		std::move(callback)
+	);
+
+	m_history->AddAndExecuteCommand(std::move(command));
+}
+
+std::shared_ptr<const DocumentItem> DocumentController::GetItemAtIndex(size_t index) const
+{
+	return m_document->GetItemAtIndex(index);
+}
+
+size_t DocumentController::GetItemsCount() const
+{
+	return m_document->GetItemsCount();
 }
 
 bool DocumentController::IsPointOverSelectedItem(const Point& point) const
@@ -201,16 +247,29 @@ void DocumentController::handleMousePress(const QPointF& scenePos, Qt::KeyboardM
 void DocumentController::handleMouseMove(const QPointF& scenePos, Qt::KeyboardModifiers modifiers)
 {
 	if (m_dragging) 
-    {
-        Point currentPoint(scenePos.x(), scenePos.y());
-        Point delta = currentPoint - m_dragStartPoint;
+	{
+		Point currentPoint(scenePos.x(), scenePos.y());
+		Point delta = currentPoint - m_dragStartPoint;
 
-        Point actualDelta = m_document->MoveItemsBy(m_selection->GetSelectedIndexes(), delta);
+		if (delta.x == 0.0 && delta.y == 0.0) 
+			return;
 
-        m_dragStartPoint = m_dragStartPoint + actualDelta;
+		ItemsMovedCallback callback = [this](const std::vector<size_t>& indexes, double dx, double dy)
+		{
+			emit itemsMoved(indexes, dx, dy);
+		};
 
-        emit itemsMoved(m_selection->GetSelectedIndexes(), actualDelta.x, actualDelta.y);
-    }
+		auto command = std::make_unique<MoveItemsCommand>(
+			*m_document,
+			*m_selection,
+			delta,
+			std::move(callback)
+		);
+
+		m_history->AddAndExecuteCommand(std::move(command));
+
+		m_dragStartPoint = currentPoint;
+	}
 }
 
 void DocumentController::handleMouseRelease(const QPointF& scenePos, Qt::KeyboardModifiers modifiers)

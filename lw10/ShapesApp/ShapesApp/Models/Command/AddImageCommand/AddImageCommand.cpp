@@ -1,7 +1,6 @@
 #include "AddImageCommand.h"
 #include "../../DocumentItem/Image/CImage.h"
 
-
 AddImageCommand::AddImageCommand(
 	IDocument& doc, 
 	IImageStorage& storage,

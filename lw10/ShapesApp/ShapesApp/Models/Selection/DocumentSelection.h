@@ -8,6 +8,7 @@ public:
 	DocumentSelection() = default;
 
 	void SelectItem(const Point& point, bool additive = false) override;
+	void AddIndex(size_t index) override;
 	void ClearSelection() override;
 	std::vector<size_t> GetSelectedIndexes() const override;
 	void SetDocument(std::shared_ptr<IDocument> doc) override;

@@ -123,6 +123,15 @@
     <Filter Include="Source Files\Views\SelectionBox">
       <UniqueIdentifier>{eb3d1bed-0ab8-40ac-b4fd-04b4ba29b1d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Models\Command\MergableCommands">
+      <UniqueIdentifier>{9cf66374-b86b-4efe-b36b-83813708b3ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\MergableCommands\ResizeItemsCommand">
+      <UniqueIdentifier>{56683ced-89fc-42d8-b2cf-68f7d95f6d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models\Command\MergableCommands\MoveItemsComand">
+      <UniqueIdentifier>{7d502267-58dd-4cac-ade2-23310b6bc192}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -193,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="Views\SelectionBox\SelectionBoxItem.cpp">
       <Filter>Source Files\Views\SelectionBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Command\MegrableCommands\ResizeItemsCommand\ResizeItemsCommand.cpp">
+      <Filter>Source Files\Models\Command\MergableCommands\ResizeItemsCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Command\MegrableCommands\MoveItemsCommand\MoveItemsCommand.cpp">
+      <Filter>Source Files\Models\Command\MergableCommands\MoveItemsComand</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Command\DeleteItemsCommand\DeleteItemsCommand.cpp">
+      <Filter>Source Files\Models\Command\DeleteItemsCommand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +306,15 @@
     </ClInclude>
     <ClInclude Include="Models\Shared\HandleType.h">
       <Filter>Source Files\Models\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Command\MegrableCommands\IMergableCommand.h">
+      <Filter>Source Files\Models\Command\MergableCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Command\MegrableCommands\ResizeItemsCommand\ResizeItemsCommand.h">
+      <Filter>Source Files\Models\Command\MergableCommands\ResizeItemsCommand</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Command\MegrableCommands\MoveItemsCommand\MoveItemsCommand.h">
+      <Filter>Source Files\Models\Command\MergableCommands\MoveItemsComand</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

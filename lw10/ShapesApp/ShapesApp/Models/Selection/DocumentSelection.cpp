@@ -40,6 +40,11 @@ void DocumentSelection::SelectItem(const Point& point, bool additive)
     }
 }
 
+void DocumentSelection::AddIndex(size_t index)
+{
+    m_selectedItems.push_back(index);
+}
+
 void DocumentSelection::ClearSelection()
 {
     m_selectedItems.clear();

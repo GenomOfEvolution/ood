@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Models/Shared/HandleType.h"
+#include "../../Models/Document/IDocument.h"
 #include <filesystem>
 #include <vector>
 #include <string>
@@ -23,6 +24,8 @@ public:
 	virtual void AddImageItem(const std::filesystem::path& imagePath, double width = 0, double height = 0) = 0;
 	virtual void RemoveSelectedItems() = 0;
 	virtual void Resize(HandleType type, double dx, double dy) = 0;
+	virtual std::shared_ptr<const DocumentItem> GetItemAtIndex(size_t index) const = 0;
+	virtual size_t GetItemsCount() const = 0;
 
 	virtual std::vector<size_t> GetSelectedIndexes() const = 0;
 };

@@ -1,4 +1,5 @@
 ﻿#include "CommandHistory.h"
+#include "../Command/MegrableCommands/IMergableCommand.h"
 
 void CommandHistory::AddAndExecuteCommand(std::unique_ptr<ICommand>&& command)
 {
@@ -9,6 +10,11 @@ void CommandHistory::AddAndExecuteCommand(std::unique_ptr<ICommand>&& command)
 		if (m_actionPos < m_commands.size()) 
 		{
 			m_commands.erase(m_commands.begin() + m_actionPos, m_commands.end());
+		}
+
+		if (CanMergeWithLastCommand(command))
+		{
+			return;
 		}
 
 		m_commands.push_back(
@@ -50,4 +56,25 @@ void CommandHistory::Redo()
 		size_t nextIndex = m_actionPos++;
 		m_commands[nextIndex]->Execute();
 	}
+}
+
+bool CommandHistory::CanMergeWithLastCommand(std::unique_ptr<ICommand>& newCommand)
+{
+	if (m_commands.empty())
+	{
+		return false;
+	}
+
+	auto& lastCommand = m_commands.back();
+
+	auto lastMergeable = dynamic_cast<IMergableCommand*>(lastCommand.get());
+	auto newMergeable = dynamic_cast<IMergableCommand*>(newCommand.get());
+
+	if (lastMergeable && newMergeable && lastMergeable->CanMergeWith(*newMergeable))
+	{
+		lastMergeable->MergeWith(std::move(newCommand));
+		return true;
+	}
+
+	return false;
 }

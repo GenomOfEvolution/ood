@@ -18,6 +18,8 @@ public:
 	void Redo() override;
 
 private:
+	bool CanMergeWithLastCommand(std::unique_ptr<ICommand>& newCommand);
+
 	size_t m_actionPos = 0;
 	std::vector<std::unique_ptr<IUndoableCommand>> m_commands;
 };

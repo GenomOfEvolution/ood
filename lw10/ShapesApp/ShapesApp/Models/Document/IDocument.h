@@ -17,6 +17,7 @@ public:
 	virtual std::vector<Rect> ResizeItemsBy(const std::vector<size_t> indexes, const Point& delta, HandleType resizePoint) = 0;
 
 	virtual void AddItem(std::unique_ptr<DocumentItem>&& item) = 0;
+	virtual void InsertItemAtIndex(std::unique_ptr<DocumentItem>&& item, size_t index) = 0;
 	virtual std::shared_ptr<DocumentItem> GetItemAtIndex(size_t index) = 0;
 	virtual std::shared_ptr<const DocumentItem> GetItemAtIndex(size_t index) const = 0;
 	virtual void RemoveItemAtIndex(size_t index) = 0;

@@ -22,6 +22,7 @@ public:
 	std::vector<Rect> ResizeItemsBy(const std::vector<size_t> indexes, const Point& delta, HandleType resizePoint) override;
 
 	void AddItem(std::unique_ptr<DocumentItem>&& item) override;
+	void InsertItemAtIndex(std::unique_ptr<DocumentItem>&& item, size_t index) override;
 	std::shared_ptr<DocumentItem> GetItemAtIndex(size_t index) override;
 	std::shared_ptr<const DocumentItem> GetItemAtIndex(size_t index) const override;
 	void RemoveItemAtIndex(size_t index) override;

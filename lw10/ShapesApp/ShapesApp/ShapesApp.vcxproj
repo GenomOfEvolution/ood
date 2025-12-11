@@ -106,6 +106,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Models\Command\AddImageCommand\AddImageCommand.cpp" />
     <ClCompile Include="Models\Command\AddShapeCommand\AddShapeCommand.cpp" />
+    <ClCompile Include="Models\Command\DeleteItemsCommand\DeleteItemsCommand.cpp" />
+    <ClCompile Include="Models\Command\MegrableCommands\MoveItemsCommand\MoveItemsCommand.cpp" />
+    <ClCompile Include="Models\Command\MegrableCommands\ResizeItemsCommand\ResizeItemsCommand.cpp" />
     <ClCompile Include="Models\DocumentItem\Image\CImage.cpp" />
     <ClCompile Include="Models\DocumentItem\Shape\Ellipse\CEllipse.cpp" />
     <ClCompile Include="Models\DocumentItem\Shape\Rectangle\CRectangle.cpp" />
@@ -129,6 +132,9 @@
   <ItemGroup>
     <ClInclude Include="Models\Command\AddImageCommand\AddImageCommand.h" />
     <ClInclude Include="Models\Command\AddShapeCommand\AddShapeCommand.h" />
+    <ClInclude Include="Models\Command\MegrableCommands\IMergableCommand.h" />
+    <ClInclude Include="Models\Command\MegrableCommands\MoveItemsCommand\MoveItemsCommand.h" />
+    <ClInclude Include="Models\Command\MegrableCommands\ResizeItemsCommand\ResizeItemsCommand.h" />
     <ClInclude Include="Models\ImageStorage\IImageStorage.h" />
     <ClInclude Include="Models\ImageStorage\ImageStorage.h" />
     <ClInclude Include="Models\Shared\HandleType.h" />

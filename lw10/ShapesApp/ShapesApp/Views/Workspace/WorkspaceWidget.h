@@ -27,7 +27,6 @@ protected:
 private slots:
     void HandleItemsMoved(std::vector<size_t> indexes, double dx, double dy);
     void HandleItemAdded(const DocItemPreview& preview);
-    void HandleItemRemoved(std::vector<size_t> indexes);
 
     void HandleItemsResized(const std::vector<QRectF>& newBoundingBoxes);
     void HandleResizeRequested(HandleType type, qreal dx, qreal dy);
@@ -37,6 +36,9 @@ private slots:
     void UpdateSelectionBoxes();
 
     void HandleDocumentLoaded();
+    void HandleDocumentChanged();
+
+    void HandleDeleteLastItem(size_t index);
 
 private:
     QGraphicsItem* FindSceneItemByIndex(size_t index) const;

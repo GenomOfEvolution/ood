@@ -29,12 +29,16 @@ WorkspaceWidget::WorkspaceWidget(
     setLayout(layout);
 
     connect(m_controller, &DocumentController::itemAdded, this, &WorkspaceWidget::HandleItemAdded);
-    connect(m_controller, &DocumentController::itemsRemoved, this, &WorkspaceWidget::HandleItemRemoved);
     connect(m_controller, &DocumentController::itemsMoved, this, &WorkspaceWidget::HandleItemsMoved);
     connect(m_controller, &DocumentController::documentLoaded, this, &WorkspaceWidget::HandleDocumentLoaded);
 
+    connect(m_controller, &DocumentController::deleteLastItem, this, &WorkspaceWidget::HandleDeleteLastItem);
+
     connect(m_controller, &DocumentController::selectionChanged,
         this, &WorkspaceWidget::HandleSelectionChanged);
+
+    connect(m_controller, &DocumentController::documentChanged,
+        this, &WorkspaceWidget::HandleDocumentChanged);
 
     connect(m_controller, &DocumentController::itemsResized, this, &WorkspaceWidget::HandleItemsResized);
 
@@ -70,62 +74,6 @@ void WorkspaceWidget::HandleItemAdded(const DocItemPreview& itemName)
     item->setData(DocumentIndexRole, static_cast<qint64>(itemName.m_index));
 
     m_scene->addItem(item);
-}
-
-void WorkspaceWidget::HandleItemRemoved(std::vector<size_t> indexes)
-{
-    ClearSelectionBoxes();
-    std::sort(indexes.begin(), indexes.end(), std::greater<size_t>());
-
-    std::vector<QGraphicsItem*> itemsToDelete;
-    for (auto index : indexes) 
-    {
-        QGraphicsItem* item = FindSceneItemByIndex(index);
-        if (item) 
-        {
-            itemsToDelete.push_back(item);
-        }
-    }
-
-    QTransform transform = m_view->transform();
-    QPointF centerPoint = m_view->mapToScene(m_view->viewport()->rect().center());
-
-    std::vector<std::unique_ptr<QGraphicsItem>> savedClones;
-    for (QGraphicsItem* item : m_scene->items()) 
-    {
-        // Проверяем, нужно ли удалить этот элемент
-        bool shouldDelete = false;
-        for (QGraphicsItem* delItem : itemsToDelete)
-        {
-            if (item == delItem) 
-            {
-                shouldDelete = true;
-                break;
-            }
-        }
-
-        if (!shouldDelete) 
-        {
-            if (auto clone = m_factory.Clone(item)) 
-            {
-                savedClones.push_back(std::move(clone));
-            }
-        }
-    }
-
-    qDeleteAll(m_scene->items());
-    m_scene->clear();
-
-    int index = 0;
-    for (auto& clone : savedClones) 
-    {
-        clone->setFlags(QGraphicsItem::ItemIsMovable);
-        clone->setData(DocumentIndexRole, static_cast<qint64>(index));
-        m_scene->addItem(clone.release());
-    }
-
-    m_view->setTransform(transform);
-    m_view->centerOn(centerPoint);
 
     UpdateSelectionBoxes();
 }
@@ -202,6 +150,31 @@ void WorkspaceWidget::UpdateSelectionBoxes()
 void WorkspaceWidget::HandleDocumentLoaded()
 {
     m_scene->clear();
+}
+
+void WorkspaceWidget::HandleDocumentChanged()
+{
+    ClearSelectionBoxes();
+    m_scene->clear();
+
+    for (size_t i = 0; i < m_controller->GetItemsCount(); ++i) 
+    {
+        auto item = m_controller->GetItemAtIndex(i);
+        auto preview = item->GetPreview();
+        preview.m_index = i;
+
+        HandleItemAdded(preview);
+    }
+
+    UpdateSelectionBoxes();
+    FitSceneToView();
+}
+
+void WorkspaceWidget::HandleDeleteLastItem(size_t index)
+{
+    auto item = FindSceneItemByIndex(index);
+    if (item)
+        m_scene->removeItem(item);
 }
 
 QGraphicsItem* WorkspaceWidget::FindSceneItemByIndex(size_t index) const

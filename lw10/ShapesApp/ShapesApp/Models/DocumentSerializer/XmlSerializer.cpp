@@ -61,6 +61,7 @@ void XmlSerializer::Deserialize(const std::string& path)
     }
 
     m_storage->ClearStorage();
+    //m_storage->CopyAllImagesToStorage();
 
     QFile file(QString::fromStdString(path));
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) 
