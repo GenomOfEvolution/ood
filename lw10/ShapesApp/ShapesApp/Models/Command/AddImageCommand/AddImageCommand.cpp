@@ -26,7 +26,12 @@ AddImageCommand::~AddImageCommand()
 
 void AddImageCommand::DoExecute()
 {
-	m_tempPath = m_storage.SaveImage(m_srcPath);
+	if (!m_wasCopied)
+	{
+		m_tempPath = m_storage.SaveImage(m_srcPath);
+		m_wasCopied = true;
+	}
+
 	m_insertPos = m_document.GetItemsCount();
 
 	m_image = std::make_shared<CImage>(m_tempPath, Point{ 0, 0 }, m_width, m_height);

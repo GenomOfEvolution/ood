@@ -39,5 +39,6 @@ private:
 	std::shared_ptr<IImage> m_image;
 
 	bool m_shouldDelete = false;
+	bool m_wasCopied = false;
 	size_t m_insertPos = 0;
 };

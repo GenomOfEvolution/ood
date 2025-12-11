@@ -56,7 +56,7 @@ void ImageStorage::DeleteTempImage(const std::filesystem::path& srcPath)
 {
 	try
 	{
-		std::filesystem::path fullPath = m_storageDir / srcPath;
+		std::filesystem::path fullPath = m_storageDir / srcPath.filename();
 
 		if (std::filesystem::exists(fullPath))
 		{
