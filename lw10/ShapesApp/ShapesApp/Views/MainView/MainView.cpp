@@ -60,7 +60,7 @@ void UI::MainView::SetupUI()
 
 void UI::MainView::SetupCustomTitleBar()
 {
-    m_titleBar = new CustomTitleBar(this);
+    m_titleBar = new CustomTitleBar(m_controller, this);
     m_mainLayout->addWidget(m_titleBar);
 }
 

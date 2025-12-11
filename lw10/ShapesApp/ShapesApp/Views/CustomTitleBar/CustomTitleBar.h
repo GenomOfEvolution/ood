@@ -1,4 +1,5 @@
 #pragma once
+#include "../../Controllers/DocumentController/DocumentController.h"
 #include <QWidget>
 #include <QMainWindow>
 #include <qtoolbutton.h>
@@ -7,7 +8,7 @@ class CustomTitleBar : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomTitleBar(QWidget* parent = nullptr);
+    explicit CustomTitleBar(DocumentController* controller, QWidget* parent = nullptr);
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;
@@ -28,4 +29,6 @@ private:
 
     QToolButton* m_maxButton = nullptr;
     QPoint m_dragPosition;
+
+    DocumentController* m_controller;
 };

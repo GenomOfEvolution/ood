@@ -3,7 +3,9 @@
 #include <QToolButton>
 #include <QMouseEvent>
 
-CustomTitleBar::CustomTitleBar(QWidget* parent) : QWidget(parent) 
+CustomTitleBar::CustomTitleBar(DocumentController* controller, QWidget* parent) 
+    : QWidget(parent) 
+    , m_controller(controller)
 {
     setObjectName("titleBar");
 
@@ -62,6 +64,10 @@ CustomTitleBar::CustomTitleBar(QWidget* parent) : QWidget(parent)
     connect(minButton, &QToolButton::clicked, parent, &QWidget::showMinimized);
     connect(maxButton, &QToolButton::clicked, this, &CustomTitleBar::onMaximizeClicked);
     connect(closeButton, &QToolButton::clicked, parent, &QWidget::close);
+
+    connect(m_undoButton, &QToolButton::clicked, m_controller, &DocumentController::Undo);
+    connect(m_redoButton, &QToolButton::clicked, m_controller, &DocumentController::Redo);
+    connect(m_saveButton, &QToolButton::clicked, m_controller, &DocumentController::Save);
 }
 
 void CustomTitleBar::mousePressEvent(QMouseEvent* event)

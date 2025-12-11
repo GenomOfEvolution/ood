@@ -110,7 +110,7 @@ void DocumentController::AddShape(const std::string& description)
 
 	auto onShapeRemoved = [this]()
 	{
-		emit deleteLastItem(m_document->GetItemsCount() - 1);
+		emit deleteLastItem(m_document->GetItemsCount());
 	};
 
 	auto command = std::make_unique<AddShapeCommand>(
@@ -256,6 +256,7 @@ void DocumentController::handleMouseMove(const QPointF& scenePos, Qt::KeyboardMo
 
 		ItemsMovedCallback callback = [this](const std::vector<size_t>& indexes, double dx, double dy)
 		{
+			m_dragStartPoint += {dx, dy};
 			emit itemsMoved(indexes, dx, dy);
 		};
 
@@ -267,8 +268,6 @@ void DocumentController::handleMouseMove(const QPointF& scenePos, Qt::KeyboardMo
 		);
 
 		m_history->AddAndExecuteCommand(std::move(command));
-
-		m_dragStartPoint = currentPoint;
 	}
 }
 

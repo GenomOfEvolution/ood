@@ -34,8 +34,8 @@ void MoveItemsCommand::MergeWith(std::unique_ptr<ICommand> other)
 {
 	if (auto* otherCmd = dynamic_cast<MoveItemsCommand*>(other.get())) 
 	{
-		m_delta.x += otherCmd->m_delta.x;
-		m_delta.y += otherCmd->m_delta.y;
+		m_delta.x += otherCmd->m_actualDelta.x;
+		m_delta.y += otherCmd->m_actualDelta.y;
 	}
 }
 
@@ -59,6 +59,13 @@ void MoveItemsCommand::DoUnexecute()
 
 	if (m_onItemsMoved && (m_actualDelta.x != 0.0 || m_actualDelta.y != 0.0)) 
 	{
-		m_onItemsMoved(m_selectedIndexes, -m_actualDelta.x, -m_actualDelta.y);
+		m_selection.ClearSelection();
+
+		for (auto i : m_selectedIndexes)
+		{
+			m_selection.AddIndex(i);
+		}
+
+		m_onItemsMoved(m_selectedIndexes, -m_delta.x, -m_delta.y);
 	}
 }

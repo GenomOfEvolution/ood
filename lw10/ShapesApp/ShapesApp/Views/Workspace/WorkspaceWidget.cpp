@@ -175,6 +175,7 @@ void WorkspaceWidget::HandleDeleteLastItem(size_t index)
     auto item = FindSceneItemByIndex(index);
     if (item)
         m_scene->removeItem(item);
+    UpdateSelectionBoxes();
 }
 
 QGraphicsItem* WorkspaceWidget::FindSceneItemByIndex(size_t index) const
