@@ -17,7 +17,13 @@ DeleteItemsCommand::DeleteItemsCommand(
 
 void DeleteItemsCommand::Destroy()
 {
-
+    for (auto& data : m_deletedItems)
+    {
+        if (auto image = data.item->GetImage())
+        {
+            m_storage.DeleteTempImage(image->GetPath());
+        }
+    }
 }
 
 DeleteItemsCommand::~DeleteItemsCommand()

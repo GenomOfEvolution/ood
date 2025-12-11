@@ -44,6 +44,8 @@ public:
 
 	std::vector<size_t> GetSelectedIndexes() const;
 
+	std::shared_ptr<IImageStorage> GetImageStorage() const override;
+
 	void handleMousePress(const QPointF& scenePos, Qt::KeyboardModifiers modifiers);
 	void handleMouseMove(const QPointF& scenePos, Qt::KeyboardModifiers modifiers);
 	void handleMouseRelease(const QPointF& scenePos, Qt::KeyboardModifiers modifiers);

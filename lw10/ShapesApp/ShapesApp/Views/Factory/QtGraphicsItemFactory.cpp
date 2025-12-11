@@ -3,14 +3,18 @@
 #include <qpen.h>
 #include <QPolygonF>
 #include <stdexcept>
+#include <qfileinfo.h>
+#include <qdir.h>
 
-QtGraphicsItemFactory::QtGraphicsItemFactory()
-    : m_actionMap{
-        {DocItemPreview::ItemType::Rectangle, [this](const DocItemPreview& in) { return CreateRectangle(in); }},
-        {DocItemPreview::ItemType::Triangle,  [this](const DocItemPreview& in) { return CreateTriangle(in); }},
-        {DocItemPreview::ItemType::Ellipse,   [this](const DocItemPreview& in) { return CreateEllipse(in); }},
-        {DocItemPreview::ItemType::Image,     [this](const DocItemPreview& in) { return CreateImage(in); }}
+QtGraphicsItemFactory::QtGraphicsItemFactory(std::shared_ptr<IImageStorage> storage)
+    : m_actionMap
+    {
+        { DocItemPreview::ItemType::Rectangle, [this](const DocItemPreview& in) { return CreateRectangle(in); }},
+        { DocItemPreview::ItemType::Triangle,  [this](const DocItemPreview& in) { return CreateTriangle(in); }},
+        { DocItemPreview::ItemType::Ellipse,   [this](const DocItemPreview& in) { return CreateEllipse(in); }},
+        { DocItemPreview::ItemType::Image,     [this](const DocItemPreview& in) { return CreateImage(in); }}
     }
+    , m_storage(storage)
 {
 }
 
@@ -53,7 +57,8 @@ std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::Clone(QGraphicsItem* item)
 
 void QtGraphicsItemFactory::CopyCommonProperties(const QGraphicsItem* source, QGraphicsItem* target) const
 {
-    if (!source || !target) return;
+    if (!source || !target) 
+        return;
 
     target->setPos(source->pos());
     target->setRotation(source->rotation());
@@ -65,6 +70,16 @@ void QtGraphicsItemFactory::CopyCommonProperties(const QGraphicsItem* source, QG
     for (int role = Qt::UserRole; role < Qt::UserRole + 10; ++role) {
         target->setData(role, source->data(role));
     }
+}
+
+QString QtGraphicsItemFactory::GetImageTruePath(const QString& relativePath)
+{
+    QFileInfo fileInfo(relativePath);
+    QString fileName = fileInfo.fileName();
+
+    std::filesystem::path storagePath = m_storage->GetTempDirPath();
+
+    return QString::fromStdString(storagePath.string()) + QDir::separator() + fileName;
 }
 
 std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CloneRectangle(QGraphicsRectItem* source) const
@@ -160,7 +175,7 @@ std::unique_ptr<QGraphicsItem> QtGraphicsItemFactory::CreateImage(const DocItemP
         targetWidth = input.m_boundingBox.width,
         targetHeight = input.m_boundingBox.height;
 
-    QPixmap originalPixmap(path);
+    QPixmap originalPixmap(GetImageTruePath(path));
     if (originalPixmap.isNull())
     {
         throw std::runtime_error("Failed to load image: ");

@@ -126,23 +126,40 @@ void DocumentController::AddShape(const std::string& description)
 
 void DocumentController::AddImageItem(const std::filesystem::path& imagePath, double width, double height)
 {
-	auto cmd = std::make_unique<AddImageCommand>(*m_document, *m_storage, imagePath, width, height);
-	m_history->AddAndExecuteCommand(std::move(cmd));
-
-	DocItemPreview preview
+	ImageAddedCallback onImageAdded = [this]()
 	{
-		.m_type = DocItemPreview::ItemType::Image,
-		.m_boundingBox = Rect{ 0, 0, width, height },
-		.m_imgPath = imagePath.string(),
-		.m_index = m_document->GetItemsCount() - 1
+		auto item = m_document->GetItemAtIndex(m_document->GetItemsCount() - 1);
+		auto preview = item->GetPreview();
+		preview.m_index = m_document->GetItemsCount() - 1;
+		emit itemAdded(preview);
 	};
 
-	emit itemAdded(preview);
+	ImageRemovedCallback onImageRemoved = [this]()
+	{
+		emit deleteLastItem(m_document->GetItemsCount());
+	};
+
+	auto cmd = std::make_unique<AddImageCommand>(
+		*m_document,
+		*m_selection,
+		*m_storage,
+		imagePath,
+		width, height,
+		std::move(onImageAdded),
+		std::move(onImageRemoved)
+	);
+
+	m_history->AddAndExecuteCommand(std::move(cmd));
 }
 
 std::vector<size_t> DocumentController::GetSelectedIndexes() const
 {
 	return m_selection->GetSelectedIndexes();
+}
+
+std::shared_ptr<IImageStorage> DocumentController::GetImageStorage() const
+{
+	return m_storage;
 }
 
 void DocumentController::RemoveSelectedItems()

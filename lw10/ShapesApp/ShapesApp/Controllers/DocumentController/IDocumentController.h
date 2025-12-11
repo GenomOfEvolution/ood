@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Models/Shared/HandleType.h"
 #include "../../Models/Document/IDocument.h"
+#include "../../Models/ImageStorage/IImageStorage.h"
 #include <filesystem>
 #include <vector>
 #include <string>
@@ -28,4 +29,5 @@ public:
 	virtual size_t GetItemsCount() const = 0;
 
 	virtual std::vector<size_t> GetSelectedIndexes() const = 0;
+	virtual std::shared_ptr<IImageStorage> GetImageStorage() const = 0;
 };

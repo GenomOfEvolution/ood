@@ -16,6 +16,7 @@ WorkspaceWidget::WorkspaceWidget(
     : QWidget(parent)
     , m_controller(controller)
     , m_lastCenter(0, 0)
+    , m_factory(m_controller->GetImageStorage())
 {
     m_scene = new CustomGraphicsScene(m_controller, this);
     m_scene->setSceneRect(0, 0, 1200, 500);

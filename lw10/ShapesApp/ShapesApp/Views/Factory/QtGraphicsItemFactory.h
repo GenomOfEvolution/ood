@@ -12,6 +12,7 @@
 #include <istream>
 
 #include "../../Models/Shared/ItemPreviewDTO.h"
+#include "../../Models/ImageStorage/IImageStorage.h"
 
 class QtGraphicsItemFactory
 {
@@ -20,12 +21,14 @@ public:
     static const int TargetSizeRole = Qt::UserRole + 3;
     static const int OriginalSizeRole = Qt::UserRole + 4;
 
-    QtGraphicsItemFactory();
+    QtGraphicsItemFactory(std::shared_ptr<IImageStorage> storage);
 
     std::unique_ptr<QGraphicsItem> CreateItem(const DocItemPreview& item);
     std::unique_ptr<QGraphicsItem> Clone(QGraphicsItem* item) const;
 
 private:
+    QString GetImageTruePath(const QString& relativePath);
+
     std::unique_ptr<QGraphicsItem> CloneRectangle(QGraphicsRectItem* source) const;
     std::unique_ptr<QGraphicsItem> CloneEllipse(QGraphicsEllipseItem* source) const;
     std::unique_ptr<QGraphicsItem> CloneTriangle(QGraphicsPolygonItem* source) const;
@@ -42,4 +45,6 @@ private:
     using ItemCreators = std::map<DocItemPreview::ItemType, ItemCreator>;
 
     const ItemCreators m_actionMap;
+
+    std::shared_ptr<IImageStorage> m_storage;
 };
