@@ -5,6 +5,7 @@
 #include "../../Models/Factory/DocItemFactory/DocItemFactory.h"
 #include "../../Models/ImageStorage/IImageStorage.h"
 #include "../../Models/Selection/ISelection.h"
+#include "../../Services/IDialogService.h"
 #include <memory>
 #include <QRectF>
 #include <qobject.h>
@@ -19,6 +20,7 @@ public:
 		std::shared_ptr<ICommandExecutor>&& history,
 		std::shared_ptr<IImageStorage>&& storage,
 		std::shared_ptr<ISelection>&& selection,
+		std::shared_ptr<IDialogService>&& dialogService,
 		QObject* parent = nullptr);
 
 	DocItemPreview ConvertToDTO(size_t index);
@@ -28,6 +30,8 @@ public:
 	void Save() override;
 	void SaveAs(const std::string& path) override;
 	void Load(const std::string& path) override;
+
+	void SaveWithDialog();
 
 	bool CanUndo() const override;
 	void Undo() override;
@@ -67,6 +71,7 @@ private:
 	std::shared_ptr<ICommandExecutor> m_history;
 	std::shared_ptr<IImageStorage> m_storage;
 	std::shared_ptr<ISelection> m_selection;
+	std::shared_ptr<IDialogService> m_dialogService;
 
 	DocItemFactory m_itemFactory;
 

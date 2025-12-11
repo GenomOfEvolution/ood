@@ -33,7 +33,6 @@ void DocumentModel::SaveAs(const std::string& path)
     m_savePath = path;
 }
 
-// TODO: добавить копирование всех картинок во временную директорию
 void DocumentModel::Load(const std::string& path)
 {
     if (path.empty())

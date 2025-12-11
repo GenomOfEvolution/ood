@@ -231,6 +231,35 @@ void WorkspaceWidget::resizeEvent(QResizeEvent* event)
     UpdateSelectionBoxes();
 }
 
+void WorkspaceWidget::keyPressEvent(QKeyEvent* event)
+{
+    if (event->modifiers() & Qt::ControlModifier)
+    {
+        switch (event->key()) {
+        case Qt::Key_S:
+            m_controller->SaveWithDialog();
+            event->accept();
+            return;
+        case Qt::Key_Z:
+            m_controller->Undo();
+            event->accept();
+            return;
+        case Qt::Key_Y:
+            m_controller->Redo();
+            event->accept();
+            return;
+        }
+    }
+    else if (event->key() == Qt::Key_Delete) 
+    {
+        m_controller->RemoveSelectedItems();
+        event->accept();
+        return;
+    }
+
+    QWidget::keyPressEvent(event);
+}
+
 void WorkspaceWidget::FitSceneToView()
 {
     if (!m_view->scene() || m_view->viewport()->width() <= 0 || m_view->viewport()->height() <= 0)

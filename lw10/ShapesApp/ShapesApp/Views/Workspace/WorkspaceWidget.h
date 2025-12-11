@@ -23,6 +23,7 @@ public:
 
 protected:
     void resizeEvent(QResizeEvent* event) override;
+    void keyPressEvent(QKeyEvent* event) override;
 
 private slots:
     void HandleItemsMoved(std::vector<size_t> indexes, double dx, double dy);

@@ -119,6 +119,7 @@
     <ClCompile Include="Models\History\CommandHistory.cpp" />
     <ClCompile Include="Models\ImageStorage\ImageStorage.cpp" />
     <ClCompile Include="Models\Selection\DocumentSelection.cpp" />
+    <ClCompile Include="Services\QtDialogService\QtDialogService.cpp" />
     <ClCompile Include="Views\CustomGraphicsScene\CustomGraphicsScene.cpp" />
     <ClCompile Include="Views\CustomTitleBar\CustomTitleBar.cpp" />
     <ClCompile Include="Views\Factory\QtGraphicsItemFactory.cpp" />
@@ -141,6 +142,8 @@
     <ClInclude Include="Models\Shared\ItemPreviewDTO.h" />
     <QtMoc Include="Views\SelectionBox\SelectionBoxItem.h" />
     <QtMoc Include="Views\CustomGraphicsScene\CustomGraphicsScene.h" />
+    <ClInclude Include="Services\IDialogService.h" />
+    <ClInclude Include="Services\QtDialogService\QtDialogService.h" />
     <ClInclude Include="Views\Factory\QtGraphicsItemFactory.h" />
     <QtMoc Include="Controllers\DocumentController\DocumentController.h" />
     <ClInclude Include="Controllers\DocumentController\IDocumentController.h" />

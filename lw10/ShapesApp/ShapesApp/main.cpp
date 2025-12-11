@@ -11,6 +11,8 @@
 #include "Models/Selection/DocumentSelection.h"
 
 #include "Controllers/DocumentController/DocumentController.h"
+#include "Services/QtDialogService/QtDialogService.h"
+
 
 using namespace UI;
 
@@ -29,11 +31,17 @@ int main(int argc, char* argv[])
     auto history = std::make_shared<CommandHistory>();
     auto saver = std::make_shared<XmlSerializer>(imgStorage);
     auto doc = std::make_shared<DocumentModel>(history, saver, docWorkArea);
+    auto dialogService = std::make_shared<QtDialogService>();
     
     selection->SetDocument(doc);
     saver->SetDocument(doc);
 
-    auto docController = new DocumentController(doc, history, imgStorage, selection);
+    auto docController = new DocumentController(
+        doc,
+        history,
+        imgStorage, 
+        selection, 
+        dialogService);
 
     MainView view(docController);
 

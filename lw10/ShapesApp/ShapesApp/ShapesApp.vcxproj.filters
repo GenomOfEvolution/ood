@@ -132,6 +132,12 @@
     <Filter Include="Source Files\Models\Command\MergableCommands\MoveItemsComand">
       <UniqueIdentifier>{7d502267-58dd-4cac-ade2-23310b6bc192}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Services">
+      <UniqueIdentifier>{ca871a53-676c-4150-9d9b-7bec7f77ae96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Services\QtDialogCervice">
+      <UniqueIdentifier>{e5afa561-c5ed-4055-995e-691dafef597f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -211,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="Models\Command\DeleteItemsCommand\DeleteItemsCommand.cpp">
       <Filter>Source Files\Models\Command\DeleteItemsCommand</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\QtDialogService\QtDialogService.cpp">
+      <Filter>Source Files\Services\QtDialogCervice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +324,12 @@
     </ClInclude>
     <ClInclude Include="Models\Command\MegrableCommands\MoveItemsCommand\MoveItemsCommand.h">
       <Filter>Source Files\Models\Command\MergableCommands\MoveItemsComand</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\QtDialogService\QtDialogService.h">
+      <Filter>Source Files\Services\QtDialogCervice</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\IDialogService.h">
+      <Filter>Source Files\Services</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

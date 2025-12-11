@@ -94,19 +94,7 @@ void UI::MainView::SetupRibbonBar()
     fileGroup->addButton("Save", ":/icons/save-icon.svg", 
         [this]() 
         {
-            if (m_controller->WasDocumentSaved())
-            {
-                m_controller->Save();
-            }
-            else
-            {
-                QString path = QFileDialog::getSaveFileName(
-                    this, "Save Document As", "", "Documents (*.xml)"
-                );
-                if (!path.isEmpty()) {
-                    m_controller->SaveAs(path.toStdString());
-                }
-            }
+            m_controller->SaveWithDialog();
         });
 
     fileGroup->addButton("Save As", ":/icons/save-as-icon.svg", 

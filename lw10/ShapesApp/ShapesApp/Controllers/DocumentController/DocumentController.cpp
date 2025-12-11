@@ -14,11 +14,13 @@ DocumentController::DocumentController(
 	std::shared_ptr<ICommandExecutor>&& history,
 	std::shared_ptr<IImageStorage>&& storage,
 	std::shared_ptr<ISelection>&& selection,
+	std::shared_ptr<IDialogService>&& dialogService,
 	QObject* parent)
 	: m_document(std::move(document))
 	, m_history(std::move(history))
 	, m_storage(std::move(storage))
 	, m_selection(std::move(selection))
+	, m_dialogService(std::move(dialogService))
 {
 }
 
@@ -75,6 +77,20 @@ void DocumentController::Load(const std::string& path)
 		preview.m_index = i;
 
 		emit itemAdded(preview);
+	}
+}
+
+void DocumentController::SaveWithDialog()
+{
+	if (WasDocumentSaved()) 
+	{
+		Save();
+		return;
+	}
+
+	if (auto path = m_dialogService->GetSaveFilePath()) 
+	{
+		SaveAs(*path);
 	}
 }
 
