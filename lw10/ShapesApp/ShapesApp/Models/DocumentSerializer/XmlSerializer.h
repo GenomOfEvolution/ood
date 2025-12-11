@@ -10,8 +10,8 @@ class XmlSerializer : public ISerializer
 public:
 	XmlSerializer(std::shared_ptr<IImageStorage> storage);
 
-	void Serialize(const std::string& path) override;
-	void Deserialize(const std::string& path) override;
+	void Serialize(const std::filesystem::path& path) override;
+	void Deserialize(const std::filesystem::path& path) override;
 	void SetDocument(std::shared_ptr<IDocument> document) override;
 
 private:

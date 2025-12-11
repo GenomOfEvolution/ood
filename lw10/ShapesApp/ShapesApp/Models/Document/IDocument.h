@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <memory>
+#include <filesystem>
 #include "../DocumentItem/DocumentItem.h"
 #include "../Shared/Geometry.h"
 
@@ -8,9 +9,9 @@ class IDocument
 {
 public:
 	virtual void Save() = 0;
-	virtual void SaveAs(const std::string& path) = 0;
-	virtual void Load(const std::string& path) = 0;
-	virtual std::string GetSavePath() const = 0;
+	virtual void SaveAs(const std::filesystem::path& path) = 0;
+	virtual void Load(const std::filesystem::path& path) = 0;
+	virtual std::filesystem::path GetSavePath() const = 0;
 
 	virtual Rect GetBounds() const = 0;
 	virtual Point MoveItemsBy(const std::vector<size_t> indexes, const Point& delta) = 0;

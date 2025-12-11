@@ -13,9 +13,9 @@ public:
 		const Rect& fieldArea);
 
 	void Save() override;
-	void SaveAs(const std::string& path) override;
-	void Load(const std::string& path) override;
-	std::string GetSavePath() const override;
+	void SaveAs(const std::filesystem::path& path) override;
+	void Load(const std::filesystem::path& path) override;
+	std::filesystem::path GetSavePath() const override;
 
 	Rect GetBounds() const override;
 	Point MoveItemsBy(const std::vector<size_t> indexes, const Point& delta) override;
@@ -44,5 +44,5 @@ private:
 	std::vector<std::shared_ptr<DocumentItem>> m_items;
 	Rect m_fieldArea;
 
-	std::string m_savePath;
+	std::filesystem::path m_savePath;
 };

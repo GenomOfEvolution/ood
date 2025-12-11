@@ -14,7 +14,6 @@ namespace UI
 		Q_OBJECT
 	public:
 		explicit MainView(DocumentController* controller, QWidget* parent = nullptr);
-		void UpdateUndoRedoState(bool undoAvailable, bool redoAvailable);
 
 		~MainView() override;
 

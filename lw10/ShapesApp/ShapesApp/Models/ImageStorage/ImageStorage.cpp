@@ -20,9 +20,9 @@ void ImageStorage::CopyAllImagesToStorage(const std::filesystem::path& srcPath)
 {
 	try
 	{
-		for (const auto& entry : std::filesystem::directory_iterator(srcPath))
+		for (const auto& entry : std::filesystem::directory_iterator(srcPath.string()))
 		{
-			std::filesystem::copy(entry.path(), m_storageDir);
+			std::filesystem::copy(entry.path(), m_storageDir, std::filesystem::copy_options::overwrite_existing);
 		}
 	}
 	catch (const std::filesystem::filesystem_error& ex)

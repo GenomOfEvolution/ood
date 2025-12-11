@@ -13,14 +13,14 @@ XmlSerializer::XmlSerializer(std::shared_ptr<IImageStorage> storage)
 {
 }
 
-void XmlSerializer::Serialize(const std::string& path)
+void XmlSerializer::Serialize(const std::filesystem::path& path)
 {
 	if (!m_document) 
 	{
 		throw std::runtime_error("Document is not set");
 	}
 
-    QFileInfo fileInfo(QString::fromStdString(path));
+    QFileInfo fileInfo(QString::fromLocal8Bit(path.string()));
     QString docDir = fileInfo.absoluteDir().path();
     QString imagesDir = QDir(docDir).filePath("images");
 
@@ -43,12 +43,12 @@ void XmlSerializer::Serialize(const std::string& path)
         throw std::runtime_error("Failed to create images directory: " + imagesDir.toStdString());
     }
 
-    m_storage->CopyAllImagesFromStorage(imagesDir.toStdString());
+    m_storage->CopyAllImagesFromStorage(imagesDir.toLocal8Bit().toStdString());
     
-    SaveXmlDocument(path, docDir);
+    SaveXmlDocument(path.string(), docDir);
 }
 
-void XmlSerializer::Deserialize(const std::string& path)
+void XmlSerializer::Deserialize(const std::filesystem::path& path)
 {
     if (!m_document) 
     {
@@ -65,14 +65,14 @@ void XmlSerializer::Deserialize(const std::string& path)
     std::filesystem::path docPath = path;
     m_storage->CopyAllImagesToStorage(docPath.parent_path() / "images");
 
-    QFile file(QString::fromStdString(path));
+    QFile file(QString::fromLocal8Bit(path.string()));
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) 
     {
-        throw std::runtime_error("Cannot open file for reading: " + path);
+        throw std::runtime_error("Cannot open file for reading: " + path.string());
     }
 
     QXmlStreamReader xml(&file);
-    QFileInfo fileInfo(QString::fromStdString(path));
+    QFileInfo fileInfo(QString::fromStdString(path.string()));
     QString docDir = fileInfo.absoluteDir().path();
 
     ParseDocument(xml, docDir);
@@ -85,7 +85,7 @@ void XmlSerializer::SetDocument(std::shared_ptr<IDocument> document)
 
 void XmlSerializer::SaveXmlDocument(const std::string& path, const QString& docDir)
 {
-    QFile file(QString::fromStdString(path));
+    QFile file(QString::fromLocal8Bit(path));
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) 
     {
         throw std::runtime_error("Cannot open file for writing: " + path);

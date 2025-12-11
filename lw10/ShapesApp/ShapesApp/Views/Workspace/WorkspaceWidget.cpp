@@ -108,10 +108,6 @@ void WorkspaceWidget::HandleResizeRequested(HandleType type, qreal dx, qreal dy)
     m_controller->Resize(type, sceneDelta.x(), sceneDelta.y());
 }
 
-void WorkspaceWidget::HandleResizeFinished()
-{
-}
-
 void WorkspaceWidget::HandleSelectionChanged()
 {
     if (m_updatingSelection) 
@@ -136,9 +132,6 @@ void WorkspaceWidget::UpdateSelectionBoxes()
 
             connect(box, &SelectionBoxItem::resizeRequested,
                 this, &WorkspaceWidget::HandleResizeRequested);
-
-            connect(box, &SelectionBoxItem::resizeFinished,
-                this, &WorkspaceWidget::HandleResizeFinished);
 
             m_scene->addItem(box);
             m_selectionBoxes.push_back(box);

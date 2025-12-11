@@ -43,11 +43,9 @@ public:
 
     void HandleHandleMove(HandleType type, const QPointF& delta);
     void HandleResizeMove(const QRectF& newBoundingBox);
-    void HandleResizeRelease();
 
 signals:
     void resizeRequested(HandleType type, double dx, double dy);
-    void resizeFinished();
 
 private:
     void CreateHandles();

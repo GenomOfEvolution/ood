@@ -71,11 +71,6 @@ void SelectionBoxItem::HandleHandleMove(HandleType type, const QPointF& delta)
     emit resizeRequested(type, delta.x(), delta.y());
 }
 
-void SelectionBoxItem::HandleResizeRelease()
-{
-    emit resizeFinished();
-}
-
 void SelectionBoxItem::CreateHandles()
 {
     m_handles[0] = new ResizeHandle(HandleType::TopLeft, this);

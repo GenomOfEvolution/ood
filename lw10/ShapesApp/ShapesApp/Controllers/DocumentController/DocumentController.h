@@ -28,8 +28,8 @@ public:
 	bool WasDocumentSaved() const override;
 
 	void Save() override;
-	void SaveAs(const std::string& path) override;
-	void Load(const std::string& path) override;
+	void SaveAs(const std::filesystem::path& path) override;
+	void Load(const std::filesystem::path& path) override;
 
 	void SaveWithDialog();
 

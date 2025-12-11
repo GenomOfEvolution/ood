@@ -13,8 +13,8 @@ public:
 
 	virtual bool WasDocumentSaved() const = 0;
 	virtual void Save() = 0;
-	virtual void SaveAs(const std::string& path) = 0;
-	virtual void Load(const std::string& path) = 0;
+	virtual void SaveAs(const std::filesystem::path& path) = 0;
+	virtual void Load(const std::filesystem::path& path) = 0;
 
 	virtual bool CanUndo() const = 0;
 	virtual void Undo() = 0;

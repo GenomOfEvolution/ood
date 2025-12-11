@@ -51,16 +51,16 @@ void DocumentController::Save()
 		m_document->Save();
 }
 
-void DocumentController::SaveAs(const std::string& path)
+void DocumentController::SaveAs(const std::filesystem::path& path)
 {
 	if (!m_document->GetSavePath().empty())
-		m_storage->CopyAllImagesToStorage(m_document->GetSavePath() + "/images");
+		m_storage->CopyAllImagesToStorage(m_document->GetSavePath() / "images");
 
 	m_wasDocumentSaved = true;
 	m_document->SaveAs(path);
 }
 
-void DocumentController::Load(const std::string& path)
+void DocumentController::Load(const std::filesystem::path& path)
 {
 	m_wasDocumentSaved = true;
 	m_document->Load(path);
@@ -73,7 +73,7 @@ void DocumentController::Load(const std::string& path)
 	for (size_t i = 0; i < m_document->GetItemsCount(); i++)
 	{
 		auto preview = m_document->GetItemAtIndex(i)->GetPreview();
-		preview.m_imgPath = m_document->GetSavePath() + "/" + preview.m_imgPath;
+		preview.m_imgPath = (m_document->GetSavePath() / preview.m_imgPath).string();
 		preview.m_index = i;
 
 		emit itemAdded(preview);

@@ -22,7 +22,7 @@ void DocumentModel::Save()
     m_saver->Serialize(m_savePath);
 }
 
-void DocumentModel::SaveAs(const std::string& path)
+void DocumentModel::SaveAs(const std::filesystem::path& path)
 {
     if (path.empty())
     {
@@ -33,7 +33,7 @@ void DocumentModel::SaveAs(const std::string& path)
     m_savePath = path;
 }
 
-void DocumentModel::Load(const std::string& path)
+void DocumentModel::Load(const std::filesystem::path& path)
 {
     if (path.empty())
     {
@@ -52,10 +52,9 @@ void DocumentModel::Load(const std::string& path)
 	}
 }
 
-std::string DocumentModel::GetSavePath() const
+std::filesystem::path DocumentModel::GetSavePath() const
 {
-	std::filesystem::path path = m_savePath;
-	return path.parent_path().string();
+	return m_savePath.parent_path();
 }
 
 Rect DocumentModel::GetBounds() const

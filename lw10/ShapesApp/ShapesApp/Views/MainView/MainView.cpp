@@ -45,10 +45,6 @@ UI::MainView::MainView(DocumentController* controller, QWidget* parent)
     LoadStyles();
 }
 
-void UI::MainView::UpdateUndoRedoState(bool undoAvailable, bool redoAvailable)
-{
-}
-
 UI::MainView::~MainView() = default;
 
 void UI::MainView::SetupUI()
@@ -87,7 +83,7 @@ void UI::MainView::SetupRibbonBar()
             );
             if (!path.isEmpty()) 
             {
-                m_controller->Load(path.toStdString());
+                m_controller->Load(path.toStdU16String());
             }
         });
 
@@ -102,23 +98,27 @@ void UI::MainView::SetupRibbonBar()
             QString path = QFileDialog::getSaveFileName(
                 this, "Save Document As", "", "Documents (*.xml)"
             );
-            if (!path.isEmpty()) {
-                m_controller->SaveAs(path.toStdString());
+            if (!path.isEmpty()) 
+            {
+                m_controller->SaveAs(path.toStdU16String());
             }
         });
 
     // === Home Tab - Shapes ===
     auto shapesGroup = homeTab->addGroup("Shapes");
     shapesGroup->addButton("Rectangle", ":/icons/rectangle-icon.svg", 
-        [this]() {
-             m_controller->AddShape("rectangle");
+        [this]() 
+        {
+            m_controller->AddShape("rectangle");
         });
     shapesGroup->addButton("Triangle", ":/icons/triangle-icon.svg", 
-        [this]() {
-         m_controller->AddShape("triangle");
+        [this]() 
+        {
+            m_controller->AddShape("triangle");
         });
     shapesGroup->addButton("Ellipse", ":/icons/ellipse-icon.svg", 
-        [this]() {
+        [this]() 
+        {
             m_controller->AddShape("ellipse");
         });
 
@@ -132,14 +132,13 @@ void UI::MainView::SetupRibbonBar()
     // === Insert Tab ===
     auto mediaGroup = insertTab->addGroup("Media");
     mediaGroup->addButton("Image", ":/icons/image-icon.svg", 
-        [this]() {
+        [this]() 
+        {
             QString path = QFileDialog::getOpenFileName(this, "Insert Image", "", "Images (*.png)");
 
-            auto p = path.toStdU16String();
-            std::filesystem::path pp = p;
-
-            if (!path.isEmpty()) {
-                m_controller->AddImageItem(pp, 100, 50);
+            if (!path.isEmpty()) 
+            {
+                m_controller->AddImageItem(path.toStdU16String(), 100, 50);
             }
         });
 
