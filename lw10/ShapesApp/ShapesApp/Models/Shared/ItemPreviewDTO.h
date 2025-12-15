@@ -3,7 +3,9 @@
 #include <vector>
 #include <string>
 
-#include <QMetaType>
+#ifndef UNIT_TESTS
+#include <qmetatype.h>
+#endif
 
 struct DocItemPreview
 {
@@ -15,4 +17,6 @@ struct DocItemPreview
 	size_t m_index = 0;
 };
 
+#ifndef UNIT_TESTS
 Q_DECLARE_METATYPE(DocItemPreview);
+#endif

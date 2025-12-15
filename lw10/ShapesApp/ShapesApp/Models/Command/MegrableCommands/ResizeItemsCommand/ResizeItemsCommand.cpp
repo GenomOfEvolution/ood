@@ -61,6 +61,12 @@ void ResizeItemsCommand::DoUnexecute()
         item->Resize(m_oldBboxes[i]);
     }
 
+    m_selection.ClearSelection();
+    for (auto i : m_selectedIndexes)
+    {
+        m_selection.AddIndex(i);
+    }
+
     if (m_onItemsResized) 
     {
         m_onItemsResized(m_oldBboxes);

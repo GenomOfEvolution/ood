@@ -67,7 +67,7 @@ CustomTitleBar::CustomTitleBar(DocumentController* controller, QWidget* parent)
 
     connect(m_undoButton, &QToolButton::clicked, m_controller, &DocumentController::Undo);
     connect(m_redoButton, &QToolButton::clicked, m_controller, &DocumentController::Redo);
-    connect(m_saveButton, &QToolButton::clicked, m_controller, &DocumentController::Save);
+    connect(m_saveButton, &QToolButton::clicked, m_controller, &DocumentController::SaveWithDialog);
 }
 
 void CustomTitleBar::mousePressEvent(QMouseEvent* event)

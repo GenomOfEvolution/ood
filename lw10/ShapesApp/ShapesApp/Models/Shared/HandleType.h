@@ -1,5 +1,4 @@
 #pragma once
-#include <qmetatype.h>
 
 enum class HandleType
 {
@@ -8,5 +7,3 @@ enum class HandleType
     BottomLeft,
     BottomRight
 };
-
-Q_DECLARE_METATYPE(HandleType)

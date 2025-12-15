@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Dependecies">
+      <UniqueIdentifier>{36728488-055e-4ce3-86d4-5e7cfea39bcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\Document">
+      <UniqueIdentifier>{149ae62f-054d-4746-856d-7985eacf3109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\DocumentItem">
+      <UniqueIdentifier>{2c30b55a-2d43-4f61-86b2-17cfedf891ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\Selection">
+      <UniqueIdentifier>{7d44f5c0-5056-46a7-861c-7e0b9578100e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\DocumentItem\Shape">
+      <UniqueIdentifier>{0f7cc987-6e69-423f-a396-c0a7ceead666}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\DocumentItem\Image">
+      <UniqueIdentifier>{3b23aebe-21d1-42ad-9c7b-e12de2b9d845}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\DocumentItem\Shape\Ellipse">
+      <UniqueIdentifier>{82ad88f2-d097-440d-b835-8c5b80aef612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\DocumentItem\Shape\Rectangle">
+      <UniqueIdentifier>{db4024b0-62e9-46c4-94b4-39d2b97098c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\DocumentItem\Shape\Triangle">
+      <UniqueIdentifier>{07e66e2a-ff74-4f79-972e-1e17a0e49e53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependecies\Shared">
+      <UniqueIdentifier>{f1248af0-f5b9-468d-ae18-e0e83acb99be}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ShapesApp\Models\Document\DocumentModel.cpp">
+      <Filter>Dependecies\Document</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ShapesApp\Models\DocumentItem\Shape\Ellipse\CEllipse.cpp">
+      <Filter>Dependecies\DocumentItem\Shape\Ellipse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ShapesApp\Models\DocumentItem\Shape\Triangle\CTriangle.cpp">
+      <Filter>Dependecies\DocumentItem\Shape\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ShapesApp\Models\DocumentItem\Shape\Rectangle\CRectangle.cpp">
+      <Filter>Dependecies\DocumentItem\Shape\Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ShapesApp\Models\DocumentItem\Image\CImage.cpp">
+      <Filter>Dependecies\DocumentItem\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ShapesApp\Models\Selection\DocumentSelection.cpp">
+      <Filter>Dependecies\Selection</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapesTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ShapesApp\Models\Document\DocumentModel.h">
+      <Filter>Dependecies\Document</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\Document\IDocument.h">
+      <Filter>Dependecies\Document</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\DocumentItem\DocumentItem.h">
+      <Filter>Dependecies\DocumentItem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\DocumentItem\Shape\IShape.h">
+      <Filter>Dependecies\DocumentItem\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\DocumentItem\Shape\Ellipse\CEllipse.h">
+      <Filter>Dependecies\DocumentItem\Shape\Ellipse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\DocumentItem\Shape\Triangle\CTriangle.h">
+      <Filter>Dependecies\DocumentItem\Shape\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\DocumentItem\Shape\Rectangle\CRectangle.h">
+      <Filter>Dependecies\DocumentItem\Shape\Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\DocumentItem\Image\CImage.h">
+      <Filter>Dependecies\DocumentItem\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\DocumentItem\Image\IImage.h">
+      <Filter>Dependecies\DocumentItem\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\Selection\DocumentSelection.h">
+      <Filter>Dependecies\Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\Selection\ISelection.h">
+      <Filter>Dependecies\Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\Shared\Geometry.h">
+      <Filter>Dependecies\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\Shared\HandleType.h">
+      <Filter>Dependecies\Shared</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
