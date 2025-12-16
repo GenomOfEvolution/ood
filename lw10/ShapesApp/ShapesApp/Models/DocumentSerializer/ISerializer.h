@@ -1,6 +1,6 @@
 #pragma once
 #include "../Document/IDocument.h"
-#include <string>
+#include <filesystem>
 
 class ISerializer
 {

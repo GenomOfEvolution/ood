@@ -43,6 +43,9 @@
     <Filter Include="Dependecies\Shared">
       <UniqueIdentifier>{f1248af0-f5b9-468d-ae18-e0e83acb99be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dependecies\Serializer">
+      <UniqueIdentifier>{588297a3-fca3-49c9-b08c-1d583f8a4856}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -67,6 +70,15 @@
       <Filter>Dependecies\Selection</Filter>
     </ClCompile>
     <ClCompile Include="ShapesTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentItemTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DocumentTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="..\ShapesApp\Models\Shared\HandleType.h">
       <Filter>Dependecies\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ShapesApp\Models\DocumentSerializer\ISerializer.h">
+      <Filter>Dependecies\Serializer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

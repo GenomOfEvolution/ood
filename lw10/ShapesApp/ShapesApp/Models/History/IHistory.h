@@ -3,6 +3,8 @@
 class IHistory
 {
 public:
+	virtual ~IHistory() = default;
+
 	virtual bool CanUndo() const = 0;
 	virtual void Undo() = 0;
 

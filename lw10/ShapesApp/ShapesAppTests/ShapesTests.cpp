@@ -4,6 +4,7 @@
 #include "../ShapesApp/Models/DocumentItem/Shape/Ellipse/CEllipse.h"
 #include "../ShapesApp/Models/DocumentItem/Shape/Rectangle/CRectangle.h"
 #include "../ShapesApp/Models/DocumentItem/Shape/Triangle/CTriangle.h"
+#include "../ShapesApp/Models/DocumentItem/Image/CImage.h"
 
 TEST_CASE("CRectangle methods")
 {
@@ -359,6 +360,115 @@ TEST_CASE("CTriangle methods")
                 REQUIRE(points[1].y == Approx(0.0));
                 REQUIRE(points[2].x == Approx(50.0));
                 REQUIRE(points[2].y == Approx(100.0));
+            }
+        }
+    }
+}
+
+TEST_CASE("CImage methods")
+{
+    GIVEN("An image at (0, 0) with width 100 and height 50, path \"test.png\"")
+    {
+        CImage image("test.png", Point(0, 0), 100, 50);
+
+        WHEN("Getting and setting path")
+        {
+            THEN("Initial path is correct")
+            {
+                REQUIRE(image.GetPath() == "test.png");
+            }
+
+            AND_WHEN("Path is changed to \"new_image.jpg\"")
+            {
+                image.SetPath("new_image.jpg");
+                THEN("Path updates correctly")
+                {
+                    REQUIRE(image.GetPath() == "new_image.jpg");
+                }
+            }
+        }
+
+        WHEN("Checking point containment")
+        {
+            THEN("Contains points inside and on edges")
+            {
+                REQUIRE(image.ContainsPoint(Point(50, 25)) == true);    // Center point
+                REQUIRE(image.ContainsPoint(Point(0, 25)) == true);     // Left edge
+                REQUIRE(image.ContainsPoint(Point(100, 25)) == true);   // Right edge
+                REQUIRE(image.ContainsPoint(Point(50, 0)) == true);     // Top edge
+                REQUIRE(image.ContainsPoint(Point(50, 50)) == true);    // Bottom edge
+                REQUIRE(image.ContainsPoint(Point(0, 0)) == true);      // Top-left corner
+                REQUIRE(image.ContainsPoint(Point(100, 50)) == true);   // Bottom-right corner
+            }
+
+            THEN("Contains points near the border (within borderWidth)")
+            {
+                REQUIRE(image.ContainsPoint(Point(-7, 25)) == true);    // Left border area
+                REQUIRE(image.ContainsPoint(Point(107, 25)) == true);   // Right border area
+                REQUIRE(image.ContainsPoint(Point(50, -7)) == true);    // Top border area
+                REQUIRE(image.ContainsPoint(Point(50, 57)) == true);    // Bottom border area
+            }
+
+            THEN("Does not contain points far outside the border")
+            {
+                REQUIRE(image.ContainsPoint(Point(-8, 25)) == false);   // Left outside border
+                REQUIRE(image.ContainsPoint(Point(108, 25)) == false);  // Right outside border
+                REQUIRE(image.ContainsPoint(Point(50, -8)) == false);   // Top outside border
+                REQUIRE(image.ContainsPoint(Point(50, 58)) == false);   // Bottom outside border
+            }
+        }
+
+        WHEN("Getting bounding box")
+        {
+            Rect bbox = image.GetBoundingBox();
+            THEN("Bounding box matches image dimensions")
+            {
+                REQUIRE(bbox.x == Approx(0.0));
+                REQUIRE(bbox.y == Approx(0.0));
+                REQUIRE(bbox.width == Approx(100.0));
+                REQUIRE(bbox.height == Approx(50.0));
+            }
+        }
+
+        WHEN("Moving the image by (15, 25)")
+        {
+            image.MoveBy(Point(15, 25));
+            Rect bbox = image.GetBoundingBox();
+            THEN("Position updates correctly")
+            {
+                REQUIRE(bbox.x == Approx(15.0));
+                REQUIRE(bbox.y == Approx(25.0));
+                REQUIRE(bbox.width == Approx(100.0));
+                REQUIRE(bbox.height == Approx(50.0));
+            }
+        }
+
+        WHEN("Resizing to new bounding box (30, 40, 60, 30)")
+        {
+            image.Resize(Rect(30, 40, 60, 30));
+            Rect bbox = image.GetBoundingBox();
+            THEN("Dimensions and position update correctly")
+            {
+                REQUIRE(bbox.x == Approx(30.0));
+                REQUIRE(bbox.y == Approx(40.0));
+                REQUIRE(bbox.width == Approx(60.0));
+                REQUIRE(bbox.height == Approx(30.0));
+            }
+        }
+
+        WHEN("Getting preview")
+        {
+            DocItemPreview preview = image.GetPreview();
+            THEN("Preview has correct type, bounding box and image path")
+            {
+                REQUIRE(preview.m_type == DocItemPreview::ItemType::Image);
+                REQUIRE(preview.m_imgPath == "test.png");
+
+                Rect bbox = preview.m_boundingBox;
+                REQUIRE(bbox.x == Approx(0.0));
+                REQUIRE(bbox.y == Approx(0.0));
+                REQUIRE(bbox.width == Approx(100.0));
+                REQUIRE(bbox.height == Approx(50.0));
             }
         }
     }

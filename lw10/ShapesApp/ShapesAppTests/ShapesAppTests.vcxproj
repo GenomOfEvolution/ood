@@ -78,6 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,6 +95,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,6 +110,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,6 +127,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,7 +141,10 @@
     <ClCompile Include="..\ShapesApp\Models\DocumentItem\Shape\Triangle\CTriangle.cpp" />
     <ClCompile Include="..\ShapesApp\Models\Document\DocumentModel.cpp" />
     <ClCompile Include="..\ShapesApp\Models\Selection\DocumentSelection.cpp" />
+    <ClCompile Include="DocumentItemTests.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="DocumentTests.cpp" />
+    <ClCompile Include="SelectionTests.cpp" />
     <ClCompile Include="ShapesTests.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,12 +155,18 @@
     <ClInclude Include="..\ShapesApp\Models\DocumentItem\Shape\IShape.h" />
     <ClInclude Include="..\ShapesApp\Models\DocumentItem\Shape\Rectangle\CRectangle.h" />
     <ClInclude Include="..\ShapesApp\Models\DocumentItem\Shape\Triangle\CTriangle.h" />
+    <ClInclude Include="..\ShapesApp\Models\DocumentSerializer\ISerializer.h" />
     <ClInclude Include="..\ShapesApp\Models\Document\DocumentModel.h" />
     <ClInclude Include="..\ShapesApp\Models\Document\IDocument.h" />
     <ClInclude Include="..\ShapesApp\Models\Selection\DocumentSelection.h" />
     <ClInclude Include="..\ShapesApp\Models\Selection\ISelection.h" />
     <ClInclude Include="..\ShapesApp\Models\Shared\Geometry.h" />
     <ClInclude Include="..\ShapesApp\Models\Shared\HandleType.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShapesApp\ShapesApp.vcxproj">
+      <Project>{72274546-5b48-49ed-ab94-ba4b875ebcad}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
