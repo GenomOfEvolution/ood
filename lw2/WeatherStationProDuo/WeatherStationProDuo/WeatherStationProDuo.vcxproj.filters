@@ -13,16 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\WeatherData">
-      <UniqueIdentifier>{6ba789a2-eb47-4140-b29e-651a0b85638d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Observer">
       <UniqueIdentifier>{73e80d4d-f276-46ec-8167-f367df4416ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Observable">
+      <UniqueIdentifier>{c539d80f-bc45-40b7-91ac-1cab4d032b99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Display">
+      <UniqueIdentifier>{6ba789a2-eb47-4140-b29e-651a0b85638d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Observable\IObservable.h">
+      <Filter>Source Files\Observable</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable\OutsideWeatherData.h">
+      <Filter>Source Files\Observable</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable\PriorityObservable.h">
+      <Filter>Source Files\Observable</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable\WeatherData.h">
+      <Filter>Source Files\Observable</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer\IObserver.h">
+      <Filter>Source Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\StatsInfo.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\WindDirectionInfo.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\Display.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\StatsDisplay.h">
+      <Filter>Source Files\Display</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

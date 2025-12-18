@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{bbe91ce0-34d0-4800-a2be-349410a6d7e0}</ProjectGuid>
-    <RootNamespace>WeatherStationProDuo</RootNamespace>
+    <ProjectGuid>{cf2aa3f9-d52c-4e45-9451-cc4a707cf8e4}</ProjectGuid>
+    <RootNamespace>WSProDuoTests</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -77,6 +77,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>..\WeatherStationProDuo;..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -93,6 +94,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>..\WeatherStationProDuo;..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -107,6 +109,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>..\WeatherStationProDuo;..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -123,6 +126,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>..\WeatherStationProDuo;..\..\..\catch2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -134,15 +138,19 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Display\Display.h" />
-    <ClInclude Include="Display\StatsDisplay.h" />
-    <ClInclude Include="Display\StatsInfo.h" />
-    <ClInclude Include="Display\WindDirectionInfo.h" />
-    <ClInclude Include="Observable\IObservable.h" />
-    <ClInclude Include="Observable\OutsideWeatherData.h" />
-    <ClInclude Include="Observable\PriorityObservable.h" />
-    <ClInclude Include="Observable\WeatherData.h" />
-    <ClInclude Include="Observer\IObserver.h" />
+    <ProjectReference Include="..\WeatherStationProDuo\WeatherStationProDuo.vcxproj">
+      <Project>{bbe91ce0-34d0-4800-a2be-349410a6d7e0}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\WeatherStationProDuo\Observable\IObservable.h" />
+    <ClInclude Include="..\WeatherStationProDuo\Observable\OutsideWeatherData.h" />
+    <ClInclude Include="..\WeatherStationProDuo\Observable\PriorityObservable.h" />
+    <ClInclude Include="..\WeatherStationProDuo\Observable\WeatherData.h" />
+    <ClInclude Include="..\WeatherStationProDuo\Observer\IObserver.h" />
+    <ClInclude Include="TestClasses\BrokenDisplay.h" />
+    <ClInclude Include="TestClasses\CallOrderDisplay.h" />
+    <ClInclude Include="TestClasses\MockDisplay.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
