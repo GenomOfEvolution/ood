@@ -1,0 +1,123 @@
+classDiagram
+    class IObserver~T~ {
+        <<interface>>
+        + Update(const T& data) void
+    }
+
+    class IObservable~T~ {
+        <<interface>>
+        + RegisterObserver(IObserver~T~& observer) void
+        + RemoveObserver(IObserver~T~& observer) void
+    }
+
+    class PriorityObservable~T~ {
+        + RegisterObserver(IObserver~T~& observer) void
+        + RemoveObserver(IObserver~T~& observer) void
+        # GetChangedData() T
+        # NotifyObservers() void
+
+        - m_observers: multimap~int, ObserverType*~
+        - m_observerPriorities: unordered_map~ObserverType*, int~
+    }
+
+    class Display {
+        -std::ostream& m_output
+        -IObservable~WeatherInfo~& m_indoorObservable
+        -IObservable~OutsideWeatherInfo~& m_outdoorObservable
+        +Display(std::ostream& output, int priority, IObservable~WeatherInfo~& indoorObserver, IObservable~OutsideWeatherInfo~& outdoorObserver)
+        +~Display()
+        -Update(WeatherInfo const& data) void
+        -Update(OutsideWeatherInfo const& data) void
+        -PrintInfo(WeatherInfo const& data) void
+    }
+
+     class StatsDisplay {
+        -std::ostream& m_output
+        -IObservable~WeatherInfo~& m_indoorObservable
+        -IObservable~OutsideWeatherInfo~& m_outdoorObservable
+        -StatsInfo m_temperatureInfo
+        -StatsInfo m_humidityInfo
+        -StatsInfo m_pressureInfo
+        -StatsInfo m_windSpeedInfo
+        -WindDirectionInfo m_windDirectionInfo
+        +StatsDisplay(std::ostream& output, int priority, IObservable~WeatherInfo~& indoorObserver, IObservable~OutsideWeatherInfo~& outdoorObserver)
+        +~StatsDisplay()
+        -Update(WeatherInfo const& data) void
+        -Update(OutsideWeatherInfo const& data) void
+    }
+
+     class StatsInfo {
+        -std::string m_name
+        -double m_minValue
+        -double m_maxValue
+        -double m_accValue
+        -unsigned m_countAcc
+        +StatsInfo(std::string const& name)
+        +Update(double value) void
+        +Print(std::ostream& out) const void
+    }
+
+    class WindDirectionInfo {
+        -double m_sumX
+        -double m_sumY
+        -unsigned int m_count
+        +Update(double direction) void
+        +Print(std::ostream& out) const void
+        -static DegreesToRadians(double degrees) double
+        -static RadiansToDegrees(double radians) double
+        -static NormalizeAngle(double angle) double
+    }
+
+    class WeatherData {
+        -double m_temperature
+        -double m_humidity
+        -double m_pressure
+        +GetTemperature() double
+        +GetHumidity() double
+        +GetPressure() double
+        +MeasurementsChanged() void
+        +SetMeasurements(double temp, double humidity, double pressure) void
+        #GetChangedData() WeatherInfo
+    }
+
+    class OutsideWeatherData {
+        -double m_temperature
+        -double m_humidity
+        -double m_pressure
+        -double m_windSpeed
+        -double m_windDirection
+        +GetTemperature() double
+        +GetHumidity() double
+        +GetPressure() double
+        +GetWindSpeed() double
+        +GetWindDirection() double
+        +MeasurementsChanged() void
+        +SetMeasurements(double temp, double humidity, double pressure, double windSpeed, double windDirection) void
+        #GetChangedData() OutsideWeatherInfo
+    }
+
+    class WeatherInfo {
+        +double temperature
+        +double humidity
+        +double pressure
+    }
+
+    class OutsideWeatherInfo {
+        +double windSpeed
+        +double windDirection
+    }
+
+
+
+    PriorityObservable~T~ --|> IObservable~T~
+    IObserver~T~ --o PriorityObservable~T~
+    WeatherInfo <|-- OutsideWeatherInfo
+    
+    Display --|> IObserver~T~
+    StatsDisplay --|> IObserver~T~
+
+    StatsInfo --* StatsDisplay
+    WindDirectionInfo --* StatsDisplay
+    WeatherData --o StatsDisplay
+    WeatherInfo --* WeatherData
+    WeatherData --|> PriorityObservable~T~
