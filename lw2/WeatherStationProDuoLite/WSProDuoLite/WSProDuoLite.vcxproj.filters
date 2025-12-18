@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Display">
+      <UniqueIdentifier>{f3db18b3-ecfc-447f-ab6a-1aad5c194913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Observable">
+      <UniqueIdentifier>{4def06d0-c623-454f-baaf-3faf9255225a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Observer">
+      <UniqueIdentifier>{c6caba5a-d6b9-47d5-aaa9-c0f77c18a7e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Observer\IObserver.h">
+      <Filter>Исходные файлы\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable\IObservable.h">
+      <Filter>Исходные файлы\Observable</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable\PriorityObservable.h">
+      <Filter>Исходные файлы\Observable</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable\WeatherData.h">
+      <Filter>Исходные файлы\Observable</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\Display.h">
+      <Filter>Исходные файлы\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\StatsInfo.h">
+      <Filter>Исходные файлы\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\WindDirectionInfo.h">
+      <Filter>Исходные файлы\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\Animals.h">
+      <Filter>Исходные файлы\Display</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
