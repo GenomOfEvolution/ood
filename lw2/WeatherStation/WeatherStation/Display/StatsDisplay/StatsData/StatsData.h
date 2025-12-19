@@ -13,6 +13,7 @@ class StatsData
 {
 public:
 	void Update(double value);
+	// TODO: вынессти в StatsDisplay
 	void Print(const std::string& statsName, std::ostream& output) const;
 	Stats GetStats() const;
 

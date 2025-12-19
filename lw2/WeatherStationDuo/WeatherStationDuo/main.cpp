@@ -7,6 +7,7 @@ int main()
     CWeatherData wdIn;
     CWeatherData wdOut;
 
+    // TODO: дисплей сам подписываетс€ на внутр и внеш данные
     CDisplay display;
 
     wdIn.RegisterObserver(display);

@@ -1,6 +1,7 @@
 #pragma once
 #include <boost/signals2.hpp>
 
+// TODO: сделать со scoped connection
 using ScopedConnection = boost::signals2::connection;
 template <typename Signature>
 using Signal = boost::signals2::signal<Signature>;

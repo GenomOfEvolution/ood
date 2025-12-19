@@ -28,6 +28,8 @@ public:
         // “ак как мы проверили наличие выше, insertResult.second всегда true
         auto priorityIt = insertResult.first; // “еперь priorityIt - это итератор
 
+        // TODO: сделать код безопасным дл€ исключений
+        // удалить вставленный элемент
         try
         {
             auto eventIt = m_observers.find(eventType);
@@ -67,6 +69,7 @@ public:
         {
             // ѕровер€ем, существует ли наблюдатель в оригинальном контейнере
             auto range = eventIt->second.equal_range(negPriority);
+            // TODO: как избавитьс€ от линейного поиска
             auto it = std::find_if(range.first, range.second,
                 [observer](const auto& item) { return item.second == observer; });
 

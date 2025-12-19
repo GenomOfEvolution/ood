@@ -14,6 +14,9 @@
 #include "Services/QtDialogService/QtDialogService.h"
 
 
+// TODO: сделать активную модель, разгрузить контроллер
+// TODO: сделать поодержку нескольких окон
+
 using namespace UI;
 
 int main(int argc, char* argv[])

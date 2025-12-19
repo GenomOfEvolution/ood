@@ -16,6 +16,7 @@ public:
 	{
 		if (m_observerItMap.find(&observer) == m_observerItMap.end())
 		{
+			// TODO: воспользоваться Scope-guard'ами, сделать код безопасным
 			auto it = m_observers.emplace(priority, &observer);
 			m_observerItMap[&observer] = it;
 		}
