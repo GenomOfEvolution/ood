@@ -166,3 +166,11 @@ TEST_F(PictureTest, GetAllInfo_ShouldReturnCorrectInfo)
 
     ASSERT_THAT(picture->GetAllInfo(), HasSubstr("circle: Circle info"));
 }
+
+TEST_F(PictureTest, DrawPicture_WithNullCanvas_ShouldThrowInvalidArgument)
+{
+    EXPECT_THROW(
+        picture->DrawPicture(nullptr),
+        std::invalid_argument
+    );
+}
